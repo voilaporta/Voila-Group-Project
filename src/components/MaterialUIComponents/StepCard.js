@@ -55,7 +55,7 @@ class StepCard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                         style={this.state.complete ? styles.complete : null}
-                        avatar={this.state.complete ? <Avatar style={styles.avatarComplete}><CheckIcon /></Avatar> : <Avatar sizes="small" style={styles.avatar}>{this.props.step}</Avatar>}
+                        avatar={this.state.complete ? <Avatar style={styles.avatarComplete}><CheckIcon /></Avatar> : <Avatar>{this.props.step}</Avatar>}
                         title={<Typography style={styles.cardHeader}>{this.props.header}</Typography>}
                         action={<MoreInfoPopover/>}
                     />
@@ -70,7 +70,7 @@ class StepCard extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography paragraph>Welcome, Mr. Builder!</Typography>
+                            {/* <Typography paragraph>Welcome, Mr. Builder!</Typography>
                             <Typography paragraph>
                                 Here, you can follow your home-buying journey! You can also click the vault icon to see all of your documents in the voila vault.
                             </Typography>
@@ -79,7 +79,8 @@ class StepCard extends Component {
                             </Button>
                             <br/>
                             <br/>
-                            <Button variant="outlined" onClick={this.handleComplete}>Complete</Button>
+                            <Button variant="outlined" onClick={this.handleComplete}>Complete</Button> */}
+                            {this.props.component}
                         </CardContent>
                     </Collapse>
                 </Card>

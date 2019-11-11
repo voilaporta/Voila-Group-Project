@@ -20,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import Theme from '../../theme/theme';
 
 import './App.css';
+import TopNav from '../MaterialUIComponents/TopNav';
 
 class App extends Component {
   componentDidMount () {
@@ -31,6 +32,7 @@ class App extends Component {
       <Router>
         <Theme>
           <div>
+            <TopNav/>
             <Nav />
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

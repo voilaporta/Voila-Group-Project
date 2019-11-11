@@ -4,7 +4,7 @@ import { RadialProgress } from 'react-radial-progress-indicator';
 import './Dashboard.css';
 class DashboardUser extends Component{
     journey=()=>{
-        this.props.history.push('/')
+        this.props.history.push('/buyer-journey')
     }
     render(){
         return(

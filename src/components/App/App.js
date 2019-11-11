@@ -16,11 +16,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import BuyerJourney from '../Journey/BuyerJourney';
 
 import Theme from '../../theme/theme';
 
 import './App.css';
-import TopNav from '../MaterialUIComponents/TopNav';
 
 class App extends Component {
   componentDidMount () {
@@ -32,7 +32,6 @@ class App extends Component {
       <Router>
         <Theme>
           <div>
-            <TopNav/>
             <Nav />
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -59,6 +58,10 @@ class App extends Component {
                 exact
                 path="/info"
                 component={InfoPage}
+              />
+              <ProtectedRoute
+                exact path="/buyer-journey"
+                component={BuyerJourney}
               />
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />

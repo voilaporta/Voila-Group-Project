@@ -6,6 +6,7 @@ class Step1Client extends Component {
     render() {
         return (
             <div>
+                <p>Step 1 Client</p>
             </div>
         );
     }

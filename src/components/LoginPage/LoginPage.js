@@ -44,9 +44,10 @@ class LoginPage extends Component {
           <h1>Login</h1>
           <div>
             <label htmlFor="username">
-              Username:
+              {/* Username: */}
               <input
                 type="text"
+                placeholder="Username"
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
@@ -55,9 +56,10 @@ class LoginPage extends Component {
           </div>
           <div>
             <label htmlFor="password">
-              Password:
+              {/* Password: */}
               <input
                 type="password"
+                placeholder="Password"
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
@@ -73,7 +75,7 @@ class LoginPage extends Component {
             />
           </div>
         </form>
-        <center>
+        {/* <center>
           <button
             type="button"
             className="link-button"
@@ -81,7 +83,7 @@ class LoginPage extends Component {
           >
             Register
           </button>
-        </center>
+        </center> */}
       </div>
     );
   }

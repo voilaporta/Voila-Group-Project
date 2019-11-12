@@ -10,7 +10,6 @@ class Profile extends Component {
                 <h1 id="welcome">
                     Profile
                 </h1>
-                <CreateClient/>
             </div>
         )
     }

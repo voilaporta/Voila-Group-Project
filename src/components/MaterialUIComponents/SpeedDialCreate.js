@@ -28,9 +28,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const actions = [
-    { icon: <PersonAddIcon />, name: 'Add Client' },
-    { icon: <SupervisorAccountIcon />, name: 'Add Administrator' },
-    { icon: <AddShoppingCartIcon />, name: 'Add Vendor' },
+    { icon: <PersonAddIcon />, name: 'Client' },
+    { icon: <SupervisorAccountIcon />, name: 'Admin' },
+    { icon: <AddShoppingCartIcon />, name: 'Vendor' },
 ];
 
 export default function SpeedDialCreate() {
@@ -52,7 +52,7 @@ export default function SpeedDialCreate() {
 
     return (
         <div className={classes.root}>
-            <Button onClick={handleVisibility}>Add...</Button>
+            <Button onClick={handleVisibility}></Button>
             <Backdrop open={open} />
             <SpeedDial
                 ariaLabel="SpeedDial tooltip example"

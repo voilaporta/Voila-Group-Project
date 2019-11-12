@@ -57,6 +57,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
+         <br></br>
           <div>
             <label htmlFor="password">
               {/* Password: */}
@@ -69,6 +70,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
+          <br></br>
           <div>
             <input
               className="log-in"

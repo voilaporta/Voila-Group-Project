@@ -67,4 +67,23 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    //updates a user's journey step complete or not complete
+    const userId = req.params.id;
+    const completed = req.body.complete;
+    const queryText = `UPDATE "userStep"
+	                    SET "completed" = $2
+                        WHERE id = $1;`;
+    pool.query(queryText, [userId, completed])
+    .then((result)=>{
+        res.sendStatus(201);
+    }).catch((error)=>{
+        console.log('error creating client journey', error);
+        res.sendStatus(500);
+    })
+});
+
+
+
+
 module.exports = router;

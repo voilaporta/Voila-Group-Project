@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DescriptionIcon from '@material-ui/icons/Description';
 import CheckIcon from '@material-ui/icons/Check';
 import MoreInfoPopover from './MoreInfoPopover';
+import { recomposeColor } from '@material-ui/core/styles';
 
 const styles = {
     card: {
@@ -37,7 +38,7 @@ const styles = {
 class StepCard extends Component {
     state = {
         expanded: false,
-        complete: false,
+        complete: this.props.step.completed,
     };
 
     handleExpandClick = () => {
@@ -55,9 +56,9 @@ class StepCard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                         style={this.state.complete ? styles.complete : null}
-                        avatar={this.state.complete ? <Avatar style={styles.avatarComplete}><CheckIcon /></Avatar> : <Avatar>{this.props.step}</Avatar>}
-                        title={<Typography style={styles.cardHeader}>{this.props.header}</Typography>}
-                        action={<MoreInfoPopover/>}
+                        avatar={this.state.complete ? <Avatar style={styles.avatarComplete}><CheckIcon /></Avatar> : <Avatar>{this.props.step.order}</Avatar>}
+                        title={<Typography style={styles.cardHeader}>{this.props.step.name}</Typography>}
+                        action={<MoreInfoPopover content={this.props.step.description}/>}
                     />
                     <CardActions disableSpacing sizes="small">
                         <IconButton style={this.state.expanded ? styles.expandedOpen : styles.expanded}
@@ -70,16 +71,6 @@ class StepCard extends Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            {/* <Typography paragraph>Welcome, Mr. Builder!</Typography>
-                            <Typography paragraph>
-                                Here, you can follow your home-buying journey! You can also click the vault icon to see all of your documents in the voila vault.
-                            </Typography>
-                            <Button style={styles.vault} variant="outlined" startIcon={<DescriptionIcon/>}>
-                                Voila Vault
-                            </Button>
-                            <br/>
-                            <br/>
-                            <Button variant="outlined" onClick={this.handleComplete}>Complete</Button> */}
                             {this.props.component}
                         </CardContent>
                     </Collapse>

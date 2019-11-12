@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* getUserJourney (action){
+function* getUserJourney (){
     try{
         const response = yield axios.get(`/api/journey`);
         yield put({type: 'SET_JOURNEY', payload: response.data});
@@ -14,8 +14,8 @@ function* getUserJourney (action){
 
 
 function* journeySaga() {
-    yield takeLatest('GET_JOURNEY', getCollection);
-    yield takeLatest('ADD_COLLECTION', addCollection);
+    yield takeLatest('GET_JOURNEY', getUserJourney);
+    // yield takeLatest('ADD_COLLECTION', addCollection);
   }
   
   export default journeySaga;

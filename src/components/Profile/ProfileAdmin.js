@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import SpeedDialCreate from '../MaterialUIComponents/SpeedDialCreate';
 import CreateClient from '../CreateClient/CreateClient';
 
 class Profile extends Component {

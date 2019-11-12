@@ -6,6 +6,7 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
     const userId = req.user.id;
+    console.log(userId)
     const queryText = `SELECT "userStep".id, "order", "completed", "name", "description"
                         FROM "userStep"
                         JOIN "journeyStep"

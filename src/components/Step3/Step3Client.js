@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ChangeCriteria from './ChangeCriteria';
+import ComponentToUpdate from './ComponentToUpdate';
 
 class Step3Client extends Component {
 
     state = {
+        showComponentToUpdate: false,
         showCriteria: false,
+        showRequest: false,
+        showOffer: false,
         criteria: {
             user_step_id: '',
             bedroom_count: '',
@@ -31,38 +34,50 @@ class Step3Client extends Component {
         }
     }
 
-    addCriteriaButton = () => {
+    addCriteria = () => {
         console.log('this is addCriteria');
         this.setState({
-            showCriteria: true
+            showCriteria: true,
+            showComponentToUpdate: true
         })
         // this.props.dispatch({type: 'POST_CRITERIA', payload: this.state.criteria})
+    }
+
+    requestShowing = () => {
+        console.log('this is requestShowing');
+        this.setState({
+            showRequest: true,
+            showComponentToUpdate: true
+        })
+    }
+
+    makeOffer = () => {
+        console.log('this is makeOffer');
+        this.setState({
+            showOffer: true,
+            showComponentToUpdate: true
+        })
     }
 
     render() { 
         return (
             <div>
-                {this.state.showCriteria ? <ChangeCriteria showCriteria={this.state.showCriteria}/> : 
+                {this.state.showComponentToUpdate ? <ComponentToUpdate showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <>
                  <div className="criteria">
                     Current Criteria:
-                    <button onClick={this.addCriteriaButton}>Add Criteria</button>
+                    <br/>
+                    <button onClick={this.addCriteria}>Add Criteria</button>
                 </div>
+            
                 <div className="showing">
                     Recent showing requested:
-                    <button>Request a showing</button>
+                    <br/>
+                    <button onClick={this.requestShowing}>Request a showing</button>
                 </div>
-                <button>Make Offer</button>
-
-                <div className="requestShowing">
-                    <input placeholder="address"/>
-                    <input placeholder="MLS number"/>
-                    <button onClick={this.makeRequest}>Make Request</button>
-                    House requested:
-                </div>
-
-                
+                <button onClick={this.makeOffer}>Make Offer</button>
                 </>
+
                 }
             </div>
         );

@@ -5,32 +5,23 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { createMuiTheme } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import SwipeableViews from 'react-swipeable-views';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
-
+function TabContainer({ children, dir }) {
+    return (
+      <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+        {children}
+      </Typography>
+    );
+  }
+  
+  TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+    dir: PropTypes.string.isRequired,
+  };
 const styles = theme => ({
     root: {
       width: '100%',
@@ -89,59 +80,39 @@ class DashboardAdmin extends Component {
         value: 0
     }
 
-    handleChange = (nextValue) => {
-        this.setState({ value: nextValue });
-        console.log(nextValue)
-    };
+    handleChange = (event, value) => {
+        this.setState({ value });
+      };
+    
+      handleChangeIndex = index => {
+        this.setState({ value: index });
+      };
 
     render() {
-
-        const { classes } = this.props;
-        const { value } = this.state;
+        const { classes, theme } = this.props;
 
         return (
             <div>
-                {/* <Fab
-                    variant="extended"
-                    size="small"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
+                <Tabs
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
                 >
-                    View Client
-                </Fab>
-                <Fab
-                    variant="extended"
-                    size="small"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
+                    <Tab label="Clients" />
+                    <Tab label="Admins" />
+                    <Tab label="Vendors" />
+                </Tabs>
+                <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={this.state.value}
+                onChangeIndex={this.handleChangeIndex}
                 >
-                    View Admins
-                </Fab>
-                <Fab
-                    variant="extended"
-                    size="small"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
-                >
-                    View Vendors
-                </Fab> */}
-        <Tabs
-          value={value}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Item One" value={0} onClick={this.handleChange}/>
-          <Tab label="Item Two" value={1} onClick={this.handleChange}/>
-          <Tab label="Item Three" value={2} onClick={this.handleChange}/>
-        </Tabs>
-                <h1 id="welcome">
-                    Welcome, { this.props.user.username }!
-                </h1>
+                <TabContainer dir={theme.direction}>Clients</TabContainer>
+                <TabContainer dir={theme.direction}>Admins</TabContainer>
+                <TabContainer dir={theme.direction}>Vendors</TabContainer>
+                </SwipeableViews>
                 <div className={classes.search} >
                 <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -167,4 +138,9 @@ const mapStateToProps = state => ({
 user: state.user,
 });
 
-export default withStyles(styles) (connect(mapStateToProps) (DashboardAdmin));
+DashboardAdmin.propTypes = {
+    classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
+  };
+
+export default withStyles(styles, { withTheme: true }) (connect(mapStateToProps) (DashboardAdmin));

@@ -1,0 +1,22 @@
+.loginlogo{
+    flex-grow: 1;
+    width: 200px;
+    max-height: 220px;
+    align-self: center;
+}
+
+
+input{
+    background-color: white;
+    min-height: 25px;
+    min-width: 120px;
+    outline:1px solid black;
+    cursor: pointer;
+}
+
+.log-in{
+    width:120px;
+    height:25px;
+    border: 1px solid black
+   
+} 

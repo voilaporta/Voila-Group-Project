@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import logo from './voilaLogin.png'
+import './LoginPage.css'
 class LoginPage extends Component {
   state = {
     username: '',
@@ -41,7 +42,9 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
+          <div className="loginlogo">
+          <img src={logo} alt = ""/>
+          </div>
           <div>
             <label htmlFor="username">
               {/* Username: */}
@@ -54,6 +57,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
+         <br></br>
           <div>
             <label htmlFor="password">
               {/* Password: */}
@@ -66,6 +70,7 @@ class LoginPage extends Component {
               />
             </label>
           </div>
+          <br></br>
           <div>
             <input
               className="log-in"

@@ -9,20 +9,13 @@ body {
 }
 
 form {
-    background-color: gainsboro;
+    background-color: white;
     width: 30%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px ;
 
-}
-
-
-input {
-    margin: 5px;
-    margin-bottom: 10px; 
-    outline: 1px solid gray;
 }
 
 .log-in, .log-out, .register {

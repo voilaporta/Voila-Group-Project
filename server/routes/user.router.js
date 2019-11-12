@@ -11,6 +11,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
 });
+//GET route to get list of agents needed when client is created
+router.get('/agent', rejectUnauthenticated, (req, res) => {
+  const queryText = `SELECT "id", "firstName"
+                      FROM "user"
+                      WHERE "role_id" = 1;`;
+  pool.query(queryText)
+  .then((result)=>{
+    res.send(result.rows);
+  }).catch((error)=>{
+    console.log('error getting list of agents', error);
+    res.sendStatus(500);
+  })
+});
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen

@@ -53,10 +53,10 @@ router.get('/offer/:id', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/criteria', rejectUnauthenticated, (req, res) => {
-    const userStep = req.body.userStep;
-    const rooms = req.body.rooms;
-    const bath = req.body.bath;
-    const sf = req.body.sf;
+    const userStep = req.body.user_step_id;
+    const rooms = req.body.bedroom_count;
+    const bath = req.body.bathroom_count;
+    const sf = req.body.square_feet;
     const location = req.body.location;
     const notes = req.body.notes;
     const queryText = `INSERT INTO "searchCriteria"
@@ -73,9 +73,9 @@ router.post('/criteria', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/showing', rejectUnauthenticated, (req, res) => {
-    const userStep = req.body.userStep;
-    const address = req.body.rooms;
-    const mls = req.body.bath;
+    const userStep = req.body.user_step_id;
+    const address = req.body.address;
+    const mls = req.body.mls_number;
     const queryText = `INSERT INTO "house"
 	                    ("userStep_id", "address", "MLS_number")
                         VALUES
@@ -90,18 +90,19 @@ router.post('/showing', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/offer', rejectUnauthenticated, (req, res) => {
-    const userStep = req.body.userStep;
+    const userStep = req.body.user_step_id;
     const name = req.body.name;
     const address = req.body.address;
     const price = req.body.price;
-    const ernestMoney = req.body.ernestMoney;
-    const downPayment = req.body.downpayment;
-    const sellerPaidClosing = req.body.sellerPaidClosing;
+    const closing = req.body.closing_date;
+    const earnestMoney = req.body.earnest_money;
+    const downPayment = req.body.down_payment;
+    const sellerPaidClosing = req.body.seller_closing_costs;
     const queryText = `INSERT INTO "offerMade"
                         ("userStep_id", "name", "address", "price", "closingDate", "earnestMoney", "downPayment", "sellerPaidClosingCosts" )
                         VALUES
                         ($1, $2, $3, $4, $5, $6, $7, $8);`;
-    pool.query(queryText, [userStep, name, address, price, ernestMoney, downPayment, sellerPaidClosing])
+    pool.query(queryText, [userStep, name, address, price, closing, earnestMoney, downPayment, sellerPaidClosing])
     .then((result)=>{
         res.sendStatus(201);
     }).catch((error)=>{
@@ -111,7 +112,7 @@ router.post('/offer', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/criteria', rejectUnauthenticated, (req, res) => {
-    const userStep = req.body.userStep;
+    const userStep = req.body.user_step_id;
     const rooms = req.body.rooms;
     const bath = req.body.bath;
     const sf = req.body.sf;

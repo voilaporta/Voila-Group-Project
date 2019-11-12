@@ -14,6 +14,7 @@ const journeyRouter = require('./routes/journey.router');
 const step3Router = require('./routes/step3.router');
 const vendorRouter = require('./routes/vendors.router');
 const clientRouter = require('./routes/client.router');
+const adminRouter = require('./routes/administrator.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.use('/api/journey', journeyRouter);
 app.use('/api/step3', step3Router);
 app.use('/api/vendor', vendorRouter);
 app.use('/api/client', clientRouter);
+app.use('/api/administrators', adminRouter);
 
 // Serve static files
 app.use(express.static('build'));

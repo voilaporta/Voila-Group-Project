@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function MoreInfoPopover() {
+export default function MoreInfoPopover(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -46,7 +46,7 @@ export default function MoreInfoPopover() {
                     horizontal: 'center',
                 }}
             >
-                <Typography className={classes.typography}>This will contain more details and definitions of real-estate terminology for new buyers.</Typography>
+                <Typography className={classes.typography}>{props.content}</Typography>
             </Popover>
         </div>
     );

@@ -69,12 +69,14 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     //updates a user's journey step complete or not complete
-    const userId = req.params.id;
+    const userStepId = req.params.id;
     const completed = req.body.complete;
+    console.log(req.params.id, req.body);
+    
     const queryText = `UPDATE "userStep"
 	                    SET "completed" = $2
                         WHERE id = $1;`;
-    pool.query(queryText, [userId, completed])
+    pool.query(queryText, [userStepId, completed])
     .then((result)=>{
         res.sendStatus(201);
     }).catch((error)=>{

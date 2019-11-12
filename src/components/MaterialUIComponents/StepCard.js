@@ -44,22 +44,22 @@ const styles = {
         fontSize: '18pt',
         fontWeight: 10
     },
-    avatarComplete: {
+    avatarCompleted: {
         color: '#81c784',
         backgroundColor: 'white'
     },
-    complete: {
+    completed: {
         backgroundColor: '#81c784'
     },
     vault: {
         marginLeft: 'auto'
-    }
+    },
 };
 
 class StepCard extends Component {
     state = {
         expanded: false,
-        complete: this.props.step.completed,
+        completed: this.props.step.completed,
     };
 
     componentToRender = (stepNum, roleId) => {
@@ -142,8 +142,11 @@ class StepCard extends Component {
     };
 
     handleComplete = () => {
-        this.setState(state => ({ complete: !state.complete,
-        expanded: !state.expanded }))
+        this.setState({completed: !this.state.completed})
+        setTimeout(() => {
+            this.props.dispatch({ type: 'COMPLETE_STEP', id: this.props.step.id, completed: !this.props.step.completed })
+        }, 250);
+
     }
 
     render() {
@@ -152,8 +155,8 @@ class StepCard extends Component {
             <div>
                 <Card style={styles.card}>
                     <CardHeader
-                        style={this.state.complete ? styles.complete : null}
-                        avatar={this.state.complete ? <Avatar style={styles.avatarComplete}><CheckIcon /></Avatar> : <Avatar>{this.props.step.order}</Avatar>}
+                        style={this.state.completed ? styles.completed : null}
+                        avatar={this.state.completed ? <Avatar style={styles.avatarCompleted}><CheckIcon /></Avatar> : <Avatar>{this.props.step.order}</Avatar>}
                         title={<Typography style={styles.cardHeader}>{this.props.step.name}</Typography>}
                         action={<MoreInfoPopover content={this.props.step.description}/>}
                     />
@@ -169,6 +172,16 @@ class StepCard extends Component {
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent >
                             {this.componentToRender(this.props.step.order, this.props.user.role_id)}
+
+                            {this.props.user.role === 3 
+                                ? ''
+                                : 
+                                <Button 
+                                    variant="outlined"
+                                    onClick={this.handleComplete}>
+                                        Complete
+                                    </Button>
+                            }
                         </CardContent>
                     </Collapse>
                 </Card>

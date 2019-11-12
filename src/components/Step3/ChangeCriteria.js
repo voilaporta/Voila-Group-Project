@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import RequestShowing from './RequestShowing';
 
 class ChangeCriteria extends Component {
+
+
+    // updateCriteria = () => {
+
+    // }
+
     render() {
+
         return( 
             <div>
                 <div className="criteriaChange">
@@ -13,8 +21,7 @@ class ChangeCriteria extends Component {
                     <input placeholder="Any notes for your realtor?"/>
                     <button onClick={this.updateCriteria}>Update Criteria</button>
                 </div>
-
-
+                
             </div>
         )
     }

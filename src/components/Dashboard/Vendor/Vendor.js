@@ -48,6 +48,7 @@ class Vendor extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
+    state
 });
 
 export default connect(mapStateToProps)(Vendor);

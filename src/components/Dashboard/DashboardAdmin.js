@@ -112,7 +112,7 @@ class DashboardAdmin extends Component {
                 >
                 <TabContainer dir={theme.direction}>Clients</TabContainer>
                 <TabContainer dir={theme.direction}>Admins</TabContainer>
-                <TabContainer dir={theme.direction}>Vendors<Vendor/></TabContainer>
+                <TabContainer dir={theme.direction}>Vendors</TabContainer>
                 </SwipeableViews>
                 <div className={classes.search} >
                 <div className={classes.searchIcon}>

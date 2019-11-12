@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -24,13 +23,13 @@ const styles = {
   },
   grow: {
     flexGrow: 1,
-    marginLeft: -220
+    marginLeft: -220,
+    position: 'relative'
   },
 };
 
 class AppTopBar extends Component {
   state = {
-    auth: true,
     anchorEl: null,
   };
 
@@ -44,9 +43,8 @@ class AppTopBar extends Component {
 
   render() {
     const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
+    const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-
 
     return (
       <div className={classes.root}>
@@ -55,7 +53,7 @@ class AppTopBar extends Component {
           <Button color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">
             <img src={VoilaLogo} width="85px" align="center"/>
           </Button>
-          {auth && (
+          {this.props.user.username ? 
             <div>
               <IconButton
                 aria-owns={open ? 'menu-appbar' : undefined}
@@ -83,7 +81,9 @@ class AppTopBar extends Component {
                 <MenuItem component={Link} to="/home" onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</MenuItem>
               </Menu>
             </div>
-          )}
+            :
+            <div></div>
+          }
         </Toolbar>
       </AppBar>
     </div>

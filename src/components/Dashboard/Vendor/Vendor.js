@@ -24,7 +24,7 @@ class Vendor extends Component {
                             <th>Company Name</th>
                             <th>Vendor Type</th>
                             <th>Contact Number</th>
-                            <th>Edit</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,7 +35,7 @@ class Vendor extends Component {
                         })}
                     </tbody>
                 </table>
-                <div>
+                <div className="addvendor">
                     <button onClick={this.addVendor}>Add Vendor</button>
                 </div>
             </div>

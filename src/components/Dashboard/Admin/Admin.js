@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AdminItem from'./AdminItem'
 
 class Admin extends Component {
     componentDidMount() {
@@ -19,18 +20,18 @@ class Admin extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th></th>
+                         
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email </th>
                             <th>Role</th>
-                            <th>Edit</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.reduxState.adminList.map((admin) => {
+                        {this.props.state.adminList.map((admin) => {
                             return (
-                                <VendorItem key={admin.id} admin={admin} getAdmin={this.getAdmin} />
+                                <AdminItem key={admin.id} admin={admin} getAdmin={this.getAdmin} />
                             )
                         })}
                     </tbody>
@@ -48,6 +49,7 @@ class Admin extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
+    state
 });
 
 export default connect(mapStateToProps)(Admin);

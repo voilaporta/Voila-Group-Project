@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class AdminItem extends Component {
-    editVendor = () => {
-        console.log('hello from the editVendor');
+    Vendor = () => {
+        console.log('hello from the Vendor');
 
     }
     render() {
         return (
-            <div>
+            
                 <tr>
                     <td>{this.props.admin.firstName} </td>
                     <td>{this.props.admin.lastName}</td>
                     <td>{this.props.admin.email}</td>
                     <td>{this.props.admin.role_id}</td>
-                    <td><button onClick={this.editadmin}>Edit</button></td>
+                    <td><button onClick={this.admin}>Update</button></td>
                 </tr>
-            </div>
+           
         )
     }
 }

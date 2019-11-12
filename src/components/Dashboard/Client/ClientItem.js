@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class ClientItem extends Component {
-    editClient = () => {
-        console.log('hello from the editClient');
+    updateClient = () => {
+        console.log('hello from the updateClient');
 
     }
     render() {
         return (
-            <div>
+            
                 <tr>
                     <td>{this.props.client.firstName}</td>
                     <td>{this.props.client.lastName}</td>
-                    <td><button onClick={this.editClient}>Edit</button></td>
+                    <td><button onClick={this.updateClient}>Update</button></td>
                 </tr>
-            </div>
+            
         )
     }
 }

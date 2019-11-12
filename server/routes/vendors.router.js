@@ -5,8 +5,13 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
 
-    const queryText = `SELECT * 
-                        FROM "vendor";`;
+    const queryText = `SELECT "vendor".id, "firstName", "lastName", 
+                        "companyName", "phoneNumber", "email", 
+                        "website", "name" AS vendor_Type_Name, 
+                        "vendorType".id AS vendor_type_id
+                            FROM "vendor"
+                        JOIN "vendorType"
+                            ON "vendorType".id = "vendor".vendor_id;`;
     pool.query(queryText,)
     .then((result)=>{
         res.send(result.rows);
@@ -52,9 +57,24 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
                         WHERE "id" = $8;`;
     pool.query(queryText, [firstName, lastName, companyName, phone, email, website, vendorTypeId, vendorId])
     .then((result)=>{
-        res.sendStatus(201);
+        res.sendStatus(200);
     }).catch((error)=>{
-        console.log('error creating new vendor', error);
+        console.log('error updating vendor', error);
+        res.sendStatus(500);
+    })
+});
+
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.params.id
+    const queryText = `DELETE 
+                        FROM "vendor"
+                        WHERE id = $1;`;
+    pool.query(queryText, [vendorId])
+    .then((result)=>{
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('error deleting vendor', error);
         res.sendStatus(500);
     })
 });

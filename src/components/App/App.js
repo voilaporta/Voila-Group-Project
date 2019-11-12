@@ -8,7 +8,7 @@ import {
 
 import {connect} from 'react-redux';
 
-import Nav from '../Nav/Nav';
+
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
@@ -54,7 +54,7 @@ class App extends Component {
               <ProtectedRoute
                 exact
                 path="/home"
-                component={DashboardAdmin}
+                component={UserPage}
               />
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}

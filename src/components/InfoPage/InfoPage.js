@@ -1,5 +1,5 @@
 import React from 'react';
-import BuyerJourney from '../Journey/BuyerJourney';
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.

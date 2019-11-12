@@ -1,0 +1,18 @@
+.loginlogo{
+    flex-grow: 1;
+    width: 200px;
+    max-height: 220px;
+    align-self: center;
+}
+
+
+input{
+    width: 120px;
+    height: 20px;
+
+}
+
+.log-in{
+    width:120px;
+    height:25px;
+} 

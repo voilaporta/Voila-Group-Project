@@ -109,6 +109,7 @@ class CreateClient extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
+    agent: state.agent
 });
 
 export default withRouter(connect(mapStateToProps)(CreateClient));

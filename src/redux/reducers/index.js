@@ -4,6 +4,7 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import criteria from './criteriaReducer';
 import userJourney from './buyerJourneyReducer';
+import agent from './agentReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   criteria, // will contain client's home search criteria
   userJourney,
+  agent,
 });
 
 export default rootReducer;

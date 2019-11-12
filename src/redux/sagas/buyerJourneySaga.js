@@ -10,11 +10,19 @@ function* getUserJourney (){
     }
 }
 
-
+function* completeStep (action) {
+    try {
+        yield axios.put(`/api/journey/${action.id}`, {complete: action.completed})
+        yield getUserJourney();
+    } catch (error) {
+        console.log('error completing step', error);
+    }
+}
 
 
 function* journeySaga() {
     yield takeLatest('GET_JOURNEY', getUserJourney);
+    yield takeLatest('COMPLETE_STEP', completeStep);
     // yield takeLatest('ADD_COLLECTION', addCollection);
   }
   

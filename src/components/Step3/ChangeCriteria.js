@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RequestShowing from './RequestShowing';
 
 class ChangeCriteria extends Component {
 
 
-    // updateCriteria = () => {
+    updateCriteria = () => {
+        console.log('in updateCriteria');
 
-    // }
+    }
 
     render() {
 
@@ -20,6 +20,7 @@ class ChangeCriteria extends Component {
                     <input placeholder="location/zip code"/>
                     <input placeholder="Any notes for your realtor?"/>
                     <button onClick={this.updateCriteria}>Update Criteria</button>
+                    <button onClick={this.cancel}>Cancel</button>
                 </div>
                 
             </div>

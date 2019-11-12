@@ -10,6 +10,7 @@ class RequestShowing extends Component {
                     <input placeholder="address"/>
                     <input placeholder="MLS number"/>
                     <button onClick={this.makeRequest}>Make Request</button>
+                    <button onClick={this.cancel}>Cancel</button>
                     House requested:
                 </div>
 

@@ -14,6 +14,7 @@ class MakeOffer extends Component {
                     <input placeholder="down payment"/>
                     <input placeholder="seller closing costs"/>
                     <button onClick={this.makeOffer}>Submit Offer</button>
+                    <button onClick={this.cancel}>Cancel</button>
                 </div>
 
 

@@ -24,6 +24,7 @@ import './App.css';
 import DashboardAdmin from '../Dashboard/DashboardAdmin';
 import AppTopBar from '../AppTopBar/AppTopBar';
 import ProfileAdmin from '../Profile/ProfileAdmin';
+import ClientList from '../ClientList/ClientList';
 
 class App extends Component {
   componentDidMount () {
@@ -79,6 +80,11 @@ class App extends Component {
                 exact
                 path="/profile"
                 component={ProfileAdmin}
+              />
+              <ProtectedRoute
+                exact
+                path="/client"
+                component={ClientList}
               />
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />

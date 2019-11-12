@@ -9,6 +9,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
+import ClientList from '../ClientList/ClientList';
+import AdminList from '../AdminList/AdminList';
+import VendorList from '../VendorList/VendorList';
 
 import Vendor from './Vendor/Vendor'
 ;function TabContainer({ children, dir }) {
@@ -32,17 +35,19 @@ const styles = theme => ({
     },
     search: {
       position: 'relative',
+      height: '5vh',
+      paddingTop: '2vh',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: 'lightblue',
       '&:hover': {
         backgroundColor: 'lightblue',
       },
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(1),
       margin: 'auto',
-      width: '30vw',
+      width: '20vw',
       [theme.breakpoints.down('sm')]: {
-        margin: 'auto',
-        width: '80vw',
+        margin: 'right',
+        width: '50vw',
       },
     },
     searchIcon: {
@@ -66,7 +71,7 @@ const styles = theme => ({
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('md')]: {
-        width: 200,
+        width: 'auto',
       },
     },
     margin: {
@@ -94,7 +99,19 @@ class DashboardAdmin extends Component {
 
         return (
             <div>
-                <Tabs
+                <div className={classes.search} >
+                <div className={classes.searchIcon}>
+                    <SearchIcon />
+                </div>
+                <InputBase
+                    placeholder="Search…"
+                    classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                    }}
+                />
+            </div>
+            <Tabs
                     value={this.state.value}
                     onChange={this.handleChange}
                     indicatorColor="primary"
@@ -110,22 +127,10 @@ class DashboardAdmin extends Component {
                 index={this.state.value}
                 onChangeIndex={this.handleChangeIndex}
                 >
-                <TabContainer dir={theme.direction}>Clients</TabContainer>
-                <TabContainer dir={theme.direction}>Admins</TabContainer>
-                <TabContainer dir={theme.direction}>Vendors</TabContainer>
+                <TabContainer dir={theme.direction}> <ClientList /> </TabContainer>
+                <TabContainer dir={theme.direction}> <AdminList /> </TabContainer>
+                <TabContainer dir={theme.direction}> <VendorList /> </TabContainer>
                 </SwipeableViews>
-                <div className={classes.search} >
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
-                </div>
-                <InputBase
-                    placeholder="Search…"
-                    classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                    }}
-                />
-            </div>
                 <p>Your ID is: {this.props.user.id}</p>
             </div>
         )

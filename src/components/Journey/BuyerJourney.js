@@ -25,6 +25,15 @@ import Step11Admin from '../Step11/Step11Admin';
 import Step11Client from '../Step11/Step11Client';
 
 class BuyerJourney extends Component {
+    
+    state = {
+        header: [],
+        step: []
+    }
+
+    componentDidMount(){
+        this.props.dispatch({type: 'GET_JOURNEY'})
+    }
 
     isAdmin = () => {
         if(this.props.user.role_id === '3'){
@@ -33,27 +42,30 @@ class BuyerJourney extends Component {
             return true;
         }
     }
+
+    getHeaders = () => {
+        let header = this.props.userJourney.map(step => [...step.name])
+        return header;
+    }
+
     
-    render() {
+    render(){
         return (
-            <div>
-                <StepCard header='' step='1' component={this.isAdmin() ? <Step1Admin /> : <Step1Client />}/>
-                <StepCard header='' step='' component={this.isAdmin() ? <Step2Admin /> : <Step2Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step3Admin /> : <Step3Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step4Admin /> : <Step4Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step5Admin /> : <Step5Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step6Admin /> : <Step6Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step7Admin /> : <Step7Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step8Admin /> : <Step8Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step9Admin /> : <Step9Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step10Admin /> : <Step10Client />} />
-                <StepCard header='' step='' component={this.isAdmin() ? <Step11Admin /> : <Step11Client />} />
+                <div>
+                    
+                    {this.props.userJourney.loading === true ? <p>...loading...</p> 
+                    :
+                    <>
+                        {this.props.userJourney.map(step => <div key={step.id}><StepCard step={step} /></div>)}
+                    </>
+                    }
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
+    userJourney: state.userJourney,
     user: state.user,
 });
 

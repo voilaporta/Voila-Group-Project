@@ -52,7 +52,7 @@ class AppTopBar extends Component {
       <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Button variant="h6" color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">
+          <Button color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">
             <img src={VoilaLogo} width="85px" align="center"/>
           </Button>
           {auth && (

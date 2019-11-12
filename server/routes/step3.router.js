@@ -95,14 +95,14 @@ router.post('/offer', rejectUnauthenticated, (req, res) => {
     const address = req.body.address;
     const price = req.body.price;
     const closing = req.body.closing_date;
-    const ernestMoney = req.body.earnest_money;
+    const earnestMoney = req.body.earnest_money;
     const downPayment = req.body.down_payment;
     const sellerPaidClosing = req.body.seller_closing_costs;
     const queryText = `INSERT INTO "offerMade"
                         ("userStep_id", "name", "address", "price", "closingDate", "earnestMoney", "downPayment", "sellerPaidClosingCosts" )
                         VALUES
                         ($1, $2, $3, $4, $5, $6, $7, $8);`;
-    pool.query(queryText, [userStep, name, address, price, closing, ernestMoney, downPayment, sellerPaidClosing])
+    pool.query(queryText, [userStep, name, address, price, closing, earnestMoney, downPayment, sellerPaidClosing])
     .then((result)=>{
         res.sendStatus(201);
     }).catch((error)=>{

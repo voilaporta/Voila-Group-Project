@@ -6,6 +6,7 @@ class Step1Admin extends Component {
     render() {
         return (
             <div>
+                <p>STEP 1 Admin</p>
             </div>
         );
     }

@@ -16,6 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import BuyerJourney from '../Journey/BuyerJourney';
 
 import Theme from '../../theme/theme';
 
@@ -61,6 +62,10 @@ class App extends Component {
                 exact
                 path="/info"
                 component={InfoPage}
+              />
+              <ProtectedRoute
+                exact path="/buyer-journey"
+                component={BuyerJourney}
               />
               <ProtectedRoute
                 exact

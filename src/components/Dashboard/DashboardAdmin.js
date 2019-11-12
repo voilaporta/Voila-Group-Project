@@ -10,7 +10,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 
-function TabContainer({ children, dir }) {
+import Vendor from './Vendor/Vendor'
+;function TabContainer({ children, dir }) {
     return (
       <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
         {children}
@@ -111,7 +112,7 @@ class DashboardAdmin extends Component {
                 >
                 <TabContainer dir={theme.direction}>Clients</TabContainer>
                 <TabContainer dir={theme.direction}>Admins</TabContainer>
-                <TabContainer dir={theme.direction}>Vendors</TabContainer>
+                <TabContainer dir={theme.direction}>Vendors<Vendor/></TabContainer>
                 </SwipeableViews>
                 <div className={classes.search} >
                 <div className={classes.searchIcon}>

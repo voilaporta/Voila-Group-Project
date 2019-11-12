@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ChangeCriteria from './ChangeCriteria';
 
 class Step3Client extends Component {
 
     state = {
+        showCriteria: false,
         criteria: {
+            user_step_id: '',
             bedroom_count: '',
             bathroom_count: '',
             square_feet: '',
@@ -12,10 +15,12 @@ class Step3Client extends Component {
             notes: ''
         },
         showing: {
+            user_step_id: '',
             address: '',
             mls_number: ''
         },
         offer: {
+            user_step_id: '',
             name: '',
             address: '',
             price: 0,
@@ -26,28 +31,28 @@ class Step3Client extends Component {
         }
     }
 
+    addCriteriaButton = () => {
+        console.log('this is addCriteria');
+        this.setState({
+            showCriteria: true
+        })
+        // this.props.dispatch({type: 'POST_CRITERIA', payload: this.state.criteria})
+    }
+
     render() { 
         return (
             <div>
-                <div className="criteria">
+                {this.state.showCriteria ? <ChangeCriteria showCriteria={this.state.showCriteria}/> : 
+                <>
+                 <div className="criteria">
                     Current Criteria:
-                    <button>Add Criteria</button>
+                    <button onClick={this.addCriteriaButton}>Add Criteria</button>
                 </div>
-
                 <div className="showing">
                     Recent showing requested:
                     <button>Request a showing</button>
-                    <button>Make Offer</button>
                 </div>
-
-                <div className="criteriaChange">
-                    <input placeholder="bedroom count"/>
-                    <input placeholder="bathroom count"/>
-                    <input placeholder="square feet"/>
-                    <input placeholder="location/zip code"/>
-                    <input placeholder="Any notes for your realtor?"/>
-                    <button onClick={this.updateCriteria}>Update Criteria</button>
-                </div>
+                <button>Make Offer</button>
 
                 <div className="requestShowing">
                     <input placeholder="address"/>
@@ -56,17 +61,9 @@ class Step3Client extends Component {
                     House requested:
                 </div>
 
-                <div className="makeOffer">
-                    <input placeholder="name"/>
-                    <input placeholder="address"/>
-                    <input placeholder="price"/>
-                    <input type="date" placeholder="closing date"/>
-                    <input placeholder="earnest money"/>
-                    <input placeholder="down payment"/>
-                    <input placeholder="seller closing costs"/>
-                    <button onClick={this.makeOffer}>Make Offer</button>
-                </div>
-
+                
+                </>
+                }
             </div>
         );
     }

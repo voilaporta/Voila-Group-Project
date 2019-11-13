@@ -11,6 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
 });
+
 //GET route to get list of agents needed when client is created
 router.get('/agent', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT "id", "firstName"
@@ -29,13 +30,23 @@ router.get('/agent', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {  
+  //create user and return id of created user
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const role = 1;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const dropboxUrl = req.body.dropboxUrl;
+  const agentId = req.body.agentId;
+  const role = req.body.role;
 
-  const queryText = 'INSERT INTO "user" (username, password, role_id) VALUES ($1, $2, $3) RETURNING id';
-  pool.query(queryText, [username, password, role])
-    .then(() => res.sendStatus(201))
+  const queryText = `INSERT INTO "user"
+                      ("username", "password", "firstName", "lastName", 
+                      "email", "dropboxUrl", "agent_id", "role_id") 
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+                      RETURNING id;`;
+  pool.query(queryText, [username, password, firstName, lastName, email, dropboxUrl, agentId, role])
+    .then((result) => res.send(result.rows))
     .catch(() => res.sendStatus(500));
 });
 

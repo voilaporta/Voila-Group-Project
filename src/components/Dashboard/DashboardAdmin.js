@@ -13,8 +13,7 @@ import Client from './Client/Client';
 import Admin from './Admin/Admin';
 import Vendor from './Vendor/Vendor';
 
-
-;function TabContainer({ children, dir }) {
+function TabContainer({ children, dir }) {
     return (
       <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
         {children}
@@ -29,6 +28,7 @@ import Vendor from './Vendor/Vendor';
 const styles = theme => ({
     root: {
       width: '100%',
+      height: '75vh'
     },
     grow: {
       flexGrow: 1,
@@ -78,6 +78,9 @@ const styles = theme => ({
         margin: theme.spacing(1),
         fontSize: '12px'
     },
+    tabcontainer: {
+        minHeight: 500
+    }
   });
 
 class DashboardAdmin extends Component {
@@ -98,7 +101,7 @@ class DashboardAdmin extends Component {
         const { classes, theme } = this.props;
 
         return (
-            <div>
+            <div className={classes.root}>
                 <div className={classes.search} >
                 <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -127,11 +130,10 @@ class DashboardAdmin extends Component {
                 index={this.state.value}
                 onChangeIndex={this.handleChangeIndex}
                 >
-                <TabContainer dir={theme.direction}> <Client /> </TabContainer>
+                <TabContainer                 className={classes.tabcontainer} dir={theme.direction} > <Client /> </TabContainer>
                 <TabContainer dir={theme.direction}> <Admin /> </TabContainer>
                 <TabContainer dir={theme.direction}> <Vendor /> </TabContainer>
                 </SwipeableViews>
-                <p>Your ID is: {this.props.user.id}</p>
             </div>
         )
     }

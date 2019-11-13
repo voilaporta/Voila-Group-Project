@@ -22,8 +22,8 @@ class ClientItem extends Component {
     }
     render() {
         // const {classes} = this.props;
+
         return (
-            
                 <tr>
                     <td>{this.props.client.firstName}</td>
                     <td>{this.props.client.lastName}</td>
@@ -34,6 +34,7 @@ class ClientItem extends Component {
                 <td><button onClick={this.updateClient}>Update</button></td>
             </tr>
                 
+                </tr>
             
         )
     }

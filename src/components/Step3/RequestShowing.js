@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 
 class RequestShowing extends Component {
 
+    state = {
+        user_step_id: '',
+        address: '',
+        mls_number: ''  
+    }
+
     render() {
         return( 
-            <div>
-                <div className="requestShowing">
+            <div className="requestShowing">
                     <input placeholder="address"/>
                     <input placeholder="MLS number"/>
                     <button onClick={this.makeRequest}>Make Request</button>
+                    <button onClick={this.cancel}>Cancel</button>
+                    <br/>
                     House requested:
-                </div>
-
             </div>
         )
     }

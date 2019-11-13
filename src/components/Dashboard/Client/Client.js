@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ClientItem from './ClientItem'
+import ClientDialog from './ClientDialog';
+import AddButton from '../AddButton/AddButton';
+  
 class Client extends Component {
+
+    state = {
+        open: false,
+    };
+
+    // opens the Add Button
+    handleAdd = () => {
+    this.setState({ open: true });
+    };
+
+    // Closes the Add Button
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
     componentDidMount() {
         // use component did mount to dispatch an action to request the client list from the API
-  this.getClients();
+    this.getClients();
     }
     getClients(){
         this.props.dispatch({type: 'FETCH_CLIENT'})
     }
-    addClient() {
-        console.log('hello from the addClient button');
 
-    }
     render() {
+
         return (
             <div>
                 <table>
@@ -32,20 +48,16 @@ class Client extends Component {
                         })}
                     </tbody>
                 </table>
-                <div>
-                    <button onClick={this.addClient}>Add Client</button>
-                </div>
+                <AddButton handleAdd={this.handleAdd} handleClose={this.handleClose}/>
+                <ClientDialog state={this.state} handleAdd={this.handleAdd} handleClose={this.handleClose}/>
             </div>
         )
     }
 }
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
     state
 });
 
-export default connect(mapStateToProps)(Client);
+export default (connect(mapStateToProps)(Client));

@@ -1,35 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RequestShowing from './RequestShowing';
 
 class ChangeCriteria extends Component {
 
+    state = {
+        user_step_id: this.props.userStepId.id,
+        bedroom_count: '',
+        bathroom_count: '',
+        square_feet: '',
+        location: '',
+        notes: ''
+    }
 
-    // updateCriteria = () => {
+    componentDidMount = () => {
+        console.log('this is state', this.state);
+        this.props.dispatch({type: 'GET_JOURNEY'})
+    } 
 
-    // }
+
+
+    updateCriteria = () => {
+        this.props.dispatch({type: 'POST_CRITERIA', payload: this.state})
+    }
+
+    handleChange = (event, input) => {
+        this.setState({
+            ...this.state,
+            [input]: event.target.value
+        })
+    }
+
+
 
     render() {
-
         return( 
-            <div>
-                <div className="criteriaChange">
-                    <input placeholder="bedroom count"/>
-                    <input placeholder="bathroom count"/>
-                    <input placeholder="square feet"/>
-                    <input placeholder="location/zip code"/>
-                    <input placeholder="Any notes for your realtor?"/>
+            <div className="criteriaChange">
+                    <input value={this.state.bedroom_count} onChange={(event) => this.handleChange(event, 'bedroom_count')} placeholder="bedroom count"/>
+                    <input value={this.state.bathroom_count} onChange={(event) => this.handleChange(event, 'bathroom_count')} placeholder="bathroom count"/>
+                    <input value={this.state.square_feet} onChange={(event) => this.handleChange(event, 'square_feet')} placeholder="square feet"/>
+                    <input value={this.state.location} onChange={(event) => this.handleChange(event, 'location')} placeholder="location/zip code"/>
+                    <input value={this.state.notes} onChange={(event) => this.handleChange(event, 'notes')} placeholder="Any notes for your realtor?"/>
                     <button onClick={this.updateCriteria}>Update Criteria</button>
-                </div>
-                
+                    <button onClick={this.cancel}>Cancel</button>
+                    {/* {JSON.stringify(userStepId)}
+                    <p>{userStepId.id}</p> */}
             </div>
+                
         )
     }
 }
 
 const mapStateToProps = state => ({
     criteria: state.criteria,
-    showing: state.showing
+    journey: state.userJourney,
+    userStepId: state.userJourney.find(step => {return step.order === 3})
+
 });
 
 export default connect(mapStateToProps)(ChangeCriteria);    

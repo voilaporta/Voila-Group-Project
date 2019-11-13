@@ -8,31 +8,10 @@ class Step3Client extends Component {
         showComponentToUpdate: false,
         showCriteria: false,
         showRequest: false,
-        showOffer: false,
-        criteria: {
-            user_step_id: '',
-            bedroom_count: '',
-            bathroom_count: '',
-            square_feet: '',
-            location: '',
-            notes: ''
-        },
-        showing: {
-            user_step_id: '',
-            address: '',
-            mls_number: ''
-        },
-        offer: {
-            user_step_id: '',
-            name: '',
-            address: '',
-            price: 0,
-            closing_date: '',
-            earnest_money: '',
-            down_payment: '',
-            seller_closing_costs: ''
-        }
+        showOffer: false
     }
+
+   
 
     addCriteria = () => {
         console.log('this is addCriteria');
@@ -86,7 +65,7 @@ class Step3Client extends Component {
 
 const mapStateToProps = state => ({
     criteria: state.criteria,
-    showing: state.showing
+    showing: state.showing,
 });
 
 export default connect(mapStateToProps)(Step3Client);

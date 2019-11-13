@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const journeyRouter = require('./routes/journey.router');
 const step3Router = require('./routes/step3.router');
+const step4Router = require('./routes/step4.router');
 const vendorRouter = require('./routes/vendors.router');
 const clientRouter = require('./routes/client.router');
 
@@ -30,6 +31,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/journey', journeyRouter);
 app.use('/api/step3', step3Router);
+app.use('/api/step4', step4Router);
 app.use('/api/vendor', vendorRouter);
 app.use('/api/client', clientRouter);
 

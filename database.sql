@@ -138,6 +138,7 @@ CREATE TABLE "appraisal" (
 	"userStep_id" INT REFERENCES "userStep" ON DELETE CASCADE,
 	"requested" BOOLEAN DEFAULT FALSE,
 	"scheduled" BOOLEAN DEFAULT FALSE,
+	"scheduleDate" DATE,
 	"completed" BOOLEAN DEFAULT FALSE,
 	"date_time_created" TIMESTAMP NOT NULL 
     			DEFAULT CURRENT_TIMESTAMP

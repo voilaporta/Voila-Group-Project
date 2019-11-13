@@ -7,12 +7,11 @@ class ClientItem extends Component {
 
     }
     render() {
+
         return (
-            
                 <tr>
                     <td>{this.props.client.firstName}</td>
                     <td>{this.props.client.lastName}</td>
-                    <td><button onClick={this.updateClient}>Update</button></td>
                 </tr>
             
         )

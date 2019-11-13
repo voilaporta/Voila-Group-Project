@@ -24,7 +24,9 @@ import './App.css';
 import DashboardAdmin from '../Dashboard/DashboardAdmin';
 import AppTopBar from '../AppTopBar/AppTopBar';
 import ProfileAdmin from '../Profile/ProfileAdmin';
-import ClientList from '../ClientList/ClientList';
+// import ClientList from '../ClientList/ClientList';
+import UpdateClient from '../Dashboard/Client/UpdateClient';
+import ClientInfo from '../Dashboard/Client/ClientInfo';
 
 class App extends Component {
   componentDidMount () {
@@ -81,12 +83,25 @@ class App extends Component {
                 path="/profile"
                 component={ProfileAdmin}
               />
-              <ProtectedRoute
+              {/* <ProtectedRoute
                 exact
                 path="/client"
                 component={ClientList}
-              />
-              {/* If none of the other routes matched, we will show a 404. */}
+              />  */}
+                <ProtectedRoute
+                exact
+                path="/updateclient"
+                component={UpdateClient}
+              /> 
+                 <ProtectedRoute
+                exact
+                path='/details/:id' render ={({match})=><ClientInfo match={match}/>}/>
+              /> 
+              <ProtectedRoute
+                exact
+                path='/update/:id' render ={({match})=><UpdateClient match={match}/>}/>
+              /> 
+               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>
             <Footer />

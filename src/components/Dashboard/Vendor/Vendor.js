@@ -38,6 +38,7 @@ class Vendor extends Component {
                 <div className="addvendor">
                     <button onClick={this.addVendor}>Add Vendor</button>
                 </div>
+
             </div>
         )
     }

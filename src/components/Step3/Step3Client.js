@@ -11,6 +11,8 @@ class Step3Client extends Component {
         showOffer: false
     }
 
+   
+
     addCriteria = () => {
         console.log('this is addCriteria');
         this.setState({
@@ -63,7 +65,7 @@ class Step3Client extends Component {
 
 const mapStateToProps = state => ({
     criteria: state.criteria,
-    showing: state.showing
+    showing: state.showing,
 });
 
 export default connect(mapStateToProps)(Step3Client);

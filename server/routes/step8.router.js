@@ -3,8 +3,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
-//UPDATE appraisal completed
-//UPDATE title ordered
 
 router.post('/:id', rejectUnauthenticated, async (req, res) => {
     //create user's instance of appraisal and title
@@ -36,7 +34,7 @@ router.get('/appraisal/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT *
                         FROM "appraisal"
                         WHERE "userStep_id" = $1;`;
-    pool.query(queryText [userStepId]);
+    pool.query(queryText [userStepId])
     .then((result)=>{
         res.send(result.rows);
     }).catch((error)=>{

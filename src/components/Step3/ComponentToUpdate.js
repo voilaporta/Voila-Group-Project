@@ -9,10 +9,9 @@ const ComponentToUpdate = (props) => {
 
     if(props.showRequest){
         componentToShow = <RequestShowing/>
-    }else if (props.showCriteria){
+    } else if (props.showCriteria){
         componentToShow = <ChangeCriteria/>
-    }
-    else if (props.showOffer){
+    } else if (props.showOffer){
         componentToShow = <MakeOffer/>
     }
     return componentToShow;

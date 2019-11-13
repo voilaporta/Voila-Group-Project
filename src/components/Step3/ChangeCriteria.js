@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 
 class ChangeCriteria extends Component {
 
+    state = {
+        user_step_id: '',
+        bedroom_count: '',
+        bathroom_count: '',
+        square_feet: '',
+        location: '',
+        notes: ''
+    }
+
 
     updateCriteria = () => {
         console.log('in updateCriteria');
@@ -12,8 +21,7 @@ class ChangeCriteria extends Component {
     render() {
 
         return( 
-            <div>
-                <div className="criteriaChange">
+            <div className="criteriaChange">
                     <input placeholder="bedroom count"/>
                     <input placeholder="bathroom count"/>
                     <input placeholder="square feet"/>
@@ -21,16 +29,14 @@ class ChangeCriteria extends Component {
                     <input placeholder="Any notes for your realtor?"/>
                     <button onClick={this.updateCriteria}>Update Criteria</button>
                     <button onClick={this.cancel}>Cancel</button>
-                </div>
-                
             </div>
+                
         )
     }
 }
 
 const mapStateToProps = state => ({
     criteria: state.criteria,
-    showing: state.showing
 });
 
 export default connect(mapStateToProps)(ChangeCriteria);    

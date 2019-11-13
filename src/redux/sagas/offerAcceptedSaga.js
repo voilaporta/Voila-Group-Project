@@ -12,7 +12,7 @@ function* getAccpetedOffer(action) {
 
 function* addAcceptedOffer(action) {
     try {
-        yield axios.post(`/api/step4`, {acceptedOffer: action.payload})
+        yield axios.post(`/api/step4/criteria`, action.payload)
     } catch (error) {
         console.log('Error posting accepted offer:', error);
     }

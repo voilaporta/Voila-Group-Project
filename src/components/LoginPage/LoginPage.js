@@ -80,7 +80,7 @@ class LoginPage extends Component {
             />
           </div>
         </form>
-        {/* <center>
+        <center>
           <button
             type="button"
             className="link-button"
@@ -88,7 +88,7 @@ class LoginPage extends Component {
           >
             Register
           </button>
-        </center> */}
+        </center>
       </div>
     );
   }

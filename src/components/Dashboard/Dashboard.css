@@ -36,3 +36,13 @@ h3{
 .radial{
     margin-right: 10px;
 }
+
+table,td,tr,tbody,th{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.addvendor{
+    
+    border: 1px black solid
+}

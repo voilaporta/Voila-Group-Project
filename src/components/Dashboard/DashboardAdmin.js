@@ -9,11 +9,12 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
-import ClientList from '../ClientList/ClientList';
-import AdminList from '../AdminList/AdminList';
-import VendorList from '../VendorList/VendorList';
+import Client from './Client/Client';
+import Admin from './Admin/Admin';
+import Vendor from './Vendor/Vendor';
 
-function TabContainer({ children, dir }) {
+
+;function TabContainer({ children, dir }) {
     return (
       <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
         {children}
@@ -126,9 +127,9 @@ class DashboardAdmin extends Component {
                 index={this.state.value}
                 onChangeIndex={this.handleChangeIndex}
                 >
-                <TabContainer dir={theme.direction}> <ClientList /> </TabContainer>
-                <TabContainer dir={theme.direction}> <AdminList /> </TabContainer>
-                <TabContainer dir={theme.direction}> <VendorList /> </TabContainer>
+                <TabContainer dir={theme.direction}> <Client /> </TabContainer>
+                <TabContainer dir={theme.direction}> <Admin /> </TabContainer>
+                <TabContainer dir={theme.direction}> <Vendor /> </TabContainer>
                 </SwipeableViews>
                 <p>Your ID is: {this.props.user.id}</p>
             </div>

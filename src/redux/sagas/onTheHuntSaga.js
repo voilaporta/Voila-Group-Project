@@ -3,6 +3,6 @@ import axios from 'axios';
 
 
 
-function* onTheHunt() {
-    yield takeEvery({})
-}
+// function* onTheHunt() {
+//     yield takeEvery({})
+// }

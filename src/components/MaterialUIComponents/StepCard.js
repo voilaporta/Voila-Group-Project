@@ -26,10 +26,12 @@ import Step10Admin from '../Step10/Step10Admin';
 import Step10Client from '../Step10/Step10Client';
 import Step11Admin from '../Step11/Step11Admin';
 import Step11Client from '../Step11/Step11Client';
+import VoilaVaultLink from './VoilaVaultLink';
 
 const styles = {
     card: {
-        margin: 10
+        margin: 10,
+        textAlign: 'center'
     },
     expanded: {
         transform: 'rotate(0deg)',
@@ -54,6 +56,9 @@ const styles = {
     vault: {
         marginLeft: 'auto'
     },
+    uncompleted: {
+        backgroundColor: 'black'
+    }
 };
 
 class StepCard extends Component {
@@ -161,6 +166,7 @@ class StepCard extends Component {
                         action={<MoreInfoPopover content={this.props.step.description}/>}
                     />
                     <CardActions disableSpacing sizes="small">
+                        {this.props.showVault(this.props.step.order) ? <VoilaVaultLink /> : ''}
                         <IconButton style={this.state.expanded ? styles.expandedOpen : styles.expanded}
                             onClick={this.handleExpandClick}
                             aria-expanded={this.state.expanded}
@@ -178,6 +184,7 @@ class StepCard extends Component {
                                 : 
                                 <Button 
                                     variant="outlined"
+                                    style={this.state.completed ? styles.completed : null}
                                     onClick={this.handleComplete}>
                                         Complete
                                     </Button>

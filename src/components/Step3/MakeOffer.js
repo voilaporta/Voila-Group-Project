@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class MakeOffer extends Component {
+
+    state = {
+        user_step_id: '',
+        name: '',
+        address: '',
+        price: 0,
+        closing_date: '',
+        earnest_money: '',
+        down_payment: '',
+        seller_closing_costs: ''
+    }
+
     render() {
         return( 
-            <div>
-                <div className="makeOffer">
+            <div className="makeOffer">
                     <input placeholder="name"/>
                     <input placeholder="address"/>
                     <input placeholder="price"/>
@@ -14,9 +25,7 @@ class MakeOffer extends Component {
                     <input placeholder="down payment"/>
                     <input placeholder="seller closing costs"/>
                     <button onClick={this.makeOffer}>Submit Offer</button>
-                </div>
-
-
+                    <button onClick={this.cancel}>Cancel</button>
             </div>
         )
     }

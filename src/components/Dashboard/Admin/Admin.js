@@ -14,6 +14,10 @@ class Admin extends Component {
         console.log('hello from the addAdmin button');
 
     }
+
+    handleClick = () => {
+        console.log('Add Button');
+    }
     render() {
         return (
             <div>
@@ -37,7 +41,7 @@ class Admin extends Component {
                     </tbody>
                 </table>
                 <div>
-                    <button onClick={this.addAdmin}>Add Admin</button>
+                    <button onClick={this.handleClick}>Add</button>
                 </div>
             </div>
         )

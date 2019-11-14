@@ -1,34 +1,27 @@
 import React, {Component} from 'react';
 
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
-        InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
+        InputLabel, MenuItem, FormControl, Select, } from '@material-ui/core';
   
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 120,
+        minWidth: 180,
       },
   });
 
-class ClientDialog extends Component {
+class AddAdminDialog extends Component {
 
-    state = {
-        agent: '',
-        journey: true,
-    };
+    state= {
+        adminType: ''
+    }
 
     // select from a list of agents
-    changeAgent = event => {
+    changeAdminType = event => {
         this.setState({ [event.target.name]: event.target.value });
+        console.log(this.state);
     };
-
-    // switch on Buyer Journey, true or false
-    handleSwitch = journey => event => {
-        this.setState({ [journey]: event.target.checked });
-    };
-
       
     render() {
 
@@ -42,7 +35,7 @@ class ClientDialog extends Component {
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Add New Client</DialogTitle>
+                    <DialogTitle id="form-dialog-title" >Add New Admin</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                         <TextField
@@ -85,48 +78,29 @@ class ClientDialog extends Component {
                         type="email"
                         fullWidth
                         />
-                        <TextField
-                        autoFocus
-                        margin="dense"
-                        name="dropboxUrl"
-                        label="DropBox Url"
-                        type="text"
-                        fullWidth
-                        />
                         <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="agent">Select Agent</InputLabel>
+                            <InputLabel htmlFor="agent">Select Admin Type</InputLabel>
                             <Select
-                                value={this.state.agent}
-                                onChange={this.changeAgent}
+                                value={this.state.adminType}
+                                onChange={this.changeAdminType}
                                 inputProps={{
-                                name: 'agent',
+                                name: 'adminType',
                                 }}
                             >
                                 <MenuItem value="">
                                 <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Ben</MenuItem>
-                                <MenuItem value={20}>Jerry</MenuItem>
-                                <MenuItem value={30}>Icecream</MenuItem>
+                                <MenuItem value={10}>Agent</MenuItem>
+                                <MenuItem value={20}>Team Member</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                checked={this.state.journey}
-                                onChange={this.handleSwitch('journey')}
-                                value="journey"
-                                />
-                            }
-                            label="Start Buyer Journey"
-                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.props.handleClose} color="primary">
                         Cancel
                         </Button>
                         <Button onClick={this.props.handleClose} color="primary">
-                        Add Client
+                        Add Admin
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -135,4 +109,4 @@ class ClientDialog extends Component {
     }
 }
 
-export default withStyles(styles) (ClientDialog);
+export default withStyles(styles) (AddAdminDialog);

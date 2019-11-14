@@ -179,7 +179,7 @@ class StepCard extends Component {
                         <CardContent >
                             {this.componentToRender(this.props.step.order, this.props.user.role_id)}
 
-                            {this.props.user.role === 3 
+                            {this.props.user.role_id === 3 
                                 ? ''
                                 : 
                                 <Button 

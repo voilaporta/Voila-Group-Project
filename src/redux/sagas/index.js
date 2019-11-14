@@ -7,6 +7,7 @@ import vendorsSaga from './vendorSaga';
 import adminsSaga from './adminSaga';
 import agentSaga from './agentSaga';
 import buyerJourneySaga from './buyerJourneySaga';
+import offerAcceptedSaga from './offerAcceptedSaga';
 import onTheHuntSaga from './onTheHuntSaga';
 
 // rootSaga is the primary saga.
@@ -26,6 +27,7 @@ export default function* rootSaga() {
       adminsSaga(),
     agentSaga(),
     buyerJourneySaga(),
+    offerAcceptedSaga(),
     onTheHuntSaga(),
   ]);
 }

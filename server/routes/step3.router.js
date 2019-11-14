@@ -4,7 +4,7 @@ const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 
-router.get('/criteria:id', rejectUnauthenticated, (req, res) => {
+router.get('/criteria/:id', rejectUnauthenticated, (req, res) => {
     //user/client's userStep_id must be passed through url when request is made
     const userStep = req.params.id;
     const queryText = `SELECT *

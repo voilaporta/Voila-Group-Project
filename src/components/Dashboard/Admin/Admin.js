@@ -36,6 +36,10 @@ class Admin extends Component {
         console.log('hello from the addAdmin button');
 
     }
+
+    handleClick = () => {
+        console.log('Add Button');
+    }
     render() {
         // const { classes } = this.props;
         return (

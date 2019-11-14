@@ -10,10 +10,20 @@ function* postCriteria(action) {
     }
 }
 
+function* getCriteria(action) {
+    try{
+        const response = yield axios.get('/api/step3/criteria/' + action.payload)
+        console.log('this is user criteria', response.data)
+        yield put ({type: 'SET_CRITERIA', payload: response.data});
+    }catch (error) {
+        console.log('error with getting criteria', error);
+    }
+}
+
 
 function* onTheHuntSaga() {
     yield takeLatest('POST_CRITERIA', postCriteria)
-    // yield takeLatest('GET_CRITERIA', getCriteria)
+    yield takeLatest('GET_CRITERIA', getCriteria)
 }
 
 export default onTheHuntSaga;

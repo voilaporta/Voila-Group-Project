@@ -11,7 +11,8 @@ function* registerUser(action) {
     const response = yield axios.post('/api/user/register', action.payload);
     //if action.payload.startBuyer = ture then run create a buyer journey
     if (action.payload.journey){
-      yield axios.post(`/api/journey/${response.data}`)
+      yield axios.post(`/api/journey/${response.data[0].id}`)
+      console.log('TRYING TO POST', response.data[0].id)
     }
 
 

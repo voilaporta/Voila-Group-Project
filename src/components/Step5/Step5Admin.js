@@ -18,9 +18,7 @@ class Step5Admin extends Component {
         }, 250);
     }
 
-    render() {
-        console.log(this.state.offer.date_time_created);
-        
+    render() {        
         return (
             <div>
                 {JSON.stringify(this.props.test)}

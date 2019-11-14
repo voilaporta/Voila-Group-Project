@@ -9,6 +9,7 @@ import vendorList from './vendorReducer';
 import adminList from './adminReducer';
 import agent from './agentReducer';
 import offerAccepted from './offerAcceptedReducer';
+import showing from './showingReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   adminList,//this will contain all the vendors for the vendor tab on the admin side
   agent,
   offerAccepted, // contains the details of offer that was accepted (address, MLS, amount, down, earnest money)
+  showing, // contains showings requested by buyer
 });
 
 export default rootReducer;

@@ -19,7 +19,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
     });
 
-router.put('/', rejectUnauthenticated, (req, res) => {
+
 router.get('/type', rejectUnauthenticated, (req, res) => {
 
     const queryText = `SELECT *
@@ -28,12 +28,12 @@ router.get('/type', rejectUnauthenticated, (req, res) => {
     .then((result)=>{
         res.send(result.rows);
     }).catch((error)=>{
-        console.log('error getting vendor types', error);
+        console.log('error getting admin types', error);
         res.sendStatus(500);
     })
 });
 
-router.put('/:id', rejectUnauthenticated, (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     //agent can update one admin's info
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -42,7 +42,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     const userId = req.body.id;
     const queryText = `UPDATE "user"
 	                    SET "firstName" = $1, "lastName" = $2, "email" = $3, "role_id" = $4
-                        WHERE "id" = 6;`;
+                        WHERE "id" = $5;`;
     pool.query(queryText,[firstName, lastName, email, adminType, userId])
     .then((result)=>{
         res.sendStatus(200);
@@ -52,9 +52,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     })
 });  
 
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
+router.delete('/', rejectUnauthenticated, (req, res) => {
     //admin can delete another admin
-    const userId = req.params.id
+    const userId = req.body.id
     const queryText = `DELETE 
                         FROM "user"
                         WHERE id = $1;`;

@@ -78,8 +78,10 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    const vendorId = req.params.id
+router.delete('/', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.body.id;
+    console.log(req.body.id);
+    
     const queryText = `DELETE 
                         FROM "vendor"
                         WHERE id = $1;`;

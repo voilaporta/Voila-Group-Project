@@ -59,10 +59,19 @@ handleChange = (event, keyname) => {
    
     }
 
+
+    handleDelete=()=>{
+        console.log('hello from delete admin button!!!!');
+        this.props.history.push('/')
+        this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id});
+        console.log('helllooooo from delete',this.state.id);
+        
+    }
+
     render() {
-        const adminTypes= this.props.state.adminTypeReducer.map((adminTypes)=>{
-            return <MenuItem value={adminTypes.id}
-                            key={adminTypes.id}> {adminTypes.name}</MenuItem>
+        const adminTypes= this.props.state.adminTypeReducer.map((type)=>{
+            return <MenuItem value={type.id}
+                            key={type.id}> {type.name}</MenuItem>
           })
         return (
             <div style={styles.formContainer}>
@@ -97,7 +106,7 @@ handleChange = (event, keyname) => {
                         <InputLabel id="selectAdminTypeLabel">Admin Type</InputLabel>
                         <Select
                             labelId="selectAdminTypeLabel"
-                            onChange={(event) => {this.handleChange(event, 'selectAdminTypeLabel')}}
+                            onChange={(event) => {this.handleChange(event, 'adminType')}}
                             value={this.state.adminType}
                         >
                             <MenuItem value={''}>--Select An Admin Type--</MenuItem>
@@ -112,6 +121,16 @@ handleChange = (event, keyname) => {
 
                     >
                         Update Admin
+                    </Button>
+                    <br></br>
+                    <Button
+                        variant="contained"
+                        onClick={() => this.handleDelete()}
+                        color="secondary"
+                        style={styles.submitBtn}
+
+                    >
+                        Delete Admin
                     </Button>
                 </FormControl>
             </div>

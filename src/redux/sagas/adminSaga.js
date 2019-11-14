@@ -21,9 +21,18 @@ function* fetchAdmin(){
     }
   }
 
+  function* deleteAdmin(action){
+    try{
+      yield axios.delete(`/api/administrators`, {data: {id: action.payload}});
+    }catch (err){
+      console.log('DELETE ERROR:', err);
+    }
+  }
+
   function* adminsSaga() {
     yield takeLatest('FETCH_ADMIN', fetchAdmin);
     yield takeLatest('UPDATE_ADMIN', updateAdmin);
+    yield takeLatest('DELETE_ADMIN', deleteAdmin);
   }
   
   export default adminsSaga;

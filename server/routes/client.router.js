@@ -41,9 +41,9 @@ router.put('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
+router.delete('/', rejectUnauthenticated, (req, res) => {
     //admin can delete a client
-    const clientId = req.params.id
+    const clientId = req.body.id
     const queryText = `DELETE 
                         FROM "user"
                         WHERE id = $1;`;

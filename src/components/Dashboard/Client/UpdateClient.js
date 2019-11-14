@@ -58,6 +58,13 @@ handleChange = (event, keyname) => {
    
     }
 
+    handleDelete=()=>{
+        console.log('hello from delete client button!!!!');
+        this.props.history.push('/')
+        this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id});
+        console.log('helllooooo from delete',this.state.id);
+        
+    }
     render() {
         const agentOptions= this.props.state.agent.map((agent)=>{
             return <MenuItem value={agent.id}
@@ -118,6 +125,16 @@ handleChange = (event, keyname) => {
 
                     >
                         Update Client
+                    </Button>
+                    <br></br>
+                    <Button
+                        variant="contained"
+                        onClick={() => this.handleDelete()}
+                        color="secondary"
+                        style={styles.submitBtn}
+
+                    >
+                       Delete Client
                     </Button>
                 </FormControl>
             </div>

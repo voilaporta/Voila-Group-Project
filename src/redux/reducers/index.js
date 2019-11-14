@@ -8,14 +8,11 @@ import clientList from './clientListReducer';
 import vendorList from './vendorReducer';
 import adminList from './adminReducer';
 import agent from './agentReducer';
-<<<<<<< HEAD
 import infoClient from './setInfoClientReducer';
 import adminTypeReducer from './adminTypeReducer';
 import vendorTypeReducer from './vendorTypeReducer';
-=======
 import offerAccepted from './offerAcceptedReducer';
 
->>>>>>> master
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga

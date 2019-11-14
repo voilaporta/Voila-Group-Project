@@ -19,7 +19,7 @@ class UpdateVendor extends Component {
         firstName: '',
         lastName: '',
         companyName:'',
-        phone:'',
+        phoneNumber:'',
         email: '',
         website:'',
         vendorTypeId: '',
@@ -28,11 +28,14 @@ class UpdateVendor extends Component {
 
 componentDidMount=()=>{
     this.getVendor();
+    this.getVendorType();
 }
 getVendor=()=>{
     this.props.dispatch({type:'FETCH_VENDOR'})
 }
-
+getVendorType=()=>{
+    this.props.dispatch({type:'GET_VENDOR_TYPE'})
+}
 
 
 handleChange = (event, keyname) => {
@@ -48,7 +51,7 @@ handleChange = (event, keyname) => {
         console.log('hellooooo ',this.state);
         
         this.props.history.push('/')
-        if(this.state.firstName && this.state.lastName && this.state.companyName && this.state.phone && this.state.email&& this.state.vendorTypeId)
+        if(this.state.firstName && this.state.lastName && this.state.companyName && this.state.phoneNumber && this.state.email&& this.state.vendorTypeId)
         this.props.dispatch({
             type: 'UPDATE_VENDOR',
             payload:  this.state
@@ -57,10 +60,17 @@ handleChange = (event, keyname) => {
    
     }
 
+    handleDelete=()=>{
+        console.log('hello from delete button!!!!');
+        this.props.history.push('/')
+        this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id});
+        console.log('helllooooo from delete',this.state.id);
+        
+    }
     render() {
-        const agentOptions= this.props.state.agent.map((agent)=>{
-            return <MenuItem value={agent.id}
-                            key={agent.id}> {agent.firstName}</MenuItem>
+        const vendorType= this.props.state.vendorTypeReducer.map((type)=>{
+            return <MenuItem value={type.id}
+                            key={type.id}> {type.name}</MenuItem>
           })
         return (
             <div style={styles.formContainer}>
@@ -94,8 +104,8 @@ handleChange = (event, keyname) => {
                 <TextField
                         label="Phone"
                         placeholder="Phone"
-                        value={this.state.phone}
-                        onChange={(event) => { this.handleChange(event, 'phone') }}
+                        value={this.state.phoneNumber}
+                        onChange={(event) => { this.handleChange(event, 'phoneNumber') }}
                         margin="dense"
                         variant="outlined"
                     />
@@ -115,14 +125,17 @@ handleChange = (event, keyname) => {
                         margin="dense"
                         variant="outlined"
                     />
-                        <TextField
-                        label="Vendor Type"
-                        placeholder="Vendor Type"
-                        value={this.state.adminType}
-                        onChange={(event) => { this.handleChange(event, 'vendorType') }}
-                        margin="dense"
-                        variant="outlined"
-                    />
+                        <FormControl>
+                        <InputLabel id="selectVendorTypeLabel">Vendor Type</InputLabel>
+                        <Select
+                            labelId="selectVendorTypeLabel"
+                            onChange={(event) => {this.handleChange(event, 'vendorTypeId')}}
+                            value={this.state.vendorTypeId}
+                        >
+                            <MenuItem value={''}>--Select An Vendor Type--</MenuItem>
+                                {vendorType}
+                        </Select>
+                    </FormControl>
                     <Button
                         variant="contained"
                         onClick={() => this.handleSubmit()}
@@ -131,6 +144,16 @@ handleChange = (event, keyname) => {
 
                     >
                         Update Vendor
+                    </Button>
+                    <br></br>
+                         <Button
+                        variant="contained"
+                        onClick={() => this.handleDelete()}
+                        color="secondary"
+                        style={styles.submitBtn}
+
+                    >
+                       Delete Vendor
                     </Button>
                 </FormControl>
             </div>

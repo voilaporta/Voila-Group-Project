@@ -20,10 +20,17 @@ function* updateClient(action) {
 
   }
 }
-
+function* deleteClient(action){
+  try{
+    yield axios.delete(`/api/client`, {data: {id: action.payload}});
+  }catch (err){
+    console.log('DELETE ERROR:', err);
+  }
+}
 function* clientsSaga() {
   yield takeLatest('FETCH_CLIENT', fetchClient);
   yield takeLatest('UPDATE_CLIENT', updateClient);
+  yield takeLatest('DELETE_CLIENT', deleteClient);
 
 }
 

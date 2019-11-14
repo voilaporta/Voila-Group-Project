@@ -3,15 +3,15 @@ import axios from 'axios';
 
 function* getAdminType() {
     try {
-        const response = yield axios.get(`/api/administrator/type`);
+        const response = yield axios.get(`/api/administrators/type`);
         yield put({ type: 'SET_ADMIN_TYPE', payload: response.data });
     } catch (error) {
         console.log('error getting admin type', error);
     }
 }
 
-function* agentSaga() {
+function* adminTypesSaga() {
     yield takeLatest('GET_ADMIN_TYPE', getAdminType);
 }
 
-export default agentSaga;
+export default adminTypesSaga;

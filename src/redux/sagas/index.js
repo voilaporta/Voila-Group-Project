@@ -8,8 +8,8 @@ import adminsSaga from './adminSaga';
 import agentSaga from './agentSaga';
 import buyerJourneySaga from './buyerJourneySaga';
 import infoSaga from './setInfoClientSaga'
-import adminTypeSaga from './adminTypeSaga';
-import vendorTypeSaga from './vendorTypeSaga';
+import adminTypesSaga from './adminTypeSaga';
+import vendorsTypesSaga from './vendorTypeSaga';
 import offerAcceptedSaga from './offerAcceptedSaga';
 import onTheHuntSaga from './onTheHuntSaga';
 
@@ -30,13 +30,11 @@ export default function* rootSaga() {
     adminsSaga(),
     agentSaga(),
     buyerJourneySaga(),
-<<<<<<< HEAD
     infoSaga(),
-    adminTypeSaga(),
-    vendorTypeSaga(),
-=======
+    adminTypesSaga(),
+    vendorsTypesSaga(),
     offerAcceptedSaga(),
     onTheHuntSaga(),
->>>>>>> master
+
   ]);
 }

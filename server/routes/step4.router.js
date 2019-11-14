@@ -22,7 +22,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/criteria', rejectUnauthenticated, (req, res) => {
-    const userStepId = req.body.user_step_id;
+    console.log(req.body);
+    const userStepId = req.body.userStepId;
     const address = req.body.address;
     const mlsNumber = req.body.mls_number;
     const price = req.body.price;

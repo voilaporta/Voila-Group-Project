@@ -71,69 +71,69 @@ class StepCard extends Component {
         switch (stepNum) {
             case 1:
                 if(roleId === 3) {
-                    return <Step1Client />
+                    return <Step1Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step1Admin />
+                    return <Step1Admin userStepId={this.props.step.id}/>
                 }
             case 2:
                 if (roleId === 3) {
-                    return <Step2Client />
+                    return <Step2Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step2Admin />
+                    return <Step2Admin userStepId={this.props.step.id}/>
                 }
             case 3:
                 if (roleId === 3) {
-                    return <Step3Client />
+                    return <Step3Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step3Admin />
+                    return <Step3Admin userStepId={this.props.step.id}/>
                 }
             case 4:
                 if (roleId === 3) {
-                    return <Step4Client />
+                    return <Step4Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step4Admin />
+                    return <Step4Admin userStepId={this.props.step.id}/>
                 }
             case 5:
                 if (roleId === 3) {
-                    return <Step5Client />
+                    return <Step5Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step5Admin />
+                    return <Step5Admin userStepId={this.props.step.id}/>
                 }
             case 6:
                 if (roleId === 3) {
-                    return <Step6Client />
+                    return <Step6Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step6Admin />
+                    return <Step6Admin userStepId={this.props.step.id}/>
                 }
             case 7:
                 if (roleId === 3) {
-                    return <Step7Client />
+                    return <Step7Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step7Admin />
+                    return <Step7Admin userStepId={this.props.step.id}/>
                 }
             case 8:
                 if (roleId === 3) {
-                    return <Step8Client />
+                    return <Step8Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step8Admin />
+                    return <Step8Admin userStepId={this.props.step.id}/>
                 }
             case 9:
                 if (roleId === 3) {
-                    return <Step9Client />
+                    return <Step9Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step9Admin />
+                    return <Step9Admin userStepId={this.props.step.id}/>
                 }
             case 10:
                 if (roleId === 3) {
-                    return <Step10Client />
+                    return <Step10Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step10Admin />
+                    return <Step10Admin userStepId={this.props.step.id}/>
                 }
             case 11:
                 if (roleId === 3) {
-                    return <Step11Client />
+                    return <Step11Client userStepId={this.props.step.id}/>
                 } else {
-                    return <Step11Admin />
+                    return <Step11Admin userStepId={this.props.step.id}/>
                 }
             default:
                 console.log('Invalid step. If you have created more steps, please add them here');

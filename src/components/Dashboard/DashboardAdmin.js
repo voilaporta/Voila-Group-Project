@@ -12,6 +12,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Client from './Client/Client';
 import Admin from './Admin/Admin';
 import Vendor from './Vendor/Vendor';
+import AddUsers from './AddUsers/AddUsers';
 
 function TabContainer({ children, dir }) {
     return (
@@ -89,13 +90,15 @@ class DashboardAdmin extends Component {
         value: 0
     }
 
+    // OnClick, change the tab to either Clients, Admins, or Vendors
     handleChange = (event, value) => {
         this.setState({ value });
       };
     
-      handleChangeIndex = index => {
+    // Set the value to the index of selected container
+    handleChangeIndex = index => {
         this.setState({ value: index });
-      };
+    };
 
     render() {
         const { classes, theme } = this.props;
@@ -134,6 +137,8 @@ class DashboardAdmin extends Component {
                 <TabContainer dir={theme.direction}> <Admin /> </TabContainer>
                 <TabContainer dir={theme.direction}> <Vendor /> </TabContainer>
                 </SwipeableViews>
+
+                <AddUsers />
             </div>
         )
     }

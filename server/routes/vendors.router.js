@@ -55,8 +55,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-    const vendorId = req.params.id
+router.put('/', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.body.id
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const companyName = req.body.companyName;
@@ -78,8 +78,10 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    const vendorId = req.params.id
+router.delete('/', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.body.id;
+    console.log(req.body.id);
+    
     const queryText = `DELETE 
                         FROM "vendor"
                         WHERE id = $1;`;

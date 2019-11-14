@@ -22,8 +22,6 @@ class Step4Admin extends Component {
 
     handleSubmit = () => {
         this.props.dispatch({type: 'ADD_ACCEPTED_OFFER', payload: this.state.acceptedOffer})
-        console.log(this.state);
-        
     }
 
 

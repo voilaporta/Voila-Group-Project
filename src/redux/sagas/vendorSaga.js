@@ -11,9 +11,19 @@ function* fetchVendor(){
     }
   }
 
+  function* getInspectors(){
+    try{
+      const response = yield axios.get('/api/step6/vendors');
+      yield put({type: 'SET_INSPECTORS', payload: response.data});
+
+    } catch (error){
+      console.log('error getting inspection vendors');
+    }
+  }
+
   function* vendorsSaga() {
     yield takeLatest('FETCH_VENDOR', fetchVendor);
-
+    yield takeLatest('GET_INSPECTORS', getInspectors);
   }
   
   export default vendorsSaga;

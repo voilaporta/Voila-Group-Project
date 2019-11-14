@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import {withStyles} from '@material-ui/core/styles';
+import {withRouter } from 'react-router-dom';
 
 const styles =theme => ({
     fab: {
@@ -14,8 +15,8 @@ const styles =theme => ({
   });
   
 class VendorItem extends Component {
-    updateVendor = () => {
-        console.log('hello from the updateVendor');
+    updateVendor = (id) => {
+        this.props.history.push(`/updatevendor/${id}`)
 
     }
     render() {
@@ -28,7 +29,7 @@ class VendorItem extends Component {
                 <td>{this.props.vendor.vendor_type_name}</td>
                 <td>{this.props.vendor.phoneNumber}</td>
                 <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
-                    <EditIcon onClick={this.updateVendor}/>
+                    <EditIcon onClick={()=>{this.updateVendor(this.props.vendor.id)}}/>
                 </Fab></td>
                 {/* <td><button onClick={this.updateVendor}>Update</button></td> */}
             </tr>
@@ -42,6 +43,7 @@ class VendorItem extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
+    state
 });
 
-export default withStyles(styles) (connect(mapStateToProps)(VendorItem));
+export default withStyles(styles) (withRouter(connect(mapStateToProps)(VendorItem)));

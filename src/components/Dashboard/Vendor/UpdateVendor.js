@@ -13,28 +13,27 @@ const styles = {
     }
 }
 
-class UpdateClient extends Component {
+class UpdateVendor extends Component {
     
     state = {
         firstName: '',
         lastName: '',
-        dropbox: '',
-        agentId: '',
-        isBuyer: true,
+        companyName:'',
+        phone:'',
+        email: '',
+        website:'',
+        vendorTypeId: '',
        id: this.props.match.params.id
     }
 
 componentDidMount=()=>{
-    this.getAgents();
-    this.getClients();
+    this.getVendor();
 }
-getAgents=()=>{
-    this.props.dispatch({type:'GET_AGENT'})
+getVendor=()=>{
+    this.props.dispatch({type:'FETCH_VENDOR'})
 }
 
-getClients=()=>{
-    this.props.dispatch({type:'FETCH_CLIENT'})
-}
+
 
 handleChange = (event, keyname) => {
         this.setState({
@@ -49,9 +48,9 @@ handleChange = (event, keyname) => {
         console.log('hellooooo ',this.state);
         
         this.props.history.push('/')
-        if(this.state.firstName && this.state.lastName && this.state.dropbox && this.state.agentId )
+        if(this.state.firstName && this.state.lastName && this.state.companyName && this.state.phone && this.state.email&& this.state.vendorTypeId)
         this.props.dispatch({
-            type: 'UPDATE_CLIENT',
+            type: 'UPDATE_VENDOR',
             payload:  this.state
             
         })
@@ -83,33 +82,47 @@ handleChange = (event, keyname) => {
                         variant="outlined"
                     />
      
-                    <FormControl>
-                        <InputLabel id="selectAgentLabel">Agent</InputLabel>
-                        <Select
-                            labelId="selectAgentLabel"
-                            onChange={(event) => {this.handleChange(event, 'agentId')}}
-                            value={this.state.agentId}
-                        >
-                            <MenuItem value={''}>--Select An Agent--</MenuItem>
-                                {agentOptions}
-                        </Select>
-                    </FormControl>
+           
                     <TextField
-                        label="Dropbox URL"
-                        placeholder="Copy and paste dropbox url"
-                        value={this.state.dropbox}
-                        onChange={(event) => { this.handleChange(event, 'dropbox') }}
+                        label="Company Name"
+                        placeholder="Company Name"
+                        value={this.state.companyName}
+                        onChange={(event) => { this.handleChange(event, 'companyName') }}
                         margin="dense"
                         variant="outlined"
                     />
-                    <FormGroup row>
-                        <FormControlLabel
-                            control={
-                                <Switch checked={this.state.isBuyer} onChange={() => this.setState({...this.state, isBuyer: !this.state.isBuyer})} />
-                            }
-                            label="Start Buyer Journey?"
-                        />
-                    </FormGroup>
+                <TextField
+                        label="Phone"
+                        placeholder="Phone"
+                        value={this.state.phone}
+                        onChange={(event) => { this.handleChange(event, 'phone') }}
+                        margin="dense"
+                        variant="outlined"
+                    />
+                        <TextField
+                        label="Email"
+                        placeholder="Email"
+                        value={this.state.email}
+                        onChange={(event) => { this.handleChange(event, 'email') }}
+                        margin="dense"
+                        variant="outlined"
+                    />
+                        <TextField
+                        label="Website"
+                        placeholder="Website"
+                        value={this.state.website}
+                        onChange={(event) => { this.handleChange(event, 'website') }}
+                        margin="dense"
+                        variant="outlined"
+                    />
+                        <TextField
+                        label="Vendor Type"
+                        placeholder="Vendor Type"
+                        value={this.state.adminType}
+                        onChange={(event) => { this.handleChange(event, 'vendorType') }}
+                        margin="dense"
+                        variant="outlined"
+                    />
                     <Button
                         variant="contained"
                         onClick={() => this.handleSubmit()}
@@ -117,7 +130,7 @@ handleChange = (event, keyname) => {
                         style={styles.submitBtn}
 
                     >
-                        Update Client
+                        Update Vendor
                     </Button>
                 </FormControl>
             </div>
@@ -127,8 +140,8 @@ handleChange = (event, keyname) => {
 
 const mapStateToProps = state => ({
     user: state.user,
-    agent: state.agent,
+
     state
 });
 
-export default withRouter(connect(mapStateToProps)(UpdateClient));
+export default withRouter(connect(mapStateToProps)(UpdateVendor));

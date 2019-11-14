@@ -13,7 +13,8 @@ function* fetchClient() {
 
 function* updateClient(action) {
   try {
-    yield axios.put('/api/client/update', action.payload);
+    yield axios.put('/api/client', action.payload);
+    yield fetchClient();
   } catch (error) {
     console.log('error in PUT', error);
 

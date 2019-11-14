@@ -13,28 +13,29 @@ const styles = {
     }
 }
 
-class UpdateClient extends Component {
+class UpdateAdmin extends Component {
     
     state = {
         firstName: '',
         lastName: '',
-        dropbox: '',
-        agentId: '',
-        isBuyer: true,
+        email: '',
+        adminType: '',
        id: this.props.match.params.id
     }
 
 componentDidMount=()=>{
-    this.getAgents();
-    this.getClients();
+    this.getAdmin();
+    this.getAdminType();
 }
-getAgents=()=>{
-    this.props.dispatch({type:'GET_AGENT'})
+getAdmin=()=>{
+    this.props.dispatch({type:'FETCH_ADMIN'})
 }
 
-getClients=()=>{
-    this.props.dispatch({type:'FETCH_CLIENT'})
+getAdminType=()=>{
+    this.props.dispatch({type:'GET_ADMIN_TYPE'})
 }
+
+
 
 handleChange = (event, keyname) => {
         this.setState({
@@ -49,9 +50,9 @@ handleChange = (event, keyname) => {
         console.log('hellooooo ',this.state);
         
         this.props.history.push('/')
-        if(this.state.firstName && this.state.lastName && this.state.dropbox && this.state.agentId )
+        if(this.state.firstName && this.state.lastName && this.state.email && this.state.adminType)
         this.props.dispatch({
-            type: 'UPDATE_CLIENT',
+            type: 'UPDATE_ADMIN',
             payload:  this.state
             
         })
@@ -59,9 +60,9 @@ handleChange = (event, keyname) => {
     }
 
     render() {
-        const agentOptions= this.props.state.agent.map((agent)=>{
-            return <MenuItem value={agent.id}
-                            key={agent.id}> {agent.firstName}</MenuItem>
+        const adminTypes= this.props.state.adminTypeReducer.map((adminTypes)=>{
+            return <MenuItem value={adminTypes.id}
+                            key={adminTypes.id}> {adminTypes.name}</MenuItem>
           })
         return (
             <div style={styles.formContainer}>
@@ -83,33 +84,26 @@ handleChange = (event, keyname) => {
                         variant="outlined"
                     />
      
-                    <FormControl>
-                        <InputLabel id="selectAgentLabel">Agent</InputLabel>
-                        <Select
-                            labelId="selectAgentLabel"
-                            onChange={(event) => {this.handleChange(event, 'agentId')}}
-                            value={this.state.agentId}
-                        >
-                            <MenuItem value={''}>--Select An Agent--</MenuItem>
-                                {agentOptions}
-                        </Select>
-                    </FormControl>
+           
                     <TextField
-                        label="Dropbox URL"
-                        placeholder="Copy and paste dropbox url"
-                        value={this.state.dropbox}
-                        onChange={(event) => { this.handleChange(event, 'dropbox') }}
+                        label="Email"
+                        placeholder="Emaill"
+                        value={this.state.email}
+                        onChange={(event) => { this.handleChange(event, 'email') }}
                         margin="dense"
                         variant="outlined"
                     />
-                    <FormGroup row>
-                        <FormControlLabel
-                            control={
-                                <Switch checked={this.state.isBuyer} onChange={() => this.setState({...this.state, isBuyer: !this.state.isBuyer})} />
-                            }
-                            label="Start Buyer Journey?"
-                        />
-                    </FormGroup>
+                     <FormControl>
+                        <InputLabel id="selectAdminTypeLabel">Admin Type</InputLabel>
+                        <Select
+                            labelId="selectAdminTypeLabel"
+                            onChange={(event) => {this.handleChange(event, 'selectAdminTypeLabel')}}
+                            value={this.state.adminType}
+                        >
+                            <MenuItem value={''}>--Select An Admin Type--</MenuItem>
+                                {adminTypes}
+                        </Select>
+                    </FormControl>
                     <Button
                         variant="contained"
                         onClick={() => this.handleSubmit()}
@@ -117,7 +111,7 @@ handleChange = (event, keyname) => {
                         style={styles.submitBtn}
 
                     >
-                        Update Client
+                        Update Admin
                     </Button>
                 </FormControl>
             </div>
@@ -127,8 +121,8 @@ handleChange = (event, keyname) => {
 
 const mapStateToProps = state => ({
     user: state.user,
-    agent: state.agent,
+
     state
 });
 
-export default withRouter(connect(mapStateToProps)(UpdateClient));
+export default withRouter(connect(mapStateToProps)(UpdateAdmin));

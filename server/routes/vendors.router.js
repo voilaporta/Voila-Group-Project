@@ -42,8 +42,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-    const vendorId = req.params.id
+router.put('/', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.body.id
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const companyName = req.body.companyName;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import {withStyles} from '@material-ui/core/styles';
-
+import  {withRouter} from 'react-router-dom';
 const styles =theme => ({
     fab: {
       margin: theme.spacing(1),
@@ -15,8 +15,8 @@ const styles =theme => ({
   
 
 class AdminItem extends Component {
-    Vendor = () => {
-        console.log('hello from the Vendor');
+    updateAdmin = (id) => {
+        this.props.history.push(`/updateadmin/${id}`)
 
     }
     
@@ -30,7 +30,7 @@ class AdminItem extends Component {
                     <td>{this.props.admin.email}</td>
                     <td>{this.props.admin.role_id}</td>
                     <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
-                    <EditIcon onClick={this.admin} />
+                    <EditIcon onClick={()=>{this.updateAdmin(this.props.admin.id)}} />
                 </Fab></td>
                     {/* <td><button onClick={this.admin}>Update</button></td> */}
                 </tr>
@@ -44,6 +44,7 @@ class AdminItem extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
+    state
 });
 
-export default withStyles(styles) (connect(mapStateToProps)(AdminItem));
+export default withStyles(styles) (withRouter(connect(mapStateToProps)(AdminItem)));

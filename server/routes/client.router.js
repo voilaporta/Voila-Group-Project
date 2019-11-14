@@ -18,27 +18,16 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-    //admin can get all clients from database
-        const queryText = `SELECT "id", "firstName", "lastName", "dropboxUrl", "agent_id"
-                            FROM "user"
-                            WHERE "role_id" = $1;`;
-        pool.query(queryText,[req.params.id])
-        .then((result)=>{
-            res.send(result.rows);
-        }).catch((error)=>{
-            console.log('error getting clients info', error);
-            res.sendStatus(500);
-        })
-    });
 
-router.put('/update', rejectUnauthenticated, (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     //agent can update one client's info
+    console.log('put router',req.body);
+    
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const dorpboxLink = req.body.dropbox;
     const agent = req.body.agentId;
-    const clientId = req.params.id;
+    const clientId = req.body.id;
     const queryText = `UPDATE "user"
                         SET "firstName" = $1, "lastName" = $2, 
                         "dropboxUrl" = $3, "agent_id" = $4

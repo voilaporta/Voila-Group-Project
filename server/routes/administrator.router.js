@@ -19,13 +19,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
     });
 
-router.put('/:id', rejectUnauthenticated, (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     //agent can update one admin's info
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
     const adminType = req.body.adminType;
-    const userId = req.params.id;
+    const userId = req.body.id;
     const queryText = `UPDATE "user"
 	                    SET "firstName" = $1, "lastName" = $2, "email" = $3, "role_id" = $4
                         WHERE "id" = 6;`;

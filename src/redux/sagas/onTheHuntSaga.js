@@ -10,10 +10,41 @@ function* postCriteria(action) {
     }
 }
 
+function* getCriteria(action) {
+    try{
+        const response = yield axios.get('/api/step3/criteria/' + action.payload)
+        console.log('this is user criteria', response.data)
+        yield put ({type: 'SET_CRITERIA', payload: response.data});
+    }catch (error) {
+        console.log('error with getting criteria', error);
+    }
+}
+
+function* postShowing(action) {
+    try{
+        axios.post('/api/step3/showing/', action.payload);
+        console.log('posting showing request', action.payload);
+    }catch (error) {
+        console.log('error with posting showing request', error)
+    }
+}
+
+function* getShowing(action) {
+    try{
+        const response = yield axios.get('/api/step3/showing/' + action.payload)
+        console.log('this is showing request', response.data)
+        yield put ({type: 'SET_SHOWING', payload: response.data});
+    }catch (error) {
+        console.log('error with getting showing', error);
+    }
+}
+
 
 function* onTheHuntSaga() {
     yield takeLatest('POST_CRITERIA', postCriteria)
-    // yield takeLatest('GET_CRITERIA', getCriteria)
+    yield takeLatest('GET_CRITERIA', getCriteria)
+    yield takeLatest('POST_SHOWING', postShowing)
+    yield takeLatest('GET_SHOWING', getShowing)
 }
 
 export default onTheHuntSaga;

@@ -5,16 +5,21 @@ import ComponentToUpdate from './ComponentToUpdate';
 class Step3Client extends Component {
 
     state = {
+        user_step_id: this.props.userStepId.id,
         showComponentToUpdate: false,
         showCriteria: false,
         showRequest: false,
         showOffer: false
     }
 
-   
+   componentDidMount = () => {
+    this.props.dispatch({type: 'GET_JOURNEY'});
+    console.log('looking for user step id', this.props.userStepId);
+    this.props.dispatch({type: 'GET_CRITERIA', payload: this.state.user_step_id});
+    this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id})
+}
 
     addCriteria = () => {
-        console.log('this is addCriteria');
         this.setState({
             showCriteria: true,
             showComponentToUpdate: true
@@ -23,7 +28,6 @@ class Step3Client extends Component {
     }
 
     requestShowing = () => {
-        console.log('this is requestShowing');
         this.setState({
             showRequest: true,
             showComponentToUpdate: true
@@ -31,7 +35,6 @@ class Step3Client extends Component {
     }
 
     makeOffer = () => {
-        console.log('this is makeOffer');
         this.setState({
             showOffer: true,
             showComponentToUpdate: true
@@ -46,12 +49,34 @@ class Step3Client extends Component {
                  <div className="criteria">
                     Current Criteria:
                     <br/>
+                    {this.props.criteria.map(criteria => {
+                        return <p key={criteria.id}>
+                            {criteria.numRooms}
+                            <br/>
+                            {criteria.numBath}
+                            <br/>
+                            {criteria.numSF}
+                            <br/>
+                            {criteria.location}
+                            <br/>
+                            {criteria.notes}</p>
+                        })}
                     <button onClick={this.addCriteria}>Add Criteria</button>
+
+
                 </div>
             
                 <div className="showing">
                     Recent showing requested:
                     <br/>
+                     {this.props.showing.map(showing => {
+                        return <p key={showing.id}>
+                            {showing.address}
+                            <br/>
+                            {showing.MLS_number}
+                        </p>
+                        })}
+
                     <button onClick={this.requestShowing}>Request a showing</button>
                 </div>
                 <button onClick={this.makeOffer}>Make Offer</button>
@@ -66,6 +91,7 @@ class Step3Client extends Component {
 const mapStateToProps = state => ({
     criteria: state.criteria,
     showing: state.showing,
+    userStepId: state.userJourney.find(step => {return step.order === 3})
 });
 
 export default connect(mapStateToProps)(Step3Client);

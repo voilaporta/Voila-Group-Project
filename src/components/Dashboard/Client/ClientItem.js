@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withStyles} from '@material-ui/core/styles';
+import  {withRouter} from 'react-router-dom';
 
 class ClientItem extends Component {
-    updateClient = () => {
-        console.log('hello from the updateClient');
+    updateClient = (id) => {
+        this.props.history.push(`/updateclient/${id}`)
 
     }
     render() {
@@ -15,7 +17,6 @@ class ClientItem extends Component {
                     <td>{this.props.client.dropboxUrl}</td>
                     <td>{this.props.client.agent_id}</td>
                 </tr>
-            
         )
     }
 }
@@ -27,4 +28,5 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps)(ClientItem);
+export default  withStyles(styles) (withRouter(connect(mapStateToProps)(ClientItem))) ;
+// withStyles(styles);

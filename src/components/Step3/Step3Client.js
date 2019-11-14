@@ -5,13 +5,17 @@ import ComponentToUpdate from './ComponentToUpdate';
 class Step3Client extends Component {
 
     state = {
+        user_step_id: this.props.userStepId.id,
         showComponentToUpdate: false,
         showCriteria: false,
         showRequest: false,
         showOffer: false
     }
 
-   
+   componentDidMount = () => {
+    this.props.dispatch({type: 'GET_JOURNEY'});
+    this.props.dispatch({type: 'GET_CRITERIA', payload: this.state.user_step_id});
+}
 
     addCriteria = () => {
         console.log('this is addCriteria');
@@ -47,6 +51,8 @@ class Step3Client extends Component {
                     Current Criteria:
                     <br/>
                     <button onClick={this.addCriteria}>Add Criteria</button>
+                    {JSON.stringify(this.props.criteria)}
+
                 </div>
             
                 <div className="showing">
@@ -64,8 +70,10 @@ class Step3Client extends Component {
 }
 
 const mapStateToProps = state => ({
-    criteria: state.criteria,
+    criteria: state.criteriaReducer,
     showing: state.showing,
+    userStepId: state.userJourney.find(step => {return step.order === 3})
+
 });
 
 export default connect(mapStateToProps)(Step3Client);

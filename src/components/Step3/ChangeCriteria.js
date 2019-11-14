@@ -13,13 +13,12 @@ class ChangeCriteria extends Component {
     }
 
     componentDidMount = () => {
-        console.log('this is state', this.state);
-        this.props.dispatch({type: 'GET_JOURNEY'})
+        this.props.dispatch({type: 'GET_JOURNEY'});
     } 
 
 
 
-    updateCriteria = () => {
+    addCriteria = () => {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state})
     }
 
@@ -40,10 +39,9 @@ class ChangeCriteria extends Component {
                     <input value={this.state.square_feet} onChange={(event) => this.handleChange(event, 'square_feet')} placeholder="square feet"/>
                     <input value={this.state.location} onChange={(event) => this.handleChange(event, 'location')} placeholder="location/zip code"/>
                     <input value={this.state.notes} onChange={(event) => this.handleChange(event, 'notes')} placeholder="Any notes for your realtor?"/>
-                    <button onClick={this.updateCriteria}>Update Criteria</button>
+                    <button onClick={this.addCriteria}>Add Criteria</button>
                     <button onClick={this.cancel}>Cancel</button>
-                    {/* {JSON.stringify(userStepId)}
-                    <p>{userStepId.id}</p> */}
+
             </div>
                 
         )
@@ -51,8 +49,6 @@ class ChangeCriteria extends Component {
 }
 
 const mapStateToProps = state => ({
-    criteria: state.criteria,
-    journey: state.userJourney,
     userStepId: state.userJourney.find(step => {return step.order === 3})
 
 });

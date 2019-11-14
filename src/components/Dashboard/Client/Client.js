@@ -21,6 +21,8 @@ class Client extends Component {
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>DropBox URL</th>
+                            <th>Agent</th>
                             <th>Update</th>
                         </tr>
                     </thead>

@@ -12,6 +12,8 @@ class ClientItem extends Component {
                 <tr>
                     <td>{this.props.client.firstName}</td>
                     <td>{this.props.client.lastName}</td>
+                    <td>{this.props.client.dropboxUrl}</td>
+                    <td>{this.props.client.agent_id}</td>
                 </tr>
             
         )

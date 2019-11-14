@@ -1,26 +1,49 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
   
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
         minWidth: 120,
       },
+      dialogTitle: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '1vh',
+    },
+    cancel: {
+        float: 'right',
+        marginTop: '5px',
+        width: '20px'
+    }
   });
 
 class ClientDialog extends Component {
 
     state = {
-        agent: '',
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        dropboxUrl: '',
+        agent_id: '',
+        role_id: 3,
         journey: false,
     };
 
     // select from a list of agents
     changeAgent = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.setState({ agent_id: event.target.value });
+        console.log(this.state.agent_id)
+        console.log(event.target.value)
     };
 
     // switch on Buyer Journey, true or false
@@ -28,6 +51,30 @@ class ClientDialog extends Component {
         this.setState({ [journey]: event.target.checked });
     };
 
+    addClient = (event) => {
+        this.props.dispatch({
+            type: 'REGISTER',
+            payload: {
+                username: this.state.username,
+                password: this.state.password,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                dropboxUrl: this.state.dropboxUrl,
+                agent_id: this.state.agent_id,
+                role_id: 3,
+                journey: false,
+            }
+        })
+    } 
+
+    // Change the states with each input made
+    handleChange= propertyName => (event) => {
+        this.setState({
+          [propertyName]: event.target.value,
+            journey: event.target.checked
+        });
+     }
       
     render() {
 
@@ -41,90 +88,97 @@ class ClientDialog extends Component {
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Add New Client</DialogTitle>
+                    <DialogTitle className={classes.dialogTitle} id="form-dialog-title" >Add New Client <CancelIcon className={classes.cancel}/> </DialogTitle>
                     </DialogContent>
                     <DialogContent>
                         <TextField
                         autoFocus
-                        name="firstName"
+                        margin="dense"
+                        label="Username"
+                        type="text"
+                        fullWidth
+                        value={this.state.username}
+                        onChange={this.handleChange('username')}
+                        />
+                        <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        value={this.state.password}
+                        onChange={this.handleChange('password')}
+                        />
+                        <TextField
+                        autoFocus
                         label="First Name"
                         type="text"
                         fullWidth
                         className={classes.textField}
+                        value={this.state.firstName}
+                        onChange={this.handleChange('firstName')}
                         />
                         <TextField
                         autoFocus
                         margin="dense"
-                        name="lastName"
                         label="Last Name"
                         type="text"
                         fullWidth
+                        value={this.state.lastName}
+                        onChange={this.handleChange('lastName')}
                         />
                         <TextField
                         autoFocus
                         margin="dense"
-                        name="username"
-                        label="Username"
-                        type="text"
-                        fullWidth
-                        />
-                        <TextField
-                        autoFocus
-                        margin="dense"
-                        name="password"
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        />
-                        <TextField
-                        autoFocus
-                        margin="dense"
-                        name="email"
                         label="Email Address"
                         type="email"
                         fullWidth
+                        value={this.state.email}
+                        onChange={this.handleChange('email')}
                         />
                         <TextField
                         autoFocus
                         margin="dense"
-                        name="dropboxUrl"
                         label="DropBox Url"
                         type="text"
                         fullWidth
+                        value={this.state.dropboxUrl}
+                        onChange={this.handleChange('dropboxUrl')}
                         />
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="agent">Select Agent</InputLabel>
                             <Select
-                                value={this.state.agent}
-                                onChange={this.changeAgent}
+                                value={this.state.agent_id}
+                                onChange={this.handleChange('agent_id')}
                                 inputProps={{
-                                name: 'agent',
+                                name: 'agent_id',
                                 }}
                             >
                                 <MenuItem value="">
                                 <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Ben</MenuItem>
-                                <MenuItem value={20}>Jerry</MenuItem>
-                                <MenuItem value={30}>Icecream</MenuItem>
+                                <MenuItem value={'Ben'}>Ben</MenuItem>
+                                <MenuItem value={'Jerry'}>Jerry</MenuItem>
+                                <MenuItem value={'Icecream'}>Icecream</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControlLabel
                             control={
                                 <Switch
                                 checked={this.state.journey}
-                                onChange={this.handleSwitch('journey')}
-                                value="journey"
+                                onChange={this.handleChange('journey')}
+                                value={this.state.journey}
                                 />
                             }
                             label="Start Buyer Journey"
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.props.handleClose} color="primary">
+                        <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
                         Cancel
                         </Button>
-                        <Button onClick={this.props.handleClose} color="primary">
+                        <Button variant="contained" onClick={this.props.handleClose} color="secondary">
+                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
                         Add Client
                         </Button>
                     </DialogActions>
@@ -134,4 +188,8 @@ class ClientDialog extends Component {
     }
 }
 
-export default withStyles(styles) (ClientDialog);
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default withStyles(styles) (connect(mapStateToProps) (ClientDialog));

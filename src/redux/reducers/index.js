@@ -8,9 +8,14 @@ import clientList from './clientListReducer';
 import vendorList from './vendorReducer';
 import adminList from './adminReducer';
 import agent from './agentReducer';
+<<<<<<< HEAD
 import infoClient from './setInfoClientReducer';
 import adminTypeReducer from './adminTypeReducer';
 import vendorTypeReducer from './vendorTypeReducer';
+=======
+import offerAccepted from './offerAcceptedReducer';
+
+>>>>>>> master
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -23,13 +28,14 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   criteria, // will contain client's home search criteria
   userJourney,
-clientList,//this will contain all the clients for the client tab on admin side
-vendorList,//this will contain all the vendors for the vendor tab on the admin side
-adminList,//this will contain all the vendors for the vendor tab on the admin side
+  clientList,//this will contain all the clients for the client tab on admin side
+  vendorList,//this will contain all the vendors for the vendor tab on the admin side
+  adminList,//this will contain all the vendors for the vendor tab on the admin side
   agent,
   infoClient,
   adminTypeReducer,
   vendorTypeReducer,
+  offerAccepted, // contains the details of offer that was accepted (address, MLS, amount, down, earnest money)
 });
 
 export default rootReducer;

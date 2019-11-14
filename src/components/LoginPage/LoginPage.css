@@ -10,7 +10,7 @@ input{
     background-color: white;
     min-height: 25px;
     min-width: 120px;
-    outline:1px solid black;
+    /* outline:1px solid black; */
     cursor: pointer;
 }
 

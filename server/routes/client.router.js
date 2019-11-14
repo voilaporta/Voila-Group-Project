@@ -9,7 +9,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT "id", "firstName", "lastName", "dropboxUrl", "agent_id"
                         FROM "user"
                         WHERE "role_id" = 3;`;
-    pool.query(queryText,)
+    pool.query(queryText)
     .then((result)=>{
         res.send(result.rows);
     }).catch((error)=>{

@@ -20,6 +20,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 
 router.put('/', rejectUnauthenticated, (req, res) => {
+router.get('/type', rejectUnauthenticated, (req, res) => {
+
+    const queryText = `SELECT *
+                        FROM "role";`;
+    pool.query(queryText,)
+    .then((result)=>{
+        res.send(result.rows);
+    }).catch((error)=>{
+        console.log('error getting vendor types', error);
+        res.sendStatus(500);
+    })
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     //agent can update one admin's info
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;

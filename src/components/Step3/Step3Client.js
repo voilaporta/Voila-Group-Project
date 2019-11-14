@@ -5,7 +5,7 @@ import ComponentToUpdate from './ComponentToUpdate';
 class Step3Client extends Component {
 
     state = {
-        user_step_id: this.props.userStepId.id,
+        user_step_id: this.props.userStepId,
         showComponentToUpdate: false,
         showCriteria: false,
         showRequest: false,
@@ -14,7 +14,6 @@ class Step3Client extends Component {
 
    componentDidMount = () => {
     this.props.dispatch({type: 'GET_JOURNEY'});
-    console.log('looking for user step id', this.props.userStepId);
     this.props.dispatch({type: 'GET_CRITERIA', payload: this.state.user_step_id});
     this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id})
 }
@@ -91,7 +90,6 @@ class Step3Client extends Component {
 const mapStateToProps = state => ({
     criteria: state.criteria,
     showing: state.showing,
-    userStepId: state.userJourney.find(step => {return step.order === 3})
 });
 
 export default connect(mapStateToProps)(Step3Client);

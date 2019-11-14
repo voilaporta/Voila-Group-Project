@@ -29,7 +29,7 @@ class Client extends Component {
                     <tbody>
                         {this.props.state.clientList.map((client) => {
                             return (
-                                <ClientItem key={client.id} client={client} getClients={this.getClients} />
+                                <ClientItem key={client.id} client={client} getClients={this.getClients}  clientId={client.id}/>
                             )
                         })}
                     </tbody>

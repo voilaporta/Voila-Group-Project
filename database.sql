@@ -157,7 +157,7 @@ CREATE TABLE "finalWalkThrough" (
 	"userStep_id" INT REFERENCES "userStep" ON DELETE CASCADE,
 	"location" VARCHAR(150),
 	"date" DATE,
-	"time" TIME,
+	"time" VARCHAR (25),
 	"date_time_created" TIMESTAMP NOT NULL 
     			DEFAULT CURRENT_TIMESTAMP
 );
@@ -167,7 +167,7 @@ CREATE TABLE "closing" (
 	"userStep_id" INT REFERENCES "userStep" ON DELETE CASCADE,
 	"location" VARCHAR(150),
 	"date" DATE,
-	"time" TIME,
+	"time" VARCHAR (25),
 	"toBring" VARCHAR (500),
 	"date_time_created" TIMESTAMP NOT NULL 
     			DEFAULT CURRENT_TIMESTAMP

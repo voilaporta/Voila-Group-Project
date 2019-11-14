@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
 import {withStyles} from '@material-ui/core/styles';
 import  {withRouter} from 'react-router-dom';
-
-const styles =theme => ({
-    fab: {
-      margin: theme.spacing(1),
-    },
-    extendedIcon: {
-      marginRight: theme.spacing(1),
-    },
-  });
-  
 
 class ClientItem extends Component {
     updateClient = (id) => {
@@ -21,18 +9,14 @@ class ClientItem extends Component {
 
     }
     render() {
-        const {classes} = this.props;
 
         return (
                 <tr>
                     <td>{this.props.client.firstName}</td>
                     <td>{this.props.client.lastName}</td>
-                    <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
-                    <EditIcon onClick={()=>{this.updateClient(this.props.client.id)}}/>
-                </Fab></td>
-            </tr>
-                
-           
+                    <td>{this.props.client.dropboxUrl}</td>
+                    <td>{this.props.client.agent_id}</td>
+                </tr>
         )
     }
 }

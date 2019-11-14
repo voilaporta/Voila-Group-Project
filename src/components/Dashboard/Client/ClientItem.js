@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import {withStyles} from '@material-ui/core/styles';
+import  {withRouter} from 'react-router-dom';
+
+const styles =theme => ({
+    fab: {
+      margin: theme.spacing(1),
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1),
+    },
+  });
+  
 
 class ClientItem extends Component {
-    updateClient = () => {
-        console.log('hello from the updateClient');
+    updateClient = (id) => {
+        this.props.history.push(`/updateclient/${id}`)
 
     }
     render() {
+        const {classes} = this.props;
 
         return (
                 <tr>
                     <td>{this.props.client.firstName}</td>
                     <td>{this.props.client.lastName}</td>
-                </tr>
-            
+                    <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
+                    <EditIcon onClick={()=>{this.updateClient(this.props.client.id)}}/>
+                </Fab></td>
+            </tr>
+                
+           
         )
     }
 }
@@ -25,4 +44,5 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps)(ClientItem);
+export default  withStyles(styles) (withRouter(connect(mapStateToProps)(ClientItem))) ;
+// withStyles(styles);

@@ -43,6 +43,11 @@ table,td,tr,tbody,th{
 }
 
 .addvendor{
-    
-    border: 1px black solid
+    margin: 20px;
+    background-color: white;
+    color: black;
+    min-height: 35px;
+    min-width: 100px;
+    outline:1px solid black;
+    cursor: pointer;
 }

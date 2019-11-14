@@ -8,6 +8,9 @@ import clientList from './clientListReducer';
 import vendorList from './vendorReducer';
 import adminList from './adminReducer';
 import agent from './agentReducer';
+import infoClient from './setInfoClientReducer';
+import adminTypeReducer from './adminTypeReducer';
+import vendorTypeReducer from './vendorTypeReducer';
 import offerAccepted from './offerAcceptedReducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -26,6 +29,9 @@ const rootReducer = combineReducers({
   vendorList,//this will contain all the vendors for the vendor tab on the admin side
   adminList,//this will contain all the vendors for the vendor tab on the admin side
   agent,
+  infoClient,
+  adminTypeReducer,
+  vendorTypeReducer,
   offerAccepted, // contains the details of offer that was accepted (address, MLS, amount, down, earnest money)
 });
 

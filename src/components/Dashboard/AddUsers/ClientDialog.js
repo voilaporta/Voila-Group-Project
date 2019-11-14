@@ -5,7 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
-import CancelIcon from '@material-ui/icons/Cancel';
+
+import Swal from 'sweetalert2'
   
   const styles = theme => ({
     formControl: {
@@ -18,12 +19,17 @@ import CancelIcon from '@material-ui/icons/Cancel';
         alignItems: 'center',
         height: '1vh',
     },
-    cancel: {
-        float: 'right',
-        marginTop: '5px',
-        width: '20px'
-    }
   });
+
+  // stop tab key from closing the dialog box
+  const stopPropagationForTab = (event) => {
+    if (event.key === "Tab") {
+      event.stopPropagation();
+    }
+    if (event.key == 'a') {
+        event.stopPropagation();
+    }
+  };
 
 class ClientDialog extends Component {
 
@@ -39,6 +45,16 @@ class ClientDialog extends Component {
         journey: false,
     };
 
+    componentDidMount() {
+        this.getAgents();
+    }
+
+    getAgents = () => {
+        this.props.dispatch({
+            type: 'GET_AGENT',
+        })
+    }
+
     // select from a list of agents
     changeAgent = event => {
         this.setState({ agent_id: event.target.value });
@@ -51,21 +67,30 @@ class ClientDialog extends Component {
         this.setState({ [journey]: event.target.checked });
     };
 
-    addClient = (event) => {
+    // POST data to create new user
+    addClient = () => {
+        console.log('in addCLIENTTTTT', this.state)
         this.props.dispatch({
             type: 'REGISTER',
-            payload: {
-                username: this.state.username,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                dropboxUrl: this.state.dropboxUrl,
-                agent_id: this.state.agent_id,
-                role_id: 3,
-                journey: false,
-            }
+            payload: this.state
         })
+        this.setState({
+            username: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            dropboxUrl: '',
+            agent_id: '',
+            role_id: 3,
+            journey: false,
+        });
+        Swal.fire(
+            'Success!',
+            'Client has been added',
+            'success'
+          )
+        this.props.handleClose();
     } 
 
     // Change the states with each input made
@@ -74,11 +99,18 @@ class ClientDialog extends Component {
           [propertyName]: event.target.value,
             journey: event.target.checked
         });
+        console.log('in handleChange', this.state)
      }
       
     render() {
 
         const { classes } = this.props;
+
+        const agentList = this.props.agent.map( (agent) => {
+            return (
+                <MenuItem value={agent.id}>{agent.firstName} {agent.lastName}</MenuItem>
+            )
+        })
         
         return (
             <div>
@@ -86,9 +118,10 @@ class ClientDialog extends Component {
                     open={this.props.state.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
+                    onKeyDown={stopPropagationForTab}
                 >
                     <DialogContent dividers>
-                    <DialogTitle className={classes.dialogTitle} id="form-dialog-title" >Add New Client <CancelIcon className={classes.cancel}/> </DialogTitle>
+                    <DialogTitle className={classes.dialogTitle} id="form-dialog-title" >Add New Client </DialogTitle>
                     </DialogContent>
                     <DialogContent>
                         <TextField
@@ -157,9 +190,7 @@ class ClientDialog extends Component {
                                 <MenuItem value="">
                                 <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={'Ben'}>Ben</MenuItem>
-                                <MenuItem value={'Jerry'}>Jerry</MenuItem>
-                                <MenuItem value={'Icecream'}>Icecream</MenuItem>
+                                {agentList}
                             </Select>
                         </FormControl>
                         <FormControlLabel
@@ -177,12 +208,13 @@ class ClientDialog extends Component {
                         <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
                         Cancel
                         </Button>
-                        <Button variant="contained" onClick={this.props.handleClose} color="secondary">
+                        <Button variant="contained" onClick={this.addClient} color="secondary">
                         <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
                         Add Client
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <p>{JSON.stringify(this.state)}</p>
             </div>
         )
     }
@@ -190,6 +222,7 @@ class ClientDialog extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
+    agent: state.agent
 });
 
 export default withStyles(styles) (connect(mapStateToProps) (ClientDialog));

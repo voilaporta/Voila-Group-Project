@@ -37,8 +37,8 @@ router.post('/register', (req, res, next) => {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const dropboxUrl = req.body.dropboxUrl;
-  const agentId = req.body.agentId;
-  const role = req.body.role;
+  const agentId = req.body.agent_Id;
+  const role = req.body.role_id;
 
   const queryText = `INSERT INTO "user"
                       ("username", "password", "firstName", "lastName", 
@@ -46,7 +46,7 @@ router.post('/register', (req, res, next) => {
                       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
                       RETURNING id;`;
   pool.query(queryText, [username, password, firstName, lastName, email, dropboxUrl, agentId, role])
-    .then((result) => res.send(result.rows))
+    .then((result) => {console.log(result.rows); res.send(result.rows)})
     .catch(() => res.sendStatus(500));
 });
 

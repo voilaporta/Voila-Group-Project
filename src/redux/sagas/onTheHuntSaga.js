@@ -39,12 +39,22 @@ function* getShowing(action) {
     }
 }
 
+function* postOfferMade(action) {
+    try{
+        axios.post('/api/step3/offer', action.payload);
+        console.log('posting offer made', action.payload);
+    }catch (error) {
+        console.log('error with posting offer made', error)
+    }
+}
+
 
 function* onTheHuntSaga() {
     yield takeLatest('POST_CRITERIA', postCriteria)
     yield takeLatest('GET_CRITERIA', getCriteria)
     yield takeLatest('POST_SHOWING', postShowing)
     yield takeLatest('GET_SHOWING', getShowing)
+    yield takeLatest('POST_OFFER_MADE', postOfferMade)
 }
 
 export default onTheHuntSaga;

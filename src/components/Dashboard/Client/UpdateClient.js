@@ -17,12 +17,12 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
   class UpdateClient extends Component {
 
     state = {
-        firstName: '',
-        lastName: '',
-        dropbox: '',
-        agentId: '',
+        firstName: this.props.client.firstName,
+        lastName: this.props.client.lastName,
+        dropbox: this.props.client.dropboxUrl,
+        agentId: this.props.client.agent_id,
         isBuyer: true,
-       id: this.props.clientId
+        id: this.props.clientId
     }
 
 
@@ -95,11 +95,11 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                    <DialogTitle id="form-dialog-title" >Update Client{JSON.stringify(this.props.client)}</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                    <TextField
-                      label="first name"
+                      label="First Name"
                       placeholder="e.g. Jane"
                         value={this.state.firstName}
                         onChange={(event) => {this.handleChange(event, 'firstName')}}
@@ -109,7 +109,7 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                         fullWidth
                     />
                     <TextField
-                        label="Last name"
+                        label="Last Name"
                         placeholder="e.g. Doe"
                         value={this.state.lastName}
                         onChange={(event) => { this.handleChange(event, 'lastName') }}

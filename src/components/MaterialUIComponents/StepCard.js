@@ -71,9 +71,9 @@ class StepCard extends Component {
         switch (stepNum) {
             case 1:
                 if(roleId === 3) {
-                    return <Step1Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
+                    return <Step1Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
                 } else {
-                    return <Step1Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
+                    return <Step1Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
                 }
             case 2:
                 if (roleId === 3) {
@@ -149,7 +149,7 @@ class StepCard extends Component {
     handleComplete = () => {
         this.setState({completed: !this.state.completed})
         setTimeout(() => {
-            this.props.dispatch({ type: 'COMPLETE_STEP', id: this.props.step.id, completed: !this.props.step.completed })
+            this.props.dispatch({ type: 'COMPLETE_STEP', id: this.props.step.id, completed: !this.props.step.completed, user_id: this.props.step.user_id })
         }, 250);
 
     }

@@ -10,10 +10,20 @@ function* getUserJourney (){
     }
 }
 
+function* getUserJourneyAdmin (action) {
+    try {
+        const response = yield axios.get(`/api/journey/admin/${action.user_id}`);
+        yield put({type: 'SET_JOURNEY', payload: response.data})
+    } catch (error) {
+        console.log('error getting journey for user:', error);
+        
+    }
+}
+
 function* completeStep (action) {
     try {
         yield axios.put(`/api/journey/${action.id}`, {complete: action.completed})
-        yield getUserJourney();
+        yield getUserJourneyAdmin(action);
     } catch (error) {
         console.log('error completing step', error);
     }
@@ -22,6 +32,7 @@ function* completeStep (action) {
 
 function* journeySaga() {
     yield takeLatest('GET_JOURNEY', getUserJourney);
+    yield takeLatest('GET_JOURNEY_FOR_USER', getUserJourneyAdmin);
     yield takeLatest('COMPLETE_STEP', completeStep);
     // yield takeLatest('ADD_COLLECTION', addCollection);
   }

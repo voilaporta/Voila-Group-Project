@@ -5,20 +5,25 @@ import { connect } from 'react-redux';
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
-const ProfileInfo= (props) => (
+const ProfileInfo = (props) => (
   <div>
+    <h3 >
+      Welcome:{props.user.firstName} {props.user.lastName}
+    </h3>
     <p >
- Welcome:{props.user.firstName} {props.user.lastName}
+      Username: {props.user.username}
     </p>
     <p >
- Username: {props.user.username}
+      Email: {props.user.email}
     </p>
-    <p >
-Email: {props.user.email}
-    </p>
-    <p >
-Admin Level : {props.user.role_id}
-    </p>
+    {props.user.id > 2 ?
+      <>
+        <p></p>
+      </> :
+      <p >
+        Admin Level : {props.user.role_id}
+      </p>
+    }
 
 
   </div>

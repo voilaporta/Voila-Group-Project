@@ -4,6 +4,8 @@ import { TextField, Select, FormControl, InputLabel, MenuItem, Button, FormGroup
 import {withRouter } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import Swal from 'sweetalert2'
+
 const styles = {
     formContainer: {
         margin: '25px'
@@ -61,7 +63,11 @@ handleChange = (event, keyname) => {
             payload:  this.state
             
         })
-   
+        Swal.fire(
+            'Success!',
+            'Vendor  has been updated!',
+            'success'
+          )
     }
 
     handleDelete=()=>{
@@ -85,7 +91,7 @@ handleChange = (event, keyname) => {
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                    <DialogTitle id="form-dialog-title" >Update Vendor</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                     <TextField

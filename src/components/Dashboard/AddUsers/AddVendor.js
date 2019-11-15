@@ -62,7 +62,7 @@ class AddVendor extends Component {
         console.log('*****in handleChange', this.state)
      }
 
-    // add vendor on submit
+    // add vendor on submit to POST
     handleAddVendor = () => {
         console.log('--ADD Vendor BUTTON --', this.state)
         this.props.dispatch({

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import {Add as AddIcon, CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Select, FormControl, InputLabel, MenuItem, Button, FormGroup, FormControlLabel, Switch, } from '@material-ui/core';
+import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
 import AddInspection from './AddInspection';
 import Moment from 'react-moment';
 
@@ -60,20 +60,6 @@ class Step6Client extends Component {
                 </div>
     }
 
-    
-        
-    // displayScheduledInspection = ()=>{
-    //     const inspectionDetails = this.props.selectedVendor.find((inspection, i)=>{
-    //         return inspection[i]
-    //     })
-    //     return (
-    //         <div>
-    //             <p>Name: {inspectionDetails.name}</p>
-    //             <p>Date: {inspectionDetails.inspectionDate}</p>
-    //         </div>
-    //     )
-    // }
-
     componentDidMount = ()=>{
         this.props.dispatch({type: 'GET_INSPECTORS'});
         this.props.dispatch({type: 'GET_USER_INSPECTION', payload:{user_step_id:this.props.userStepId}})
@@ -82,7 +68,7 @@ class Step6Client extends Component {
         const { classes } = this.props;
         //if redux store vendorList has not yet loaded the date
         //the page will display ...loading... rather than empty data
-        if(this.props.vendorList[0].loading || this.props.selectedVendor[0].loading){
+        if(this.props.vendorList[0].loading){
             return <div>...loading...</div>
         }
         //loop through inspection vendors from redux store (vendorList)
@@ -92,7 +78,6 @@ class Step6Client extends Component {
                     key={inspector.id}
                     value={inspector.id}>{inspector.companyName}</MenuItem>
         })
-        const selectedInspector = this.props.selectedVendor[0];
        
 
         return (
@@ -112,7 +97,7 @@ class Step6Client extends Component {
                         </Select>
                     </FormControl>
                 
-                    {/* if an inspector has been selected from the list, show the contact info otherwise sho nothing */}
+                    {/* if an inspector has been selected from the list, show the contact info otherwise show nothing */}
                     {this.state.inspectionId ? <div>{this.displaySingleInspector()}</div> : <div></div>}
                 </div>
 
@@ -124,13 +109,23 @@ class Step6Client extends Component {
                         
                     </div>
                     <div>
-                        <CheckCircleOutline className={classes.icon} color="secondary" /> Inspection Scheduled:
-                        <p>Name: {selectedInspector.name}</p>
+                        {this.props.selectedVendor[0].loading ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                            <CheckCircleOutline className={classes.icon} color="secondary" /> }
+                        
+                        Inspection Scheduled:
+                        { this.props.selectedVendor[0].loading ? <div>not yet</div> :
+                        <>
+                        <p>Name: {this.props.selectedVendor[0].name}</p>
                         <p>Date: <Moment format="MM/DD/YYYY">
-                            {selectedInspector.inspectionDate}
-                        </Moment></p>
+                            {this.props.selectedVendor[0].inspectionDate}
+                        </Moment></p> 
+                        </>}
+
                     </div>
-                    <div><PanoramaFishEye className={classes.icon} color="secondary"/>Inspection Negotiated:
+                    <div>
+                    {this.props.userJourney[5].completed ? <CheckCircleOutline className={classes.icon} color="secondary" /> : 
+                            <PanoramaFishEye className={classes.icon} color="secondary"/> }
+                        Inspection Negotiated:
                         <p>To be marked complete by Voila</p>
                     </div>
                 </div>
@@ -143,6 +138,7 @@ class Step6Client extends Component {
 const mapStateToProps = state => ({
     vendorList: state.vendorList,
     selectedVendor: state.selectedVendor,
+    userJourney: state.userJourney,
 });
 
 export default withStyles(styles) (connect(mapStateToProps)(Step6Client));

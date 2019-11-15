@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
-        import Swal from 'sweetalert2'
+ import Swal from 'sweetalert2'
+ import SaveIcon from '@material-ui/icons/Save';
+  
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
@@ -151,11 +153,12 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button   onClick={() => this.handleSubmit()} color="primary">
-                        Update Client
+                    <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
+                        Cancel
                         </Button>
-                        <Button   onClick={() => this.handleDelete()} color="primary">
-                        Delete Client
+                        <Button variant="contained" onClick={this.addClient} color="secondary">
+                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
+                        Update Client
                         </Button>
                     </DialogActions>
                 </Dialog>

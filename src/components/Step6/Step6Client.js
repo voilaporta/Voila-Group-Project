@@ -18,6 +18,9 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         fontSize: 32,
     },
+    select:{
+        minWidth: 200
+    }
   });
 
 class Step6Client extends Component {
@@ -64,7 +67,7 @@ class Step6Client extends Component {
             <div>
                 <h1>Use one of our inspection partners or schedule your own</h1>
                 <div className="inspectionPartners">
-                    <FormControl>
+                    <FormControl className={classes.select}>
                         <InputLabel id="selectInspectors">Inspection Partners</InputLabel>
                         <Select
                             labelId="selectInspectors"

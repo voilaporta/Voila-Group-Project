@@ -7,7 +7,6 @@ import vendorsSaga from './vendorSaga';
 import adminsSaga from './adminSaga';
 import agentSaga from './agentSaga';
 import buyerJourneySaga from './buyerJourneySaga';
-import infoSaga from './setInfoClientSaga'
 import adminTypesSaga from './adminTypeSaga';
 import vendorsTypesSaga from './vendorTypeSaga';
 import offerAcceptedSaga from './offerAcceptedSaga';
@@ -30,7 +29,6 @@ export default function* rootSaga() {
     adminsSaga(),
     agentSaga(),
     buyerJourneySaga(),
-    infoSaga(),
     adminTypesSaga(),
     vendorsTypesSaga(),
     offerAcceptedSaga(),

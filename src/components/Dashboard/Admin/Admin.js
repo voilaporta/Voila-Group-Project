@@ -66,7 +66,7 @@ class Admin extends Component {
                 {/* <Fab color="primary" aria-label="add" className={classes.fab}>
                     <AddIcon onClick={this.addAdmin} />
                 </Fab> */}
-                <button onClick={this.addAdmin}>Add Admin</button>
+
 
             </div>
         )

@@ -1,34 +1,87 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, Select, } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save';
+
+import Swal from 'sweetalert2';
   
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
         minWidth: 180,
-      },
+    },
+    dialogTitle: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'left',
+        height: '1vh',
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit,
+    },
   });
 
-// stop tab key from closing the dialog box
-const stopPropagationForTab = (event) => {
+  // stop tab key from closing the dialog box
+  const stopPropagationForTab = (event) => {
     if (event.key === "Tab") {
+      event.stopPropagation();
+    }
+    if (event.key == 'a') {
         event.stopPropagation();
     }
-    };
+  };
 
 class AddAdminDialog extends Component {
 
     state= {
-        adminType: ''
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        dropboxUrl: '',
+        agent_id: null,
+        role_id: '',
+        journey: false,
     }
 
-    // select from a list of agents
-    changeAdminType = event => {
-        this.setState({ [event.target.name]: event.target.value });
-        console.log(this.state);
-    };
+    // Change the states with each input made
+    handleChange= propertyName => (event) => {
+        this.setState({
+          [propertyName]: event.target.value,
+        });
+        console.log('in handleChange', this.state)
+        console.log('--ROLE ID--', this.state.role_id)
+     }
+
+    // POST data to create new user
+    handleAddAdmin = () => {
+        console.log('--ADD ADMIN BUTTON --', this.state)
+        this.props.dispatch({
+            type: 'REGISTER',
+            payload: this.state
+        })
+        this.setState({
+            username: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            dropboxUrl: '',
+            agent_id: null,
+            role_id: '',
+            journey: false,
+        });
+        Swal.fire(
+            'Success!',
+            'Admin has been added!',
+            'success'
+            )
+        this.props.handleClose();
+    } 
       
     render() {
 
@@ -43,72 +96,77 @@ class AddAdminDialog extends Component {
                     onKeyDown={stopPropagationForTab}
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Add New Admin</DialogTitle>
+                        <DialogTitle className={classes.dialogTitle}>Add New Admin</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                         <TextField
-                        autoFocus
-                        name="firstName"
-                        label="First Name"
-                        type="text"
-                        fullWidth
-                        className={classes.textField}
+                            autoFocus
+                            margin="dense"
+                            label="Username"
+                            type="text"
+                            fullWidth
+                            value={this.state.username}
+                            onChange={this.handleChange('username')}
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="lastName"
-                        label="Last Name"
-                        type="text"
-                        fullWidth
+                            autoFocus
+                            margin="dense"
+                            label="Password"
+                            type="password"
+                            fullWidth
+                            value={this.state.password}
+                            onChange={this.handleChange('password')}
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="username"
-                        label="Username"
-                        type="text"
-                        fullWidth
+                            autoFocus
+                            label="First Name"
+                            type="text"
+                            fullWidth
+                            value={this.state.firstName}
+                            onChange={this.handleChange('firstName')}
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="password"
-                        label="Password"
-                        type="password"
-                        fullWidth
+                            autoFocus
+                            margin="dense"
+                            label="Last Name"
+                            type="text"
+                            fullWidth
+                            value={this.state.lastName}
+                            onChange={this.handleChange('lastName')}
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="email"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
+                            autoFocus
+                            margin="dense"
+                            label="Email Address"
+                            type="email"
+                            fullWidth
+                            value={this.state.email}
+                            onChange={this.handleChange('email')}
                         />
                         <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="agent">Select Admin Type</InputLabel>
+                            <InputLabel htmlFor="role_id">Select Admin Type</InputLabel>
                             <Select
-                                value={this.state.adminType}
-                                onChange={this.changeAdminType}
+                                value={this.state.role_id}
+                                onChange={this.handleChange('role_id')}
                                 inputProps={{
-                                name: 'adminType',
+                                name: 'role_id',
                                 }}
                             >
                                 <MenuItem value="">
                                 <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Agent</MenuItem>
-                                <MenuItem value={20}>Team Member</MenuItem>
+                                <MenuItem value={1}>Agent</MenuItem>
+                                <MenuItem value={2}>Agent Team Member</MenuItem>
                             </Select>
                         </FormControl>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.props.handleClose} color="primary">
-                        Cancel
+                        <Button onClick={this.props.handleClose} color="secondary" variant="outlined">
+                            Cancel
                         </Button>
-                        <Button onClick={this.props.handleClose} color="primary">
-                        Add Admin
+                        <Button onClick={this.handleAddAdmin}color="secondary" variant="contained">
+                            <SaveIcon className={classes.leftIcon} />
+                            Add Admin
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -117,4 +175,8 @@ class AddAdminDialog extends Component {
     }
 }
 
-export default withStyles(styles) (AddAdminDialog);
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default withStyles(styles) (connect(mapStateToProps) (AddAdminDialog));

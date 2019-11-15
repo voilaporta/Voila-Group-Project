@@ -1,19 +1,35 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button} from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save';
+
+import Swal from 'sweetalert2';
   
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
         minWidth: 120,
-      },
+    },
+    dialogTitle: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'left',
+        height: '1vh',
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit,
+    },
   });
 
   // stop tab key from closing the dialog box
   const stopPropagationForTab = (event) => {
     if (event.key === "Tab") {
       event.stopPropagation();
+    }
+    if (event.key == 'a') {
+        event.stopPropagation();
     }
   };
 
@@ -32,64 +48,58 @@ class AddVendor extends Component {
                     onKeyDown={stopPropagationForTab}
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Add New Vendor</DialogTitle>
+                        <DialogTitle className={classes.dialogTitle}>Add New Vendor</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                         <TextField
-                        autoFocus
-                        name="firstName"
-                        label="First Name"
-                        type="text"
-                        fullWidth
-                        className={classes.textField}
+                            autoFocus
+                            label="First Name"
+                            type="text"
+                            fullWidth
+                            className={classes.textField}
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="lastName"
-                        label="Last Name"
-                        type="text"
-                        fullWidth
+                            autoFocus
+                            name="lastName"
+                            label="Last Name"
+                            type="text"
+                            fullWidth
                         />
                         <TextField
-                        autoFocus
-                        name="companyName"
-                        label="Company Name"
-                        type="text"
-                        fullWidth
-                        className={classes.textField}
+                            autoFocus
+                            label="Company Name"
+                            type="text"
+                            fullWidth
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="phoneNumber"
-                        label="Phone Number"
-                        type="text"
-                        fullWidth
+                            autoFocus
+                            margin="dense"
+                            label="Phone Number"
+                            type="text"
+                            fullWidth
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="email"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
+                            autoFocus
+                            margin="dense"
+                            label="Email Address"
+                            type="email"
+                            fullWidth
                         />
                         <TextField
-                        autoFocus
-                        margin="dense"
-                        name="website"
-                        label="Website"
-                        type="text"
-                        fullWidth
+                            autoFocus
+                            margin="dense"
+                            label="Website"
+                            type="text"
+                            fullWidth
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.props.handleClose} color="primary">
-                        Cancel
+                        <Button onClick={this.props.handleClose} color="secondary" variant="outlined">
+                            Cancel
                         </Button>
-                        <Button onClick={this.props.handleClose} color="primary">
-                        Add Vendor
+                        <Button onClick={this.props.handleClose} color="secondary" variant="contained">
+                            <SaveIcon className={classes.leftIcon} />
+                            Add Vendor
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -98,4 +108,8 @@ class AddVendor extends Component {
     }
 }
 
-export default withStyles(styles) (AddVendor);
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default withStyles(styles) (connect(mapStateToProps)(AddVendor));

@@ -14,7 +14,7 @@ function* registerUser(action) {
       yield axios.post(`/api/journey/${response.data[0].id}`)
       console.log('TRYING TO POST', response.data[0].id)
     }
-
+    yield put({ type: 'FETCH_CLIENT'});
 
     // // automatically log a user in after registration
     // yield put({ type: 'LOGIN', payload: action.payload });

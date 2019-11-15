@@ -6,7 +6,7 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
   
   const styles = theme => ({
     formControl: {
@@ -18,6 +18,9 @@ import Swal from 'sweetalert2'
         justifyContent: 'space-between',
         alignItems: 'center',
         height: '1vh',
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit,
     },
   });
 
@@ -49,6 +52,7 @@ class ClientDialog extends Component {
         this.getAgents();
     }
 
+    // get the list of agents to assign to Buyer
     getAgents = () => {
         this.props.dispatch({
             type: 'GET_AGENT',
@@ -87,7 +91,7 @@ class ClientDialog extends Component {
         });
         Swal.fire(
             'Success!',
-            'Client has been added',
+            'Client has been added!',
             'success'
           )
         this.props.handleClose();
@@ -106,6 +110,7 @@ class ClientDialog extends Component {
 
         const { classes } = this.props;
 
+        // map through the agents and list them into menu items to select
         const agentList = this.props.agent.map( (agent) => {
             return (
                 <MenuItem value={agent.id}>{agent.firstName} {agent.lastName}</MenuItem>
@@ -121,7 +126,7 @@ class ClientDialog extends Component {
                     onKeyDown={stopPropagationForTab}
                 >
                     <DialogContent dividers>
-                    <DialogTitle className={classes.dialogTitle} id="form-dialog-title" >Add New Client </DialogTitle>
+                        <DialogTitle className={classes.dialogTitle}>Add New Client </DialogTitle>
                     </DialogContent>
                     <DialogContent>
                         <TextField
@@ -206,15 +211,14 @@ class ClientDialog extends Component {
                     </DialogContent>
                     <DialogActions>
                         <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
-                        Cancel
+                            Cancel
                         </Button>
                         <Button variant="contained" onClick={this.addClient} color="secondary">
-                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
-                        Add Client
+                            <SaveIcon className={classes.leftIcon} />
+                            Add Client
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <p>{JSON.stringify(this.state)}</p>
             </div>
         )
     }

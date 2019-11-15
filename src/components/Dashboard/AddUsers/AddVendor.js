@@ -46,6 +46,14 @@ class AddVendor extends Component {
         vendor_id: ''
     }
 
+    componentDidMount() {
+        this.getVendorType();
+    }
+
+    getVendorType = () => {
+     this.props.dispatch({ type: 'GET_VENDOR_TYPE'})   
+    }
+
     // Change the states with each input made
     handleChange= propertyName => (event) => {
         this.setState({
@@ -81,6 +89,15 @@ class AddVendor extends Component {
     render() {
 
         const { classes } = this.props;
+
+        // map through the vendor type list and list them into menu items to select
+        const vendorTypeList = this.props.vendorTypeReducer.map( (vendor) => {
+            return (
+                <MenuItem value={vendor.id}>{vendor.name}</MenuItem>
+            )
+        })
+
+        console.log(this.props.vendorTypeReducer, 'VENDOR TYPE REDUCER')
         
         return (
             <div>
@@ -158,8 +175,7 @@ class AddVendor extends Component {
                                 <MenuItem value="">
                                 <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={1}>Insurance Partners</MenuItem>
-                                <MenuItem value={2}>Inspection Partners</MenuItem>
+                                {vendorTypeList}
                             </Select>
                         </FormControl>
                     </DialogContent>
@@ -180,6 +196,7 @@ class AddVendor extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
+    vendorTypeReducer: state.vendorTypeReducer
 });
 
 export default withStyles(styles) (connect(mapStateToProps)(AddVendor));

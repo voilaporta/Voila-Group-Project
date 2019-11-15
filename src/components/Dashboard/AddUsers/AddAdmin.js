@@ -164,7 +164,7 @@ class AddAdminDialog extends Component {
                         <Button onClick={this.props.handleClose} color="secondary" variant="outlined">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleAddAdmin}color="secondary" variant="contained">
+                        <Button onClick={() => this.handleAddAdmin()}color="secondary" variant="contained">
                             <SaveIcon className={classes.leftIcon} />
                             Add Admin
                         </Button>

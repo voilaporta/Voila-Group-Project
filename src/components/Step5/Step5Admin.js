@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import Countdown from 'react-countdown-now';
 
 class Step5Admin extends Component {
@@ -18,11 +18,23 @@ class Step5Admin extends Component {
         }, 250);
     }
 
-    render() {        
+    render() {
+        const Complete = () => <span>Earnest money time has expired. Please reach out to the client to discuss next steps.</span>;
+
         return (
             <div>
-                {JSON.stringify(this.props.test)}
-                {this.state.offer != undefined ? <Countdown date={new Date(this.state.offer.date_time_created).getTime() + 172800000}/> : ''}
+                {this.props.complete ? <p>User has submitted their earnest money payment. Step Complete!</p>
+                :
+                    <>{this.state.offer != undefined ? 
+                        <Typography variant="h2">
+                            <Countdown date={new Date(this.state.offer.date_time_created).getTime() + 172800000} daysInHours={true}>
+                                <Complete/>
+                            </Countdown>
+                        </Typography>
+                    :
+                        ''}
+                    </>
+                }
             </div>
         );
     }

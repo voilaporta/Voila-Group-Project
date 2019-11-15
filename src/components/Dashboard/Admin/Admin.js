@@ -5,23 +5,6 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 
-
-// const styles = theme => ({
-//     root: {
-//         backgroundColor: theme.palette.background.paper,
-//         width: 500,
-//         position: 'relative',
-//         minHeight: 200,
-//     },
-//     fab: {
-//         position: 'absolute',
-//         bottom: theme.spacing(2),
-//         right: theme.spacing(2),
-//     },
-
-
-// });
-
 class Admin extends Component {
 
     componentDidMount() {
@@ -63,11 +46,6 @@ class Admin extends Component {
                         })}
                     </tbody>
                 </table>
-                {/* <Fab color="primary" aria-label="add" className={classes.fab}>
-                    <AddIcon onClick={this.addAdmin} />
-                </Fab> */}
-                <button onClick={this.addAdmin}>Add Admin</button>
-
             </div>
         )
     }

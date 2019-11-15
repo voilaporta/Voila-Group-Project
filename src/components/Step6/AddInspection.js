@@ -35,7 +35,6 @@ class AddInspector extends Component {
     }
 
     handleSubmit = () => {
-        console.log('hellooooo ',this.state);
         
         if(this.state.name === '' || this.state.date === ''){
             return ( 
@@ -47,16 +46,11 @@ class AddInspector extends Component {
             type: 'ADD_INSPECTION',
             payload:  this.state 
         })
-        this.navBack();
+        this.props.handleClose();
     }
 
-    navBack = ()=>{
-        this.props.history.goBack();
-    }
 
     render() {
-        
-        const { classes } = this.props;
 
         return (
             <div >
@@ -92,6 +86,9 @@ class AddInspector extends Component {
 
                     </DialogContent>
                     <DialogActions>
+                        <Button onClick={this.props.handleClose} color="secondary">
+                        Cancel
+                        </Button>
                         <Button onClick={this.handleSubmit} color="primary">
                         Add Inspection
                         </Button>

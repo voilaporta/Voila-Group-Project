@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
-  
+        import Swal from 'sweetalert2'
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
@@ -32,7 +32,9 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
     componentDidMount=()=>{
         this.getAgents();
         this.getClients();
+
     }
+  
     getAgents=()=>{
         this.props.dispatch({type:'GET_AGENT'})
     }
@@ -53,13 +55,18 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         handleSubmit = () => {
             console.log('hellooooo ',this.state);
             
-            // this.props.history.push('/')
-            if(this.state.firstName && this.state.lastName && this.state.dropbox && this.state.agentId )
+            this.props.history.push('/')
+            // if(this.state.firstName && this.state.lastName && this.state.dropbox && this.state.agentId )
             this.props.dispatch({
                 type: 'UPDATE_CLIENT',
                 payload:  this.state
                 
             })
+            Swal.fire(
+                'Success!',
+                'Client has been updated!',
+                'success'
+              )
        
         }
     
@@ -77,7 +84,7 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                             key={agent.id}> {agent.firstName}</MenuItem>
           })
         const { classes } = this.props;
-        console.log('in updateclient.js', this.props.clientId)
+        
         return (
             <div>
                 <Dialog
@@ -90,8 +97,8 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                     </DialogContent>
                     <DialogContent>
                    <TextField
-                        label="First name"
-                        placeholder="e.g. Jane"
+                      label="first name"
+                      placeholder="e.g. Jane"
                         value={this.state.firstName}
                         onChange={(event) => {this.handleChange(event, 'firstName')}}
                         autoFocus

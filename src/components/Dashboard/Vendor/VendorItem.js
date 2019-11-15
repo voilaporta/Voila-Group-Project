@@ -41,6 +41,7 @@ class VendorItem extends Component {
                 <td>{this.props.vendor.vendor_type_name}</td>
                 <td>{this.props.vendor.phoneNumber}</td>
                 <td>{this.props.vendor.email}</td>
+                <td>{this.props.vendor.website}</td>
                 <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
                     <EditIcon onClick={()=>{this.updateVendor(this.props.vendor.id)}}/>
                 </Fab></td>

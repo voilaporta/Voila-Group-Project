@@ -37,9 +37,10 @@ router.post('/register', (req, res, next) => {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const dropboxUrl = req.body.dropboxUrl;
-  const agentId = req.body.agent_Id;
+  const agentId = req.body.agent_id;
   const role = req.body.role_id;
 
+  console.log(req.body, '---POSTING REGISTER USER')
   const queryText = `INSERT INTO "user"
                       ("username", "password", "firstName", "lastName", 
                       "email", "dropboxUrl", "agent_id", "role_id") 

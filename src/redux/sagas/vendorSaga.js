@@ -37,11 +37,24 @@ function* fetchVendor(){
       console.log('DELETE ERROR:', err);
     }
   }
+
+  // POST a new vendor
+  function* createVendor(action) {
+    try {
+      yield axios.post(`/api/vendor`, action.payload)
+      console.log('---IN POST VENDOR', action.payload);
+      yield fetchVendor();
+    } catch (error) {
+        console.log('Error posting accepted offer:', error);
+    }
+  }
+
   function* vendorsSaga() {
     yield takeLatest('FETCH_VENDOR', fetchVendor);
     yield takeLatest('UPDATE_VENDOR', updateVendor);
     yield takeLatest('DELETE_VENDOR', deleteVendor);
     yield takeLatest('GET_INSPECTORS', getInspectors);
+    yield takeLatest('CREATE_VENDOR', createVendor);
   }
   
   export default vendorsSaga;

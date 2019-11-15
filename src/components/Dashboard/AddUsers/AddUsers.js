@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 // Material UI
 import Fab from '@material-ui/core/Fab';

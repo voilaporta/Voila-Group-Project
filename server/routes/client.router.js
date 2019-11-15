@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
-
+const encryptLib = require('../modules/encryption');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
 //admin can get all clients from database
@@ -33,6 +33,24 @@ router.put('/', rejectUnauthenticated, (req, res) => {
                         "dropboxUrl" = $3, "agent_id" = $4
                         WHERE "id" = $5;`;
     pool.query(queryText,[firstName, lastName, dorpboxLink, agent, clientId])
+    .then(()=>{
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('error updating client', error);
+        res.sendStatus(500);
+    })
+});
+
+router.put('/password', rejectUnauthenticated, (req, res) => {
+    //agent can update one client's info
+    console.log('put router',req.body);
+    
+    const password = encryptLib.encryptPassword(req.body.password);
+    const clientId = req.body.id;
+    const queryText = `UPDATE "user"
+                        SET "password" = $1
+                        WHERE "id" = $2;`;
+    pool.query(queryText,[password,  clientId])
     .then(()=>{
         res.sendStatus(200);
     }).catch((error)=>{

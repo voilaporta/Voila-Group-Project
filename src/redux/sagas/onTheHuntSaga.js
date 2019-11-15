@@ -20,6 +20,15 @@ function* getCriteria(action) {
     }
 }
 
+function* updateCriteria(action) {
+    try{
+        axios.put('/api/step3/criteria', action.payload);
+        console.log('updating criteria', action.payload)
+    }catch (error) {
+        console.log('error with updating criteria', error);
+    }
+}
+
 function* postShowing(action) {
     try{
         axios.post('/api/step3/showing/', action.payload);
@@ -39,12 +48,23 @@ function* getShowing(action) {
     }
 }
 
+function* postOfferMade(action) {
+    try{
+        axios.post('/api/step3/offer', action.payload);
+        console.log('posting offer made', action.payload);
+    }catch (error) {
+        console.log('error with posting offer made', error)
+    }
+}
+
 
 function* onTheHuntSaga() {
     yield takeLatest('POST_CRITERIA', postCriteria)
     yield takeLatest('GET_CRITERIA', getCriteria)
+    yield takeLatest('UPDATE_CRITERIA', updateCriteria)
     yield takeLatest('POST_SHOWING', postShowing)
     yield takeLatest('GET_SHOWING', getShowing)
+    yield takeLatest('POST_OFFER_MADE', postOfferMade)
 }
 
 export default onTheHuntSaga;

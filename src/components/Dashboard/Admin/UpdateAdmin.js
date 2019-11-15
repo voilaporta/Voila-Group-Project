@@ -5,6 +5,7 @@ import {withRouter } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2'
+import SaveIcon from '@material-ui/icons/Save';
 
 const styles = {
     formContainer: {
@@ -71,11 +72,14 @@ handleChange = (event, keyname) => {
 
 
     handleDelete=()=>{
-        console.log('hello from delete admin button!!!!');
         this.props.history.push('/')
         this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id});
-        console.log('helllooooo from delete',this.state.id);
-        
+
+        Swal.fire(
+            'Success!',
+            'Admin has been deleted!',
+            'success'
+          )
     }
 
     render() {
@@ -141,11 +145,12 @@ handleChange = (event, keyname) => {
 
                     </DialogContent>
                     <DialogActions>
-                        <Button   onClick={() => this.handleSubmit()} color="primary">
-                        Update Admin
+                    <Button variant="outlined" onClick={this.handleDelete} color="secondary">
+                        Delete
                         </Button>
-                        <Button   onClick={() => this.handleDelete()} color="primary">
-                        Delete Admin
+                        <Button variant="contained" onClick={this.handleSubmit}color="secondary">
+                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
+                        Update Admin
                         </Button>
                     </DialogActions>
                 </Dialog>

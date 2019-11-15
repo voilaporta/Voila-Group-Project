@@ -12,7 +12,7 @@ function* getUserJourney (){
 
 function* getUserJourneyAdmin (action) {
     try {
-        const repsonse = yield axios.get(`/api/journey/${action.userId}`);
+        const response = yield axios.get(`/api/journey/${action.userId}`);
         yield put({type: 'SET_JOURNEY', payload: response.data})
     } catch (error) {
         console.log('error getting journey for user:', error);

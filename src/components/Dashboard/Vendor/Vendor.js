@@ -10,10 +10,7 @@ class Vendor extends Component {
     getVendor() {
         this.props.dispatch({ type: 'FETCH_VENDOR' })
     }
-    addVendor() {
-        console.log('hello from the addVendor button');
 
-    }
     render() {
         return (
             <div>

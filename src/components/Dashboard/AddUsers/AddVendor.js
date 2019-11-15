@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button} from '@material-ui/core';
+import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
+        InputLabel, MenuItem, FormControl, Select, } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 
 import Swal from 'sweetalert2';
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 120,
+        minWidth: 180,
     },
     dialogTitle: {
         display: 'flex',
@@ -34,6 +35,48 @@ import Swal from 'sweetalert2';
   };
 
 class AddVendor extends Component {
+
+    state = {
+        firstName: '',
+        lastName: '',
+        companyName: '',
+        phoneNumber: '',
+        email: '',
+        website: '',
+        vendor_id: ''
+    }
+
+    // Change the states with each input made
+    handleChange= propertyName => (event) => {
+        this.setState({
+          [propertyName]: event.target.value,
+        });
+        console.log('*****in handleChange', this.state)
+     }
+
+    // add vendor on submit
+    handleAddVendor = () => {
+        console.log('--ADD Vendor BUTTON --', this.state)
+        this.props.dispatch({
+            type: 'CREATE_VENDOR',
+            payload: this.state
+        })
+        this.setState({
+            firstName: '',
+            lastName: '',
+            companyName: '',
+            phoneNumber: '',
+            email: '',
+            website: '',
+            vendor_id: ''
+        });
+        Swal.fire(
+            'Success!',
+            'Vendor has been added!',
+            'success'
+            )
+        this.props.handleClose();
+    }
       
     render() {
 
@@ -51,25 +94,30 @@ class AddVendor extends Component {
                         <DialogTitle className={classes.dialogTitle}>Add New Vendor</DialogTitle>
                     </DialogContent>
                     <DialogContent>
-                        <TextField
+                    <TextField
                             autoFocus
                             label="First Name"
                             type="text"
                             fullWidth
-                            className={classes.textField}
+                            value={this.state.firstName}
+                            onChange={this.handleChange('firstName')}
                         />
                         <TextField
                             autoFocus
-                            name="lastName"
+                            margin="dense"
                             label="Last Name"
                             type="text"
                             fullWidth
+                            value={this.state.lastName}
+                            onChange={this.handleChange('lastName')}
                         />
                         <TextField
                             autoFocus
                             label="Company Name"
                             type="text"
                             fullWidth
+                            value={this.state.companyName}
+                            onChange={this.handleChange('companyName')}
                         />
                         <TextField
                             autoFocus
@@ -77,6 +125,8 @@ class AddVendor extends Component {
                             label="Phone Number"
                             type="text"
                             fullWidth
+                            value={this.state.phoneNumber}
+                            onChange={this.handleChange('phoneNumber')}
                         />
                         <TextField
                             autoFocus
@@ -84,6 +134,8 @@ class AddVendor extends Component {
                             label="Email Address"
                             type="email"
                             fullWidth
+                            value={this.state.email}
+                            onChange={this.handleChange('email')}
                         />
                         <TextField
                             autoFocus
@@ -91,13 +143,31 @@ class AddVendor extends Component {
                             label="Website"
                             type="text"
                             fullWidth
+                            value={this.state.website}
+                            onChange={this.handleChange('website')}
                         />
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="vendor_id">Select Vendor Type</InputLabel>
+                            <Select
+                                value={this.state.role_id}
+                                onChange={this.handleChange('vendor_id')}
+                                inputProps={{
+                                name: 'vendor_id',
+                                }}
+                        >
+                                <MenuItem value="">
+                                <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={1}>Insurance Partners</MenuItem>
+                                <MenuItem value={2}>Inspection Partners</MenuItem>
+                            </Select>
+                        </FormControl>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.props.handleClose} color="secondary" variant="outlined">
                             Cancel
                         </Button>
-                        <Button onClick={this.props.handleClose} color="secondary" variant="contained">
+                        <Button onClick={() => this.handleAddVendor()} color="secondary" variant="contained">
                             <SaveIcon className={classes.leftIcon} />
                             Add Vendor
                         </Button>

@@ -58,7 +58,7 @@ class Admin extends Component {
                     <tbody>
                         {this.props.state.adminList.map((admin) => {
                             return (
-                                <AdminItem key={admin.id} admin={admin} getAdmin={this.getAdmin} />
+                                <AdminItem key={admin.id} admin={admin} getAdmin={this.getAdmin} adminId={admin.id} />
                             )
                         })}
                     </tbody>

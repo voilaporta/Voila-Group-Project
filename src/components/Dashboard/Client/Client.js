@@ -21,13 +21,15 @@ class Client extends Component {
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>DropBox URL</th>
+                            <th>Agent</th>
                             <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.state.clientList.map((client) => {
                             return (
-                                <ClientItem key={client.id} client={client} getClients={this.getClients} />
+                                <ClientItem key={client.id} client={client} getClients={this.getClients}  clientId={client.id}/>
                             )
                         })}
                     </tbody>

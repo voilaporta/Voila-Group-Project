@@ -1,25 +1,106 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import SpeedDialCreate from '../MaterialUIComponents/SpeedDialCreate';
-import CreateClient from '../CreateClient/CreateClient';
+import { withStyles } from '@material-ui/core/styles';
+import {
+    TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
+    InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch
+} from '@material-ui/core';
+import Swal from 'sweetalert2'
+import SaveIcon from '@material-ui/icons/Save';
+import ProfileInfo from './ProfileInfo';
 
-class Profile extends Component {
+const styles = theme => ({
+    formControl: {
+        margin: theme.spacing.unit,
+        minWidth: 120,
+    },
+});
+
+// stop tab key from closing the dialog box
+const stopPropagationForTab = (event) => {
+    if (event.key == "p") {
+        event.stopPropagation();
+    }
+    };
+
+class ProfileAdmin extends Component {
+    state = {
+        showpassword: false,
+        password: '',
+        id:this.props.user.id
+    }
+
+    handleChange = (event, keyname) => {
+        this.setState({
+            ...this.state, 
+            [keyname]: event.target.value,
+        })
+        console.log(this.state);
+        
+    }
+
+    savePassword=()=>{
+        this.props.dispatch({
+            type: 'UPDATE_PASSWORD',
+            payload:  this.state
+            
+        })
+  
+        this.setState({
+            showpassword: false,
+    })
+    
+   
+    }
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div>
-                <h1 id="welcome">
-                    Profile
-                </h1>
+                <Dialog
+                    open={this.props.state}
+                    onClose={this.props.handleClose}
+                    onKeyDown={stopPropagationForTab}
+                    aria-labelledby="form-dialog-title"
+                    
+                >
+                    <DialogContent dividers>
+                        <DialogTitle id="form-dialog-title" >Profile</DialogTitle>
+                    </DialogContent>
+                    <DialogContent>
+                        <ProfileInfo />
+                        {this.state.showpassword ?
+                        <>
+                            <TextField
+                                label="Password"
+                                placeholder="Password"
+                                value={this.state.password}
+                                onChange={(event) => { this.handleChange(event, 'password') }}
+                                autoFocus
+                                margin="dense"
+                                type="text"
+                                fullWidth
+                            /> <Button variant="outlined" color="secondary" onClick={this.savePassword}>Save</Button></>:
+                            <Button variant="outlined" color="secondary" onClick={this.showPassword}>
+                                Change Password
+                        </Button>
+                        }
+                        <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
+                        Cancel
+                        </Button>
+                    </DialogContent>
+
+                </Dialog>
             </div>
         )
     }
 }
-
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
-user: state.user,
+    user: state.user,
+    agent: state.agent,
+    state
 });
 
-export default connect(mapStateToProps) (Profile);
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(ProfileAdmin)));

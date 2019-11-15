@@ -50,7 +50,6 @@ class ChangeCriteria extends Component {
 
 const mapStateToProps = state => ({
     userStepId: state.userJourney.find(step => {return step.order === 3})
-
 });
 
 export default connect(mapStateToProps)(ChangeCriteria);    

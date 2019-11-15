@@ -22,6 +22,10 @@ class ChangeCriteria extends Component {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state})
     }
 
+    updateCriteria = () => {
+        this.props.dispatch({type: 'UPDATE_CRITERIA', payload: this.state})
+    }
+
     handleChange = (event, input) => {
         this.setState({
             ...this.state,
@@ -40,6 +44,8 @@ class ChangeCriteria extends Component {
                     <input value={this.state.location} onChange={(event) => this.handleChange(event, 'location')} placeholder="location/zip code"/>
                     <input value={this.state.notes} onChange={(event) => this.handleChange(event, 'notes')} placeholder="Any notes for your realtor?"/>
                     <button onClick={this.addCriteria}>Add Criteria</button>
+                    <br/>
+                    <button onClick={this.updateCriteria}>Update Criteria</button>
                     <button onClick={this.cancel}>Cancel</button>
 
             </div>
@@ -49,7 +55,8 @@ class ChangeCriteria extends Component {
 }
 
 const mapStateToProps = state => ({
-    userStepId: state.userJourney.find(step => {return step.order === 3})
+    userStepId: state.userJourney.find(step => {return step.order === 3}),
+    criteria: state.criteria
 });
 
 export default connect(mapStateToProps)(ChangeCriteria);    

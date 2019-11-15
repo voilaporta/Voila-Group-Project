@@ -44,15 +44,13 @@ class ClientItem extends Component {
             <tr>
                 <td>{this.props.client.firstName}</td>
                 <td>{this.props.client.lastName}</td>
-         
+                <td>{this.props.client.dropboxUrl}</td>
+                <td>{this.props.client.agent_id}</td>
                 <td><Fab color="secondary" size="small" aria-label="edit" className={classes.fab} onClick={this.updateClient}>
                     <EditIcon onClick={() => { this.updateClient(this.props.clientId) }} />
                 </Fab></td>
                 {this.state.open ? <UpdateClient state={this.state} updateClient={this.updateClient} handleClose={this.handleClose} clientId={this.props.clientId}/> : <div></div>}
-
             </tr>
-
-
         )
     }
 }

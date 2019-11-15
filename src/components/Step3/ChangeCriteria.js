@@ -33,6 +33,10 @@ class ChangeCriteria extends Component {
         })
     }
 
+    cancel = () => {
+        console.log('in cancel');
+    }
+
 
 
     render() {
@@ -43,9 +47,10 @@ class ChangeCriteria extends Component {
                     <input value={this.state.square_feet} onChange={(event) => this.handleChange(event, 'square_feet')} placeholder="square feet"/>
                     <input value={this.state.location} onChange={(event) => this.handleChange(event, 'location')} placeholder="location/zip code"/>
                     <input value={this.state.notes} onChange={(event) => this.handleChange(event, 'notes')} placeholder="Any notes for your realtor?"/>
-                    <button onClick={this.addCriteria}>Add Criteria</button>
                     <br/>
-                    <button onClick={this.updateCriteria}>Update Criteria</button>
+                    {this.props.criteria != '' ? <button onClick={this.updateCriteria}>Update Criteria</button> :  
+                    <button onClick={this.addCriteria}>Add Criteria</button>
+                        }
                     <button onClick={this.cancel}>Cancel</button>
 
             </div>

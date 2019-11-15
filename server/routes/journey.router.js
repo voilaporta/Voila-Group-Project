@@ -25,10 +25,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // will have to include the client's id
 router.get('/admin/:id', rejectUnauthenticated, (req, res) => {
     const userId = req.params.id;
-    const queryText = `SELECT "userStep".id, "order", "completed", "name", "description"
+    const queryText = `SELECT "userStep".id, "user_id", "order", "completed", "name", "description", "firstName", "lastName", "email", "dropboxUrl"
                         FROM "userStep"
                         JOIN "journeyStep"
                             ON "journeyStep".id = "userStep"."journeyStep_id"
+                        JOIN "user"
+                            ON "user".id = "userStep"."user_id"
                         WHERE "user_id" = $1
                         ORDER BY "order";`;
     pool.query(queryText, [userId])

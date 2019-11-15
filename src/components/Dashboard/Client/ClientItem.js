@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import UpdateClient from './UpdateClient'
-import { ListItemIcon, IconButton, ListItemText, ListItemSecondaryAction, Button } from '@material-ui/core';
+import { ListItemIcon, IconButton, ListItemText, ListItemSecondaryAction, Button, Link } from '@material-ui/core';
 const styles = theme => ({
     fab: {
         margin: theme.spacing(1),
@@ -53,22 +53,24 @@ class ClientItem extends Component {
             //     </IconButton></td>
             //     {this.state.open ? <UpdateClient state={this.state} updateClient={this.updateClient} handleClose={this.handleClose} clientId={this.props.clientId} client={this.props.client}/> : <div></div>}
             // </tr>
-            <div>
-                <listItemIcon >
-
-                </listItemIcon>
+            <>
+                <ListItemIcon>
+                    <IconButton href={`#/buyer-journey/${this.props.client.id}`}>
+                        <HomeIcon />
+                    </IconButton>
+                </ListItemIcon>
                 <ListItemText>                   
-                    <Button variant="text" startIcon={<HomeIcon/>} href={`/buyer-journey/${this.props.client.id}`}>
+                    <Link href={`#/buyer-journey/${this.props.client.id}`}>
                         {this.props.client.firstName} {this.props.client.lastName}
-                    </Button>
+                    </Link>
                 </ListItemText>
                 <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="edit" onClick={this.updateClient}>
+                    <IconButton edge="end" color="secondary" aria-label="edit" onClick={this.updateClient}>
                         <EditIcon onClick={() => { this.updateClient(this.props.client.id) }} />
                     </IconButton>
                 </ListItemSecondaryAction>
                 {this.state.open ? <UpdateClient state={this.state} updateClient={this.updateClient} handleClose={this.handleClose} clientId={this.props.client.id} client={this.props.client} /> : <div></div>}
-            </div>
+            </>
         )
     }
 }

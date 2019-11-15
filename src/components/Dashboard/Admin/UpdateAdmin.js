@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TextField, Select, FormControl, InputLabel, MenuItem, Button, FormGroup, FormControlLabel, Switch, } from '@material-ui/core';
 import {withRouter } from 'react-router-dom';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import Swal from 'sweetalert2'
 
 const styles = {
     formContainer: {
@@ -10,6 +13,9 @@ const styles = {
     submitBtn: {
         position: 'relative',
         bottom: -30
+    },
+    select:{
+        minWidth: 120
     }
 }
 
@@ -20,7 +26,7 @@ class UpdateAdmin extends Component {
         lastName: '',
         email: '',
         adminType: '',
-       id: this.props.match.params.id
+       id: this.props.adminId
     }
 
 componentDidMount=()=>{
@@ -56,7 +62,11 @@ handleChange = (event, keyname) => {
             payload:  this.state
             
         })
-   
+        Swal.fire(
+            'Success!',
+            'Admin has been updated!',
+            'success'
+          )
     }
 
 
@@ -73,24 +83,37 @@ handleChange = (event, keyname) => {
             return <MenuItem value={type.id}
                             key={type.id}> {type.name}</MenuItem>
           })
+          const { classes } = this.props;
         return (
-            <div style={styles.formContainer}>
-                <FormControl fullWidth>
+            <div >
+                     <Dialog
+                    open={this.props.state}
+                    onClose={this.props.handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <DialogContent dividers>
+                    <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                    </DialogContent>
+                    <DialogContent>
                     <TextField
                         label="First name"
                         placeholder="e.g. Jane"
                         value={this.state.firstName}
                         onChange={(event) => {this.handleChange(event, 'firstName')}}
+                        autoFocus
                         margin="dense"
-                        variant="outlined"
+                        type="text"
+                        fullWidth
                     />
                     <TextField
                         label="Last name"
                         placeholder="e.g. Doe"
                         value={this.state.lastName}
                         onChange={(event) => { this.handleChange(event, 'lastName') }}
+                        autoFocus
                         margin="dense"
-                        variant="outlined"
+                        type="text"
+                        fullWidth
                     />
      
            
@@ -99,11 +122,13 @@ handleChange = (event, keyname) => {
                         placeholder="Emaill"
                         value={this.state.email}
                         onChange={(event) => { this.handleChange(event, 'email') }}
+                        autoFocus
                         margin="dense"
-                        variant="outlined"
+                        type="text"
+                        fullWidth
                     />
-                     <FormControl>
-                        <InputLabel id="selectAdminTypeLabel">Admin Type</InputLabel>
+                     <FormControl className={classes.select}>
+                        <InputLabel id="selectAdminTypeLabel">Admin  Type</InputLabel>
                         <Select
                             labelId="selectAdminTypeLabel"
                             onChange={(event) => {this.handleChange(event, 'adminType')}}
@@ -113,26 +138,17 @@ handleChange = (event, keyname) => {
                                 {adminTypes}
                         </Select>
                     </FormControl>
-                    <Button
-                        variant="contained"
-                        onClick={() => this.handleSubmit()}
-                        color="secondary"
-                        style={styles.submitBtn}
 
-                    >
+                    </DialogContent>
+                    <DialogActions>
+                        <Button   onClick={() => this.handleSubmit()} color="primary">
                         Update Admin
-                    </Button>
-                    <br></br>
-                    <Button
-                        variant="contained"
-                        onClick={() => this.handleDelete()}
-                        color="secondary"
-                        style={styles.submitBtn}
-
-                    >
+                        </Button>
+                        <Button   onClick={() => this.handleDelete()} color="primary">
                         Delete Admin
-                    </Button>
-                </FormControl>
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         )
     }
@@ -144,4 +160,4 @@ const mapStateToProps = state => ({
     state
 });
 
-export default withRouter(connect(mapStateToProps)(UpdateAdmin));
+export default withStyles(styles) (withRouter(connect(mapStateToProps)(UpdateAdmin)));

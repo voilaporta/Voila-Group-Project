@@ -11,6 +11,13 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
       },
   });
 
+// stop tab key from closing the dialog box
+const stopPropagationForTab = (event) => {
+    if (event.key === "Tab") {
+        event.stopPropagation();
+    }
+    };
+
 class AddAdminDialog extends Component {
 
     state= {
@@ -33,6 +40,7 @@ class AddAdminDialog extends Component {
                     open={this.props.state.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
+                    onKeyDown={stopPropagationForTab}
                 >
                     <DialogContent dividers>
                     <DialogTitle id="form-dialog-title" >Add New Admin</DialogTitle>

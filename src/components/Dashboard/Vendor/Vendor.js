@@ -25,20 +25,19 @@ class Vendor extends Component {
                             <th>Vendor Type</th>
                             <th>Contact Number</th>
                             <th>Email</th>
+                            <th>Website</th>
                             <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.state.vendorList.map((vendor) => {
                             return (
-                                <VendorItem key={vendor.id} vendor={vendor} getVendor={this.getVendor} />
+                                <VendorItem key={vendor.id} vendor={vendor} getVendor={this.getVendor}  vendorId={vendor.id}/>
                             )
                         })}
                     </tbody>
                 </table>
-                <div >
-                    <button onClick={this.addVendor}>Add Vendor</button>
-                </div>
+            
 
             </div>
         )

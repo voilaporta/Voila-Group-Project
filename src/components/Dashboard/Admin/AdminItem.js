@@ -4,6 +4,7 @@ import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import {withStyles} from '@material-ui/core/styles';
 import  {withRouter} from 'react-router-dom';
+import UpdateAdmin from './UpdateAdmin';
 const styles =theme => ({
     fab: {
       margin: theme.spacing(1),
@@ -15,9 +16,22 @@ const styles =theme => ({
   
 
 class AdminItem extends Component {
+    state={
+        open:false,
+}
     updateAdmin = (id) => {
-        this.props.history.push(`/updateadmin/${id}`)
+        // this.props.history.push(`/updateadmin/${id}`)
+        this.setState({
+            open: true
+        })
 
+    }
+    handleClose=()=>{
+        this.setState({
+            open: false,
+        })
+        console.log('hello from handleclose');
+        
     }
     
     render() {
@@ -29,10 +43,11 @@ class AdminItem extends Component {
                     <td>{this.props.admin.lastName}</td>
                     <td>{this.props.admin.email}</td>
                     <td>{this.props.admin.role_id}</td>
-                    <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
+                    <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab} onClick={this.updateAdmin}>
                     <EditIcon onClick={()=>{this.updateAdmin(this.props.admin.id)}} />
                 </Fab></td>
-                    {/* <td><button onClick={this.admin}>Update</button></td> */}
+                {this.state.open ? <UpdateAdmin state={this.state} updateAdmin={this.updateAdmin} handleClose={this.handleClose} adminId={this.props.adminId}/> : <div></div>}
+
                 </tr>
            
         )

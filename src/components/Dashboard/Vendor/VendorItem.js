@@ -4,7 +4,7 @@ import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import {withStyles} from '@material-ui/core/styles';
 import {withRouter } from 'react-router-dom';
-
+import UpdateVendor from './UpdateVendor';
 const styles =theme => ({
     fab: {
       margin: theme.spacing(1),
@@ -15,9 +15,21 @@ const styles =theme => ({
   });
   
 class VendorItem extends Component {
+    state={
+        open:false,
+}
     updateVendor = (id) => {
-        this.props.history.push(`/updatevendor/${id}`)
-
+        // this.props.history.push(`/updatevendor/${id}`)
+        this.setState({
+            open: true
+        })
+    }
+    handleClose=()=>{
+        this.setState({
+            open: false,
+        })
+        console.log('hello from handleclose');
+        
     }
     render() {
         const {classes} = this.props;
@@ -29,10 +41,12 @@ class VendorItem extends Component {
                 <td>{this.props.vendor.vendor_type_name}</td>
                 <td>{this.props.vendor.phoneNumber}</td>
                 <td>{this.props.vendor.email}</td>
+                <td>{this.props.vendor.website}</td>
                 <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
                     <EditIcon onClick={()=>{this.updateVendor(this.props.vendor.id)}}/>
                 </Fab></td>
-                {/* <td><button onClick={this.updateVendor}>Update</button></td> */}
+                {this.state.open ? <UpdateVendor state={this.state} updateVendor={this.updateVendor} handleClose={this.handleClose} vendorId={this.props.vendorId}/> : <div></div>}
+
             </tr>
 
         )

@@ -71,7 +71,7 @@ class App extends Component {
                 component={InfoPage}
               />
               <ProtectedRoute
-                exact path="/buyer-journey"
+                exact path="/buyer-journey/:id"
                 component={BuyerJourney}
               />
               <ProtectedRoute

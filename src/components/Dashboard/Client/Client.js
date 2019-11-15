@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ClientItem from './ClientItem'
+import { List, ListItem } from '@material-ui/core';
   
 class Client extends Component {
 
@@ -12,11 +13,20 @@ class Client extends Component {
         this.props.dispatch({type: 'FETCH_CLIENT'})
     }
 
+    mapClients = () => {
+        return (
+            this.props.clientList.map(client => 
+                <ListItem key={client.id}>
+                    <ClientItem client={client} getClients={this.getClients}/>
+                </ListItem>)
+        )
+    }
+
     render() {
 
         return (
             <div>
-                <table>
+                {/* <table>
                     <thead>
                         <tr>
                             <th>First Name</th>
@@ -33,7 +43,10 @@ class Client extends Component {
                             )
                         })}
                     </tbody>
-                </table>
+                </table> */}
+                <List>
+                    {this.mapClients()}
+                </List>
             </div>
         )
     }
@@ -41,7 +54,7 @@ class Client extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
-    state
+    clientList: state.clientList
 });
 
 export default (connect(mapStateToProps)(Client));

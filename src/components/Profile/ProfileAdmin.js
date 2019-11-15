@@ -28,7 +28,7 @@ class ProfileAdmin extends Component {
     state = {
         showpassword: false,
         password: '',
-        id:this.props.user.id
+        id: this.props.user.id
     }
 
     handleChange = (event, keyname) => {
@@ -41,22 +41,23 @@ class ProfileAdmin extends Component {
     }
 
     savePassword=()=>{
+        this.setState({
+            showpassword: false,
+    })
         this.props.dispatch({
             type: 'UPDATE_PASSWORD',
             payload:  this.state
             
         })
-  
-        this.setState({
-            showpassword: false,
-    })
-    
    
     }
+
+    showPassword=()=>{
+        this.setState({
+            showpassword:true,
+    })
+    }
     render() {
-
-        const { classes } = this.props;
-
         return (
             <div>
                 <Dialog
@@ -82,7 +83,9 @@ class ProfileAdmin extends Component {
                                 margin="dense"
                                 type="text"
                                 fullWidth
-                            /> <Button variant="outlined" color="secondary" onClick={this.savePassword}>Save</Button></>:
+                            /> 
+                            <Button variant="outlined" color="secondary" onClick={this.savePassword}>Save</Button>
+                            </>:
                             <Button variant="outlined" color="secondary" onClick={this.showPassword}>
                                 Change Password
                         </Button>

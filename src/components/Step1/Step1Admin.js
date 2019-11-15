@@ -8,7 +8,7 @@ class Step1Admin extends Component {
         return (
             <div>
                 {/* <VoilaVaultLink/> */}
-                <Typography paragraph>{this.props.user.username} has started the home-buying process with you.</Typography>
+                <Typography paragraph>{this.props.buyerName} has started the home-buying process with you.</Typography>
             </div>
         );
     }

@@ -23,6 +23,7 @@ class Step1Client extends Component {
 
 const mapStateToProps = state => ({
     errors: state.errors,
+    user: state.user
 });
 
 export default connect(mapStateToProps)(Step1Client);

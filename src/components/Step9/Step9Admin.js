@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './Step9Admin.css';
+
 // MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 
 // material-ui-pickers
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 
 import Moment from 'moment';
 
@@ -18,19 +20,11 @@ const moment = Moment;
 const styles = theme => ({
     container: {
     align: 'center',
-    // [theme.breakpoints.down('sm')]: {
-    //     marginRight: 250,
-    //     marginLeft: 38,
-    //     justifyContent: 'center'
-    //     },
     [theme.breakpoints.down('md')]: {
-        // marginRight: 250,
-        // marginLeft: 38,
         justifyContent: 'center'
         },
     },
     grid: {
-        // width: '60%',
         align: 'center',
         justify: 'center',
         margin: 'auto'
@@ -47,9 +41,13 @@ class Step9Admin extends Component {
 
     state = {
         // The first commit of Material-UI
+        location: '',
         date: new Date(),
+        time: '',
+        userStepId: this.props.userStepId
       };
     
+        // sets the state of date to selected date
          handleDateChange = date => {
             this.setState({
                 date: date
@@ -57,6 +55,12 @@ class Step9Admin extends Component {
         console.log('in HANDLE DATE CHANGE', this.state)
       };
 
+    handleChange= propertyName => (event) => {
+        this.setState({
+          [propertyName]: event.target.value,
+        });
+        console.log('in handleChange', this.state)
+     }
       // moment(date).format('MMM Do YYYY')
 
     render() {
@@ -65,37 +69,40 @@ class Step9Admin extends Component {
 
         return (
             <div>
+                <TextField
+                    label="Location"
+                    value={this.state.location}
+                    onChange={this.handleChange('location')}
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                        }}
+                />
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid 
-                 direction="column" margin="auto"
-                    alignItems="center"
-                    justify="center"
-                >
+                    <Grid direction="column" margin="auto" alignItems="center" justify="center">
                         <DatePicker
                             label="Date picker"
                             value={this.state.date}
                             onChange={this.handleDateChange}
                             format="MMM d yyyy"
-                            className={classes.textField}
                             align="center"
+                            InputLabelProps={{
+                                shrink: true,
+                              }}
                         />
                     </Grid>
                 </MuiPickersUtilsProvider>
-                <form className={classes.container} >
-                <TextField
-                    label="Time"
-                    type="time"
-                    defaultValue="07:30"
-                    className={classes.textField}
-                    // InputLabelProps={{
-                    // shrink: true,
-                    // }}
-                    inputProps={{
-                    step: 300, // 5 min
-                    style: {textAlign: 'center'}
-                    }}
-                />
-            </form>
+                <form className="step9Form" >
+                    <TextField
+                        label="Time"
+                        value={this.state.time}
+                        onChange={this.handleChange('time')}
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                          }}
+                    />
+                </form>
             </div>
         );
     }

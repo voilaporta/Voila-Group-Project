@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Step4Client extends Component {
 
     componentDidMount(){
-        this.props.dispatch({type: 'GET_ACCEPTED_OFFER', userStepId: this.props.userStepId})
+        this.props.dispatch({type: 'GET_ACCEPTED_OFFER', payload: {userStepId: this.props.userStepId}})
     }
 
     render() {

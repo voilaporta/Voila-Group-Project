@@ -71,69 +71,69 @@ class StepCard extends Component {
         switch (stepNum) {
             case 1:
                 if(roleId === 3) {
-                    return <Step1Client userStepId={this.props.step.id}/>
+                    return <Step1Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step1Admin userStepId={this.props.step.id}/>
+                    return <Step1Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 2:
                 if (roleId === 3) {
-                    return <Step2Client userStepId={this.props.step.id}/>
+                    return <Step2Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step2Admin userStepId={this.props.step.id}/>
+                    return <Step2Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 3:
                 if (roleId === 3) {
-                    return <Step3Client userStepId={this.props.step.id}/>
+                    return <Step3Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step3Admin userStepId={this.props.step.id}/>
+                    return <Step3Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 4:
                 if (roleId === 3) {
-                    return <Step4Client userStepId={this.props.step.id}/>
+                    return <Step4Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step4Admin userStepId={this.props.step.id}/>
+                    return <Step4Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 5:
                 if (roleId === 3) {
-                    return <Step5Client userStepId={this.props.step.id}/>
+                    return <Step5Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step5Admin userStepId={this.props.step.id}/>
+                    return <Step5Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 6:
                 if (roleId === 3) {
-                    return <Step6Client userStepId={this.props.step.id}/>
+                    return <Step6Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step6Admin userStepId={this.props.step.id}/>
+                    return <Step6Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 7:
                 if (roleId === 3) {
-                    return <Step7Client userStepId={this.props.step.id}/>
+                    return <Step7Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step7Admin userStepId={this.props.step.id}/>
+                    return <Step7Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 8:
                 if (roleId === 3) {
-                    return <Step8Client userStepId={this.props.step.id}/>
+                    return <Step8Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step8Admin userStepId={this.props.step.id}/>
+                    return <Step8Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 9:
                 if (roleId === 3) {
-                    return <Step9Client userStepId={this.props.step.id}/>
+                    return <Step9Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step9Admin userStepId={this.props.step.id}/>
+                    return <Step9Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 10:
                 if (roleId === 3) {
-                    return <Step10Client userStepId={this.props.step.id}/>
+                    return <Step10Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step10Admin userStepId={this.props.step.id}/>
+                    return <Step10Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             case 11:
                 if (roleId === 3) {
-                    return <Step11Client userStepId={this.props.step.id}/>
+                    return <Step11Client userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 } else {
-                    return <Step11Admin userStepId={this.props.step.id}/>
+                    return <Step11Admin userStepId={this.props.step.id} complete={this.props.step.completed}/>
                 }
             default:
                 console.log('Invalid step. If you have created more steps, please add them here');

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 const ProfileInfo= (props) => (
   <div>
     <p >
- {props.user.firstName} {props.user.lastName}
+ Welcome:{props.user.firstName} {props.user.lastName}
     </p>
     <p >
  Username: {props.user.username}

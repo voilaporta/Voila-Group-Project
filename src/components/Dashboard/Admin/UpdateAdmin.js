@@ -72,11 +72,14 @@ handleChange = (event, keyname) => {
 
 
     handleDelete=()=>{
-        console.log('hello from delete admin button!!!!');
         this.props.history.push('/')
         this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id});
-        console.log('helllooooo from delete',this.state.id);
-        
+
+        Swal.fire(
+            'Success!',
+            'Admin has been deleted!',
+            'success'
+          )
     }
 
     render() {
@@ -142,10 +145,10 @@ handleChange = (event, keyname) => {
 
                     </DialogContent>
                     <DialogActions>
-                    <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
-                        Cancel
+                    <Button variant="outlined" onClick={this.handleDelete} color="secondary">
+                        Delete
                         </Button>
-                        <Button variant="contained" onClick={this.addClient} color="secondary">
+                        <Button variant="contained" onClick={this.handleSubmit}color="secondary">
                         <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
                         Update Admin
                         </Button>

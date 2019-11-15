@@ -7,6 +7,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2'
 import SaveIcon from '@material-ui/icons/Save';
 
+
+
 const styles = {
     formContainer: {
         margin: '25px'
@@ -72,10 +74,16 @@ handleChange = (event, keyname) => {
     }
 
     handleDelete=()=>{
-        console.log('hello from delete button!!!!');
-        this.props.history.push('/')
-        this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id});
-        console.log('helllooooo from delete',this.state.id);
+
+    this.props.history.push('/')
+    this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id});
+
+    Swal.fire(
+        'Success!',
+        'Vendor  has been deleted!',
+        'success'
+      )
+
         
     }
     render() {
@@ -172,10 +180,10 @@ handleChange = (event, keyname) => {
 
                     </DialogContent>
                     <DialogActions>
-                    <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
-                        Cancel
+                    <Button variant="outlined" onClick={this.handleDelete} color="secondary">
+                        Delete
                         </Button>
-                        <Button variant="contained" onClick={this.addClient} color="secondary">
+                        <Button variant="contained" onClick={this.handleSubmit} color="secondary">
                         <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
                         Update Vendor
                         </Button>

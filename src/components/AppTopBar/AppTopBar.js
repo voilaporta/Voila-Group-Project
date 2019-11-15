@@ -83,10 +83,10 @@ class AppTopBar extends Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                 <MenuItem onClick={this.handleProfileAdmin}>Profile 1</MenuItem>
+                 <MenuItem onClick={this.handleProfileAdmin}>Profile </MenuItem>
                 {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} /> : null}
           
-                <MenuItem component={Link} to="/profile">Profile</MenuItem>
+  
                 <MenuItem component={Link} to="/home" onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</MenuItem>
               </Menu>
             </div>

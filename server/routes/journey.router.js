@@ -25,6 +25,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // will have to include the client's id
 router.get('/admin/:id', rejectUnauthenticated, (req, res) => {
     const userId = req.params.id;
+    console.log(req.params);
+    
     const queryText = `SELECT "userStep".id, "user_id", "order", "completed", "name", "description", "firstName", "lastName", "email", "dropboxUrl"
                         FROM "userStep"
                         JOIN "journeyStep"

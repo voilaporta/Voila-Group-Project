@@ -11,7 +11,7 @@ class BuyerJourney extends Component {
 
     componentDidMount(){
         if(this.isAdmin()) {
-            this.props.dispatch({ type: 'GET_JOURNEY_FOR_USER', id: this.props.match.params.id })
+            this.props.dispatch({ type: 'GET_JOURNEY_FOR_USER', user_id: this.props.match.params.id })
         } else {
             this.props.dispatch({ type: 'GET_JOURNEY' })
         }

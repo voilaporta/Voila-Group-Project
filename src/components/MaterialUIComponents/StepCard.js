@@ -149,7 +149,7 @@ class StepCard extends Component {
     handleComplete = () => {
         this.setState({completed: !this.state.completed})
         setTimeout(() => {
-            this.props.dispatch({ type: 'COMPLETE_STEP', id: this.props.step.id, completed: !this.props.step.completed })
+            this.props.dispatch({ type: 'COMPLETE_STEP', id: this.props.step.id, completed: !this.props.step.completed, user_id: this.props.step.user_id })
         }, 250);
 
     }

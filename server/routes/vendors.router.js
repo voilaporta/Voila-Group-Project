@@ -41,7 +41,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const phone = req.body.phoneNumber;
     const email = req.body.email;
     const website = req.body.website;
-    const vendorTypeId = req.body.vendorTypeId;
+    const vendorTypeId = req.body.vendor_id;
     const queryText = `INSERT INTO "vendor"
                         ("firstName", "lastName", "companyName", "phoneNumber", "email", "website", "vendor_id")
                         VALUES

@@ -50,10 +50,7 @@ class ClientItem extends Component {
                     <EditIcon onClick={() => { this.updateClient(this.props.clientId) }} />
                 </Fab></td>
                 {this.state.open ? <UpdateClient state={this.state} updateClient={this.updateClient} handleClose={this.handleClose} clientId={this.props.clientId}/> : <div></div>}
-
             </tr>
-
-
         )
     }
 }

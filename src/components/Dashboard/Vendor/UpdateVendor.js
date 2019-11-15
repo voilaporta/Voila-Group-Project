@@ -5,6 +5,9 @@ import {withRouter } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2'
+import SaveIcon from '@material-ui/icons/Save';
+
+
 
 const styles = {
     formContainer: {
@@ -71,10 +74,16 @@ handleChange = (event, keyname) => {
     }
 
     handleDelete=()=>{
-        console.log('hello from delete button!!!!');
-        this.props.history.push('/')
-        this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id});
-        console.log('helllooooo from delete',this.state.id);
+
+    this.props.history.push('/')
+    this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id});
+
+    Swal.fire(
+        'Success!',
+        'Vendor  has been deleted!',
+        'success'
+      )
+
         
     }
     render() {
@@ -171,11 +180,12 @@ handleChange = (event, keyname) => {
 
                     </DialogContent>
                     <DialogActions>
-                        <Button   onClick={() => this.handleSubmit()} color="primary">
-                        Update Vendor
+                    <Button variant="outlined" onClick={this.handleDelete} color="secondary">
+                        Delete
                         </Button>
-                        <Button   onClick={() => this.handleDelete()} color="primary">
-                        Delete Vendor
+                        <Button variant="contained" onClick={this.handleSubmit} color="secondary">
+                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
+                        Update Vendor
                         </Button>
                     </DialogActions>
                 </Dialog>

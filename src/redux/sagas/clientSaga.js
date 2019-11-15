@@ -20,6 +20,16 @@ function* updateClient(action) {
 
   }
 }
+
+function* updatePassword(action) {
+  try {
+    yield axios.put('/api/client/password', action.payload);
+    yield fetchClient();
+  } catch (error) {
+    console.log('error in PUT', error);
+
+  }
+}
 function* deleteClient(action){
   try{
     yield axios.delete(`/api/client`, {data: {id: action.payload}});
@@ -31,6 +41,7 @@ function* clientsSaga() {
   yield takeLatest('FETCH_CLIENT', fetchClient);
   yield takeLatest('UPDATE_CLIENT', updateClient);
   yield takeLatest('DELETE_CLIENT', deleteClient);
+  yield takeLatest('UPDATE_PASSWORD', updatePassword);
 
 }
 

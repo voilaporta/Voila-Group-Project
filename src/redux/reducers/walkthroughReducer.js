@@ -1,4 +1,4 @@
-const walkthroughReducer = (state = [], action) => {
+const walkthroughReducer = (state = {}, action) => {
     switch(action.type){
         case 'SET_FINAL_WALKTHROUGH':
             return action.payload;

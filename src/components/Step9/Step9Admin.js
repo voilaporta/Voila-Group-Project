@@ -6,7 +6,7 @@ import './Step9Admin.css';
 // MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import {Grid, Button }from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 // material-ui-pickers
@@ -41,10 +41,10 @@ class Step9Admin extends Component {
 
     state = {
         // The first commit of Material-UI
+        userStep_id: this.props.userStepId,
         location: '',
         date: new Date(),
         time: '',
-        userStepId: this.props.userStepId
       };
     
         // sets the state of date to selected date
@@ -61,27 +61,27 @@ class Step9Admin extends Component {
         });
         console.log('in handleChange', this.state)
      }
-      // moment(date).format('MMM Do YYYY')
 
+    // submits the data to post in the database
       handleComplete = () => {
         console.log('--in HANDLE COMPLETE --', this.state)
         this.props.dispatch({
-            type: 'GET_FINAL_WALKTHROUGH',
-            payload:             
-            this.setState({
+            type: 'POST_FINAL_WALKTHROUGH',
+            payload:{
+                userStep_id: this.props.userStepId,
                 location: this.state.location,
-                date: moment(this.state.date).format('MMM Do YYYY'),
-                time: this.state,
-                userStepId: this.props.userStepId
-            })
+                date: this.state.date = moment(this.state.date).format('MMM Do YYYY'),
+                time: this.state.time,
+            }
         })
         this.setState({
+            userStep_id: this.props.userStepId,
             location: '',
             date: new Date(),
             time: '',
-            userStepId: this.props.userStepId
         });
     } 
+    // moment(this.state.date).format('MMM Do YYYY')
 
     render() {
 
@@ -99,7 +99,7 @@ class Step9Admin extends Component {
                         }}
                 />
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid direction="column" margin="auto" alignItems="center" justify="center">
+                    <Grid container direction="column" margin="auto" alignItems="center" justify="center">
                         <DatePicker
                             label="Date picker"
                             value={this.state.date}
@@ -123,6 +123,7 @@ class Step9Admin extends Component {
                           }}
                     />
                 </form>
+                <Button onClick={this.handleComplete} variant="outlined">Submit</Button>
             </div>
         );
     }
@@ -130,6 +131,7 @@ class Step9Admin extends Component {
 
 const mapStateToProps = state => ({
     errors: state.errors,
+    walkThrough: state.walkThrough
 });
 
 Step9Admin.propTypes = {

@@ -4,10 +4,10 @@ import axios from 'axios';
 // GET request for walkthrough information
 function* getFinalWalkThrough(action) {
     try {
-        const response = yield axios.get(`/api/step9/${action.payload.userStepId}`);
+        const response = yield axios.get(`/api/step9/${action.payload.userStep_id}`);
         yield put({ type: 'SET_FINAL_WALKTHROUGH', payload: response.data })
     } catch (error) {
-        console.log('--ERROR GETTING WALKTHROUGH--', error);
+        console.log('** ERROR GETTING Walkthrough', error);
     }
 }
 
@@ -15,7 +15,7 @@ function* getFinalWalkThrough(action) {
 function* postFinalWalkThrough(action) {
     try {
         yield axios.post(`/api/step9`, action.payload);
-        yield put ({ type:'GET_FINAL_WALKTHROUGH', payload: action.payload })
+        yield getFinalWalkThrough(action);
     } catch (error) {
         console.log('** ERROR POSTING FINAL WALKTHROUGH **', error);
     }

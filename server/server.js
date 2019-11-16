@@ -21,6 +21,7 @@ const step11Router = require('./routes/step11.router');
 const vendorRouter = require('./routes/vendors.router');
 const clientRouter = require('./routes/client.router');
 const adminRouter = require('./routes/administrator.router');
+const nodeMailerRouter = require('./routes/node.mailer.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -46,6 +47,7 @@ app.use('/api/step11', step11Router);
 app.use('/api/vendor', vendorRouter);
 app.use('/api/client', clientRouter);
 app.use('/api/administrators', adminRouter);
+app.use('/nodemailer', nodeMailerRouter);
 
 // Serve static files
 app.use(express.static('build'));

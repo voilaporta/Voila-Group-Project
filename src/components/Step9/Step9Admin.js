@@ -81,7 +81,6 @@ class Step9Admin extends Component {
             time: '',
         });
     } 
-    // moment(this.state.date).format('MMM Do YYYY')
 
     render() {
 

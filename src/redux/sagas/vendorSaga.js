@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+//GET all vendors to display to administratos
 function* fetchVendor(){
     try{
       const response = yield axios.get('/api/vendor');
@@ -10,7 +11,7 @@ function* fetchVendor(){
       
     }
   }
-
+  //GET list of inspection vendors as provided by agent
   function* getInspectors(){
     try{
       const response = yield axios.get('/api/step6/vendors');
@@ -18,6 +19,16 @@ function* fetchVendor(){
 
     } catch (error){
       console.log('error getting inspection vendors');
+    }
+  }
+  //GET list of insruance vendors as provided by agent
+  function* getAllInsurance(){
+    try{
+      const response = yield axios.get('/api/step7/vendors');
+      yield put({type: 'SET_INSURANCE', payload: response.data});
+
+    } catch (error){
+      console.log('error getting insurance vendors');
     }
   }
 
@@ -55,6 +66,7 @@ function* fetchVendor(){
     yield takeLatest('DELETE_VENDOR', deleteVendor);
     yield takeLatest('GET_INSPECTORS', getInspectors);
     yield takeLatest('CREATE_VENDOR', createVendor);
+    yield takeLatest('GET_INSURANCE', getAllInsurance);
   }
   
   export default vendorsSaga;

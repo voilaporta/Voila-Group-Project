@@ -1,4 +1,4 @@
-const showingReducer = (state = [], action) => {
+const showingReducer = (state = [{loading: true}], action) => {
     switch(action.type){
         case 'SET_SHOWING':
             return action.payload;

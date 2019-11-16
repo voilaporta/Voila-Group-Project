@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class ChangeCriteria extends Component {
 
@@ -19,7 +20,16 @@ class ChangeCriteria extends Component {
 
 
     addCriteria = () => {
-        this.props.dispatch({type: 'POST_CRITERIA', payload: this.state})
+        this.props.dispatch({type: 'POST_CRITERIA', payload: this.state});
+        axios({
+            method: 'POST',
+            url: '/nodemailer',
+            data: this.state
+        }).then(response => {
+            console.log('message sent', response);
+        }).catch(error => {
+            console.log('error with sending message', error);
+        });
     }
 
     updateCriteria = () => {

@@ -77,9 +77,9 @@ class Step3Client extends Component {
                 <div className="showing">
                     Recent showing requested:
                     <br/>
-                    {this.props.showing[0].loading ? <div>loading</div> : 
+                    {/* {this.props.showing[0].loading ? <div>loading</div> : 
                     this.props.showing[0]
-                    }
+                    } */}
                     {/* {JSON.stringify(recentShowing)} */}
                      {/* {JSON.stringify(this.props.showing.find((showing, index) => { return index === this.props.showing.length-1}))} */}
                     {/* //      if(showing.date_time_created){

@@ -7,7 +7,7 @@ import homelogo from './HomePlaceholder.png'
 //this here will show the client's dashboard with their buying journey status.
 class DashboardUser extends Component {
     journey = () => {
-        this.props.history.push('/buyer-journey')
+        this.props.history.push(`/buyer-journey/${this.props.user.id}`)
     }
     render() {
         return ( 

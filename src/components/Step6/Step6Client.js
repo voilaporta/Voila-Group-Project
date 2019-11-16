@@ -74,9 +74,9 @@ class Step6Client extends Component {
         //loop through inspection vendors from redux store (vendorList)
         //to display each individual vendor name in select
         const inspectors = this.props.vendorList.map((inspector)=>{
-        return <MenuItem 
-                    key={inspector.id}
-                    value={inspector.id}>{inspector.companyName}</MenuItem>
+            return <MenuItem 
+                        key={inspector.id}
+                        value={inspector.id}>{inspector.companyName}</MenuItem>
         })
        
 
@@ -109,16 +109,16 @@ class Step6Client extends Component {
                         
                     </div>
                     <div>
-                        {!this.props.selectedVendor.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                        {!this.props.selectedInspector.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
                         
                         Inspection Scheduled:
-                        { !this.props.selectedVendor.values.length ? <div>Not Yet</div> :
+                        { !this.props.selectedInspector.values.length ? <div>Not Yet</div> :
                         <>
                         {/* selected vendors are returned from DB with most recent entry in first position of array */}
-                        <p>Name: {this.props.selectedVendor.values[0].name}</p>
+                        <p>Name: {this.props.selectedInspector.values[0].name}</p>
                         <p>Date: <Moment format="MM/DD/YYYY">
-                            {this.props.selectedVendor.values[0].inspectionDate}
+                            {this.props.selectedInspector.values[0].inspectionDate}
                         </Moment></p> 
                         </>}
 
@@ -138,7 +138,7 @@ class Step6Client extends Component {
 
 const mapStateToProps = state => ({
     vendorList: state.vendorList,
-    selectedVendor: state.selectedVendor,
+    selectedInspector: state.selectedInspector,
     userJourney: state.userJourney,
 });
 

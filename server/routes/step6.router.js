@@ -21,7 +21,6 @@ router.get('/vendors', rejectUnauthenticated, (req, res) => {
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     //return inspection details user added
-    console.log(req.params.id);
     const userStepId = req.params.id;
     const queryText = `SELECT *
                         FROM "selectedInspector"

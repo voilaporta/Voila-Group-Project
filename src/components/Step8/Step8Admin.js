@@ -6,6 +6,8 @@ class Step8Admin extends Component {
     render() {
         return (
             <div>
+                <div>Appraisal:</div>
+                <div>Title:</div>
             </div>
         );
     }

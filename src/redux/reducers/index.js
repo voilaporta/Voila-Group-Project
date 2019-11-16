@@ -12,8 +12,9 @@ import adminTypeReducer from './adminTypeReducer';
 import vendorTypeReducer from './vendorTypeReducer';
 import offerAccepted from './offerAcceptedReducer';
 import showing from './showingReducer';
-import selectedVendor from './selectedVendorReducer';
+import selectedInspector from './selectedInspectorReducer';
 import offerMade from './offerMadeReducer';
+import selectedInsurance from './selectedInsurance';
 import walkThrough from './walkthroughReducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -36,8 +37,9 @@ const rootReducer = combineReducers({
   vendorTypeReducer,
   offerAccepted, // contains the details of offer that was accepted (address, MLS, amount, down, earnest money)
   showing, // contains showings requested by buyer
-  selectedVendor,
+  selectedInspector,
   offerMade, // contains offer made by buyer
+  selectedInsurance,
   walkThrough, // contains final walkthrough details for Step 9
 });
 

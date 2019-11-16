@@ -90,15 +90,16 @@ class Step6Admin extends Component {
                 </div>
 
                 <div>
-                    {this.props.selectedVendor[0].loading ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                    {!this.props.selectedVendor.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                         <CheckCircleOutline className={classes.icon} color="secondary" /> }
                     
                     Inspection Scheduled:
-                    { this.props.selectedVendor[0].loading ? <div>not yet</div> :
+                    { !this.props.selectedVendor.values.length ? <div>not yet</div> :
                     <>
-                    <p>Name: {this.props.selectedVendor[0].name}</p>
+                    {/* selected vendor is returned from DB with most recent entry in first position of array */}
+                    <p>Name: {this.props.selectedVendor.values[0].name}</p>
                     <p>Date: <Moment format="MM/DD/YYYY">
-                        {this.props.selectedVendor[0].inspectionDate}
+                        {this.props.selectedVendor.values[0].inspectionDate}
                     </Moment></p> 
                     </>}
 

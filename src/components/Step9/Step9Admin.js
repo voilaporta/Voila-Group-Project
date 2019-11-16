@@ -63,6 +63,26 @@ class Step9Admin extends Component {
      }
       // moment(date).format('MMM Do YYYY')
 
+      handleComplete = () => {
+        console.log('--in HANDLE COMPLETE --', this.state)
+        this.props.dispatch({
+            type: 'GET_FINAL_WALKTHROUGH',
+            payload:             
+            this.setState({
+                location: this.state.location,
+                date: moment(this.state.date).format('MMM Do YYYY'),
+                time: this.state,
+                userStepId: this.props.userStepId
+            })
+        })
+        this.setState({
+            location: '',
+            date: new Date(),
+            time: '',
+            userStepId: this.props.userStepId
+        });
+    } 
+
     render() {
 
         const { classes } = this.props;

@@ -14,6 +14,7 @@ import offerAccepted from './offerAcceptedReducer';
 import showing from './showingReducer';
 import selectedVendor from './selectedVendorReducer';
 import offerMade from './offerMadeReducer';
+import walkThrough from './walkthroughReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   showing, // contains showings requested by buyer
   selectedVendor,
   offerMade, // contains offer made by buyer
+  walkThrough, // contains final walkthrough details for Step 9
 });
 
 export default rootReducer;

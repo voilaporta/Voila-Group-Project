@@ -53,7 +53,7 @@ class AppTopBar extends Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} >
       <AppBar position="static">
         <Toolbar>
           <Button color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">

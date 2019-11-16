@@ -12,6 +12,7 @@ import vendorsTypesSaga from './vendorTypeSaga';
 import offerAcceptedSaga from './offerAcceptedSaga';
 import onTheHuntSaga from './onTheHuntSaga';
 import step6and7Saga from './step6and7Saga';
+import walkThroughSaga from './walkThroughSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -35,6 +36,6 @@ export default function* rootSaga() {
     offerAcceptedSaga(),
     onTheHuntSaga(),
     step6and7Saga(),
-
+    walkThroughSaga(),
   ]);
 }

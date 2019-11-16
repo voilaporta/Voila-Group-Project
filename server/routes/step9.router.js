@@ -21,7 +21,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
     router.post('/', rejectUnauthenticated, (req, res) => {
         //agent can add info about the final walk-through 
-        const userStepId = req.body.user_step_id;
+        const userStepId = req.body.userStep_id;
         const location = req.body.location;
         const date = req.body.date;
         const time = req.body.time;

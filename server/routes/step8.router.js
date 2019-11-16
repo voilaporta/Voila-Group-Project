@@ -4,37 +4,14 @@ const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 
-router.post('/:id', rejectUnauthenticated, async (req, res) => {
-    //create user's instance of appraisal and title
-    const userStepId = req.params.id;
-    const queryText1 = `INSERT INTO "appraisal" ("userStep_id")
-                        VALUES($1);`;
-    const queryText2 = `INSERT INTO "title" ("userStep_id")
-                        VALUES ($1);`;
-    const connection = await pool.connect();
-    try{
-        //use transaction to add entires for both tables
-        await connection.query('BEGIN;');
-        await connection.query(queryText1, [userStepId]);
-        await connection.query(queryText2, [userStepId]);
-        await connection.query('COMMIT;');
-        res.sendStatus(201);
-    } catch{
-        await connection.query('ROLLBACK;');
-        console.log('error creating appraisal and title post', error);
-        res.sendStatus(500);
-    } finally {
-        connection.release();
-    }
-});
 
 router.get('/appraisal/:id', rejectUnauthenticated, (req, res) => {
     //GET and return appraisal data for specific user step
     const userStepId = req.params.id;
-    const queryText = `SELECT *
-                        FROM "appraisal"
+    console.log(userStepId);
+    const queryText = `SELECT * FROM "appraisal"
                         WHERE "userStep_id" = $1;`;
-    pool.query(queryText [userStepId])
+    pool.query(queryText, [userStepId])
     .then((result)=>{
         res.send(result.rows);
     }).catch((error)=>{
@@ -49,7 +26,7 @@ router.get('/title/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT *
                         FROM "title"
                         WHERE "userStep_id" = $1;`;
-    pool.query(queryText [userStepId])
+    pool.query(queryText, [userStepId])
     .then((result)=>{
         res.send(result.rows);
     }).catch((error)=>{

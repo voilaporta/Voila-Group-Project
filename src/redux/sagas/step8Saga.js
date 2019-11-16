@@ -1,0 +1,41 @@
+import { put, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
+
+
+function* getAppraisal(action){
+    try{
+        const response = yield axios.get(`/api/step8/appraisal/${action.payload}`);
+        yield put ({ type:'SET_APPRAISAL', payload: response.data })
+    }catch (error){
+        console.log('error getting user appraisal data', error);
+    
+    }
+}
+
+function* getTitle(action){
+    try{
+        const response = yield axios.get(`/api/step8/title/${action.payload}`);
+        yield put ({ type:'SET_TITLE', payload: response.data })
+    }catch (error){
+        console.log('error getting user title data', error);
+    
+    }
+}
+
+function* updateAppraisalRequested(action){
+    try{
+        yield axios.put(`/api/step8/appraisal/request`, action.payload);
+        yield put ({ type:'GET_APPRAISAL', payload: action.payload.user_step_id})
+    }catch (error){
+        console.log('error getting user title data', error);
+    
+    }
+}
+
+function* step8Saga() {
+    yield takeLatest('GET_APPRAISAL', getAppraisal);
+    yield takeLatest('GET_TITLE', getTitle);
+    yield takeLatest('UPDATE_APPRAISAL_REQUESTED', updateAppraisalRequested);
+}
+
+export default step8Saga;

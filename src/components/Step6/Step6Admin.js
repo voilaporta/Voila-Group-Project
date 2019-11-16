@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 
 //Material UI
-import Fab from '@material-ui/core/Fab';
 import {Add as AddIcon, CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
-import AddInspection from './AddInspection';
-import Moment from 'react-moment';
+
 
 const styles = theme => ({
     fab: {
@@ -90,16 +89,16 @@ class Step6Admin extends Component {
                 </div>
 
                 <div>
-                    {!this.props.selectedVendor.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                    {!this.props.selectedInspector.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                         <CheckCircleOutline className={classes.icon} color="secondary" /> }
                     
                     Inspection Scheduled:
-                    { !this.props.selectedVendor.values.length ? <div>not yet</div> :
+                    { !this.props.selectedInspector.values.length ? <div>not yet</div> :
                     <>
                     {/* selected vendor is returned from DB with most recent entry in first position of array */}
-                    <p>Name: {this.props.selectedVendor.values[0].name}</p>
+                    <p>Name: {this.props.selectedInspector.values[0].name}</p>
                     <p>Date: <Moment format="MM/DD/YYYY">
-                        {this.props.selectedVendor.values[0].inspectionDate}
+                        {this.props.selectedInspector.values[0].inspectionDate}
                     </Moment></p> 
                     </>}
 
@@ -118,7 +117,7 @@ class Step6Admin extends Component {
 
 const mapStateToProps = state => ({
     vendorList: state.vendorList,
-    selectedVendor: state.selectedVendor,
+    selectedInspector: state.selectedInspector,
     userJourney: state.userJourney,
 });
 

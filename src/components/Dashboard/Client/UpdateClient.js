@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
-        import Swal from 'sweetalert2'
+ import Swal from 'sweetalert2'
+ import SaveIcon from '@material-ui/icons/Save';
+  
   const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
@@ -15,12 +17,12 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
   class UpdateClient extends Component {
 
     state = {
-        firstName: '',
-        lastName: '',
-        dropbox: '',
-        agentId: '',
+        firstName: this.props.client.firstName,
+        lastName: this.props.client.lastName,
+        dropbox: this.props.client.dropboxUrl,
+        agentId: this.props.client.agent_id,
         isBuyer: true,
-       id: this.props.clientId
+        id: this.props.clientId
     }
 
 
@@ -93,11 +95,11 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                    <DialogTitle id="form-dialog-title" >Update Client{JSON.stringify(this.props.client)}</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                    <TextField
-                      label="first name"
+                      label="First Name"
                       placeholder="e.g. Jane"
                         value={this.state.firstName}
                         onChange={(event) => {this.handleChange(event, 'firstName')}}
@@ -107,7 +109,7 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                         fullWidth
                     />
                     <TextField
-                        label="Last name"
+                        label="Last Name"
                         placeholder="e.g. Doe"
                         value={this.state.lastName}
                         onChange={(event) => { this.handleChange(event, 'lastName') }}
@@ -151,11 +153,12 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button   onClick={() => this.handleSubmit()} color="primary">
-                        Update Client
+                    <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
+                        Cancel
                         </Button>
-                        <Button   onClick={() => this.handleDelete()} color="primary">
-                        Delete Client
+                        <Button variant="contained" onClick={this.addClient} color="secondary">
+                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
+                        Update Client
                         </Button>
                     </DialogActions>
                 </Dialog>

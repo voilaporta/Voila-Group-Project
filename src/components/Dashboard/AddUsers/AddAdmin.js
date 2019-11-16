@@ -32,6 +32,9 @@ import Swal from 'sweetalert2';
     if (event.key == 'a') {
         event.stopPropagation();
     }
+    if (event.key === 'A') {
+        event.stopPropagation();
+    }
   };
 
 class AddAdminDialog extends Component {
@@ -164,7 +167,7 @@ class AddAdminDialog extends Component {
                         <Button onClick={this.props.handleClose} color="secondary" variant="outlined">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleAddAdmin}color="secondary" variant="contained">
+                        <Button onClick={() => this.handleAddAdmin()}color="secondary" variant="contained">
                             <SaveIcon className={classes.leftIcon} />
                             Add Admin
                         </Button>

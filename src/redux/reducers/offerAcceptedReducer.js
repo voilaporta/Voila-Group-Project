@@ -1,7 +1,7 @@
-const offerAcceptedReducer = (state = {}, action) => {
+const offerAcceptedReducer = (state = [{loading: true}], action) => {
     switch (action.type) {
         case 'SET_ACCEPTED_OFFER':
-            return action.payload
+            return action.payload;
         default:
             return state;
     }

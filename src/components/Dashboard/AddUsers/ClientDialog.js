@@ -32,6 +32,9 @@ import Swal from 'sweetalert2';
     if (event.key == 'a') {
         event.stopPropagation();
     }
+    if (event.key === 'A') {
+        event.stopPropagation();
+    }
   };
 
 class ClientDialog extends Component {
@@ -213,7 +216,7 @@ class ClientDialog extends Component {
                         <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
                             Cancel
                         </Button>
-                        <Button variant="contained" onClick={this.addClient} color="secondary">
+                        <Button variant="contained" onClick={() => this.addClient()} color="secondary">
                             <SaveIcon className={classes.leftIcon} />
                             Add Client
                         </Button>

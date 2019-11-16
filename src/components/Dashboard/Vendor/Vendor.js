@@ -10,10 +10,7 @@ class Vendor extends Component {
     getVendor() {
         this.props.dispatch({ type: 'FETCH_VENDOR' })
     }
-    addVendor() {
-        console.log('hello from the addVendor button');
 
-    }
     render() {
         return (
             <div>
@@ -23,9 +20,9 @@ class Vendor extends Component {
                             <th>Name</th>
                             <th>Company Name</th>
                             <th>Vendor Type</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Website</th>
+                            <th>Contact Info</th>
+                            {/* <th>Email</th> */}
+                            {/* <th>Website</th> */}
                             <th>Update</th>
                         </tr>
                     </thead>

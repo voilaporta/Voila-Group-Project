@@ -32,6 +32,9 @@ import Swal from 'sweetalert2';
     if (event.key == 'a') {
         event.stopPropagation();
     }
+    if (event.key === 'A') {
+        event.stopPropagation();
+    }
   };
 
 class AddVendor extends Component {

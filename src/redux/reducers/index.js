@@ -15,6 +15,7 @@ import showing from './showingReducer';
 import selectedInspector from './selectedInspectorReducer';
 import offerMade from './offerMadeReducer';
 import selectedInsurance from './selectedInsurance';
+import walkThrough from './walkthroughReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   selectedInspector,
   offerMade, // contains offer made by buyer
   selectedInsurance,
+  walkThrough, // contains final walkthrough details for Step 9
 });
 
 export default rootReducer;

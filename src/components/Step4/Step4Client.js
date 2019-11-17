@@ -10,10 +10,16 @@ class Step4Client extends Component {
     render() {
         return (
             <div>
-                {this.props.offerAccepted.isLoading ? 
-                    <p>No offers have been accepted yet.</p> 
-                    :
-                    <pre>{JSON.stringify(this.props.offerAccepted)}</pre>
+                {this.props.offerAccepted.loading ? 
+                    <p>...loading...</p> 
+                :
+                    <>
+                        {this.props.offerAccepted.length === 0 ? 
+                            <p>No offers have been accepted at this time.</p> 
+                        :
+                            <pre>{JSON.stringify(this.props.offerAccepted)}</pre>
+                        }
+                    </>
                 } 
             </div>
         );

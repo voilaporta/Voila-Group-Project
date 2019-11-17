@@ -8,7 +8,6 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 router.get('/appraisal/:id', rejectUnauthenticated, (req, res) => {
     //GET and return appraisal data for specific user step
     const userStepId = req.params.id;
-    console.log(userStepId);
     const queryText = `SELECT * FROM "appraisal"
                         WHERE "userStep_id" = $1;`;
     pool.query(queryText, [userStepId])
@@ -38,11 +37,11 @@ router.get('/title/:id', rejectUnauthenticated, (req, res) => {
 router.put('/appraisal/schedule', rejectUnauthenticated, (req, res) => {
     //update appraisal scheuld to true and add date of appraisal
     const userStepId = req.body.user_step_id;
-    const dateScheduled = req.body.date;
+    const tureFalse = req.body.value;
     const queryText = `UPDATE "appraisal"
-	                    SET "scheduled" = true, "scheduleDate" = $2
+	                    SET "scheduled" = $2
                         WHERE "userStep_id" = $1;`;
-    pool.query(queryText, [userStepId, dateScheduled])
+    pool.query(queryText, [userStepId, tureFalse])
     .then((result)=>{
         res.sendStatus(201);
     }).catch((error)=>{

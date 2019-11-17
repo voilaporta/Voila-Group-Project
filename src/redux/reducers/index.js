@@ -16,6 +16,7 @@ import selectedInspector from './selectedInspectorReducer';
 import offerMade from './offerMadeReducer';
 import selectedInsurance from './selectedInsurance';
 import walkThrough from './walkthroughReducer';
+import closing from './closingReducer';
 import appraisal from './apprailalReducer';
 import title from './titleReducer';
 
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   offerMade, // contains offer made by buyer
   selectedInsurance,
   walkThrough, // contains final walkthrough details for Step 9
+  closing, // contains closing data for Step 11
   appraisal,
   title,
 });

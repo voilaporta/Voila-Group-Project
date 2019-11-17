@@ -21,12 +21,12 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
     router.post('/', rejectUnauthenticated, (req, res) => {
         //agent can add info about closing day 
-        const userStepId = req.body.user_step_id;
+        const userStepId = req.body.userStepId;
         const location = req.body.location;
         const date = req.body.date;
         const time = req.body.time;
         const toBring = req.body.toBring;
-        const queryText = `INSERT INTO "finalWalkThrough" 
+        const queryText = `INSERT INTO "closing" 
                             ("userStep_id", "location", "date", "time", "toBring")
                             VALUES ($1, $2, $3, $4, $5);`;
         pool.query(queryText,[userStepId, location, date, time, toBring])

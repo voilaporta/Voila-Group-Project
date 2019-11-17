@@ -38,6 +38,7 @@ class Step8Client extends Component {
 
         return (
             <div>
+                <h1>This step is handled by your lender. Voila will update this page as progress is made.</h1>
                 <div>Appraisal:
                     <div>
                         {!this.props.appraisal.values[0].requested ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 

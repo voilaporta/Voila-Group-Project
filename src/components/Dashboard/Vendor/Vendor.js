@@ -10,10 +10,7 @@ class Vendor extends Component {
     getVendor() {
         this.props.dispatch({ type: 'FETCH_VENDOR' })
     }
-    addVendor() {
-        console.log('hello from the addVendor button');
 
-    }
     render() {
         return (
             <div>
@@ -23,21 +20,22 @@ class Vendor extends Component {
                             <th>Name</th>
                             <th>Company Name</th>
                             <th>Vendor Type</th>
-                            <th>Contact Number</th>
+                            <th>Contact Info</th>
+                            {/* <th>Email</th> */}
+                            {/* <th>Website</th> */}
                             <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.state.vendorList.map((vendor) => {
                             return (
-                                <VendorItem key={vendor.id} vendor={vendor} getVendor={this.getVendor} />
+                                <VendorItem key={vendor.id} vendor={vendor} getVendor={this.getVendor}  vendorId={vendor.id}/>
                             )
                         })}
                     </tbody>
                 </table>
-                <div className="addvendor">
-                    <button onClick={this.addVendor}>Add Vendor</button>
-                </div>
+            
+
             </div>
         )
     }

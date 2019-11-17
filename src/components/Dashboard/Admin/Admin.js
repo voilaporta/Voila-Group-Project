@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AdminItem from'./AdminItem'
+import AdminItem from './AdminItem'
+
 
 class Admin extends Component {
+
     componentDidMount() {
         // use component did mount to dispatch an action to request the vendor list from the API
-        console.log('this will dispatch an action to request vendor list from api');
+        this.getAdmin();
     }
-    // getAdmin(){
-    //     this.props.dispatch({type: 'FETCH_ADMIN'})
-    // }
-    addAdmin() {
-        console.log('hello from the addAdmin button');
 
+    //dispatching a call to the adminSaga 
+    getAdmin() {
+        this.props.dispatch({ type: 'FETCH_ADMIN' })
     }
     render() {
         return (
@@ -20,25 +20,22 @@ class Admin extends Component {
                 <table>
                     <thead>
                         <tr>
-                         
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email </th>
-                            <th>Role</th>
+                            {/* <th>Role</th> */}
                             <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {/*mapping through the adminList reducer to grab the admin's information */}
                         {this.props.state.adminList.map((admin) => {
                             return (
-                                <AdminItem key={admin.id} admin={admin} getAdmin={this.getAdmin} />
+                                <AdminItem key={admin.id} admin={admin} getAdmin={this.getAdmin} adminId={admin.id} />
                             )
                         })}
                     </tbody>
                 </table>
-                <div>
-                    <button onClick={this.addAdmin}>Add Admin</button>
-                </div>
             </div>
         )
     }
@@ -53,3 +50,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Admin);
+

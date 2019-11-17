@@ -21,6 +21,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.get('/type', rejectUnauthenticated, (req, res) => {
+
+    const queryText = `SELECT *
+                        FROM "vendorType";`;
+    pool.query(queryText,)
+    .then((result)=>{
+        res.send(result.rows);
+    }).catch((error)=>{
+        console.log('error getting vendor types', error);
+        res.sendStatus(500);
+    })
+});
+
 router.post('/', rejectUnauthenticated, (req, res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -28,7 +41,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const phone = req.body.phoneNumber;
     const email = req.body.email;
     const website = req.body.website;
-    const vendorTypeId = req.body.vendorTypeId;
+    const vendorTypeId = req.body.vendor_id;
     const queryText = `INSERT INTO "vendor"
                         ("firstName", "lastName", "companyName", "phoneNumber", "email", "website", "vendor_id")
                         VALUES
@@ -42,8 +55,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-    const vendorId = req.params.id
+router.put('/', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.body.id
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const companyName = req.body.companyName;
@@ -65,8 +78,10 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    const vendorId = req.params.id
+router.delete('/', rejectUnauthenticated, (req, res) => {
+    const vendorId = req.body.id;
+    console.log(req.body.id);
+    
     const queryText = `DELETE 
                         FROM "vendor"
                         WHERE id = $1;`;

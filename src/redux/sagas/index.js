@@ -2,13 +2,19 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
-import clientsSaga from'./clientSaga';
+import clientsSaga from './clientSaga';
 import vendorsSaga from './vendorSaga';
 import adminsSaga from './adminSaga';
 import agentSaga from './agentSaga';
 import buyerJourneySaga from './buyerJourneySaga';
+import adminTypesSaga from './adminTypeSaga';
+import vendorsTypesSaga from './vendorTypeSaga';
 import offerAcceptedSaga from './offerAcceptedSaga';
 import onTheHuntSaga from './onTheHuntSaga';
+import step6and7Saga from './step6and7Saga';
+import walkThroughSaga from './walkThroughSaga';
+import ClosingSaga from './closingSaga';
+import step8Saga from './step8Saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,12 +28,18 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-      clientsSaga(),
-      vendorsSaga(),
-      adminsSaga(),
+    clientsSaga(),
+    vendorsSaga(),
+    adminsSaga(),
     agentSaga(),
     buyerJourneySaga(),
+    adminTypesSaga(),
+    vendorsTypesSaga(),
     offerAcceptedSaga(),
     onTheHuntSaga(),
+    step6and7Saga(),
+    walkThroughSaga(),
+    ClosingSaga(),
+    step8Saga(),
   ]);
 }

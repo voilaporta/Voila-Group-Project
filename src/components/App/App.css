@@ -8,7 +8,7 @@ body {
     margin: 50px;
 }
 
-form {
+/* form {
     background-color: white;
     width: 30%;
     height: 250px;
@@ -16,7 +16,7 @@ form {
     padding: 25px;
     border-radius: 2px ;
 
-}
+} */
 
 .log-in, .log-out, .register {
   background-color: white;
@@ -44,3 +44,6 @@ form {
     cursor: pointer;
 }
 
+.my-swal {
+  z-index: X;
+}

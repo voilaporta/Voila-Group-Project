@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
+import ProfileAdmin from '../Profile/ProfileAdmin'
 import VoilaLogo from './voilalogo.jpg';
 
 const styles = {
@@ -30,7 +30,9 @@ const styles = {
 
 class AppTopBar extends Component {
   state = {
+    opens:false,
     anchorEl: null,
+    addProfileAdmin:false,
   };
 
   handleMenu = event => {
@@ -40,14 +42,18 @@ class AppTopBar extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-
+  handleProfileAdmin = () => {
+    this.setState({
+      addProfileAdmin: true,
+    });
+  }
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} >
       <AppBar position="static">
         <Toolbar>
           <Button color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">
@@ -77,7 +83,10 @@ class AppTopBar extends Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                <MenuItem component={Link} to="/profile">Profile</MenuItem>
+                 <MenuItem onClick={this.handleProfileAdmin}>Profile </MenuItem>
+                {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} /> : null}
+          
+  
                 <MenuItem component={Link} to="/home" onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</MenuItem>
               </Menu>
             </div>

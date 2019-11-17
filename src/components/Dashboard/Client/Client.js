@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ClientItem from './ClientItem'
-import ClientDialog from './ClientDialog';
-import AddButton from '../AddButton/AddButton';
+import { List, ListItem } from '@material-ui/core';
   
 class Client extends Component {
-
-    state = {
-        open: false,
-    };
-
-    // opens the Add Button
-    handleAdd = () => {
-    this.setState({ open: true });
-    };
-
-    // Closes the Add Button
-    handleClose = () => {
-        this.setState({ open: false });
-    };
 
     componentDidMount() {
         // use component did mount to dispatch an action to request the client list from the API
@@ -28,28 +13,40 @@ class Client extends Component {
         this.props.dispatch({type: 'FETCH_CLIENT'})
     }
 
+    mapClients = () => {
+        return (
+            this.props.clientList.map(client => 
+                <ListItem key={client.id}>
+                    <ClientItem client={client} getClients={this.getClients}/>
+                </ListItem>)
+        )
+    }
+
     render() {
 
         return (
             <div>
-                <table>
+                {/* <table>
                     <thead>
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>DropBox Url</th>
+                            <th>Agent</th>
                             <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.state.clientList.map((client) => {
                             return (
-                                <ClientItem key={client.id} client={client} getClients={this.getClients} />
+                                <ClientItem key={client.id} client={client} getClients={this.getClients}  clientId={client.id}/>
                             )
                         })}
                     </tbody>
-                </table>
-                <AddButton handleAdd={this.handleAdd} handleClose={this.handleClose}/>
-                <ClientDialog state={this.state} handleAdd={this.handleAdd} handleClose={this.handleClose}/>
+                </table> */}
+                <List>
+                    {this.mapClients()}
+                </List>
             </div>
         )
     }
@@ -57,7 +54,7 @@ class Client extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
-    state
+    clientList: state.clientList
 });
 
 export default (connect(mapStateToProps)(Client));

@@ -5,11 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
-
-
-import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -24,6 +20,9 @@ import './App.css';
 import DashboardAdmin from '../Dashboard/DashboardAdmin';
 import AppTopBar from '../AppTopBar/AppTopBar';
 import ProfileAdmin from '../Profile/ProfileAdmin';
+import UpdateClient from '../Dashboard/Client/UpdateClient';
+import UpdateAdmin from '../Dashboard/Admin/UpdateAdmin';
+import UpdateVendor from '../Dashboard/Vendor/UpdateVendor';
 
 class App extends Component {
   componentDidMount () {
@@ -72,7 +71,7 @@ class App extends Component {
                 component={InfoPage}
               />
               <ProtectedRoute
-                exact path="/buyer-journey"
+                exact path="/buyer-journey/:id"
                 component={BuyerJourney}
               />
               <ProtectedRoute
@@ -80,10 +79,27 @@ class App extends Component {
                 path="/profile"
                 component={ProfileAdmin}
               />
+                <ProtectedRoute
+                exact
+                path="/updateclient/:id"
+                component={UpdateClient}
+              /> 
+                   <ProtectedRoute
+                exact
+                path="/updateadmin/:id"
+                component={UpdateAdmin}
+              /> 
+                    <ProtectedRoute
+                exact
+                path="/updatevendor/:id"
+                component={UpdateVendor}
+              />  
+            
+           
+               {/* If none of the other routes matched, we will show a 404. */}
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>
-            <Footer />
           </div>
         </Theme>
       </Router>

@@ -8,7 +8,17 @@ import clientList from './clientListReducer';
 import vendorList from './vendorReducer';
 import adminList from './adminReducer';
 import agent from './agentReducer';
+import adminTypeReducer from './adminTypeReducer';
+import vendorTypeReducer from './vendorTypeReducer';
 import offerAccepted from './offerAcceptedReducer';
+import showing from './showingReducer';
+import selectedInspector from './selectedInspectorReducer';
+import offerMade from './offerMadeReducer';
+import selectedInsurance from './selectedInsurance';
+import walkThrough from './walkthroughReducer';
+import closing from './closingReducer';
+import appraisal from './apprailalReducer';
+import title from './titleReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +36,17 @@ const rootReducer = combineReducers({
   vendorList,//this will contain all the vendors for the vendor tab on the admin side
   adminList,//this will contain all the vendors for the vendor tab on the admin side
   agent,
+  adminTypeReducer,
+  vendorTypeReducer,
   offerAccepted, // contains the details of offer that was accepted (address, MLS, amount, down, earnest money)
+  showing, // contains showings requested by buyer
+  selectedInspector,
+  offerMade, // contains offer made by buyer
+  selectedInsurance,
+  walkThrough, // contains final walkthrough details for Step 9
+  closing, // contains closing data for Step 11
+  appraisal,
+  title,
 });
 
 export default rootReducer;

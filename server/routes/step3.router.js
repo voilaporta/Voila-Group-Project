@@ -4,7 +4,7 @@ const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 
-router.get('/criteria:id', rejectUnauthenticated, (req, res) => {
+router.get('/criteria/:id', rejectUnauthenticated, (req, res) => {
     //user/client's userStep_id must be passed through url when request is made
     const userStep = req.params.id;
     const queryText = `SELECT *
@@ -113,9 +113,9 @@ router.post('/offer', rejectUnauthenticated, (req, res) => {
 
 router.put('/criteria', rejectUnauthenticated, (req, res) => {
     const userStep = req.body.user_step_id;
-    const rooms = req.body.rooms;
-    const bath = req.body.bath;
-    const sf = req.body.sf;
+    const rooms = req.body.bedroom_count;
+    const bath = req.body.bathroom_count;
+    const sf = req.body.square_feet;
     const location = req.body.location;
     const notes = req.body.notes;
     const queryText = `UPDATE "searchCriteria"

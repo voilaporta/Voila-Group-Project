@@ -39,7 +39,7 @@ export default function* rootSaga() {
     onTheHuntSaga(),
     step6and7Saga(),
     walkThroughSaga(),
-    ClosingSaga()
+    ClosingSaga(),
     step8Saga(),
   ]);
 }

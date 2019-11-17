@@ -14,6 +14,7 @@ import onTheHuntSaga from './onTheHuntSaga';
 import step6and7Saga from './step6and7Saga';
 import walkThroughSaga from './walkThroughSaga';
 import ClosingSaga from './closingSaga';
+import step8Saga from './step8Saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     step6and7Saga(),
     walkThroughSaga(),
     ClosingSaga()
+    step8Saga(),
   ]);
 }

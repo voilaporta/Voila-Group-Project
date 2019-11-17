@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* fetchClosingData(action) {
     try {
-        const response = yield axios.get(`/api/step11/${action.payload.userStepId}`);
+        const response = yield axios.get(`/api/step11/${action.payload}`);
         yield put({ type: 'SET_CLOSING_DATA', payload: response.data })
     } catch (error) {
         console.log('-- ERROR GETTING CLOSING DATA **', error);

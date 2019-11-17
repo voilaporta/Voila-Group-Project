@@ -4,7 +4,7 @@ import axios from 'axios';
 // GET request for walkthrough information
 function* getFinalWalkThrough(action) {
     try {
-        const response = yield axios.get(`/api/step9/${action.payload.userStep_id}`);
+        const response = yield axios.get(`/api/step9/${action.payload}`);
         yield put({ type: 'SET_FINAL_WALKTHROUGH', payload: response.data })
     } catch (error) {
         console.log('** ERROR GETTING Walkthrough', error);

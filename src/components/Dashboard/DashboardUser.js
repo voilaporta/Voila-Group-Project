@@ -42,12 +42,12 @@ class DashboardUser extends Component {
                             <img className="cardImg" src={homelogo} alt="" />
                             <div className="status" onClick={this.journey} >
                                 <h3 >Status</h3>
-                                <RadialProgress
+                                {this.props.userJourney.loading ? <p>...loading...</p> : <RadialProgress
                                     width={50}
                                     height={50}
-                                    steps={10}
+                                    steps={11}
                                     step={this.state.stepsCompleted}
-                                />
+                                />}
                             </div>
                         </div>
                     </div>

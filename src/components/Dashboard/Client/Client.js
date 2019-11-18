@@ -33,7 +33,8 @@ class Client extends Component {
         let filteredContacts = this.props.clientList.filter(
             (client) => {
                 return client.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1||
-              client.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+              client.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+              client.agent.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
             }
         );
         return (

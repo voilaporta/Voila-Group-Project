@@ -23,10 +23,13 @@ class ChangeCriteria extends Component {
     addCriteria = () => {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state});
         this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
+        this.props.addCriteriaToggle();
     }
 
     updateCriteria = () => {
-        this.props.dispatch({type: 'UPDATE_CRITERIA', payload: this.state})
+        this.props.dispatch({type: 'UPDATE_CRITERIA', payload: this.state});
+        this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
+        this.props.updateCriteriaToggle();
     }
 
     handleChange = (event, input) => {

@@ -48,6 +48,12 @@ class AppTopBar extends Component {
       addProfileAdmin: true,
     });
   }
+
+  closeProfileAdmin = () => {
+    this.setState({
+      addProfileAdmin: false,
+    });
+  }
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
@@ -86,9 +92,7 @@ class AppTopBar extends Component {
                 onClose={this.handleClose}
               >
                  <MenuItem onClick={this.handleProfileAdmin}>Profile </MenuItem>
-                {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} /> : null}
-          
-  
+                {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} closeProfileAdmin={this.closeProfileAdmin}/> : null}
                 <MenuItem component={Link} to="/home" onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</MenuItem>
               </Menu>
             </div>

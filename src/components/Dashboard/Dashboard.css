@@ -51,3 +51,7 @@ table,td,tr,tbody,th{
     outline:1px solid black;
     cursor: pointer;
 }
+
+.h3User {
+    margin-left: 20px;
+}

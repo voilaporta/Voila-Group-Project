@@ -3,9 +3,9 @@ const initialState = {
     values: []
 }
 
-const selectedVendorReducer = (state = initialState, action) => {
+const titleReducer = (state = initialState, action) => {
     switch(action.type){
-        case 'SET_USER_INSPECTION':
+        case 'SET_TITLE':
             return {
                 loading: false,
                 values: action.payload
@@ -15,4 +15,4 @@ const selectedVendorReducer = (state = initialState, action) => {
     }
 }
 
-export default selectedVendorReducer;
+export default titleReducer;

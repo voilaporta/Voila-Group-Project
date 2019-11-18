@@ -21,7 +21,7 @@ router.get('/vendors', rejectUnauthenticated, (req, res) => {
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     //GET and return insruance details user added
-    const userStepId = this.params.id;
+    const userStepId = req.params.id;
     const queryText = `SELECT *
                         FROM "selectedInsurance"
                         WHERE "userStep_id" = $1;`;
@@ -40,8 +40,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const userStepId = req.body.user_step_id;
     const insuranceName = req.body.name;
     const startDate = req.body.date;
-    const queryText = `INSERT INTO "selectedInspector"
-                        ("userStep_id", "name", "inspectionDate")
+    const queryText = `INSERT INTO "selectedInsurance"
+                        ("userStep_id", "name", "insuranceStartDate")
                         VALUES 
                         ($1, $2, $3);`;
     pool.query(queryText, [userStepId, insuranceName, startDate])

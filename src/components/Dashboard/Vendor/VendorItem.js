@@ -5,6 +5,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import {withStyles} from '@material-ui/core/styles';
 import {withRouter } from 'react-router-dom';
 import UpdateVendor from './UpdateVendor';
+import { ListItemIcon, IconButton, ListItemText, ListItemSecondaryAction, Button, Link } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
+import EmailIcon from '@material-ui/icons/Email';
+import BusinessIcon from '@material-ui/icons/Business';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 const styles =theme => ({
     fab: {
       margin: theme.spacing(1),
@@ -35,19 +41,37 @@ class VendorItem extends Component {
         const {classes} = this.props;
         return (
 
-            <tr>
-                <td>{this.props.vendor.firstName} {this.props.vendor.lastName}</td>
-                <td>{this.props.vendor.companyName}</td>
-                <td>{this.props.vendor.vendor_type_name}</td>
-                <td>{this.props.vendor.phoneNumber}</td>
-                {/* <td>{this.props.vendor.email}</td>
-                <td>{this.props.vendor.website}</td> */}
-                <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
-                    <EditIcon onClick={()=>{this.updateVendor(this.props.vendor.id)}}/>
-                </Fab></td>
-                {this.state.open ? <UpdateVendor state={this.state} updateVendor={this.updateVendor} handleClose={this.handleClose} vendorId={this.props.vendorId}/> : <div></div>}
+            // <tr>
+            //     <td>{this.props.vendor.firstName} {this.props.vendor.lastName}</td>
+            //     <td>{this.props.vendor.companyName}</td>
+            //     <td>{this.props.vendor.vendor_type_name}</td>
+            //     <td>{this.props.vendor.phoneNumber}</td>
 
-            </tr>
+            //     <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
+            //         <EditIcon onClick={()=>{this.updateVendor(this.props.vendor.id)}}/>
+            //     </Fab></td>
+            <>
+            <ListItemText>
+            <PersonIcon /> {this.props.vendor.firstName} {this.props.vendor.lastName}
+        </ListItemText>
+        <ListItemText>
+            <BusinessIcon /> {this.props.vendor.companyName}
+        </ListItemText>
+        <ListItemText>
+        < ContactPhoneIcon  /> {this.props.vendor.phoneNumber}
+        </ListItemText>
+        <ListItemText>
+        < BusinessCenterIcon  /> {this.props.vendor.vendor_type_name}
+        </ListItemText>
+   
+        <ListItemSecondaryAction>
+            <IconButton edge="end" color="secondary" aria-label="edit" onClick={this.updateVendor}>
+                <EditIcon onClick={() => { this.updateVendor(this.props.vendor.id) }} />
+            </IconButton>
+        </ListItemSecondaryAction>
+                {this.state.open ? <UpdateVendor state={this.state} updateVendor={this.updateVendor} handleClose={this.handleClose} vendorId={this.props.vendorId} vendor={this.props.vendor} />: <div></div>}
+
+            </>
 
         )
     }

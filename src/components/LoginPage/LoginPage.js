@@ -41,7 +41,7 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form className="loginform" onSubmit={this.login}>
           <div className="loginlogo">
           <img src={logo} alt = ""/>
           </div>

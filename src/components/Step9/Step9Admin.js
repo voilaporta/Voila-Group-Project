@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './Step9Admin.css';
-
 // MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,23 +16,15 @@ import Moment from 'moment';
 const moment = Moment;
 
 const styles = theme => ({
-    container: {
-    align: 'center',
-    [theme.breakpoints.down('md')]: {
-        justifyContent: 'center'
-        },
+    textField: {
+        width: 250
     },
-    grid: {
-        align: 'center',
-        justify: 'center',
-        margin: 'auto'
-      },
-    root: {
-        flexGrow: 1,
-        textAlign: 'center',
-        align: 'center',
-		justify: 'center',
+    buttonpadding: {
+        marginBottom: 15
     },
+    formpadding: {
+        marginBottom: 15
+    }
   });
 
 class Step9Admin extends Component {
@@ -47,13 +37,13 @@ class Step9Admin extends Component {
         time: '',
       };
     
-        // sets the state of date to selected date
-         handleDateChange = date => {
-            this.setState({
-                date: date
-            });
-        console.log('in HANDLE DATE CHANGE', this.state)
-      };
+    // sets the state of date to selected date
+       handleDateChange = date => {
+        this.setState({
+            date: date
+        });
+    console.log('in HANDLE DATE CHANGE', this.state)
+    };
 
     handleChange= propertyName => (event) => {
         this.setState({
@@ -96,22 +86,23 @@ class Step9Admin extends Component {
                     InputLabelProps={{
                         shrink: true,
                         }}
+                    className={classes.textField}
+                    multiline
+                    rows="4"
+                    variant="outlined"
                 />
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid container direction="column" margin="auto" alignItems="center" justify="center">
+                    <Grid>
                         <DatePicker
                             label="Date picker"
                             value={this.state.date}
                             onChange={this.handleDateChange}
                             format="MMM d yyyy"
                             align="center"
-                            InputLabelProps={{
-                                shrink: true,
-                              }}
                         />
                     </Grid>
                 </MuiPickersUtilsProvider>
-                <form className="step9Form" >
+                <form className={classes.formpadding}>
                     <TextField
                         label="Time"
                         value={this.state.time}
@@ -122,14 +113,13 @@ class Step9Admin extends Component {
                           }}
                     />
                 </form>
-                <Button onClick={this.handleComplete} variant="outlined">Submit</Button>
+                <Button className={classes.buttonpadding} onClick={this.handleComplete} variant="outlined">Submit</Button>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    errors: state.errors,
     walkThrough: state.walkThrough
 });
 

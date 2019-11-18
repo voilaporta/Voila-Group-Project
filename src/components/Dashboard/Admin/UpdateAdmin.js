@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2'
 import SaveIcon from '@material-ui/icons/Save';
 
+
 const styles = {
     formContainer: {
         margin: '25px'
@@ -23,10 +24,10 @@ const styles = {
 class UpdateAdmin extends Component {
 
     state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        adminType: '',
+        firstName: this.props.admin.firstName,
+        lastName: this.props.admin.lastName,
+        email: this.props.admin.email,
+        adminType: this.props.admin.role_id,
         id: this.props.adminId
     }
 
@@ -87,6 +88,7 @@ class UpdateAdmin extends Component {
                 >
                     <DialogContent dividers>
                         <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+    
                     </DialogContent>
                     <DialogContent>
                         <TextField

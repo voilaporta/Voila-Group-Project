@@ -37,6 +37,16 @@
     max-width: 400px;
 }
 
+.inspectionPartners{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    max-width: 400px;
+}
+
 .buyerSelection{
     display: flex;
     flex-direction: column;
@@ -45,4 +55,8 @@
 
 .buyerSelection p {
     margin: 0;
+}
+
+.note{
+    text-align: center;
 }

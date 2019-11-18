@@ -114,9 +114,9 @@ class Step7Client extends Component {
                 </div>
                 <div className="checkDisplay">Add Your Insurance Information 
                     <div>
-                    <Fab onClick={this.handleAdd} color="secondary" aria-label="Add" className={classes.fab} size="small">
-                         <AddIcon />
-                    </Fab> 
+                        <Fab onClick={this.handleAdd} color="secondary" aria-label="Add" className={classes.fab} size="small">
+                            <AddIcon />
+                        </Fab> 
                     </div>
                 </div>
                 <div>

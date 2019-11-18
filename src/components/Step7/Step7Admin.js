@@ -109,10 +109,11 @@ class Step7Admin extends Component {
                     { !this.props.selectedInsurance.values.length ? <div>Not Yet</div> :
                         //selscted vendors are returned from DB with most recently added in first position of array
                         <ListItemText
-                        primary={<>Agent: {this.props.selectedInsurance.values[0].name}</>}
-                        secondary={<>Start Date: <Moment format="MM/DD/YYYY">
-                        {this.props.selectedInsurance.values[0].insuranceStartDate}
-                        </Moment></>}/>}
+                            primary={<>Agent: {this.props.selectedInsurance.values[0].name}</>}
+                            secondary={<>Start Date: <Moment format="MM/DD/YYYY">
+                            {this.props.selectedInsurance.values[0].insuranceStartDate}
+                            </Moment></>}
+                        />}
                     </div>
                 </div>
                 </div>

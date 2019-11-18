@@ -44,11 +44,13 @@ class ProfileAdmin extends Component {
         this.setState({
             showpassword: false,
     })
+
         this.props.dispatch({
             type: 'UPDATE_PASSWORD',
             payload:  this.state
             
         })
+   
    
     }
 

@@ -41,6 +41,7 @@ class AppTopBar extends Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+
   };
   handleProfileAdmin = () => {
     this.setState({
@@ -76,6 +77,7 @@ class AppTopBar extends Component {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
+         
                 transformOrigin={{
                   vertical: 'top',
                   horizontal: 'right',

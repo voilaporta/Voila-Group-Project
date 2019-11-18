@@ -19,6 +19,8 @@ import walkThrough from './walkthroughReducer';
 import closing from './closingReducer';
 import appraisal from './apprailalReducer';
 import title from './titleReducer';
+import inspectorList from './inspectorListReducer';
+import insuranceList from './insuranceListReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -47,6 +49,8 @@ const rootReducer = combineReducers({
   closing, // contains closing data for Step 11
   appraisal,
   title,
+  inspectorList,
+  insuranceList,
 });
 
 export default rootReducer;

@@ -1,20 +1,30 @@
-import React, {Component} from 'react';
-import {withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
-        InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch } from '@material-ui/core';
- import Swal from 'sweetalert2'
- import SaveIcon from '@material-ui/icons/Save';
-  
-  const styles = theme => ({
+import {
+    TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
+    InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch
+} from '@material-ui/core';
+import Swal from 'sweetalert2'
+import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
+import IconButton from '@material-ui/core/IconButton';
+
+const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
         minWidth: 120,
-      },
-  });
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
 
-  class UpdateClient extends Component {
+    },
+});
+
+class UpdateClient extends Component {
 
     state = {
         firstName: this.props.client.firstName,
@@ -31,59 +41,62 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
     handleSwitch = journey => event => {
         this.setState({ [journey]: event.target.checked });
     };
-    componentDidMount=()=>{
+    componentDidMount = () => {
         this.getAgents();
         this.getClients();
 
     }
-  
-    getAgents=()=>{
-        this.props.dispatch({type:'GET_AGENT'})
+
+    getAgents = () => {
+        this.props.dispatch({ type: 'GET_AGENT' })
     }
-    
-    getClients=()=>{
-        this.props.dispatch({type:'FETCH_CLIENT'})
+
+    getClients = () => {
+        this.props.dispatch({ type: 'FETCH_CLIENT' })
     }
-    
+
     handleChange = (event, keyname) => {
-            this.setState({
-                ...this.state, 
-                [keyname]: event.target.value,
-            })
-            console.log(this.state);
-            
-        }
-    
-        handleSubmit = () => {
-            console.log('hellooooo ',this.state);
-            
-            this.props.history.push('/')
-            this.props.dispatch({
-                type: 'UPDATE_CLIENT',
-                payload:  this.state
-                
-            })
-            Swal.fire(
-                'Success!',
-                'Client has been updated!',
-                'success'
-              )
-       
-        }
-    
-        handleDelete=()=>{
-            this.props.history.push('/')
-            this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id});
-            
-        }
-      
+        this.setState({
+            ...this.state,
+            [keyname]: event.target.value,
+        })
+        console.log(this.state);
+
+    }
+
+    handleSubmit = () => {
+        console.log('hellooooo ', this.state);
+
+        this.props.history.push('/')
+        this.props.dispatch({
+            type: 'UPDATE_CLIENT',
+            payload: this.state
+
+        })
+        Swal.fire(
+            'Success!',
+            'Client has been updated!',
+            'success'
+        )
+
+    }
+
+    handleDelete = () => {
+        this.props.history.push('/')
+        this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
+
+    }
+    handleClose = () => {
+        this.props.history.push('/')
+
+    }
     render() {
-        const agentOptions= this.props.state.agent.map((agent)=>{
+        const agentOptions = this.props.state.agent.map((agent) => {
             return <MenuItem value={agent.id}
-                            key={agent.id}> {agent.firstName}</MenuItem>
-          })
+                key={agent.id}> {agent.firstName}</MenuItem>
+        })
         const { classes } = this.props;
-        
+
         return (
             <div>
                 <Dialog
@@ -92,70 +105,73 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                        <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                            <CancelIcon fontSize="large" color="secondary" />
+                        </IconButton>
                     </DialogContent>
                     <DialogContent>
-                   <TextField
-                      label="First Name"
-                      placeholder="e.g. Jane"
-                        value={this.state.firstName}
-                        onChange={(event) => {this.handleChange(event, 'firstName')}}
-                        autoFocus
-                        margin="dense"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        label="Last Name"
-                        placeholder="e.g. Doe"
-                        value={this.state.lastName}
-                        onChange={(event) => { this.handleChange(event, 'lastName') }}
-                        autoFocus
-                        margin="dense"
-                        type="text"
-                        fullWidth
-                    />
-                <TextField
-                        label="Dropbox URL"
-                        placeholder="Copy and paste dropbox url"
-                        value={this.state.dropbox}
-                        onChange={(event) => { this.handleChange(event, 'dropbox') }}
-                        autoFocus
-                        margin="dense"
-                        type="text"
-                        fullWidth
-                    />
-                
-                <FormControl className={classes.formControl}>
-                        <InputLabel id="selectAgentLabel">Agent</InputLabel>
-                        <Select
-                            labelId="selectAgentLabel"
-                            onChange={(event) => {this.handleChange(event, 'agentId')}}
-                            value={this.state.agentId}
-                        >
-                            <MenuItem value={''}>--Select An Agent--</MenuItem>
+                        <TextField
+                            label="First Name"
+                            placeholder="e.g. Jane"
+                            value={this.state.firstName}
+                            onChange={(event) => { this.handleChange(event, 'firstName') }}
+                            autoFocus
+                            margin="dense"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            label="Last Name"
+                            placeholder="e.g. Doe"
+                            value={this.state.lastName}
+                            onChange={(event) => { this.handleChange(event, 'lastName') }}
+                            autoFocus
+                            margin="dense"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            label="Dropbox URL"
+                            placeholder="Copy and paste dropbox url"
+                            value={this.state.dropbox}
+                            onChange={(event) => { this.handleChange(event, 'dropbox') }}
+                            autoFocus
+                            margin="dense"
+                            type="text"
+                            fullWidth
+                        />
+
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="selectAgentLabel">Agent</InputLabel>
+                            <Select
+                                labelId="selectAgentLabel"
+                                onChange={(event) => { this.handleChange(event, 'agentId') }}
+                                value={this.state.agentId}
+                            >
+                                <MenuItem value={''}>--Select An Agent--</MenuItem>
                                 {agentOptions}
-                        </Select>
-                    </FormControl>
-                    <br></br>
+                            </Select>
+                        </FormControl>
+                        <br></br>
                         <FormControlLabel
                             control={
                                 <Switch
-                                checked={this.state.journey}
-                                onChange={this.handleSwitch('journey')}
-                                value="journey"
+                                    checked={this.state.journey}
+                                    onChange={this.handleSwitch('journey')}
+                                    value="journey"
                                 />
                             }
                             label="Start Buyer Journey"
                         />
                     </DialogContent>
                     <DialogActions>
-                    <Button variant="outlined" onClick={this.props.handleDelete} color="secondary">
-                        Delete
+                        <Button variant="outlined" onClick={this.props.handleDelete} color="secondary">
+                            Delete
                         </Button>
                         <Button variant="contained" onClick={this.handleSubmit} color="secondary">
-                        <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
-                        Update Client
+                            <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
+                            Update Client
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -169,5 +185,5 @@ const mapStateToProps = state => ({
     state
 });
 
-export default withStyles(styles) (withRouter(connect(mapStateToProps)(UpdateClient)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(UpdateClient)));
 

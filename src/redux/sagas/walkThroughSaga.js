@@ -15,7 +15,8 @@ function* getFinalWalkThrough(action) {
 function* postFinalWalkThrough(action) {
     try {
         yield axios.post(`/api/step9`, action.payload);
-        yield getFinalWalkThrough(action);
+        // pass along the userStep_id and call the getfinalwalkthrough saga to run
+        yield put({ type: 'GET_FINAL_WALKTHROUGH', payload: action.payload.userStep_id})
     } catch (error) {
         console.log('** ERROR POSTING FINAL WALKTHROUGH **', error);
     }

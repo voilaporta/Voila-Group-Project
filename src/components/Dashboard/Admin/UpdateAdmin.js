@@ -6,8 +6,10 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2'
 import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
+import IconButton from '@material-ui/core/IconButton';
 
-const styles = {
+const styles = theme => ({
     formContainer: {
         margin: '25px'
     },
@@ -17,16 +19,22 @@ const styles = {
     },
     select: {
         minWidth: 120
-    }
-}
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+   
+    },
+})
 
 class UpdateAdmin extends Component {
 
     state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        adminType: '',
+        firstName: this.props.admin.firstName,
+        lastName: this.props.admin.lastName,
+        email: this.props.admin.email,
+        adminType: this.props.admin.role_id,
         id: this.props.adminId
     }
 
@@ -72,6 +80,10 @@ class UpdateAdmin extends Component {
         )
     }
 
+    handleClose = () => {
+        this.props.history.push('/')
+   
+    }
     render() {
         const adminTypes = this.props.state.adminTypeReducer.map((type) => {
             return <MenuItem value={type.id}
@@ -86,7 +98,11 @@ class UpdateAdmin extends Component {
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                        <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                            <CancelIcon  fontSize="large" color="secondary" />
+                        </IconButton>
+                        <DialogTitle id="form-dialog-title" >Update Admin</DialogTitle>
+
                     </DialogContent>
                     <DialogContent>
                         <TextField

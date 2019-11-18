@@ -41,7 +41,7 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form className="loginform" onSubmit={this.login}>
           <div className="loginlogo">
           <img src={logo} alt = ""/>
           </div>
@@ -81,13 +81,6 @@ class LoginPage extends Component {
           </div>
         </form>
         <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
-          >
-            Register
-          </button>
         </center>
       </div>
     );

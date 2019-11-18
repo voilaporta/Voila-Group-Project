@@ -26,11 +26,17 @@ class Step5Admin extends Component {
                 {this.props.complete ? <p>User has submitted their earnest money payment. Step Complete!</p>
                 :
                     <>{this.state.offer != undefined ? 
-                        <Typography variant="h2">
-                            <Countdown date={new Date(this.state.offer.date_time_created).getTime() + 172800000} daysInHours={true}>
-                                <Complete/>
-                            </Countdown>
-                        </Typography>
+                        <div>
+                            <h1>Time remaining: </h1>
+                            <Typography variant="h2">
+                                <Countdown date={new Date(this.state.offer.date_time_created).getTime() + 172800000} daysInHours={true}>
+                                    <Complete/>
+                                </Countdown>
+                            </Typography>
+                            <Typography variant="subtitle2">
+                            If {this.props.buyerName} has submitted earnest money, upload documentation to the Voila Vault dropbox and mark step complete.
+                            </Typography>
+                        </div>
                     :
                         ''}
                     </>

@@ -1,0 +1,23 @@
+.pageDiv{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    text-align: left;
+    padding: 10px;
+}
+
+.checkDisplay{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 21px;
+    margin: 5px 5px 5px 40px;
+}
+
+.sectionHeadline{
+    text-align: center;
+}
+.sectionTitle{
+    font-size: 23px;
+
+}

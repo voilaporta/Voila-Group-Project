@@ -2,17 +2,18 @@ import React from 'react';
 import ChangeCriteria from './ChangeCriteria';
 import RequestShowing from './RequestShowing';
 import MakeOffer from './MakeOffer';
+ 
 
 const ComponentToUpdate = (props) => {
 
     let componentToShow;
 
     if(props.showRequest){
-        componentToShow = <RequestShowing/>
+        componentToShow = <RequestShowing requestShowingToggle={props.requestShowingToggle} buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showCriteria){
-        componentToShow = <ChangeCriteria/>
+        componentToShow = <ChangeCriteria addCriteriaToggle={props.addCriteriaToggle} updateCriteriaToggle={props.updateCriteriaToggle} buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showOffer){
-        componentToShow = <MakeOffer/>
+        componentToShow = <MakeOffer makeOfferToggle={props.makeOfferToggle} buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     }
     return componentToShow;
 }

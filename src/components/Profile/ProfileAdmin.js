@@ -44,12 +44,12 @@ class ProfileAdmin extends Component {
         this.setState({
             showpassword: false,
     })
+
         this.props.dispatch({
             type: 'UPDATE_PASSWORD',
             payload:  this.state
             
         })
-   
     }
 
     showPassword=()=>{
@@ -57,6 +57,13 @@ class ProfileAdmin extends Component {
             showpassword:true,
     })
     }
+
+    closeProfile = () => {
+        this.props.handleClose();
+        this.props.closeProfileAdmin();
+        console.log(this.state, 'in CLOSE PROFILE BUTTON')
+    }
+
     render() {
         return (
             <div>
@@ -90,7 +97,7 @@ class ProfileAdmin extends Component {
                                 Change Password
                         </Button>
                         }
-                        <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
+                        <Button variant="outlined" onClick={this.closeProfile} color="secondary">
                         Cancel
                         </Button>
                     </DialogContent>

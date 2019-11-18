@@ -3,8 +3,40 @@ import { connect } from 'react-redux';
 import { RadialProgress } from 'react-radial-progress-indicator';
 import './Dashboard.css';
 import { withRouter } from 'react-router-dom'
-import homelogo from './HomePlaceholder.png'
-//this here will show the client's dashboard with their buying journey status.
+
+// Material UI
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import {Card, CardContent, CardMedia, Typography } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+//this component shows the client's dashboard with their buying journey status.
+
+const styles = {
+    card: {
+      maxWidth: 300,
+      margin: 'auto',
+      transition: "0.3s",
+      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+      "&:hover": {
+        boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+      },
+      marginTop: 40,
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+    media: {
+        height: 200,
+        width: '100%'
+    },
+    radialDiv: {
+        marginBottom: 12,
+    }
+  };
+
+  
 class DashboardUser extends Component {
 
     state = {
@@ -15,7 +47,7 @@ class DashboardUser extends Component {
         this.props.dispatch({ type: 'GET_JOURNEY'})
         setTimeout(() => {
             this.getStatusPercentage()
-        }, 200);
+        }, 1000);
     }
 
     getStatusPercentage = () => {
@@ -33,25 +65,42 @@ class DashboardUser extends Component {
     journey = () => {
         this.props.history.push(`/buyer-journey/${this.props.user.id}`)
     }
+
     render() {
+        const { classes } = this.props;
+
         return ( 
             <div>
-                <h3>Your buying journey:</h3>
-                    <div className="card">
-                        <div  >
-                            <img className="cardImg" src={homelogo} alt="" />
-                            <div className="status" onClick={this.journey} >
-                                <h3 >Status</h3>
-                                {this.props.userJourney.loading ? <p>...loading...</p> : <RadialProgress
-                                    width={50}
-                                    height={50}
-                                    steps={11}
-                                    step={this.state.stepsCompleted}
-                                />}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h3 className="h3User">Buying Journey</h3>
+                <Card className={classes.card} onClick={this.journey}>
+                    <CardContent>
+                        <Typography className={classes.title} gutterBottom color="secondary">
+                            Check Your Progress
+                        </Typography>
+                        <Typography className={classes.radialDiv}>
+                        {this.props.userJourney.loading ? <CircularProgress color="secondary"/> : <RadialProgress
+                                width={60}
+                                height={60}
+                                ringBgColour="#ccc"
+                                ringFgColour="#3c763d"
+                                ringIntermediateColour="#aaa"
+                                ringThickness={0.3}
+                                backgroundColour="#dff0d8"
+                                backgroundTransparent
+                                duration={5000}
+                                fontRatio={2}
+                                steps={11}
+                                step={this.state.stepsCompleted}
+                        />}
+                        </Typography>
+                        <CardMedia
+                        className={classes.media}
+                        image={require('./real.jpg')}
+                        title="House"
+                        />
+                    </CardContent>
+                </Card>
+            </div>
         )
     }
 }
@@ -61,6 +110,8 @@ const mapStateToProps = state => ({
     userJourney: state.userJourney,
 });
 
-// this allows us to use <App /> in index.js
-export default withRouter(connect(mapStateToProps)(DashboardUser));
+DashboardUser.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
 
+export default withStyles(styles) (withRouter(connect(mapStateToProps)(DashboardUser)));

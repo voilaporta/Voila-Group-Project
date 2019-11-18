@@ -187,8 +187,8 @@ INSERT INTO "journeyStep"
 	("journey_id", "name", "description", "order")
 VALUES 
 	(1, 'Voila Buyer', 'Being a Voila buyer means you are in the best of hands! We are here to help you find the home for you!', 1),
-	(1, 'Pre-Approval', 'talk with your lender and get a price range for which you are pre-approved', 2),
-	(1, 'On The Hunt', 'Let''s talk about picking our your next home.', 3),
+	(1, 'Pre-Approval', 'Talk with your lender and get a price range for which you are pre-approved', 2),
+	(1, 'On The Hunt', 'Let''s talk about picking out your next home.', 3),
 	(1, 'Executed Offer', 'Congrats! You found a home you love and made an offer.', 4),
 	(1, 'Earnest Money Submission', 'Your offer has been accepted and it is time to put down some money', 5),
 	(1, 'Inspection', 'This is where we have another expert step in and make sure there are no big surprises with the home.', 6),
@@ -196,7 +196,7 @@ VALUES
 	(1, 'Appraisal & Title', 'As your lender works on your mortgage documents, they need to verify the home is worth the amount you are borrowing. Then they order the title and prepare it for the sale transaction', 8),
 	(1, 'Final Walk Through', 'One last time to take a look at the property in person before it belongs to you', 9),
 	(1, 'Closing Disclosure', 'Here is what you need to know about the closing', 10),
-	(1, 'Closing Day', 'Congrats! It is closing day and this new property is about to belong to you. Today is the day your sign the paperwork', 11);
+	(1, 'Closing Day', 'Congrats! It is closing day and this new property is about to belong to you. Today is the day you sign the paperwork', 11);
 
 INSERT INTO "vendorType"
 ("name")

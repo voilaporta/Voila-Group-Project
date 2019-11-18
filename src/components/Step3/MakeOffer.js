@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 class MakeOffer extends Component {
 
     state = {
+        buyer_first_name: this.props.buyerFirstName,
+        buyer_last_name: this.props.buyerLastName,
         user_step_id: this.props.userStepId.id,
         name: '',
         address: '',
@@ -19,6 +21,7 @@ class MakeOffer extends Component {
     makeOffer = () => {
         this.props.dispatch({type: 'POST_OFFER_MADE', payload: this.state});
         this.props.dispatch({type: 'EMAIL_OFFER_MADE', payload: this.state});
+        this.props.makeOfferToggle();
     }
 
     handleChange = (event, input) => {

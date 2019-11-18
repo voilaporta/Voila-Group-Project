@@ -58,7 +58,6 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
             console.log('hellooooo ',this.state);
             
             this.props.history.push('/')
-            // if(this.state.firstName && this.state.lastName && this.state.dropbox && this.state.agentId )
             this.props.dispatch({
                 type: 'UPDATE_CLIENT',
                 payload:  this.state
@@ -73,10 +72,8 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
         }
     
         handleDelete=()=>{
-            console.log('hello from delete client button!!!!');
             this.props.history.push('/')
             this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id});
-            console.log('helllooooo from delete',this.state.id);
             
         }
       
@@ -95,7 +92,7 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                    <DialogTitle id="form-dialog-title" >Update Client{JSON.stringify(this.props.client)}</DialogTitle>
+                    <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
                     </DialogContent>
                     <DialogContent>
                    <TextField
@@ -153,10 +150,10 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
                         />
                     </DialogContent>
                     <DialogActions>
-                    <Button variant="outlined" onClick={this.props.handleClose} color="secondary">
-                        Cancel
+                    <Button variant="outlined" onClick={this.props.handleDelete} color="secondary">
+                        Delete
                         </Button>
-                        <Button variant="contained" onClick={this.addClient} color="secondary">
+                        <Button variant="contained" onClick={this.handleSubmit} color="secondary">
                         <SaveIcon className={(classes.leftIcon, classes.iconSmall)} />
                         Update Client
                         </Button>

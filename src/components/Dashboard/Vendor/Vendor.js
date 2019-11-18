@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import VendorItem from './VendorItem';
-
+import { List, ListItem } from '@material-ui/core';
 class Vendor extends Component {
     componentDidMount() {
         // use component did mount to dispatch an action to request the vendor list from the API
@@ -11,18 +11,25 @@ class Vendor extends Component {
         this.props.dispatch({ type: 'FETCH_VENDOR' })
     }
 
+    mapVendors = () => {
+        return (
+            this.props.vendorList.map(vendor =>
+                <ListItem key={vendor.id}>
+                    <VendorItem vendor={vendor} getVendor={this.getVendor} />
+                </ListItem>)
+        )
+    }
     render() {
         return (
             <div>
-                <table>
+                {/* <table>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Company Name</th>
                             <th>Vendor Type</th>
                             <th>Contact Info</th>
-                            {/* <th>Email</th> */}
-                            {/* <th>Website</th> */}
+          
                             <th>Update</th>
                         </tr>
                     </thead>
@@ -33,8 +40,10 @@ class Vendor extends Component {
                             )
                         })}
                     </tbody>
-                </table>
-            
+                </table> */}
+                <List>
+                    {this.mapVendors()}
+                </List>
 
             </div>
         )
@@ -46,7 +55,8 @@ class Vendor extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
-    state
+    state,
+    vendorList:state.vendorList
 });
 
 export default connect(mapStateToProps)(Vendor);

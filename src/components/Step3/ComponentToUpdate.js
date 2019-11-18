@@ -8,11 +8,11 @@ const ComponentToUpdate = (props) => {
     let componentToShow;
 
     if(props.showRequest){
-        componentToShow = <RequestShowing/>
+        componentToShow = <RequestShowing buyerName={this.props.buyerName}/>
     } else if (props.showCriteria){
-        componentToShow = <ChangeCriteria/>
+        componentToShow = <ChangeCriteria buyerName={props.buyerName}/>
     } else if (props.showOffer){
-        componentToShow = <MakeOffer/>
+        componentToShow = <MakeOffer buyerName={this.props.buyerName}/>
     }
     return componentToShow;
 }

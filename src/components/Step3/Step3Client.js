@@ -52,7 +52,7 @@ class Step3Client extends Component {
         
         return (
             <div>
-                {this.state.showComponentToUpdate ? <ComponentToUpdate showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
+                {this.state.showComponentToUpdate ? <ComponentToUpdate buyerName={this.props.buyerName} showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <>
                  <div className="criteria">
                     Current Criteria:

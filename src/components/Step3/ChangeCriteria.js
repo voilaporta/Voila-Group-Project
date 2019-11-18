@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 class ChangeCriteria extends Component {
 
     state = {
+        buyer_name: this.props.buyerName,
         user_step_id: this.props.userStepId.id,
         bedroom_count: '',
         bathroom_count: '',

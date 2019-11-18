@@ -36,51 +36,53 @@ const styles = theme => ({
     },
   });
 
-class AddFinal extends Component {
+class AddClosing extends Component {
 
     state = {
-        // The first commit of Material-UI
-        userStep_id: this.props.userStepId,
+        userStepId: this.props.userStepId,
         location: '',
         date: new Date(),
         time: '',
-      };
-    
+        toBring: ''
+    }
+
     // sets the state of date to selected date
-       handleDateChange = date => {
-        this.setState({
-            date: date
-        });
-    console.log('in HANDLE DATE CHANGE', this.state)
-    };
-
-    handleChange= propertyName => (event) => {
-        this.setState({
-          [propertyName]: event.target.value,
-        });
-        console.log('in handleChange', this.state)
-     }
-
-    // submits the data to post in the database
-      handleComplete = () => {
-        console.log('--in HANDLE COMPLETE --', this.state)
-        this.props.dispatch({
-            type: 'POST_FINAL_WALKTHROUGH',
-            payload:{
+       handleDateChange = date => {
+            this.setState({
+                date: date
+            });
+        console.log('in HANDLE DATE CHANGE', this.state)
+        };
+    
+        handleChange= propertyName => (event) => {
+            this.setState({
+              [propertyName]: event.target.value,
+            });
+            console.log('in handleChange', this.state)
+         }
+    
+        // submits the data to post in the database
+        handleComplete = () => {
+            console.log('--in HANDLE COMPLETE --', this.state)
+            this.props.dispatch({
+                type: 'POST_CLOSING_DATA',
+                payload:{
+                    userStepId: this.props.userStepId,
+                    location: this.state.location,
+                    date: this.state.date = moment(this.state.date).format('MMM Do YYYY'),
+                    time: this.state.time,
+                    toBring: this.state.toBring
+                }
+            })
+            this.setState({
                 userStep_id: this.props.userStepId,
-                location: this.state.location,
-                date: this.state.date = moment(this.state.date).format('MMM Do YYYY'),
-                time: this.state.time,
-            }
-        })
-        this.setState({
-            userStep_id: this.props.userStepId,
-            location: '',
-            date: new Date(),
-            time: '',
-        });
-        this.props.handleClose();
-    } 
+                location: '',
+                date: new Date(),
+                time: '',
+                toBring: ''
+            });
+            this.props.handleClose();
+        } 
 
     render() {
 
@@ -95,7 +97,7 @@ class AddFinal extends Component {
                     className={classes.dialogDiv}
                 >
                     <DialogContent dividers>
-                        <DialogTitle className={classes.dialogTitle} >Add Final Walkthrough </DialogTitle>
+                        <DialogTitle className={classes.dialogTitle} >Add Closing Details </DialogTitle>
                     </DialogContent>
                     <DialogContent >
                         <TextField
@@ -106,22 +108,20 @@ class AddFinal extends Component {
                             InputLabelProps={{
                                 shrink: true,
                                 }}
-                            className={classes.textField}
                             multiline
                             rows="4"
+                            className={classes.textField}
                             variant="outlined"
-                            fullWidth
                         />
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid>
-                                <DatePicker
-                                    label="Date picker"
-                                    value={this.state.date}
-                                    onChange={this.handleDateChange}
-                                    format="MMM d yyyy"
-                                    align="center"
-                                />
-                            </Grid>
+                        <Grid >
+                            <DatePicker
+                                label="Date picker"
+                                value={this.state.date}
+                                onChange={this.handleDateChange}
+                                format="MMM d yyyy"
+                            />
+                        </Grid>
                         </MuiPickersUtilsProvider>
                         <form>
                             <TextField
@@ -132,6 +132,17 @@ class AddFinal extends Component {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                            />
+                            <br />
+                            <TextField
+                                label="Things to Bring"
+                                multiline
+                                rows="4"
+                                value={this.state.toBring}
+                                onChange={this.handleChange('toBring')}
+                                className={classes.textField}
+                                margin="normal"
+                                variant="filled"
                             />
                         </form>
                     </DialogContent>
@@ -153,8 +164,8 @@ const mapStateToProps = state => ({
     walkThrough: state.walkThrough
 });
 
-AddFinal.propTypes = {
+AddClosing.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles) (connect(mapStateToProps)(AddFinal));
+export default withStyles(styles) (connect(mapStateToProps)(AddClosing));

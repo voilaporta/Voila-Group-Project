@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
+const styles =  ({
     textField: {
         width: 250
     },
@@ -27,26 +27,16 @@ class Step11Client extends Component {
 
     render() {
 
-        // map through the closing details for specific user
-        const closingDetails = this.props.closing.map( (close) => {
-            return (  
-                <>
-                    <TextField label="Location" value={close.location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}} />
-                    <TextField label="Date" value={close.date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}} />
-                    <TextField label="Time" value={close.time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}} />
-                    <TextField label="Things to Bring" value={close.toBring} multiline rows="3" variant="filled" InputProps={{readOnly: true,}} />
-                </>
-            )
-        })
-
         return (
             <div>
-                {/* <p>{JSON.stringify(this.props.closing)}</p> */}
                 {this.props.closing.length === 0 ?
                     <h2>Your agent will list the closing details.</h2>
                 :
                 <div>
-                    {closingDetails}
+                    <TextField label="Location" value={this.props.closing[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
+                    <TextField label="Date" value={this.props.closing[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                    <TextField label="Time" value={this.props.closing[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                    <TextField label="Things to Bring" value={this.props.closing[0].toBring} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
                 </div>
                 }
             </div>

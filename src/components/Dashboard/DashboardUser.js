@@ -38,4 +38,3 @@ const mapStateToProps = state => ({
 
 // this allows us to use <App /> in index.js
 export default withRouter(connect(mapStateToProps)(DashboardUser));
-

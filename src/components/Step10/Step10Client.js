@@ -6,6 +6,7 @@ class Step10Client extends Component {
     render() {
         return (
             <div>
+                Upload your Closing Disclosoure
             </div>
         );
     }

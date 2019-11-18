@@ -13,6 +13,7 @@ import offerAcceptedSaga from './offerAcceptedSaga';
 import onTheHuntSaga from './onTheHuntSaga';
 import step6and7Saga from './step6and7Saga';
 import walkThroughSaga from './walkThroughSaga';
+import mailerSaga from './mailerSaga';
 import ClosingSaga from './closingSaga';
 import step8Saga from './step8Saga';
 
@@ -39,6 +40,7 @@ export default function* rootSaga() {
     onTheHuntSaga(),
     step6and7Saga(),
     walkThroughSaga(),
+    mailerSaga(),
     ClosingSaga(),
     step8Saga(),
   ]);

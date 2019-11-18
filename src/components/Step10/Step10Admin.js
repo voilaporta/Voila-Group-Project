@@ -6,6 +6,7 @@ class Step10Admin extends Component {
     render() {
         return (
             <div>
+           Mark this step complete when {this.props.buyerName} has attached the  Closure Disclosure form in the voila vault.
             </div>
         );
     }

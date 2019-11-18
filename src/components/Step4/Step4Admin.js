@@ -50,9 +50,6 @@ class Step4Admin extends Component {
         });
     }
     render() {
-        if (this.props.offerAccepted.length === 0) {
-            this.toggleShowInput();
-        }
 
         return (
             <div>

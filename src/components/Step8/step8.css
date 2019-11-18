@@ -1,9 +1,15 @@
 .pageDiv{
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-content: flex-start;
     text-align: left;
     padding: 10px;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .checkDisplay{
@@ -19,5 +25,24 @@
 }
 .sectionTitle{
     font-size: 23px;
+}
 
+.insurancePartners{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    max-width: 400px;
+}
+
+.buyerSelection{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 5px 5px 100px;
+}
+
+.buyerSelection p {
+    margin: 0;
 }

@@ -19,9 +19,19 @@ function* addAcceptedOffer(action) {
     }
 }
 
+function* deleteAcceptedOffer(action) {
+    try {
+        yield axios.delete(`/api/step4/${action.payload.id}`);
+        yield getAcceptedOffer(action);
+    } catch (error) {
+        console.log('Error deleting accpeted offer:', error);
+    }
+}
+
 function* offerAcceptedSaga() {
     yield takeLatest('GET_ACCEPTED_OFFER', getAcceptedOffer);
     yield takeLatest('ADD_ACCEPTED_OFFER', addAcceptedOffer);
+    yield takeLatest('DELETE_ACCEPTED_OFFER', deleteAcceptedOffer);
 }
 
 export default offerAcceptedSaga;

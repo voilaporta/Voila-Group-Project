@@ -26,13 +26,17 @@ class Step5Client extends Component {
                 {this.props.complete ? <p>You've submitted your earnest money payment!</p>
                     :
                     <>{this.state.offer != undefined ?
-                        <Typography variant="h2">
-                            <Countdown date={new Date(this.state.offer.date_time_created).getTime() + 172800000} daysInHours={true}>
-                                <Complete />
-                            </Countdown>
-                        </Typography>
+                        <div>
+                            <h1>Time remaining to submit earnest money:</h1>
+                            <Typography variant="h2">
+                                <Countdown date={new Date(this.state.offer.date_time_created).getTime() + 172800000} daysInHours={true}>
+                                    <Complete />
+                                </Countdown>
+                            </Typography>
+                            <p>If you've already submitted your earnest money payment, please contact your agent to proceed to the Inspection step.</p> 
+                        </div>
                         :
-                        ''}
+                        <h1>Once your offer has been accepted, you have 48 hours to submit earnest money.</h1>}
                     </>
                 }
             </div>

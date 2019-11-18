@@ -50,7 +50,7 @@ class Step6Client extends Component {
 
     displaySingleInspector = ()=>{
         //display the vendor's contact information
-        const inspectorToDisplay = this.props.vendorList.find((inspector)=> inspector.id === Number(this.state.inspectionId));
+        const inspectorToDisplay = this.props.inspectorList.values.find((inspector)=> inspector.id === Number(this.state.inspectionId));
         return <div>
                     <p>Name: {inspectorToDisplay.firstName} {inspectorToDisplay.lastName}</p>
                     <p>Company Name: {inspectorToDisplay.companyName}</p>
@@ -68,12 +68,12 @@ class Step6Client extends Component {
         const { classes } = this.props;
         //if redux store vendorList has not yet loaded the date
         //the page will display ...loading... rather than empty data
-        if(this.props.vendorList[0].loading){
+        if(this.props.inspectorList.loading){
             return <div>...loading...</div>
         }
-        //loop through inspection vendors from redux store (vendorList)
+        //loop through inspection vendors from redux store (inspectorList)
         //to display each individual vendor name in select
-        const inspectors = this.props.vendorList.map((inspector)=>{
+        const inspectors = this.props.inspectorList.values.map((inspector)=>{
             return <MenuItem 
                         key={inspector.id}
                         value={inspector.id}>{inspector.companyName}</MenuItem>
@@ -137,7 +137,7 @@ class Step6Client extends Component {
 }
 
 const mapStateToProps = state => ({
-    vendorList: state.vendorList,
+    inspectorList: state.inspectorList,
     selectedInspector: state.selectedInspector,
     userJourney: state.userJourney,
 });

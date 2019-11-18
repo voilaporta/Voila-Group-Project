@@ -5,6 +5,8 @@ import axios from 'axios';
 class ChangeCriteria extends Component {
 
     state = {
+        buyer_first_name: this.props.buyerFirstName,
+        buyer_last_name: this.props.buyerLastName,
         user_step_id: this.props.userStepId.id,
         bedroom_count: '',
         bathroom_count: '',
@@ -21,15 +23,7 @@ class ChangeCriteria extends Component {
 
     addCriteria = () => {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state});
-        axios({
-            method: 'POST',
-            url: '/nodemailer',
-            data: this.state
-        }).then(response => {
-            console.log('message sent', response);
-        }).catch(error => {
-            console.log('error with sending message', error);
-        });
+        this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
     }
 
     updateCriteria = () => {

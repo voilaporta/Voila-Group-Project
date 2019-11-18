@@ -39,9 +39,9 @@ const styles = theme => ({
       height: '5vh',
       paddingTop: '2vh',
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: 'lightblue',
+      backgroundColor: 'whitev',
       '&:hover': {
-        backgroundColor: 'lightblue',
+        backgroundColor: 'white',
       },
       marginRight: theme.spacing(1),
       margin: 'auto',
@@ -105,7 +105,7 @@ class DashboardAdmin extends Component {
 
         return (
             <div className={classes.root}>
-                <div className={classes.search} >
+                {/* <div className={classes.search} >
                 <div className={classes.searchIcon}>
                     <SearchIcon />
                 </div>
@@ -116,7 +116,7 @@ class DashboardAdmin extends Component {
                     input: classes.inputInput,
                     }}
                 />
-            </div>
+            </div> */}
             <Tabs
                     value={this.state.value}
                     onChange={this.handleChange}

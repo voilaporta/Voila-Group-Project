@@ -6,6 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import {Add as AddIcon, CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
+import {ListItem, ListItemText} from '@material-ui/core';
 import AddInspection from './AddInspection';
 import Moment from 'react-moment';
 
@@ -51,13 +52,20 @@ class Step6Client extends Component {
     displaySingleInspector = ()=>{
         //display the vendor's contact information
         const inspectorToDisplay = this.props.inspectorList.values.find((inspector)=> inspector.id === Number(this.state.inspectionId));
-        return <div>
-                    <p>Name: {inspectorToDisplay.firstName} {inspectorToDisplay.lastName}</p>
-                    <p>Company Name: {inspectorToDisplay.companyName}</p>
-                    <p>Phone: {inspectorToDisplay.phoneNumber}</p>
-                    <p>Email: {inspectorToDisplay.email}</p>
-                    <p>Website: {inspectorToDisplay.website}</p>
-                </div>
+        return <ListItemText
+            primary={inspectorToDisplay.companyName}
+            secondary={
+                <>
+                Name: {inspectorToDisplay.firstName} {inspectorToDisplay.lastName}
+                <br></br>
+                Phone: {inspectorToDisplay.phoneNumber}
+                <br></br>
+                Email: {inspectorToDisplay.email}
+                <br></br>
+                Website: {inspectorToDisplay.website}
+                </>
+            }
+        />
     }
 
     componentDidMount = ()=>{
@@ -81,10 +89,11 @@ class Step6Client extends Component {
        
 
         return (
-            <div>
+            <div className="pageDiv">
     
-                <h1>Use one of our inspection partners or schedule your own</h1>
-                <div className="inspectionPartners">
+                <h1 className="sectionHeadline">Use one of our inspection partners or schedule your own</h1>
+                <div className="content">
+                <div className="inspectionPartners checkDisplay">
                     <FormControl className={classes.select}>
                         <InputLabel id="selectInspectors">Inspection Partners</InputLabel>
                         <Select
@@ -102,35 +111,44 @@ class Step6Client extends Component {
                 </div>
 
                 <div className="inspectionDetails">
-                    <div>Add Your Inspection Details 
-                    <Fab onClick={this.handleAdd} color="secondary" aria-label="Add" className={classes.fab} size="small">
-                         <AddIcon />
-                    </Fab> 
-                        
+                    <div className="checkDisplay">Add Your Inspection Details 
+                        <div>
+                            <Fab onClick={this.handleAdd} color="secondary" aria-label="Add" className={classes.fab} size="small">
+                                <AddIcon />
+                            </Fab> 
+                        </div>   
                     </div>
-                    <div>
-                        {!this.props.selectedInspector.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
-                            <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        
-                        Inspection Scheduled:
-                        { !this.props.selectedInspector.values.length ? <div>Not Yet</div> :
-                        <>
-                        {/* selected vendors are returned from DB with most recent entry in first position of array */}
-                        <p>Name: {this.props.selectedInspector.values[0].name}</p>
-                        <p>Date: <Moment format="MM/DD/YYYY">
-                            {this.props.selectedInspector.values[0].inspectionDate}
-                        </Moment></p> 
-                        </>}
 
-                    </div>
                     <div>
+                        <div className="checkDisplay">
+                            {!this.props.selectedInspector.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                                <CheckCircleOutline className={classes.icon} color="secondary" /> }
+                            
+                            Inspection Scheduled
+                        </div>
+
+                        <div className="buyerSelection">
+                            { !this.props.selectedInspector.values.length ? <div>Not Yet</div> :
+                                <ListItemText
+                                primary={<>Agent: {this.props.selectedInspector.values[0].name}</>}
+                                secondary={<>Start Date: <Moment format="MM/DD/YYYY">
+                                {this.props.selectedInspector.values[0].insuranceStartDate}
+                                </Moment></>}/>
+                            }
+                        </div>
+                    </div>
+                    <div className="checkDisplay">
                     {this.props.userJourney[5].completed ? <CheckCircleOutline className={classes.icon} color="secondary" /> : 
                             <PanoramaFishEye className={classes.icon} color="secondary"/> }
-                        Inspection Negotiated:
-                        <p>To be marked complete by Voila</p>
+                        Inspection Negotiated
                     </div>
+                    <ListItemText
+                            primary="To be marked complete by Voila"
+                            className="note"
+                        />
                 </div>
                 {this.state.open ? <AddInspection state={this.state} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
+                </div>
             </div>
         );
     }

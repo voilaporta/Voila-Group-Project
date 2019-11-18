@@ -9,11 +9,11 @@ const ComponentToUpdate = (props) => {
     let componentToShow;
 
     if(props.showRequest){
-        componentToShow = <RequestShowing/>
+        componentToShow = <RequestShowing buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showCriteria){
         componentToShow = <ChangeCriteria buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showOffer){
-        componentToShow = <MakeOffer/>
+        componentToShow = <MakeOffer buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     }
     return componentToShow;
 }

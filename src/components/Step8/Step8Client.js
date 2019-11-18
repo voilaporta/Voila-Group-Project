@@ -43,12 +43,14 @@ class Step8Client extends Component {
                     <div>
                         {!this.props.appraisal.values[0].requested ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        Appraisal Requested</div>
+                        Appraisal Requested
+                    </div>
 
                     <div>
                         {!this.props.appraisal.values[0].scheduled ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        Appraisal Scheculed</div>
+                        Appraisal Scheculed
+                    </div>
 
                     <div>
                         {!this.props.appraisal.values[0].completed ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 

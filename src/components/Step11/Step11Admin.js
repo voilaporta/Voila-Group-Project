@@ -1,75 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import AddClosing from './AddClosing';
+
 // MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {Grid, Button }from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import {Button, Grid, TextField }from '@material-ui/core';
 
-// material-ui-pickers
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
-
-// Moment JS
-import Moment from 'moment';
-const moment = Moment;
-
-const styles = theme => ({
+const styles = ({
     textField: {
         width: 250
     },
     buttonpadding: {
         marginBottom: 15
-    }
+    },
   });
 
 class Step11Admin extends Component {
 
     state = {
-        userStepId: this.props.userStepId,
-        location: '',
-        date: new Date(),
-        time: '',
-        toBring: ''
+        open: false
     }
 
-    // sets the state of date to selected date
-       handleDateChange = date => {
-            this.setState({
-                date: date
-            });
-        console.log('in HANDLE DATE CHANGE', this.state)
-        };
-    
-        handleChange= propertyName => (event) => {
-            this.setState({
-              [propertyName]: event.target.value,
-            });
-            console.log('in handleChange', this.state)
-         }
-    
-        // submits the data to post in the database
-        handleComplete = () => {
-            console.log('--in HANDLE COMPLETE --', this.state)
-            this.props.dispatch({
-                type: 'POST_CLOSING_DATA',
-                payload:{
-                    userStepId: this.props.userStepId,
-                    location: this.state.location,
-                    date: this.state.date = moment(this.state.date).format('MMM Do YYYY'),
-                    time: this.state.time,
-                    toBring: this.state.toBring
-                }
-            })
-            this.setState({
-                userStep_id: this.props.userStepId,
-                location: '',
-                date: new Date(),
-                time: '',
-                toBring: ''
-            });
-        } 
+    componentDidMount() {
+        this.getClosingDetails();
+    }
+
+    // sends dispatch to Saga to get walkthrough details
+    getClosingDetails = () => {
+        this.props.dispatch({
+            type: 'FETCH_CLOSING_DATA',
+            payload: this.props.userStepId
+        })
+        console.log(this.props.closing)
+    }
+
+    // opens the dialog to add final walkthrough details
+    handleAdd = () => {
+        this.setState({
+            open: true
+        })
+    }
+
+    // closes dialog
+    handleClose = () => {
+        this.setState({
+            open: false
+        })
+    }
 
     render() {
 
@@ -77,59 +56,31 @@ class Step11Admin extends Component {
 
         return (
             <div>
-                <TextField
-                    label="Location"
-                    value={this.state.location}
-                    onChange={this.handleChange('location')}
-                    margin="normal"
-                    InputLabelProps={{
-                        shrink: true,
-                        }}
-                    multiline
-                    rows="4"
-                    className={classes.textField}
-                    variant="outlined"
-                />
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid >
-                        <DatePicker
-                            label="Date picker"
-                            value={this.state.date}
-                            onChange={this.handleDateChange}
-                            format="MMM d yyyy"
-                        />
-                    </Grid>
-                </MuiPickersUtilsProvider>
-                <form className="step9Form" >
-                    <TextField
-                        label="Time"
-                        value={this.state.time}
-                        onChange={this.handleChange('time')}
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                          }}
-                    />
-                    <br />
-                    <TextField
-                        label="Things to Bring"
-                        multiline
-                        rows="4"
-                        value={this.state.toBring}
-                        onChange={this.handleChange('toBring')}
-                        className={classes.textField}
-                        margin="normal"
-                        variant="filled"
-                    />
-                </form>
-                <Button className={classes.buttonpadding} onClick={this.handleComplete} variant="outlined">Submit</Button>
+                {/* If no details have been added, show this versus the walkthrough details */}
+                {this.props.closing.length === 0 ?
+                <Grid>
+                    Please list location, date, time, and any items needed for Closing Day.
+                </Grid>
+                :
+                    <div>
+                        <TextField label="Location" value={this.props.closing[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
+                        <TextField label="Date" value={this.props.closing[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                        <TextField label="Time" value={this.props.closing[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                        <TextField label="Things to Bring" value={this.props.closing[0].toBring} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
+                    </div>
+                }
+                <br />
+                <Button className={classes.buttonpadding} onClick={this.handleAdd} variant="outlined">
+                    Add Closing Details  
+                </Button>
+                {this.state.open ? <AddClosing state={this.state} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-
+    closing: state.closing,
 });
 
 Step11Admin.propTypes = {

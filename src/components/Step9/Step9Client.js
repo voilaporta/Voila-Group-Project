@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
+const styles = ({
     textField: {
         width: 250
     },
@@ -29,22 +29,17 @@ class Step9Client extends Component {
 
     render() {
 
-        // map through the walkthrough details for specific user
-        const walkThroughList = this.props.walkThrough.map( (walk) => {
-            return (  
-                <>
-                    <TextField label="Location" value={walk.location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}} />
-                    <br />
-                    <TextField label="Date" value={walk.date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}} />
-                    <br/>
-                    <TextField label="Time" value={walk.time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}} />
-                </>
-            )
-        })
-
         return (
             <div>
-                {walkThroughList}
+                {this.props.walkThrough.length === 0 ?
+                    <h2>Your agent will list the closing details.</h2>
+                :
+                <div>
+                    <TextField label="Location" value={this.props.walkThrough[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
+                    <TextField label="Date" value={this.props.walkThrough[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                    <TextField label="Time" value={this.props.walkThrough[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                </div>
+                }
             </div>
         );
     }

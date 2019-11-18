@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 
 
 //Material UI
-import {Add as AddIcon, CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
+import {CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
 
@@ -44,7 +44,7 @@ class Step6Admin extends Component {
 
     displaySingleInspector = ()=>{
         //display the vendor's contact information
-        const inspectorToDisplay = this.props.vendorList.find((inspector)=> inspector.id === Number(this.state.inspectionId));
+        const inspectorToDisplay = this.props.inspectorList.values.find((inspector)=> inspector.id === Number(this.state.inspectionId));
         return <div>
                     <p>Name: {inspectorToDisplay.firstName} {inspectorToDisplay.lastName}</p>
                     <p>Company Name: {inspectorToDisplay.companyName}</p>
@@ -58,11 +58,11 @@ class Step6Admin extends Component {
 
         const { classes } = this.props;
 
-        if(this.props.vendorList[0].loading){
+        if(this.props.inspectorList.loading){
             return <div>...loading...</div>
         }
 
-        const inspectors = this.props.vendorList.map((inspector)=>{
+        const inspectors = this.props.inspectorList.values.map((inspector)=>{
             return <MenuItem 
                         key={inspector.id}
                         value={inspector.id}>{inspector.companyName}</MenuItem>
@@ -116,7 +116,7 @@ class Step6Admin extends Component {
 }
 
 const mapStateToProps = state => ({
-    vendorList: state.vendorList,
+    inspectorList: state.inspectorList,
     selectedInspector: state.selectedInspector,
     userJourney: state.userJourney,
 });

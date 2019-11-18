@@ -9,7 +9,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         const userStepId = req.params.id;
         const queryText = `SELECT *
                             FROM "closing"
-                            WHERE "userStep_id" = $1;`;
+                            WHERE "userStep_id" = $1 ORDER BY "date_time_created" DESC;`;
         pool.query(queryText,[userStepId])
         .then((result)=>{
             res.send(result.rows);

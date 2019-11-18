@@ -1,4 +1,4 @@
-const adminList = (state = [], action) => {
+const adminList = (state = [{loading:true}], action) => {
     switch (action.type) {
       case 'ADD_ADMIN':
         return action.payload

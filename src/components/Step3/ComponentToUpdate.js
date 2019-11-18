@@ -9,11 +9,11 @@ const ComponentToUpdate = (props) => {
     let componentToShow;
 
     if(props.showRequest){
-        componentToShow = <RequestShowing buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
+        componentToShow = <RequestShowing requestShowingToggle={props.requestShowingToggle} buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showCriteria){
-        componentToShow = <ChangeCriteria buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
+        componentToShow = <ChangeCriteria addCriteriaToggle={props.addCriteriaToggle} updateCriteriaToggle={props.updateCriteriaToggle} buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showOffer){
-        componentToShow = <MakeOffer buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
+        componentToShow = <MakeOffer makeOfferToggle={props.makeOfferToggle} buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     }
     return componentToShow;
 }

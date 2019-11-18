@@ -20,31 +20,31 @@ class Step3Client extends Component {
     this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id});
 }
 
-    addCriteria = () => {
+    addCriteriaToggle = () => {
         this.setState({
-            showCriteria: true,
-            showComponentToUpdate: true
+            showCriteria: !this.state.showCriteria,
+            showComponentToUpdate: !this.state.showComponentToUpdate
         })
     }
 
-    updateCriteria = () => {
+    updateCriteriaToggle = () => {
         this.setState({
-            showCriteria: true,
-            showComponentToUpdate: true
+            showCriteria: !this.state.showCriteria,
+            showComponentToUpdate: !this.state.showComponentToUpdate
         })
     }
 
-    requestShowing = () => {
+    requestShowingToggle = () => {
         this.setState({
-            showRequest: true,
-            showComponentToUpdate: true
+            showRequest: !this.state.showRequest,
+            showComponentToUpdate: !this.state.showComponentToUpdate
         })
     }
 
-    makeOffer = () => {
+    makeOfferToggle = () => {
         this.setState({
-            showOffer: true,
-            showComponentToUpdate: true
+            showOffer: !this.state.showOffer,
+            showComponentToUpdate: !this.state.showComponentToUpdate
         })
     }
 
@@ -54,7 +54,7 @@ class Step3Client extends Component {
         
         return (
             <div>
-                {this.state.showComponentToUpdate ? <ComponentToUpdate buyerFirstName={this.state.buyer_first_name} buyerLastName={this.state.buyer_last_name} showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
+                {this.state.showComponentToUpdate ? <ComponentToUpdate addCriteriaToggle={this.addCriteriaToggle} makeOfferToggle={this.makeOfferToggle} requestShowingToggle={this.requestShowingToggle} updateCriteriaToggle={this.updateCriteriaToggle} buyerFirstName={this.state.buyer_first_name} buyerLastName={this.state.buyer_last_name} showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <>
                  <div className="criteria">
                     Current Criteria:
@@ -71,8 +71,8 @@ class Step3Client extends Component {
                             <br/>
                             {criteria.notes}</p>
                         })}
-                        {this.props.criteria != '' ? <button onClick={this.updateCriteria}>Update Criteria</button> :  
-                    <button onClick={this.addCriteria}>Add Criteria</button>
+                        {this.props.criteria != '' ? <button onClick={this.updateCriteriaToggle}>Update Criteria</button> :  
+                    <button onClick={this.addCriteriaToggle}>Add Criteria</button>
                         }
                 </div>
             
@@ -92,9 +92,9 @@ class Step3Client extends Component {
                         </p>
                     }})} */}
 
-                    <button onClick={this.requestShowing}>Request a showing</button>
+                    <button onClick={this.requestShowingToggle}>Request a showing</button>
                 </div>
-                <button onClick={this.makeOffer}>Make Offer</button>
+                <button onClick={this.makeOfferToggle}>Make Offer</button>
                 </>
 
                 }

@@ -32,9 +32,10 @@ class Vendor extends Component {
     mapVendors = () => {
         let filteredVendors = this.props.vendorList.filter(
             (vendor) => {
-                return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1||
+                return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
               vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-              vendor.companyName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+              vendor.companyName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+              vendor.vendor_type_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
             }
         )
         return (

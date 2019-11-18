@@ -5,6 +5,8 @@ import axios from 'axios';
 class ChangeCriteria extends Component {
 
     state = {
+        buyer_first_name: this.props.buyerFirstName,
+        buyer_last_name: this.props.buyerLastName,
         user_step_id: this.props.userStepId.id,
         bedroom_count: '',
         bathroom_count: '',

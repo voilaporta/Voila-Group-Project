@@ -2,6 +2,7 @@ import React from 'react';
 import ChangeCriteria from './ChangeCriteria';
 import RequestShowing from './RequestShowing';
 import MakeOffer from './MakeOffer';
+ 
 
 const ComponentToUpdate = (props) => {
 
@@ -10,7 +11,7 @@ const ComponentToUpdate = (props) => {
     if(props.showRequest){
         componentToShow = <RequestShowing/>
     } else if (props.showCriteria){
-        componentToShow = <ChangeCriteria/>
+        componentToShow = <ChangeCriteria buyerFirstName={props.buyerFirstName} buyerLastName={props.buyerLastName}/>
     } else if (props.showOffer){
         componentToShow = <MakeOffer/>
     }

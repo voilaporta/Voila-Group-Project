@@ -25,13 +25,13 @@ const styles = {
 class UpdateVendor extends Component {
     
     state = {
-        firstName: '',
-        lastName: '',
-        companyName:'',
-        phoneNumber:'',
-        email: '',
-        website:'',
-        vendorTypeId: '',
+        firstName: this.props.vendor.firstName,
+        lastName: this.props.vendor.lastName,
+        companyName:this.props.vendor.companyName,
+        phoneNumber:this.props.vendor.phoneNumber,
+        email: this.props.vendor.email,
+        website:this.props.vendor.website,
+        vendorTypeId: this.props.vendor.vendor_id,
        id: this.props.vendorId
     }
 
@@ -60,7 +60,6 @@ handleChange = (event, keyname) => {
         console.log('hellooooo ',this.state);
         
         this.props.history.push('/')
-        if(this.state.firstName && this.state.lastName && this.state.companyName && this.state.phoneNumber && this.state.email&& this.state.vendorTypeId)
         this.props.dispatch({
             type: 'UPDATE_VENDOR',
             payload:  this.state

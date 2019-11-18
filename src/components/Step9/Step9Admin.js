@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import AddFinal from './AddFinal';
+
 // MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {Grid, Button }from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
-// material-ui-pickers
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
-
-import Moment from 'moment';
-
-const moment = Moment;
-
-const styles = theme => ({
+const styles = ({
     textField: {
         width: 250
     },
@@ -29,48 +23,36 @@ const styles = theme => ({
 
 class Step9Admin extends Component {
 
-    state = {
-        // The first commit of Material-UI
-        userStep_id: this.props.userStepId,
-        location: '',
-        date: new Date(),
-        time: '',
-      };
-    
-    // sets the state of date to selected date
-       handleDateChange = date => {
-        this.setState({
-            date: date
-        });
-    console.log('in HANDLE DATE CHANGE', this.state)
-    };
+        state = {
+            open: false,
+        }
 
-    handleChange= propertyName => (event) => {
-        this.setState({
-          [propertyName]: event.target.value,
-        });
-        console.log('in handleChange', this.state)
-     }
+      componentDidMount() {
+        this.getWalkThrough();
+    }
 
-    // submits the data to post in the database
-      handleComplete = () => {
-        console.log('--in HANDLE COMPLETE --', this.state)
+    // sends dispatch to Saga to get walkthrough details
+    getWalkThrough = () => {
         this.props.dispatch({
-            type: 'POST_FINAL_WALKTHROUGH',
-            payload:{
-                userStep_id: this.props.userStepId,
-                location: this.state.location,
-                date: this.state.date = moment(this.state.date).format('MMM Do YYYY'),
-                time: this.state.time,
-            }
+            type: 'GET_FINAL_WALKTHROUGH',
+            payload: this.props.userStepId
         })
+        console.log(this.props.walkThrough)
+    }
+
+    // opens the dialog to add final walkthrough details
+    handleAdd = () => {
         this.setState({
-            userStep_id: this.props.userStepId,
-            location: '',
-            date: new Date(),
-            time: '',
-        });
-    } 
+            open: true
+        })
+    }
+
+    // closes dialog
+    handleClose = () => {
+        this.setState({
+            open: false
+        })
+    }
 
     render() {
 
@@ -78,42 +60,23 @@ class Step9Admin extends Component {
 
         return (
             <div>
-                <TextField
-                    label="Location"
-                    value={this.state.location}
-                    onChange={this.handleChange('location')}
-                    margin="normal"
-                    InputLabelProps={{
-                        shrink: true,
-                        }}
-                    className={classes.textField}
-                    multiline
-                    rows="4"
-                    variant="outlined"
-                />
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                {/* If no details have been added, show this versus the walkthrough details */}
+                {this.props.walkThrough.length === 0 ?
                     <Grid>
-                        <DatePicker
-                            label="Date picker"
-                            value={this.state.date}
-                            onChange={this.handleDateChange}
-                            format="MMM d yyyy"
-                            align="center"
-                        />
+                        Please list location, date, and time for the final walkthrough.
                     </Grid>
-                </MuiPickersUtilsProvider>
-                <form className={classes.formpadding}>
-                    <TextField
-                        label="Time"
-                        value={this.state.time}
-                        onChange={this.handleChange('time')}
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                          }}
-                    />
-                </form>
-                <Button className={classes.buttonpadding} onClick={this.handleComplete} variant="outlined">Submit</Button>
+                :
+                    <div>
+                        <TextField label="Location" value={this.props.walkThrough[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
+                        <TextField label="Date" value={this.props.walkThrough[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                        <TextField label="Time" value={this.props.walkThrough[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
+                    </div>
+                }
+                <br />
+                <Button className={classes.buttonpadding} onClick={this.handleAdd} variant="outlined">
+                    Add Walkthrough  
+                </Button>
+                {this.state.open ? <AddFinal state={this.state} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
             </div>
         );
     }

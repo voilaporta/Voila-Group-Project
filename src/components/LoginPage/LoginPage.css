@@ -20,3 +20,13 @@ input{
     border: 1px solid black
    
 } 
+
+ .loginform {
+    background-color: white;
+    width: 30%;
+    height: 250px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 2px ;
+
+} 

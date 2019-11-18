@@ -9,7 +9,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         const userStepId = req.params.id;
         const queryText = `SELECT *
                             FROM "finalWalkThrough"
-                            WHERE "userStep_id" = $1;`;
+                            WHERE "userStep_id" = $1 ORDER BY "date_time_created" DESC;`;
         console.log(userStepId)
         pool.query(queryText,[userStepId])
         .then((result)=>{

@@ -44,7 +44,13 @@ class Step9Client extends Component {
 
         return (
             <div>
-                {walkThroughList}
+                {this.props.walkThrough.length === 0 ?
+                    <h2>Your agent will list the closing details.</h2>
+                :
+                <div>
+                    {walkThroughList}
+                </div>
+                }
             </div>
         );
     }

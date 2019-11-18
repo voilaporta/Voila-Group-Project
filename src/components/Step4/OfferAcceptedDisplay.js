@@ -1,20 +1,20 @@
 import React from 'react';
 import homePlaceholder from './HomePlaceholder.png';
-import { Typography, Image} from '@material-ui/core';
+import { Typography} from '@material-ui/core';
 
 const styles = {
     root: {
-        margin: 'auto'
+        margin: 'auto',
     },
     img: {
         width: '45%'
-    }
+    },
 }
 
 export default function OfferAcceptedDisplay(props) {
     return(
         <div style={styles.root}>
-            <Typography variant="h5">Congrats! Your offer of {props.offer.price} with a downpayment of {props.offer.downPayment} was accepted!</Typography>
+            <h1>Congrats! Your offer of {props.offer.price} with a downpayment of {props.offer.downPayment} was accepted!</h1>
             <br/>
             <img style= {styles.img} src={homePlaceholder} alt='home icon' />
             <br/>

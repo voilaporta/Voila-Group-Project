@@ -10,6 +10,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         const queryText = `SELECT *
                             FROM "finalWalkThrough"
                             WHERE "userStep_id" = $1;`;
+        console.log(userStepId)
         pool.query(queryText,[userStepId])
         .then((result)=>{
             res.send(result.rows);

@@ -3,8 +3,23 @@ import { connect } from 'react-redux';
 import AdminItem from './AdminItem'
 import { List, ListItem } from '@material-ui/core';
 
+import SearchIcon from '@material-ui/icons/Search';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+const styles = theme => ({
+    margin: {
+        margin: theme.spacing(1),
+    },
+});
 class Admin extends Component {
-
+    state = {
+        search: '',
+    }
+    updateSearch = (event) => {
+        this.setState({ search: event.target.value.substr(0, 20) })
+    }
     componentDidMount() {
         // use component did mount to dispatch an action to request the vendor list from the API
         this.getAdmin();
@@ -17,14 +32,25 @@ class Admin extends Component {
 
 
     mapAdmins = () => {
+        let filteredAdmins = this.props.adminList.filter(
+            (admin) => {
+                return admin.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                    admin.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+            }
+        );
         return (
-            this.props.adminList.map(admin =>
+            filteredAdmins.map(admin =>
                 <ListItem key={admin.id}>
                     <AdminItem admin={admin} getAdmin={this.getAdmin} />
                 </ListItem>)
         )
     }
     render() {
+        if(this.props.adminList[0].loading){
+            return(
+            <div>loading....... </div>
+            )
+        }
         return (
             // <div>
             //     <table>
@@ -48,6 +74,23 @@ class Admin extends Component {
             //     </table>
             // </div>
             <div>
+                <div  >
+
+                    <TextField
+                        label="Search Admins"
+                        value={this.state.search}
+                        onChange={this.updateSearch.bind(this)}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="end">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+
+
+                </div>
                 <List>
                     {this.mapAdmins()}
                 </List>
@@ -65,5 +108,5 @@ const mapStateToProps = state => ({
     adminList: state.adminList
 });
 
-export default connect(mapStateToProps)(Admin);
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps)(Admin));
 

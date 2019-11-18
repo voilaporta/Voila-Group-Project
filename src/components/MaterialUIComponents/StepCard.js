@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardHeader, CardContent, Avatar, IconButton, Collapse, Typography, CardActions, Button } from '@material-ui/core';
+import { Card, CardHeader, CardContent, Avatar, IconButton, Divider, Collapse, Typography, CardActions, Button } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckIcon from '@material-ui/icons/Check';
 import MoreInfoPopover from './MoreInfoPopover';
@@ -44,7 +44,6 @@ const styles = {
     cardHeader: {
         textAlign: 'center',
         fontSize: '18pt',
-        fontWeight: 10
     },
     avatarCompleted: {
         color: '#81c784',
@@ -58,6 +57,11 @@ const styles = {
     },
     uncompleted: {
         backgroundColor: 'black'
+    },
+    avatarUncompleted: {
+        backgroundColor: '#af1419',
+        // color: '#000',
+        // fontWeight: 'bold'
     }
 };
 
@@ -161,7 +165,7 @@ class StepCard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                         style={this.state.completed ? styles.completed : null}
-                        avatar={this.state.completed ? <Avatar style={styles.avatarCompleted}><CheckIcon /></Avatar> : <Avatar>{this.props.step.order}</Avatar>}
+                        avatar={this.state.completed ? <Avatar style={styles.avatarCompleted}><CheckIcon /></Avatar> : <Avatar style={styles.avatarUncompleted}>{this.props.step.order}</Avatar>}
                         title={<Typography style={styles.cardHeader}>{this.props.step.name}</Typography>}
                         action={<MoreInfoPopover content={this.props.step.description}/>}
                     />
@@ -182,12 +186,17 @@ class StepCard extends Component {
                             {this.props.user.role_id === 3 
                                 ? ''
                                 : 
-                                <Button 
-                                    variant="outlined"
-                                    style={this.state.completed ? styles.completed : null}
-                                    onClick={this.handleComplete}>
-                                        Complete
+                                <>
+                                    <br/>
+                                    <Divider variant="middle"/>
+                                    <br/>
+                                    <Button 
+                                        variant="outlined"
+                                        style={this.state.completed ? styles.completed : null}
+                                        onClick={this.handleComplete}>
+                                            Complete
                                     </Button>
+                                </>
                             }
                         </CardContent>
                     </Collapse>

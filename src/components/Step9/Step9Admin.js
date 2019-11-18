@@ -16,18 +16,15 @@ const styles = ({
     buttonpadding: {
         marginBottom: 15
     },
-    formpadding: {
-        marginBottom: 15
-    }
   });
 
 class Step9Admin extends Component {
 
-        state = {
-            open: false,
-        }
+    state = {
+        open: false,
+    }
 
-      componentDidMount() {
+    componentDidMount() {
         this.getWalkThrough();
     }
 

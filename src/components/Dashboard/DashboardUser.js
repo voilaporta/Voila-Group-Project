@@ -47,7 +47,7 @@ class DashboardUser extends Component {
         this.props.dispatch({ type: 'GET_JOURNEY'})
         setTimeout(() => {
             this.getStatusPercentage()
-        }, 200);
+        }, 1000);
     }
 
     getStatusPercentage = () => {

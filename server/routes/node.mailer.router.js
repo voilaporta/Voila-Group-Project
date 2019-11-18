@@ -6,6 +6,8 @@ require('dotenv').config();
 
 router.post('/', (req, res) => {
 
+    const firstName = req.body.buyer_first_name;
+    const lastName = req.body.buyer_last_name;
     const rooms = req.body.bedroom_count;
     const bath = req.body.bathroom_count;
     const sf = req.body.square_feet;
@@ -23,7 +25,7 @@ router.post('/', (req, res) => {
     let mailOptions = {
         from: 'voilatest4@gmail.com',
         to: 'ryanjmccartan@gmail.com',
-        subject: 'User has added new criteria',
+        subject: `${firstName} ${lastName} has added new criteria`,
         text: `Bedroom count: ${rooms}
             Bathroom count: ${bath}
             Square feet: ${sf}

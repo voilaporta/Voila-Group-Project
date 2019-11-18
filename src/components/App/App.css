@@ -47,3 +47,8 @@ body {
 .my-swal {
   z-index: X;
 }
+
+h1 {
+  font-size: 16pt;
+  font-weight: normal;
+}

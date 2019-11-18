@@ -42,7 +42,13 @@ class Step11Client extends Component {
         return (
             <div>
                 {/* <p>{JSON.stringify(this.props.closing)}</p> */}
-                {closingDetails}
+                {this.props.closing.length === 0 ?
+                    <h2>Your agent will list the closing details.</h2>
+                :
+                <div>
+                    {closingDetails}
+                </div>
+                }
             </div>
         );
     }

@@ -5,6 +5,8 @@ import ComponentToUpdate from './ComponentToUpdate';
 class Step3Client extends Component {
 
     state = {
+        buyer_first_name: this.props.buyerFirstName,
+        buyer_last_name: this.props.buyerLastName,
         user_step_id: this.props.userStepId,
         showComponentToUpdate: false,
         showCriteria: false,
@@ -15,7 +17,7 @@ class Step3Client extends Component {
    componentDidMount = () => {
     this.props.dispatch({type: 'GET_JOURNEY'});
     this.props.dispatch({type: 'GET_CRITERIA', payload: this.state.user_step_id});
-    this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id})
+    this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id});
 }
 
     addCriteria = () => {
@@ -52,7 +54,7 @@ class Step3Client extends Component {
         
         return (
             <div>
-                {this.state.showComponentToUpdate ? <ComponentToUpdate buyerName={this.props.buyerName} showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
+                {this.state.showComponentToUpdate ? <ComponentToUpdate buyerFirstName={this.state.buyer_first_name} buyerLastName={this.state.buyer_last_name} showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <>
                  <div className="criteria">
                     Current Criteria:

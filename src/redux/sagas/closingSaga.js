@@ -13,7 +13,7 @@ function* fetchClosingData(action) {
 function* postClosingData(action) {
     try {
         yield axios.post(`/api/step11/`, action.payload);
-        yield fetchClosingData(action);
+        yield put({ type: 'FETCH_CLOSING_DATA', payload: action.payload.userStepId})
     } catch (error) {
         console.log('Error posting CLOSING DATA --:', error);
     }

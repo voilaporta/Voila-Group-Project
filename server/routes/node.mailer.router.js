@@ -6,7 +6,8 @@ require('dotenv').config();
 
 router.post('/criteria', (req, res) => {
 
-    const name = req.body.buyer_name;
+    const firstName = req.body.buyer_first_name;
+    const lastName = req.body.buyer_last_name;
     const rooms = req.body.bedroom_count;
     const bath = req.body.bathroom_count;
     const sf = req.body.square_feet;
@@ -24,8 +25,9 @@ router.post('/criteria', (req, res) => {
     let mailOptions = {
         from: 'voilatest4@gmail.com',
         to: 'voilatest4@gmail.com',
-        subject: `${name} has added new criteria`,
-        text: `Bedroom count: ${rooms}
+        subject: `${firstName} ${lastName} has added new criteria`,
+        text: `
+            Bedroom count: ${rooms}
             Bathroom count: ${bath}
             Square feet: ${sf}
             Location: ${location}
@@ -45,6 +47,8 @@ router.post('/criteria', (req, res) => {
 
 router.post('/showing', (req, res) => {
 
+    const firstName = req.body.buyer_first_name;
+    const lastName = req.body.buyer_last_name;
     const address = req.body.address;
     const mlsNumber = req.body.mls_number;
 
@@ -59,8 +63,9 @@ router.post('/showing', (req, res) => {
     let mailOptions = {
         from: 'voilatest4@gmail.com',
         to: 'voilatest4@gmail.com',
-        subject: 'User has requested a showing',
-        text: `Address: ${address}
+        subject: `${firstName} ${lastName} has requested a showing`,
+        text: `
+            Address: ${address}
             MLS Number: ${mlsNumber}`
     };
     
@@ -77,7 +82,8 @@ router.post('/showing', (req, res) => {
 
 router.post('/offer', (req, res) => {
 
-    const name = req.body.name;
+    const firstName = req.body.buyer_first_name;
+    const lastName = req.body.buyer_last_name;
     const address = req.body.address;
     const price = req.body.price;
     const closingDate = req.body.closing_date;
@@ -97,8 +103,9 @@ router.post('/offer', (req, res) => {
     let mailOptions = {
         from: 'voilatest4@gmail.com',
         to: 'voilatest4@gmail.com',
-        subject: 'User has made an offer',
-        text: `Name: ${name}
+        subject: `${firstName} ${lastName} has made an offer`,
+        text: `
+            Name: ${firstName}
             Address: ${address}
             Price: ${price}
             Closing Date: ${closingDate}

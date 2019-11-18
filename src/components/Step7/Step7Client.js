@@ -53,7 +53,7 @@ class Step7Client extends Component {
 
     displaySingleInsurance = ()=>{
         //display the vendor's contact information
-        const insuranceToDisplay = this.props.vendorList.find((insurance)=> insurance.id === Number(this.state.insuranceId));
+        const insuranceToDisplay = this.props.insuranceList.values.find((insurance)=> insurance.id === Number(this.state.insuranceId));
         return <div>
                     <p>Name: {insuranceToDisplay.firstName} {insuranceToDisplay.lastName}</p>
                     <p>Company Name: {insuranceToDisplay.companyName}</p>
@@ -71,12 +71,12 @@ class Step7Client extends Component {
     render() {
         const { classes } = this.props;
         //if vendorList has not yet loaded, display page loading
-        if(this.props.vendorList[0].loading){
+        if(this.props.insuranceList.loading){
             return <div>...loading...</div>
         }
         //loop through inspection vendors from redux store (vendorList)
         //to display each individual vendor name in select
-        const insurance = this.props.vendorList.map((insurance)=>{
+        const insurance = this.props.insuranceList.values.map((insurance)=>{
             return <MenuItem 
                         key={insurance.id}
                         value={insurance.id}>{insurance.companyName}</MenuItem>
@@ -129,7 +129,7 @@ class Step7Client extends Component {
 }
 
 const mapStateToProps = state => ({
-    vendorList: state.vendorList,
+    insuranceList: state.insuranceList,
     selectedInsurance: state.selectedInsurance,
     userJourney: state.userJourney,
 });

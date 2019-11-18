@@ -25,6 +25,7 @@ class RequestShowing extends Component {
     makeRequest = () => {
         this.props.dispatch({type: 'POST_SHOWING', payload: this.state});
         this.props.dispatch({type: 'EMAIL_SHOWING', payload: this.state});
+        this.props.requestShowingToggle();
     }
 
     render() {

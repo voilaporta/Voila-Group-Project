@@ -26,24 +26,6 @@ class Client extends Component {
 
         return (
             <div>
-                {/* <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>DropBox Url</th>
-                            <th>Agent</th>
-                            <th>Update</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.state.clientList.map((client) => {
-                            return (
-                                <ClientItem key={client.id} client={client} getClients={this.getClients}  clientId={client.id}/>
-                            )
-                        })}
-                    </tbody>
-                </table> */}
                 <List>
                     {this.mapClients()}
                 </List>

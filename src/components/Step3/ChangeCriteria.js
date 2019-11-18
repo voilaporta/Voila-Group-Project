@@ -21,15 +21,7 @@ class ChangeCriteria extends Component {
 
     addCriteria = () => {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state});
-        axios({
-            method: 'POST',
-            url: '/nodemailer',
-            data: this.state
-        }).then(response => {
-            console.log('message sent', response);
-        }).catch(error => {
-            console.log('error with sending message', error);
-        });
+        this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
     }
 
     updateCriteria = () => {

@@ -17,7 +17,7 @@ import offerMade from './offerMadeReducer';
 import selectedInsurance from './selectedInsurance';
 import walkThrough from './walkthroughReducer';
 import closing from './closingReducer';
-import appraisal from './apprailalReducer';
+import appraisal from './appraisalReducer';
 import title from './titleReducer';
 
 // rootReducer is the primary reducer for our entire project

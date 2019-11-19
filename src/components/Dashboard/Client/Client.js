@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ClientItem from './ClientItem'
+
+//material-ui imports
 import { List, ListItem } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
@@ -32,9 +34,9 @@ class Client extends Component {
     mapClients = () => {
         let filteredContacts = this.props.clientList.filter(
             (client) => {
-                return client.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1||
-              client.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-              client.agent.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                return client.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                    client.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                    client.agent.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
             }
         );
         return (
@@ -46,15 +48,15 @@ class Client extends Component {
     }
 
     render() {
-        if(this.props.clientList[0].loading){
-            return(
-            <div>loading....... </div>
+        if (this.props.clientList[0].loading) {
+            return (
+                <div>loading....... </div>
             )
         }
 
         return (
             <div>
-    
+
                 <div  >
 
                     <TextField
@@ -70,9 +72,8 @@ class Client extends Component {
                         }}
                     />
 
-
                 </div>
-    
+
                 <List>
                     {this.mapClients()}
                 </List>

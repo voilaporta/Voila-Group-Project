@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import Swal from 'sweetalert2'
+
+//material-ui imports
 import { withStyles } from '@material-ui/core/styles';
 import {
     TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
     InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch
 } from '@material-ui/core';
-import Swal from 'sweetalert2'
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';

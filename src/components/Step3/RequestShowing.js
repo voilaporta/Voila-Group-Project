@@ -28,6 +28,10 @@ class RequestShowing extends Component {
         this.props.requestShowingToggle();
     }
 
+    cancel = () => {
+        this.props.requestShowingToggle();
+    }
+
     render() {
         return( 
             <div className="requestShowing">

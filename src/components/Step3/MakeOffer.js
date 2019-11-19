@@ -31,6 +31,10 @@ class MakeOffer extends Component {
         })
     }
 
+    cancel = () => {
+        this.props.makeOfferToggle();
+    }
+
     render() {
         return( 
             <div className="makeOffer">

@@ -139,7 +139,7 @@ class Step7Client extends Component {
                     </div>
                 </div>
 
-                {this.state.open ? <AddInsurance userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
+                {this.state.open ? <AddInsurance userStepId ={this.props.userStepId} open={this.state.open} handleClose={this.handleClose} /> : <div></div>}
                 </div>
             </div>
         );

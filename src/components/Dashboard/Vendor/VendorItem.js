@@ -60,7 +60,7 @@ class VendorItem extends Component {
                 />
                 <ListItemSecondaryAction>
                     <IconButton edge="end" color="secondary" aria-label="edit" onClick={this.updateVendor}>
-                        <EditIcon onClick={() => { this.updateVendor(this.props.vendor.id) }} />
+                        <EditIcon />
                     </IconButton>
                 </ListItemSecondaryAction>
                 {this.state.open ? 

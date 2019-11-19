@@ -59,7 +59,6 @@ class UpdateAdmin extends Component {
 
     handleSubmit = () => {
         this.props.history.push('/')
-        console.log('SUBMITTED:', this.state);
         this.props.dispatch({ type: 'UPDATE_ADMIN', payload: this.state })
         Swal.fire(
             'Success!',

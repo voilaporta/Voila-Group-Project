@@ -39,8 +39,8 @@ class UpdateVendor extends Component {
         phoneNumber: this.props.vendor.phoneNumber,
         email: this.props.vendor.email,
         website: this.props.vendor.website,
-        vendorTypeId: this.props.vendor.vendor_id,
-        id: this.props.vendorId
+        vendorTypeId: '',
+        id: this.props.vendor.id
     }
 
     componentDidMount = () => {
@@ -184,7 +184,7 @@ class UpdateVendor extends Component {
                                 onChange={(event) => { this.handleChange(event, 'vendorTypeId') }}
                                 value={this.state.vendorTypeId}
                             >
-                                <MenuItem value={''}>--Select An Vendor Type--</MenuItem>
+                                <MenuItem value={''}>--Select Vendor Type--</MenuItem>
                                 {vendorType}
                             </Select>
                         </FormControl>

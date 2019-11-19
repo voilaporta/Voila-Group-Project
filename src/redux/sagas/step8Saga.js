@@ -62,6 +62,16 @@ function* updateTitleOrdered(action){
     }
 }
 
+function* updateAppraisalDate(action){
+    try{
+        yield axios.put(`/api/step8/appraisal/date`, action.payload);
+        yield put ({ type:'GET_APPRAISAL', payload: action.payload.user_step_id})
+    }catch (error){
+        console.log('error getting user title data', error);
+    
+    }
+}
+
 function* step8Saga() {
     yield takeLatest('GET_APPRAISAL', getAppraisal);
     yield takeLatest('GET_TITLE', getTitle);
@@ -69,6 +79,7 @@ function* step8Saga() {
     yield takeLatest('UPDATE_APPRAISAL_SCHEDULED', updateAppraisalScheduled);
     yield takeLatest('UPDATE_APPRAISAL_COMPLETED', updateAppraisalCompleted);
     yield takeLatest('UPDATE_TITLE_ORDERED', updateTitleOrdered);
+    yield takeLatest('UPDATE_APPRAISAL_DATE', updateAppraisalDate);
 }
 
 export default step8Saga;

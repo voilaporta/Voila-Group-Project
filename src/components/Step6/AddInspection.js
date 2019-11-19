@@ -78,7 +78,6 @@ class AddInspector extends Component {
                         placeholder="Inspection Date"
                         value={this.state.date}
                         onChange={(event) => { this.handleChange(event, 'date') }}
-                        autoFocus
                         margin="dense"
                         type="text"
                         fullWidth

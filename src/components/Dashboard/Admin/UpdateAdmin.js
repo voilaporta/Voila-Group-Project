@@ -35,7 +35,7 @@ class UpdateAdmin extends Component {
         lastName: this.props.admin.lastName,
         email: this.props.admin.email,
         adminType: this.props.admin.role_id,
-        id: this.props.adminId
+        id: this.props.admin.id
     }
 
     componentDidMount = () => {
@@ -50,8 +50,6 @@ class UpdateAdmin extends Component {
         this.props.dispatch({ type: 'GET_ADMIN_TYPE' })
     }
 
-
-
     handleChange = (event, keyname) => {
         this.setState({
             ...this.state,
@@ -61,6 +59,7 @@ class UpdateAdmin extends Component {
 
     handleSubmit = () => {
         this.props.history.push('/')
+        console.log('SUBMITTED:', this.state);
         this.props.dispatch({ type: 'UPDATE_ADMIN', payload: this.state })
         Swal.fire(
             'Success!',

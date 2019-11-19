@@ -45,12 +45,12 @@ class VendorItem extends Component {
                     secondary={
                         <>
                             {fullName}
+                            <br/>
+                            {this.props.vendor.vendor_type_name}
                             <br />
                             {this.props.vendor.phoneNumber}
-                            <br />
+                            <br/>
                             {this.props.vendor.email}
-                            <br />
-                            {this.props.vendor.vendor_type_name}
                         </>
                     }
                 />

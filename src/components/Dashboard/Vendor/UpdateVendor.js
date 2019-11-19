@@ -104,13 +104,13 @@ class UpdateVendor extends Component {
         return (
             <div style={styles.formContainer}>
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
                         <DialogTitle id="form-dialog-title" >Update Vendor</DialogTitle>
-                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
                             <CancelIcon fontSize="large" color="secondary" />
                         </IconButton>
                     </DialogContent>

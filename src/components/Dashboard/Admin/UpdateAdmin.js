@@ -68,13 +68,27 @@ class UpdateAdmin extends Component {
     }
 
     handleDelete = () => {
-        this.props.history.push('/')
-        this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id });
-        Swal.fire(
-            'Success!',
-            'Admin has been deleted!',
-            'success'
-        )
+        Swal.fire({
+            title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            style: styles.swalDelete,
+        })
+            .then((result) => {
+                if (result.value) {
+                    this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id });
+                    setTimeout(() => {
+                        Swal.fire(
+                            "Deleted",
+                            "This admibn has been deleted.",
+                            "success",
+                        );
+                    }, 100);
+
+                }
+            });
+        this.props.handleClose();
     }
 
     render() {

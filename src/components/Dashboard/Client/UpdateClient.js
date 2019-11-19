@@ -22,6 +22,10 @@ const styles = theme => ({
         top: theme.spacing(1),
 
     },
+    swalDelete: {
+        position: 'relative',
+        zIndex: 10000,
+    }
 });
 
 class UpdateClient extends Component {
@@ -75,9 +79,27 @@ class UpdateClient extends Component {
     }
 
     handleDelete = () => {
-        
-        this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
+        Swal.fire({
+            title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            style: styles.swalDelete,
+        })
+            .then((result) => {
+                if (result.value) {
+                    this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
+                    setTimeout(() => {
+                        Swal.fire(
+                            "Deleted",
+                            "This client has been deleted.",
+                            "success",
+                        );
+                    }, 100);
 
+                }
+            });
+        this.props.handleClose();
     }
 
     render() {
@@ -156,7 +178,7 @@ class UpdateClient extends Component {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="outlined" onClick={this.props.handleDelete} color="secondary">
+                        <Button variant="outlined" onClick={this.handleDelete} color="secondary">
                             Delete
                         </Button>
                         <Button variant="contained" onClick={this.handleSubmit} color="secondary">

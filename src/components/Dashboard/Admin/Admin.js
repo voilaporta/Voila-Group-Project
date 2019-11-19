@@ -52,30 +52,9 @@ class Admin extends Component {
             )
         }
         return (
-            // <div>
-            //     <table>
-            //         <thead>
-            //             <tr>
-            //                 <th>First Name</th>
-            //                 <th>Last Name</th>
-            //                 <th>Email </th>
-            //                 {/* <th>Role</th> */}
-            //                 <th>Update</th>
-            //             </tr>
-            //         </thead>
-            //         <tbody>
-            //             {/*mapping through the adminList reducer to grab the admin's information */}
-            //             {this.props.state.adminList.map((admin) => {
-            //                 return (
-            //                     <AdminItem key={admin.id} admin={admin} getAdmin={this.getAdmin} adminId={admin.id} />
-            //                 )
-            //             })}
-            //         </tbody>
-            //     </table>
-            // </div>
+
             <div>
                 <div  >
-
                     <TextField
                         label="Search Admins"
                         value={this.state.search}

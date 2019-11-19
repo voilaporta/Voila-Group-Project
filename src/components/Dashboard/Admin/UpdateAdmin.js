@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField, Select, FormControl, InputLabel, MenuItem, Button, FormGroup, FormControlLabel, Switch, } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
+
+import Swal from 'sweetalert2'
+
+//material-ui imports
+import { TextField, Select, FormControl, InputLabel, MenuItem, Button } from '@material-ui/core';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Swal from 'sweetalert2'
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,7 +27,7 @@ const styles = theme => ({
         position: 'absolute',
         right: theme.spacing(1),
         top: theme.spacing(1),
-   
+
     },
 })
 
@@ -108,7 +111,7 @@ class UpdateAdmin extends Component {
                 >
                     <DialogContent dividers>
                         <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
-                            <CancelIcon  fontSize="large" color="secondary" />
+                            <CancelIcon fontSize="large" color="secondary" />
                         </IconButton>
                         <DialogTitle id="form-dialog-title" >Update Admin</DialogTitle>
 

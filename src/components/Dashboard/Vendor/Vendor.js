@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import VendorItem from './VendorItem';
+
+//material-ui imports
 import { List, ListItem } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-const styles = theme => ({
-    margin: {
-        margin: theme.spacing(1),
-    },
-});
+
 class Vendor extends Component {
     state = {
         search: '',
@@ -29,13 +25,14 @@ class Vendor extends Component {
         this.props.dispatch({ type: 'FETCH_VENDOR' })
     }
 
+
     mapVendors = () => {
         let filteredVendors = this.props.vendorList.filter(
             (vendor) => {
                 return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-              vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-              vendor.companyName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-              vendor.vendor_type_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                    vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                    vendor.companyName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                    vendor.vendor_type_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
             }
         )
         return (
@@ -46,14 +43,14 @@ class Vendor extends Component {
         )
     }
     render() {
-        if(this.props.vendorList[0].loading){
-            return(
-            <div>loading....... </div>
+        if (this.props.vendorList[0].loading) {
+            return (
+                <div>loading....... </div>
             )
         }
         return (
             <div>
-       
+
                 <TextField
                     label="Search Vendors"
                     value={this.state.search}

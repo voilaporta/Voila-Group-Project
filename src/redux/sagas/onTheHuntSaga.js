@@ -34,6 +34,7 @@ function* postShowing(action) {
     try{
         yield axios.post('/api/step3/showing/', action.payload);
         console.log('posting showing request', action.payload);
+        yield put({type: 'GET_SHOWING', payload: action.payload.user_step_id});
     }catch (error) {
         console.log('error with posting showing request', error)
     }

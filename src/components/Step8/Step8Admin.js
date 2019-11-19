@@ -43,15 +43,20 @@ class Step8Admin extends Component {
                             value: !this.props.appraisal.values[0].scheduled}});
                 break;
             case 'complete':
-                    this.props.dispatch({type: 'UPDATE_APPRAISAL_COMPLETED', 
-                        payload: {user_step_id: this.props.userStepId, 
-                                value: !this.props.appraisal.values[0].completed}});
-                    break;
+                this.props.dispatch({type: 'UPDATE_APPRAISAL_COMPLETED', 
+                    payload: {user_step_id: this.props.userStepId, 
+                            value: !this.props.appraisal.values[0].completed}});
+                break;
             case 'titleOrdered':
-                    this.props.dispatch({type: 'UPDATE_TITLE_ORDERED', 
-                        payload: {user_step_id: this.props.userStepId, 
-                                value: !this.props.title.values[0].ordered}});
-                    break;
+                this.props.dispatch({type: 'UPDATE_TITLE_ORDERED', 
+                    payload: {user_step_id: this.props.userStepId, 
+                            value: !this.props.title.values[0].ordered}});
+                break;
+            case 'titleCompleted':
+                this.props.dispatch({type: 'UPDATE_TITLE_COMPLETED', 
+                    payload: {user_step_id: this.props.userStepId, 
+                            value: !this.props.title.values[0].completed}});
+                break;
             default:
                 console.log('error changing the status of:', type)
         }
@@ -122,12 +127,14 @@ class Step8Admin extends Component {
                     <div role="button" onClick={()=>{this.toggleTrue('titleOrdered')}} className="checkDisplay">
                         {!this.props.title.values[0].ordered ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        Title Ordered</div>
+                        Title Ordered
+                    </div>
 
-                    <div className="checkDisplay">
-                    {this.props.userJourney[7].completed ? <CheckCircleOutline className={classes.icon} color="secondary" /> : 
+                    <div role="button" onClick={()=>{this.toggleTrue('titleCompleted')}} className="checkDisplay">
+                        {this.props.title.values[0].completed ? <CheckCircleOutline className={classes.icon} color="secondary" /> : 
                             <PanoramaFishEye className={classes.icon} color="secondary"/> }
-                    Title Completed</div>
+                        Title Completed
+                    </div>
                 </div>
 
                 <Button variant="outlined" onClick={this.handleClickOpen}>

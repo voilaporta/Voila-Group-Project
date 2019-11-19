@@ -147,7 +147,7 @@ class Step6Client extends Component {
                             className="note"
                         />
                 </div>
-                {this.state.open ? <AddInspection state={this.state} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
+                {this.state.open ? <AddInspection open={this.state.open} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
                 </div>
             </div>
         );

@@ -33,17 +33,19 @@ class Step4Admin extends Component {
             title: "Are you sure you want to delete this?",
             text: "This action cannot be undone",
             icon: "warning",
+            confirmButtonColor: '#af1419',
             showCancelButton: true,
         })
             .then((result) => {
                 if (result.value) {
                     this.props.dispatch({ type: 'DELETE_ACCEPTED_OFFER', payload: { userStepId: this.props.userStepId, id: id}})
                     setTimeout(() => {
-                        swal.fire(
-                            "Deleted",
-                            "This accepted offer has been deleted.",
-                            "success",
-                        );
+                        swal.fire({
+                            title: "Deleted",
+                            text: "This accepted offer has been deleted.",
+                            confirmButtonColor: '#af1419',
+                            icon: "success",
+                        });
                     }, 100);
 
                 }

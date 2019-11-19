@@ -38,7 +38,13 @@ class AddInsurance extends Component {
         
         if(this.state.name === '' || this.state.date === ''){
             return ( 
-            Swal.fire('Please enter in an Insurance Agent and start date for your policy')
+                Swal.fire({
+                    text: 'Please enter in an Insurance Agent and start date for your policy',
+                    confirmButtonColor: '#af1419',
+                    customClass: {
+                        container: 'swal2-container'
+                    }
+                })
             )
         }
     
@@ -46,6 +52,14 @@ class AddInsurance extends Component {
             type: 'ADD_INSURANCE',
             payload:  this.state 
         })
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Your insurance has been added.',
+            confirmButtonColor: '#af1419',
+        })
+
         this.props.handleClose();
     }
 
@@ -55,7 +69,7 @@ class AddInsurance extends Component {
         return (
             <div >
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
@@ -75,13 +89,12 @@ class AddInsurance extends Component {
                     />
                     <TextField
                         label="Policy Start Date"
-                        placeholder="Policy Start Date"
                         value={this.state.date}
                         onChange={(event) => { this.handleChange(event, 'date') }}
-                        autoFocus
                         margin="dense"
-                        type="text"
+                        type="date"
                         fullWidth
+                        InputLabelProps={{shrink: true}}
                     />
 
                     </DialogContent>

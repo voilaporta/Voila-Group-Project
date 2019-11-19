@@ -86,21 +86,22 @@ class UpdateVendor extends Component {
 
     handleDelete = () => {
         Swal.fire({
-            title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
+            title: `Do you want to remove ${this.state.companyName}?`,
             text: "This action cannot be undone.",
             icon: "warning",
+            confirmButtonColor: '#af1419',
             showCancelButton: true,
-            style: styles.swalDelete,
         })
             .then((result) => {
                 if (result.value) {
                     this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id });
                     setTimeout(() => {
-                        Swal.fire(
-                            "Deleted",
-                            "This client has been deleted.",
-                            "success",
-                        );
+                        Swal.fire({
+                            title: "Deleted",
+                            text: "This vendor has been deleted.",
+                            confirmButtonColor: '#af1419',
+                            icon: "success",
+                        });
                     }, 100);
 
                 }

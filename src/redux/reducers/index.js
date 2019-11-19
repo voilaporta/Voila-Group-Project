@@ -40,10 +40,10 @@ const rootReducer = combineReducers({
   agent,
   adminTypeReducer,
   vendorTypeReducer,
+  offerMade, // contains offer made by buyer
   offerAccepted, // contains the details of offer that was accepted (address, MLS, amount, down, earnest money)
   showing, // contains showings requested by buyer
   selectedInspector,
-  offerMade, // contains offer made by buyer
   selectedInsurance,
   walkThrough, // contains final walkthrough details for Step 9
   closing, // contains closing data for Step 11

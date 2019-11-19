@@ -54,21 +54,28 @@ class Step3Client extends Component {
         
         return (
             <div>
-                {this.state.showComponentToUpdate ? <ComponentToUpdate addCriteriaToggle={this.addCriteriaToggle} makeOfferToggle={this.makeOfferToggle} requestShowingToggle={this.requestShowingToggle} updateCriteriaToggle={this.updateCriteriaToggle} buyerFirstName={this.state.buyer_first_name} buyerLastName={this.state.buyer_last_name} showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
+                {this.state.showComponentToUpdate ? <ComponentToUpdate addCriteriaToggle={this.addCriteriaToggle} makeOfferToggle={this.makeOfferToggle} requestShowingToggle={this.requestShowingToggle} updateCriteriaToggle={this.updateCriteriaToggle} 
+                buyerFirstName={this.state.buyer_first_name} buyerLastName={this.state.buyer_last_name} 
+                showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <>
                  <div className="criteria">
                     Current Criteria:
                     <br/>
                     {this.props.criteria.map(criteria => {
                         return <p key={criteria.id}>
+                            Bedroom Count: {''}  
                             {criteria.numRooms}
                             <br/>
+                            Bathroom Count: {''}
                             {criteria.numBath}
                             <br/>
+                            Square Feet: {''}
                             {criteria.numSF}
                             <br/>
+                            Location: {''}
                             {criteria.location}
                             <br/>
+                            Additional Comments: {''}
                             {criteria.notes}</p>
                         })}
                         {this.props.criteria != '' ? <button onClick={this.updateCriteriaToggle}>Update Criteria</button> :  
@@ -77,7 +84,7 @@ class Step3Client extends Component {
                 </div>
             
                 <div className="showing">
-                    Recent showing requested:
+                    Last showing requested:
                     <br/>
                     {/* {this.props.showing[0].loading ? <div>loading</div> : 
                     this.props.showing[0]

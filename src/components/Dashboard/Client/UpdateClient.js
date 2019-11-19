@@ -35,16 +35,14 @@ class UpdateClient extends Component {
         id: this.props.clientId
     }
 
-
-
     // switch on Buyer Journey, true or false
     handleSwitch = journey => event => {
         this.setState({ [journey]: event.target.checked });
     };
+
     componentDidMount = () => {
         this.getAgents();
         this.getClients();
-
     }
 
     getAgents = () => {
@@ -60,14 +58,9 @@ class UpdateClient extends Component {
             ...this.state,
             [keyname]: event.target.value,
         })
-        console.log(this.state);
-
     }
 
     handleSubmit = () => {
-        console.log('hellooooo ', this.state);
-
-        this.props.history.push('/')
         this.props.dispatch({
             type: 'UPDATE_CLIENT',
             payload: this.state
@@ -78,18 +71,15 @@ class UpdateClient extends Component {
             'Client has been updated!',
             'success'
         )
-
+        this.props.handleClose();
     }
 
     handleDelete = () => {
-        this.props.history.push('/')
+        
         this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
 
     }
-    handleClose = () => {
-        this.props.history.push('/')
 
-    }
     render() {
         const agentOptions = this.props.state.agent.map((agent) => {
             return <MenuItem value={agent.id}
@@ -100,13 +90,13 @@ class UpdateClient extends Component {
         return (
             <div>
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
                         <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
-                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
                             <CancelIcon fontSize="large" color="secondary" />
                         </IconButton>
                     </DialogContent>

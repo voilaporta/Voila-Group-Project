@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
 } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -25,8 +25,8 @@ import UpdateAdmin from '../Dashboard/Admin/UpdateAdmin';
 import UpdateVendor from '../Dashboard/Vendor/UpdateVendor';
 
 class App extends Component {
-  componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER' })
   }
 
   render() {
@@ -49,18 +49,18 @@ class App extends Component {
               Visiting localhost:3000/home will show the UserPage if the user is logged in.
               Even though it seems like they are different pages, the user is always on localhost:3000/home
               User will be directed to either Client (UserPage) or Admin page (DashboardAdmin) */}
-              {this.props.user.role_id === 3 ?              
-              <ProtectedRoute
-                exact
-                path="/home"
-                component={UserPage}
-              />
-              :
-              <ProtectedRoute
-              exact
-              path="/home"
-              component={DashboardAdmin}
-              />
+              {this.props.user.role_id === 3 ?
+                <ProtectedRoute
+                  exact
+                  path="/home"
+                  component={UserPage}
+                />
+                :
+                <ProtectedRoute
+                  exact
+                  path="/home"
+                  component={DashboardAdmin}
+                />
               }
 
               {/* This works the same as the other protected route, except that if the user is logged in,
@@ -79,31 +79,32 @@ class App extends Component {
                 path="/profile"
                 component={ProfileAdmin}
               />
-                <ProtectedRoute
+              <ProtectedRoute
                 exact
                 path="/updateclient/:id"
                 component={UpdateClient}
-              /> 
-                   <ProtectedRoute
+              />
+              <ProtectedRoute
                 exact
                 path="/updateadmin/:id"
                 component={UpdateAdmin}
-              /> 
-                    <ProtectedRoute
+              />
+              <ProtectedRoute
                 exact
                 path="/updatevendor/:id"
                 component={UpdateVendor}
-              />  
-            
-           
-               {/* If none of the other routes matched, we will show a 404. */}
+              />
+
+
+              {/* If none of the other routes matched, we will show a 404. */}
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>
           </div>
         </Theme>
       </Router>
-  )}
+    )
+  }
 }
 
 const mapStateToProps = state => ({

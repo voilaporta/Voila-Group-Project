@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import UpdateClient from './UpdateClient'
+
+//material-ui imports
 import HomeIcon from '@material-ui/icons/Home';
-import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-import UpdateClient from './UpdateClient'
 import { ListItemIcon, IconButton, ListItemText, ListItemSecondaryAction, Button, Link } from '@material-ui/core';
+
 const styles = theme => ({
     fab: {
         margin: theme.spacing(1),
@@ -18,30 +20,22 @@ const styles = theme => ({
 
 
 class ClientItem extends Component {
-    state={
-            open:false,
+    state = {
+        open: false,
     }
-    updateClient = (id) => {
-        // this.props.history.push(`/updateclient/${id}`)
-        console.log('checking client id',this.props.clientId);
-        
+    updateClient = () => {
         this.setState({
             open: true
         })
-        console.log('hello from updateclient', this.state);
-        
+
     }
 
-    handleClose=()=>{
+    handleClose = () => {
         this.setState({
             open: false,
         })
-        console.log('hello from handleclose');
-        
     }
     render() {
-        const { classes } = this.props;
-
         return (
             <>
                 <ListItemIcon>
@@ -49,7 +43,7 @@ class ClientItem extends Component {
                         <HomeIcon />
                     </IconButton>
                 </ListItemIcon>
-                <ListItemText secondary={<>Agent: {this.props.client.agent}</>}>                   
+                <ListItemText secondary={<>Agent: {this.props.client.agent}</>}>
                     <Link href={`#/buyer-journey/${this.props.client.id}`}>
                         {this.props.client.firstName} {this.props.client.lastName}
                     </Link>
@@ -71,4 +65,3 @@ const mapStateToProps = state => ({
 
 export default withStyles(styles)(withRouter(connect(mapStateToProps)(ClientItem)));
 
-// onClick = {() => { this.updateClient(this.props.client.id) }} 

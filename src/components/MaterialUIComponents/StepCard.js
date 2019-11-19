@@ -74,74 +74,74 @@ class StepCard extends Component {
     componentToRender = (stepNum, roleId) => {
         switch (stepNum) {
             case 1:
-                if(roleId === 3) {
-                    return <Step1Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                if (roleId === 3) {
+                    return <Step1Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step1Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step1Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 2:
                 if (roleId === 3) {
-                    return <Step2Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step2Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step2Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step2Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 3:
                 if (roleId === 3) {
-                    return <Step3Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerFirstName={this.props.step.firstName} buyerLastName={this.props.step.lastName}/>
+                    return <Step3Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerFirstName={this.props.step.firstName} buyerLastName={this.props.step.lastName} />
                 } else {
-                    return <Step3Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerFirstName={this.props.step.firstName} buyerLastName={this.props.step.lastName}/>
+                    return <Step3Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerFirstName={this.props.step.firstName} buyerLastName={this.props.step.lastName} />
                 }
             case 4:
                 if (roleId === 3) {
-                    return <Step4Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step4Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step4Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step4Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 5:
                 if (roleId === 3) {
-                    return <Step5Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step5Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step5Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step5Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 6:
                 if (roleId === 3) {
-                    return <Step6Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step6Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step6Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step6Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 7:
                 if (roleId === 3) {
-                    return <Step7Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step7Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step7Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step7Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 8:
                 if (roleId === 3) {
-                    return <Step8Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step8Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step8Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step8Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 9:
                 if (roleId === 3) {
-                    return <Step9Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step9Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step9Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step9Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 10:
                 if (roleId === 3) {
-                    return <Step10Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step10Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step10Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step10Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             case 11:
                 if (roleId === 3) {
-                    return <Step11Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step11Client userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 } else {
-                    return <Step11Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName}/>
+                    return <Step11Admin userStepId={this.props.step.id} complete={this.props.step.completed} buyerName={this.props.step.firstName} />
                 }
             default:
                 console.log('Invalid step. If you have created more steps, please add them here');
-                
+
                 break;
         }
     }
@@ -151,7 +151,7 @@ class StepCard extends Component {
     };
 
     handleComplete = () => {
-        this.setState({completed: !this.state.completed})
+        this.setState({ completed: !this.state.completed })
         setTimeout(() => {
             this.props.dispatch({ type: 'COMPLETE_STEP', id: this.props.step.id, completed: !this.props.step.completed, user_id: this.props.step.user_id })
         }, 250);
@@ -167,7 +167,7 @@ class StepCard extends Component {
                         style={this.state.completed ? styles.completed : null}
                         avatar={this.state.completed ? <Avatar style={styles.avatarCompleted}><CheckIcon /></Avatar> : <Avatar style={styles.avatarUncompleted}>{this.props.step.order}</Avatar>}
                         title={<Typography style={styles.cardHeader}>{this.props.step.name}</Typography>}
-                        action={<MoreInfoPopover content={this.props.step.description}/>}
+                        action={<MoreInfoPopover content={this.props.step.description} />}
                     />
                     <CardActions disableSpacing sizes="small">
                         {this.props.showVault(this.props.step.order) ? <VoilaVaultLink /> : ''}
@@ -183,18 +183,18 @@ class StepCard extends Component {
                         <CardContent >
                             {this.componentToRender(this.props.step.order, this.props.user.role_id)}
 
-                            {this.props.user.role_id === 3 
+                            {this.props.user.role_id === 3
                                 ? ''
-                                : 
+                                :
                                 <>
-                                    <br/>
-                                    <Divider variant="middle"/>
-                                    <br/>
-                                    <Button 
+                                    <br />
+                                    <Divider variant="middle" />
+                                    <br />
+                                    <Button
                                         variant="outlined"
                                         style={this.state.completed ? styles.completed : null}
                                         onClick={this.handleComplete}>
-                                            Complete
+                                        Complete
                                     </Button>
                                 </>
                             }

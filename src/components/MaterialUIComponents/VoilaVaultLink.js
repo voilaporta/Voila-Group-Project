@@ -16,7 +16,7 @@ class VoilaVaultLink extends Component {
         return (
             <div>
                 <Tooltip title="Voila Vault" aria-label="voila vault">
-                    <IconButton style={styles.icon} edge="start" onClick={() => window.open("https://www.dropbox.com", "_blank")}>
+                    <IconButton style={styles.icon} edge="start" onClick={() => window.open(`https://${this.props.link}`, "_blank")}>
                         <DescriptionIcon />
                     </IconButton>
                 </Tooltip>

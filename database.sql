@@ -188,16 +188,16 @@ INSERT INTO "journeyStep"
 	("journey_id", "name", "description", "order")
 VALUES 
 	(1, 'Voila Buyer', 'Being a Voila buyer means you are in the best of hands! We are here to help you find the home for you!', 1),
-	(1, 'Pre-Approval', 'Talk with your lender and get a price range for which you are pre-approved', 2),
-	(1, 'On The Hunt', 'Let''s talk about picking out your next home.', 3),
-	(1, 'Executed Offer', 'Congrats! You found a home you love and made an offer.', 4),
-	(1, 'Earnest Money Submission', 'Your offer has been accepted and it is time to put down some money', 5),
-	(1, 'Inspection', 'This is where we have another expert step in and make sure there are no big surprises with the home.', 6),
-	(1, 'Insurance', 'Time to get the home insured! This is documentation your lender will need as they finalize your mortgage', 7),
-	(1, 'Appraisal & Title', 'As your lender works on your mortgage documents, they need to verify the home is worth the amount you are borrowing. Then they order the title and prepare it for the sale transaction', 8),
-	(1, 'Final Walk Through', 'One last time to take a look at the property in person before it belongs to you', 9),
-	(1, 'Closing Disclosure', 'Here is what you need to know about the closing', 10),
-	(1, 'Closing Day', 'Congrats! It is closing day and this new property is about to belong to you. Today is the day you sign the paperwork', 11);
+	(1, 'Pre-Approval', `This the process of getting the loan or funding to purchase a property. The Mortgage company will likely ask for  in-depth documentation on your financial history as well as need to pull a copy of credit report. Don't worry, this is normal and necessary to make the rest of the process easier moving forward.`, 2),
+	(1, 'On The Hunt', `This is the fun part! We will use all of today's technology at our disposal to work together in finding you the perfect home! Once we have located some contenders online you can use the "Request a showing" button below to request a time and day to take a look in person. If we happen to see the perfect home, and you want to take the next step you can click the "Make an Offer" button below and we can get the process started.`, 3),
+	(1, 'Executed Offer', `Once we have submitted an offer to purchase, and both parties (buyer/seller) agree to terms, the purchase will continue moving forward.`, 4),
+	(1, 'Earnest Money Submission', `Earnest money is similar to a deposit, which will be held in a Trust Account by the listing broker and will be applied to your down payment. Please note that the earnest money will be deducted from your account within 48hrs of submitting.`, 5),
+	(1, 'Inspection', `This is where you will be able to hire a third party inspector to come in and give you a general scope and condition of the property.`, 6),
+	(1, 'Insurance', 'Time to get your new home insured! The Lender will need proof of this ASAP.', 7),
+	(1, 'Appraisal & Title', `Your Lender will hire an appraiser to verify the home is worth the amount you are paying. Your Title Company is working on verifying there aren't any Liens or outstanding mortgages or encumbrances on your new property.`, 8),
+	(1, 'Final Walk Through', 'The purpose of a final walkthrough is to make certain that the property is in the condition in which you agreed to buy it.', 9),
+	(1, 'Closing Disclosure', 'This is what you will receive from your Lender a minimum of 3 days prior to closing showing the financial breakdown and fees associated with the purchase.', 10),
+	(1, 'Closing Day', 'Here you can find the day, time and location of the closing, as well as what you will need to bring with you. Congratulations on your NEW HOME!', 11);
 
 INSERT INTO "vendorType"
 ("name")

@@ -1,5 +1,5 @@
 // REACT
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -30,9 +30,9 @@ const styles = {
 
 class AppTopBar extends Component {
   state = {
-    opens:false,
+    opens: false,
     anchorEl: null,
-    addProfileAdmin:false,
+    addProfileAdmin: false,
   };
 
   // opens the menu
@@ -77,49 +77,49 @@ class AppTopBar extends Component {
 
     return (
       <div className={classes.root} >
-      <AppBar position="static">
-        <Toolbar>
-          <Button color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">
-            <img src={VoilaLogo} width="85px" align="center"/>
-          </Button>
-          {this.props.user.username ? 
-            <div>
-              <IconButton
-                aria-owns={open ? 'menu-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
-                color="inherit"
-              >
-                <AccountCircle fontSize="large"/>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={this.state.anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-         
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={this.state.anchorEl}
-                onClose={this.handleClose}
-              >
-                 <MenuItem onClick={this.handleProfileAdmin} >Profile </MenuItem>
-                {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} closeProfileAdmin={this.closeProfileAdmin}/> : null}
-                <MenuItem component={Link} to="/home" onClick={this.handleLogOut}>Log Out</MenuItem>
-              </Menu>
-            </div>
-            :
-            <div></div>
-          }
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
+        <AppBar position="static">
+          <Toolbar>
+            <Button color="inherit" className={classes.grow} component={Link} to="/home" disableRipple align="left" justify="left">
+              <img src={VoilaLogo} width="85px" align="center" />
+            </Button>
+            {this.props.user.username ?
+              <div>
+                <IconButton
+                  aria-owns={open ? 'menu-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle fontSize="large" />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={this.state.anchorEl}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleProfileAdmin} >Profile </MenuItem>
+                  {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} closeProfileAdmin={this.closeProfileAdmin} /> : null}
+                  <MenuItem component={Link} to="/home" onClick={this.handleLogOut}>Log Out</MenuItem>
+                </Menu>
+              </div>
+              :
+              <div></div>
+            }
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 AppTopBar.propTypes = {
@@ -130,7 +130,7 @@ AppTopBar.propTypes = {
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
-user: state.user,
+  user: state.user,
 });
 
-export default withStyles(styles) (connect(mapStateToProps) (AppTopBar));
+export default withStyles(styles)(connect(mapStateToProps)(AppTopBar));

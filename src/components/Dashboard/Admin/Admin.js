@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminItem from './AdminItem'
-import { List, ListItem } from '@material-ui/core';
 
+//material-ui imports
+import { List, ListItem } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+
 const styles = theme => ({
     margin: {
         margin: theme.spacing(1),
@@ -46,9 +47,9 @@ class Admin extends Component {
         )
     }
     render() {
-        if(this.props.adminList[0].loading){
-            return(
-            <div>loading....... </div>
+        if (this.props.adminList[0].loading) {
+            return (
+                <div>loading....... </div>
             )
         }
         return (
@@ -67,8 +68,6 @@ class Admin extends Component {
                             ),
                         }}
                     />
-
-
                 </div>
                 <List>
                     {this.mapAdmins()}

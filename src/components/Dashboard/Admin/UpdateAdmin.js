@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField, Select, FormControl, InputLabel, MenuItem, Button, FormGroup, FormControlLabel, Switch, } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
+
+import Swal from 'sweetalert2'
+
+//material-ui imports
+import { TextField, Select, FormControl, InputLabel, MenuItem, Button } from '@material-ui/core';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Swal from 'sweetalert2'
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,7 +27,7 @@ const styles = theme => ({
         position: 'absolute',
         right: theme.spacing(1),
         top: theme.spacing(1),
-   
+
     },
 })
 
@@ -72,6 +75,7 @@ class UpdateAdmin extends Component {
             title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
             text: "This action cannot be undone.",
             icon: "warning",
+            confirmButtonColor: '#af1419',
             showCancelButton: true,
             style: styles.swalDelete,
         })
@@ -79,11 +83,12 @@ class UpdateAdmin extends Component {
                 if (result.value) {
                     this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id });
                     setTimeout(() => {
-                        Swal.fire(
-                            "Deleted",
-                            "This admibn has been deleted.",
-                            "success",
-                        );
+                        Swal.fire({
+                            title: "Deleted",
+                            text: "This admin has been deleted.",
+                            confirmButtonColor: '#af1419',
+                            icon: "success",
+                        });
                     }, 100);
 
                 }
@@ -106,7 +111,7 @@ class UpdateAdmin extends Component {
                 >
                     <DialogContent dividers>
                         <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
-                            <CancelIcon  fontSize="large" color="secondary" />
+                            <CancelIcon fontSize="large" color="secondary" />
                         </IconButton>
                         <DialogTitle id="form-dialog-title" >Update Admin</DialogTitle>
 

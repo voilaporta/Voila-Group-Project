@@ -40,7 +40,8 @@ class ChangeCriteria extends Component {
     }
 
     cancel = () => {
-        console.log('in cancel');
+        this.props.addCriteriaToggle();
+        this.props.updateCriteriaToggle();
     }
 
 

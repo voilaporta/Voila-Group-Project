@@ -3,8 +3,9 @@ import axios from 'axios';
 
 function* postCriteria(action) {
     try{
-        axios.post('/api/step3/criteria', action.payload);
+        yield axios.post('/api/step3/criteria', action.payload);
         console.log('posting criteria', action.payload);
+        yield put({type: 'GET_CRITERIA', payload: action.payload.user_step_id});
     }catch (error) {
         console.log('error with posting criteria', error)
     }
@@ -22,7 +23,7 @@ function* getCriteria(action) {
 
 function* updateCriteria(action) {
     try{
-        axios.put('/api/step3/criteria', action.payload);
+        yield axios.put('/api/step3/criteria', action.payload);
         console.log('updating criteria', action.payload)
     }catch (error) {
         console.log('error with updating criteria', error);
@@ -31,7 +32,7 @@ function* updateCriteria(action) {
 
 function* postShowing(action) {
     try{
-        axios.post('/api/step3/showing/', action.payload);
+        yield axios.post('/api/step3/showing/', action.payload);
         console.log('posting showing request', action.payload);
     }catch (error) {
         console.log('error with posting showing request', error)
@@ -57,6 +58,16 @@ function* postOfferMade(action) {
     }
 }
 
+function* getOfferMade(action) {
+    try{
+        const response = yield axios.get('/api/step3/offer/' + action.payload);
+        console.log('getting offer made', response.data);
+        yield put({type: 'SET_OFFER_MADE', payload: response.data});
+    }catch (error) {
+        console.log('error getting offer made', error)
+    }
+}
+
 
 function* onTheHuntSaga() {
     yield takeLatest('POST_CRITERIA', postCriteria)
@@ -65,6 +76,7 @@ function* onTheHuntSaga() {
     yield takeLatest('POST_SHOWING', postShowing)
     yield takeLatest('GET_SHOWING', getShowing)
     yield takeLatest('POST_OFFER_MADE', postOfferMade)
+    yield takeLatest('GET_OFFER_MADE', getOfferMade)
 }
 
 export default onTheHuntSaga;

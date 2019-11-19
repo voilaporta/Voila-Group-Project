@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ProfileAdmin from '../Profile/ProfileAdmin'
-import VoilaLogo from './voilalogo.jpg';
+import VoilaLogo from './VoilaHeader.png';
 
 const styles = {
   root: {
@@ -74,7 +74,7 @@ class AppTopBar extends Component {
                 onClick={this.handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle fontSize="large"/>
               </IconButton>
               <Menu
                 id="menu-appbar"

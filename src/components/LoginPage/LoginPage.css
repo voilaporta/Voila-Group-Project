@@ -1,32 +1,3 @@
-.loginlogo{
-    flex-grow: 1;
-    width: 200px;
-    max-height: 220px;
-    align-self: center;
+.loginback{
+    background-color:#ffffff;
 }
-
-
-input{
-    background-color: white;
-    min-height: 25px;
-    min-width: 120px;
-    /* outline:1px solid black; */
-    cursor: pointer;
-}
-
-.log-in{
-    width:120px;
-    height:25px;
-    border: 1px solid black
-   
-} 
-
- .loginform {
-    background-color: white;
-    width: 30%;
-    height: 250px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px ;
-
-} 

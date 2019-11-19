@@ -59,7 +59,7 @@ class ClientItem extends Component {
                         <EditIcon />
                     </IconButton>
                 </ListItemSecondaryAction>
-                {this.state.open ? <UpdateClient state={this.state} updateClient={this.updateClient} handleClose={this.handleClose} clientId={this.props.client.id} client={this.props.client} /> : <div></div>}
+                {this.state.open ? <UpdateClient open={this.state.open} updateClient={this.updateClient} handleClose={this.handleClose} clientId={this.props.client.id} client={this.props.client} /> : <div></div>}
             </>
         )
     }

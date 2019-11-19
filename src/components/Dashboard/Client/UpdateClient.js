@@ -22,6 +22,10 @@ const styles = theme => ({
         top: theme.spacing(1),
 
     },
+    swalDelete: {
+        position: 'relative',
+        zIndex: 10000,
+    }
 });
 
 class UpdateClient extends Component {
@@ -35,16 +39,14 @@ class UpdateClient extends Component {
         id: this.props.clientId
     }
 
-
-
     // switch on Buyer Journey, true or false
     handleSwitch = journey => event => {
         this.setState({ [journey]: event.target.checked });
     };
+
     componentDidMount = () => {
         this.getAgents();
         this.getClients();
-
     }
 
     getAgents = () => {
@@ -60,14 +62,9 @@ class UpdateClient extends Component {
             ...this.state,
             [keyname]: event.target.value,
         })
-        console.log(this.state);
-
     }
 
     handleSubmit = () => {
-        console.log('hellooooo ', this.state);
-
-        this.props.history.push('/')
         this.props.dispatch({
             type: 'UPDATE_CLIENT',
             payload: this.state
@@ -78,18 +75,33 @@ class UpdateClient extends Component {
             'Client has been updated!',
             'success'
         )
-
+        this.props.handleClose();
     }
 
     handleDelete = () => {
-        this.props.history.push('/')
-        this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
+        Swal.fire({
+            title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            style: styles.swalDelete,
+        })
+            .then((result) => {
+                if (result.value) {
+                    this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
+                    setTimeout(() => {
+                        Swal.fire(
+                            "Deleted",
+                            "This client has been deleted.",
+                            "success",
+                        );
+                    }, 100);
 
+                }
+            });
+        this.props.handleClose();
     }
-    handleClose = () => {
-        this.props.history.push('/')
 
-    }
     render() {
         const agentOptions = this.props.state.agent.map((agent) => {
             return <MenuItem value={agent.id}
@@ -100,13 +112,13 @@ class UpdateClient extends Component {
         return (
             <div>
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
                         <DialogTitle id="form-dialog-title" >Update Client</DialogTitle>
-                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
                             <CancelIcon fontSize="large" color="secondary" />
                         </IconButton>
                     </DialogContent>
@@ -166,7 +178,7 @@ class UpdateClient extends Component {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="outlined" onClick={this.props.handleDelete} color="secondary">
+                        <Button variant="outlined" onClick={this.handleDelete} color="secondary">
                             Delete
                         </Button>
                         <Button variant="contained" onClick={this.handleSubmit} color="secondary">

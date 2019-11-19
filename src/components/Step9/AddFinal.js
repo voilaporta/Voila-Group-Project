@@ -93,6 +93,7 @@ class AddFinal extends Component {
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                     className={classes.dialogDiv}
+                    disableBackdropClick
                 >
                     <DialogContent dividers>
                         <DialogTitle className={classes.dialogTitle} >Add Final Walkthrough </DialogTitle>

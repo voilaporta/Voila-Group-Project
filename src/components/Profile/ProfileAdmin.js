@@ -3,11 +3,10 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import {
-    TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button,
-    InputLabel, MenuItem, FormControl, FormControlLabel, Select, Switch
+    TextField, Dialog, DialogContent, DialogTitle, Button,
 } from '@material-ui/core';
-import Swal from 'sweetalert2'
-import SaveIcon from '@material-ui/icons/Save';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 import ProfileInfo from './ProfileInfo';
 
 const styles = theme => ({
@@ -58,6 +57,10 @@ class ProfileAdmin extends Component {
     })
     }
 
+    handleClickAway = () => {
+        this.props.closeProfileAdmin();
+    }
+
     closeProfile = () => {
         this.props.handleClose();
         this.props.closeProfileAdmin();
@@ -66,44 +69,45 @@ class ProfileAdmin extends Component {
 
     render() {
         return (
-            <div>
-                <Dialog
-                    open={this.props.state}
-                    onClose={this.props.handleClose}
-                    onKeyDown={stopPropagationForTab}
-                    aria-labelledby="form-dialog-title"
-                    
-                >
-                    <DialogContent dividers>
-                        <DialogTitle id="form-dialog-title" >Profile</DialogTitle>
-                    </DialogContent>
-                    <DialogContent>
-                        <ProfileInfo />
-                        {this.state.showpassword ?
-                        <>
-                            <TextField
-                                label="Password"
-                                placeholder="Password"
-                                value={this.state.password}
-                                onChange={(event) => { this.handleChange(event, 'password') }}
-                                autoFocus
-                                margin="dense"
-                                type="text"
-                                fullWidth
-                            /> 
-                            <Button variant="outlined" color="secondary" onClick={this.savePassword}>Save</Button>
-                            </>:
-                            <Button variant="outlined" color="secondary" onClick={this.showPassword}>
-                                Change Password
-                        </Button>
-                        }
-                        <Button variant="outlined" onClick={this.closeProfile} color="secondary">
-                        Cancel
-                        </Button>
-                    </DialogContent>
-
-                </Dialog>
-            </div>
+            <ClickAwayListener onClickAway={this.handleClickAway}>
+                <div>
+                    <Dialog
+                        open={this.props.state}
+                        onClose={this.props.handleClose}
+                        onKeyDown={stopPropagationForTab}
+                        aria-labelledby="form-dialog-title"
+                        
+                    >
+                        <DialogContent dividers>
+                            <DialogTitle id="form-dialog-title" >Profile</DialogTitle>
+                        </DialogContent>
+                        <DialogContent>
+                            <ProfileInfo />
+                            {this.state.showpassword ?
+                            <>
+                                <TextField
+                                    label="Password"
+                                    placeholder="Password"
+                                    value={this.state.password}
+                                    onChange={(event) => { this.handleChange(event, 'password') }}
+                                    autoFocus
+                                    margin="dense"
+                                    type="text"
+                                    fullWidth
+                                /> 
+                                <Button variant="outlined" color="secondary" onClick={this.savePassword}>Save</Button>
+                                </>:
+                                <Button variant="outlined" color="secondary" onClick={this.showPassword}>
+                                    Change Password
+                            </Button>
+                            }
+                            <Button variant="outlined" onClick={this.closeProfile} color="secondary">
+                            Cancel
+                            </Button>
+                        </DialogContent>
+                    </Dialog>
+                </div>
+            </ClickAwayListener>
         )
     }
 }

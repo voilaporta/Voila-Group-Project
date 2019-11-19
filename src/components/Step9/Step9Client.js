@@ -24,7 +24,6 @@ class Step9Client extends Component {
             type: 'GET_FINAL_WALKTHROUGH',
             payload: this.props.userStepId
         })
-        console.log(this.props.walkThrough)
     }
 
     render() {

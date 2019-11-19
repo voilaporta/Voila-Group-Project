@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   
   const styles = theme => ({
     formControl: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         minWidth: 180,
     },
     dialogTitle: {
@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
         height: '1vh',
     },
     leftIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
     },
   });
 
@@ -62,12 +62,10 @@ class AddVendor extends Component {
         this.setState({
           [propertyName]: event.target.value,
         });
-        console.log('*****in handleChange', this.state)
      }
 
     // add vendor on submit to POST
     handleAddVendor = () => {
-        console.log('--ADD Vendor BUTTON --', this.state)
         this.props.dispatch({
             type: 'CREATE_VENDOR',
             payload: this.state
@@ -96,11 +94,9 @@ class AddVendor extends Component {
         // map through the vendor type list and list them into menu items to select
         const vendorTypeList = this.props.vendorTypeReducer.map( (vendor) => {
             return (
-                <MenuItem value={vendor.id}>{vendor.name}</MenuItem>
+                <MenuItem key={vendor.id} value={vendor.id}>{vendor.name}</MenuItem>
             )
         })
-
-        console.log(this.props.vendorTypeReducer, 'VENDOR TYPE REDUCER')
         
         return (
             <div>
@@ -169,11 +165,8 @@ class AddVendor extends Component {
                         <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="vendor_id">Select Vendor Type</InputLabel>
                             <Select
-                                value={this.state.role_id}
+                                value={this.state.vendor_id}
                                 onChange={this.handleChange('vendor_id')}
-                                inputProps={{
-                                name: 'vendor_id',
-                                }}
                         >
                                 <MenuItem value="">
                                 <em>None</em>

@@ -7,7 +7,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-import { ListItemIcon, IconButton, ListItemText, ListItemSecondaryAction, Button, Link } from '@material-ui/core';
+import { ListItemIcon, IconButton, ListItemText, ListItemSecondaryAction, Link } from '@material-ui/core';
 
 const styles = theme => ({
     fab: {

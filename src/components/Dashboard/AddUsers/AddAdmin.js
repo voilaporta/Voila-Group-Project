@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   
   const styles = theme => ({
     formControl: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         minWidth: 180,
     },
     dialogTitle: {
@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
         height: '1vh',
     },
     leftIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
     },
   });
 
@@ -56,13 +56,10 @@ class AddAdminDialog extends Component {
         this.setState({
           [propertyName]: event.target.value,
         });
-        console.log('in handleChange', this.state)
-        console.log('--ROLE ID--', this.state.role_id)
      }
 
     // POST data to create new user
     handleAddAdmin = () => {
-        console.log('--ADD ADMIN BUTTON --', this.state)
         this.props.dispatch({
             type: 'REGISTER',
             payload: this.state

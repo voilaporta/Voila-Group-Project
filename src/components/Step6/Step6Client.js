@@ -130,8 +130,8 @@ class Step6Client extends Component {
                         <div className="buyerSelection">
                             { !this.props.selectedInspector.values.length ? <div>Not Yet</div> :
                                 <ListItemText
-                                primary={<>Agent: {this.props.selectedInspector.values[0].name}</>}
-                                secondary={<>Start Date: <Moment format="MM/DD/YYYY">
+                                primary={<>Inspector: {this.props.selectedInspector.values[0].name}</>}
+                                secondary={<>Date: <Moment format="MM/DD/YYYY">
                                 {this.props.selectedInspector.values[0].insuranceStartDate}
                                 </Moment></>}/>
                             }
@@ -147,7 +147,7 @@ class Step6Client extends Component {
                             className="note"
                         />
                 </div>
-                {this.state.open ? <AddInspection state={this.state} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
+                {this.state.open ? <AddInspection open={this.state.open} userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
                 </div>
             </div>
         );

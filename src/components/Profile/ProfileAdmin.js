@@ -20,7 +20,7 @@ const stopPropagationForTab = (event) => {
     if (event.key == "p") {
         event.stopPropagation();
     }
-    };
+};
 
 class ProfileAdmin extends Component {
     state = {
@@ -31,29 +31,29 @@ class ProfileAdmin extends Component {
 
     handleChange = (event, keyname) => {
         this.setState({
-            ...this.state, 
+            ...this.state,
             [keyname]: event.target.value,
         })
         console.log(this.state);
-        
+
     }
 
-    savePassword=()=>{
+    savePassword = () => {
         this.setState({
             showpassword: false,
-    })
+        })
 
         this.props.dispatch({
             type: 'UPDATE_PASSWORD',
-            payload:  this.state
-            
+            payload: this.state
+
         })
     }
 
-    showPassword=()=>{
+    showPassword = () => {
         this.setState({
-            showpassword:true,
-    })
+            showpassword: true,
+        })
     }
 
     // close the Profile and set everything to false
@@ -65,21 +65,21 @@ class ProfileAdmin extends Component {
 
     render() {
         return (
-                <div>
-                    <div></div>
-                    <Dialog
-                        open={this.props.state}
-                        onClose={this.props.handleClose}
-                        onKeyDown={stopPropagationForTab}
-                        aria-labelledby="form-dialog-title"
-                        disableBackdropClick
-                    >
-                        <DialogContent dividers>
-                            <DialogTitle id="form-dialog-title" >Profile</DialogTitle>
-                        </DialogContent>
-                        <DialogContent>
-                            <ProfileInfo />
-                            {this.state.showpassword ?
+            <div>
+                <div></div>
+                <Dialog
+                    open={this.props.state}
+                    onClose={this.props.handleClose}
+                    onKeyDown={stopPropagationForTab}
+                    aria-labelledby="form-dialog-title"
+                    disableBackdropClick
+                >
+                    <DialogContent dividers>
+                        <DialogTitle id="form-dialog-title" >Profile</DialogTitle>
+                    </DialogContent>
+                    <DialogContent>
+                        <ProfileInfo />
+                        {this.state.showpassword ?
                             <>
                                 <TextField
                                     label="Password"
@@ -90,19 +90,19 @@ class ProfileAdmin extends Component {
                                     margin="dense"
                                     type="text"
                                     fullWidth
-                                /> 
+                                />
                                 <Button variant="outlined" color="secondary" onClick={this.savePassword}>Save</Button>
-                                </>:
-                                <Button variant="outlined" color="secondary" onClick={this.showPassword}>
-                                    Change Password
+                            </> :
+                            <Button variant="outlined" color="secondary" onClick={this.showPassword}>
+                                Change Password
                             </Button>
-                            }
-                            <Button variant="outlined" onClick={this.closeProfile} color="secondary">
+                        }
+                        <Button variant="outlined" onClick={this.closeProfile} color="secondary">
                             Cancel
                             </Button>
-                        </DialogContent>
-                    </Dialog>
-                </div>
+                    </DialogContent>
+                </Dialog>
+            </div>
         )
     }
 }

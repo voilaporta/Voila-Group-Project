@@ -38,7 +38,13 @@ class AddInspector extends Component {
         
         if(this.state.name === '' || this.state.date === ''){
             return ( 
-            Swal.fire('Please enter in an Inspector and Date of Inspection')
+                Swal.fire({
+                    text: 'Please enter in an Inspector and Date of Inspection',
+                    confirmButtonColor: '#af1419',
+                    customClass: {
+                        container: 'swal2-container'
+                    }
+                })
             )
         }
     
@@ -46,6 +52,14 @@ class AddInspector extends Component {
             type: 'ADD_INSPECTION',
             payload:  this.state 
         })
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Your inspection has been added.',
+            confirmButtonColor: '#af1419',
+        })
+
         this.props.handleClose();
     }
 
@@ -55,7 +69,7 @@ class AddInspector extends Component {
         return (
             <div >
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
@@ -75,13 +89,12 @@ class AddInspector extends Component {
                     />
                     <TextField
                         label="Inspection Date"
-                        placeholder="Inspection Date"
                         value={this.state.date}
                         onChange={(event) => { this.handleChange(event, 'date') }}
-                        autoFocus
                         margin="dense"
-                        type="text"
+                        type="date"
                         fullWidth
+                        InputLabelProps={{shrink: true}}
                     />
 
                     </DialogContent>

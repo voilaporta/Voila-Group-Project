@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
+import { ListItemText } from '@material-ui/core';
+
 import { withStyles } from '@material-ui/core/styles';
 import './step8.css';
 
@@ -51,6 +53,17 @@ class Step8Client extends Component {
                         {!this.props.appraisal.values[0].scheduled ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
                         Appraisal Scheculed
+                    </div>
+
+                    <div className="buyerSelection">
+                    { !this.props.appraisal.values[0].scheduleDate ? <div></div> :
+                        // 
+                        <ListItemText
+                            primary={<>Date: <Moment format="MM/DD/YYYY">
+                            {this.props.appraisal.values[0].scheduleDate}
+                            </Moment></>}
+                        /> 
+                        }
                     </div>
 
                     <div className="checkDisplay">

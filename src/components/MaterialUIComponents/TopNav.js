@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import logo from './voilalogo.png';
-import { Button } from '@material-ui/core';
+
 
 const styles = {
     root: {
@@ -32,8 +32,8 @@ function TopNav(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar className={classes.root}>
-                    <img src={logo} alt='logo' className={classes.logo} onClick={()=>console.log('Test')}/>
-                    <IconButton color="inherit"><AccountCircle/></IconButton>
+                    <img src={logo} alt='logo' className={classes.logo} onClick={() => console.log('Test')} />
+                    <IconButton color="inherit"><AccountCircle /></IconButton>
                 </Toolbar>
             </AppBar>
         </div>

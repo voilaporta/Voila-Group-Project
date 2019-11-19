@@ -1,5 +1,5 @@
 .pageDiv{
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
     align-content: flex-start;
     text-align: left;
@@ -16,7 +16,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 21px;
+    font-size: 20px;
     margin: 5px 5px 5px 40px;
 }
 
@@ -24,7 +24,7 @@
     text-align: center;
 }
 .sectionTitle{
-    font-size: 23px;
+    font-size: 20px;
 }
 
 .insurancePartners{
@@ -59,4 +59,12 @@
 
 .note{
     text-align: center;
+}
+
+.pageDiv Button{
+    align-content: center;
+}
+
+.swal2-container {
+    z-index: 2000;
 }

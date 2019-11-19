@@ -47,7 +47,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
     .then((result)=>{
         res.sendStatus(200);
     }).catch((error)=>{
-        console.log('error updating client', error);
+        console.log('error updating admin', error);
         res.sendStatus(500);
     })
 });  

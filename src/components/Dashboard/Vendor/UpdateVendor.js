@@ -39,8 +39,8 @@ class UpdateVendor extends Component {
         phoneNumber: this.props.vendor.phoneNumber,
         email: this.props.vendor.email,
         website: this.props.vendor.website,
-        vendorTypeId: this.props.vendor.vendor_id,
-        id: this.props.vendorId
+        vendorTypeId: '',
+        id: this.props.vendor.id
     }
 
     componentDidMount = () => {
@@ -81,15 +81,27 @@ class UpdateVendor extends Component {
     }
 
     handleDelete = () => {
+        Swal.fire({
+            title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            style: styles.swalDelete,
+        })
+            .then((result) => {
+                if (result.value) {
+                    this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id });
+                    setTimeout(() => {
+                        Swal.fire(
+                            "Deleted",
+                            "This client has been deleted.",
+                            "success",
+                        );
+                    }, 100);
 
-        this.props.history.push('/')
-        this.props.dispatch({ type: 'DELETE_VENDOR', payload: this.state.id });
-
-        Swal.fire(
-            'Success!',
-            'Vendor  has been deleted!',
-            'success'
-        )
+                }
+            });
+        this.props.handleClose();
     }
     handleClose = () => {
         this.props.history.push('/')
@@ -104,13 +116,13 @@ class UpdateVendor extends Component {
         return (
             <div style={styles.formContainer}>
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
                         <DialogTitle id="form-dialog-title" >Update Vendor</DialogTitle>
-                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
                             <CancelIcon fontSize="large" color="secondary" />
                         </IconButton>
                     </DialogContent>
@@ -184,7 +196,7 @@ class UpdateVendor extends Component {
                                 onChange={(event) => { this.handleChange(event, 'vendorTypeId') }}
                                 value={this.state.vendorTypeId}
                             >
-                                <MenuItem value={''}>--Select An Vendor Type--</MenuItem>
+                                <MenuItem value={''}>--Select Vendor Type--</MenuItem>
                                 {vendorType}
                             </Select>
                         </FormControl>

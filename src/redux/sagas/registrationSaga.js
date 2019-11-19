@@ -14,7 +14,12 @@ function* registerUser(action) {
       yield axios.post(`/api/journey/${response.data[0].id}`)
       console.log('TRYING TO POST', response.data[0].id)
     }
+    // call the get saga upon posting a client
     yield put({ type: 'FETCH_CLIENT'});
+    // call the get saga upon posting an admin
+    yield put ({ type:'FETCH_ADMIN'})
+    // call the get saga upon posting a new vendor
+    yield put ({ type:'FETCH_VENDOR'})
 
     // // automatically log a user in after registration
     // yield put({ type: 'LOGIN', payload: action.payload });

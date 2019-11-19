@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import logo from './voilaLogin.png'
 
-
-
-import Avatar from '@material-ui/core/Avatar';
+//Material-ui imports
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -121,67 +114,7 @@ render(){
   )
 }
 }
-// import logo from './voilaLogin.jpg'
-// import './LoginPage.css'
-// class LoginPage extends Component {
- 
 
-//   render() {
-//     return (
-//       <div>
-//         {this.props.errors.loginMessage && (
-//           <h2
-//             className="alert"
-//             role="alert"
-//           >
-//             {this.props.errors.loginMessage}
-//           </h2>
-//         )}
-//         <form className="loginform" onSubmit={this.login}>
-//           <div className="loginlogo">
-//           <img src={logo} alt = ""/>
-//           </div>
-//           <div>
-//             <label htmlFor="username">
-//               {/* Username: */}
-//               <input
-//                 type="text"
-//                 placeholder="Username"
-//                 name="username"
-//                 value={this.state.username}
-//                 onChange={this.handleInputChangeFor('username')}
-//               />
-//             </label>
-//           </div>
-//          <br></br>
-//           <div>
-//             <label htmlFor="password">
-//               {/* Password: */}
-//               <input
-//                 type="password"
-//                 placeholder="Password"
-//                 name="password"
-//                 value={this.state.password}
-//                 onChange={this.handleInputChangeFor('password')}
-//               />
-//             </label>
-//           </div>
-//           <br></br>
-//           <div>
-//             <input
-//               className="log-in"
-//               type="submit"
-//               name="submit"
-//               value="Log In"
-//             />
-//           </div>
-//         </form>
-//         <center>
-//         </center>
-//       </div>
-//     );
-//   }
-// }
 
 // Instead of taking everything from state, we just want the error messages.
 // if you wanted you could write this code like this:

@@ -38,7 +38,13 @@ class AddInspector extends Component {
         
         if(this.state.name === '' || this.state.date === ''){
             return ( 
-            Swal.fire('Please enter in an Inspector and Date of Inspection')
+                Swal.fire({
+                    text: 'Please enter in an Inspector and Date of Inspection',
+                    confirmButtonColor: '#af1419',
+                    customClass: {
+                        container: 'swal2-container'
+                    }
+                })
             )
         }
     

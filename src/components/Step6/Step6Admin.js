@@ -121,9 +121,12 @@ class Step6Admin extends Component {
                 <div className="checkDisplay">
                     {this.props.userJourney[5].completed ? <CheckCircleOutline className={classes.icon} color="secondary" /> : 
                             <PanoramaFishEye className={classes.icon} color="secondary"/> }
-                        Inspection Negotiated
-                        
+                        Inspection Negotiated    
                 </div>
+                <ListItemText
+                    primary="Note: Inspection Negotiated will be automatically checked when this journey is marked complete "
+                    className="note"
+                />
                 </div>
             </div>
         );

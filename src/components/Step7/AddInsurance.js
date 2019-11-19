@@ -38,7 +38,13 @@ class AddInsurance extends Component {
         
         if(this.state.name === '' || this.state.date === ''){
             return ( 
-            Swal.fire('Please enter in an Insurance Agent and start date for your policy')
+                Swal.fire({
+                    text: 'Please enter in an Insurance Agent and start date for your policy',
+                    confirmButtonColor: '#af1419',
+                    customClass: {
+                        container: 'swal2-container'
+                    }
+                })
             )
         }
     

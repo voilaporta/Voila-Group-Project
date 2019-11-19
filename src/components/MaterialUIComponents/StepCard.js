@@ -170,7 +170,7 @@ class StepCard extends Component {
                         action={<MoreInfoPopover content={this.props.step.description} />}
                     />
                     <CardActions disableSpacing sizes="small">
-                        {this.props.showVault(this.props.step.order) ? <VoilaVaultLink /> : ''}
+                        {this.props.showVault(this.props.step.order) ? <VoilaVaultLink link={this.props.step.dropboxUrl}/> : ''}
                         <IconButton style={this.state.expanded ? styles.expandedOpen : styles.expanded}
                             onClick={this.handleExpandClick}
                             aria-expanded={this.state.expanded}

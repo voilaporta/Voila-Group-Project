@@ -35,25 +35,41 @@ class AppTopBar extends Component {
     addProfileAdmin:false,
   };
 
+  // opens the menu
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
+    console.log(this.state, 'STATE OF MENU BAR')
   };
 
+  // close the menu 
   handleClose = () => {
-    this.setState({ anchorEl: null });
-
+    this.setState({ anchorEl: null, addProfileAdmin: false, });
   };
+
+  // set the Profile dialog to true to open it
   handleProfileAdmin = () => {
     this.setState({
       addProfileAdmin: true,
     });
   }
 
+  // set the Profile dialog to false to close it
   closeProfileAdmin = () => {
     this.setState({
       addProfileAdmin: false,
     });
   }
+
+  // log out sets anchorEl back to null, and addprofileadmin to false
+  // so that upon relogin, both will stay closed.
+  handleLogOut = () => {
+    this.props.dispatch({ type: 'LOGOUT' });
+    this.setState({
+      addProfileAdmin: false,
+      anchorEl: null
+    });
+  }
+
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
@@ -78,7 +94,7 @@ class AppTopBar extends Component {
               </IconButton>
               <Menu
                 id="menu-appbar"
-                anchorEl={anchorEl}
+                anchorEl={this.state.anchorEl}
                 anchorOrigin={{
                   vertical: 'top',
                   horizontal: 'right',
@@ -88,12 +104,12 @@ class AppTopBar extends Component {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
-                open={open}
+                open={this.state.anchorEl}
                 onClose={this.handleClose}
               >
-                 <MenuItem onClick={this.handleProfileAdmin}>Profile </MenuItem>
+                 <MenuItem onClick={this.handleProfileAdmin} >Profile </MenuItem>
                 {this.state.addProfileAdmin ? <ProfileAdmin state={this.state} ProfileAdmin={this.ProfileAdmin} handleClose={this.handleClose} closeProfileAdmin={this.closeProfileAdmin}/> : null}
-                <MenuItem component={Link} to="/home" onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</MenuItem>
+                <MenuItem component={Link} to="/home" onClick={this.handleLogOut}>Log Out</MenuItem>
               </Menu>
             </div>
             :

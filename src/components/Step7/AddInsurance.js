@@ -55,7 +55,7 @@ class AddInsurance extends Component {
         return (
             <div >
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
@@ -75,13 +75,12 @@ class AddInsurance extends Component {
                     />
                     <TextField
                         label="Policy Start Date"
-                        placeholder="Policy Start Date"
                         value={this.state.date}
                         onChange={(event) => { this.handleChange(event, 'date') }}
-                        autoFocus
                         margin="dense"
-                        type="text"
+                        type="date"
                         fullWidth
+                        InputLabelProps={{shrink: true}}
                     />
 
                     </DialogContent>

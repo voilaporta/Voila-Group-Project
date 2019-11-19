@@ -55,7 +55,7 @@ class AddInspector extends Component {
         return (
             <div >
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
@@ -75,12 +75,12 @@ class AddInspector extends Component {
                     />
                     <TextField
                         label="Inspection Date"
-                        placeholder="Inspection Date"
                         value={this.state.date}
                         onChange={(event) => { this.handleChange(event, 'date') }}
                         margin="dense"
-                        type="text"
+                        type="date"
                         fullWidth
+                        InputLabelProps={{shrink: true}}
                     />
 
                     </DialogContent>

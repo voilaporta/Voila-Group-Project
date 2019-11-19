@@ -105,40 +105,29 @@ class DashboardAdmin extends Component {
 
         return (
             <div className={classes.root}>
-                {/* <div className={classes.search} >
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
-                </div>
-                <InputBase
-                    placeholder="Search…"
-                    classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                    }}
-                />
-            </div> */}
-            <Tabs
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    variant="fullWidth"
-                >
-                    <Tab label="Clients" />
-                    <Tab label="Admins" />
-                    <Tab label="Vendors" />
-                </Tabs>
+              <Tabs
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  variant="fullWidth"
+                  style={{position: "relative"}}
+              >
+                  <Tab label="Clients" />
+                  <Tab label="Admins" />
+                  <Tab label="Vendors" />
+              </Tabs>
                 <SwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={this.state.value}
                 onChangeIndex={this.handleChangeIndex}
-                >
-                <TabContainer                 className={classes.tabcontainer} dir={theme.direction} > <Client /> </TabContainer>
-                <TabContainer dir={theme.direction}> <Admin /> </TabContainer>
-                <TabContainer dir={theme.direction}> <Vendor /> </TabContainer>
-                </SwipeableViews>
+              >
+              <TabContainer className={classes.tabcontainer} dir={theme.direction}> <Client /> </TabContainer>
+              <TabContainer dir={theme.direction}> <Admin /> </TabContainer>
+              <TabContainer dir={theme.direction}> <Vendor /> </TabContainer>
+              </SwipeableViews>
 
-                <AddUsers />
+              <AddUsers />
             </div>
         )
     }

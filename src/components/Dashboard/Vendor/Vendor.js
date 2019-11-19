@@ -32,9 +32,10 @@ class Vendor extends Component {
     mapVendors = () => {
         let filteredVendors = this.props.vendorList.filter(
             (vendor) => {
-                return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1||
+                return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
               vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-              vendor.companyName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+              vendor.companyName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+              vendor.vendor_type_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
             }
         )
         return (
@@ -74,9 +75,6 @@ class Vendor extends Component {
     }
 }
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
     user: state.user,
     state,

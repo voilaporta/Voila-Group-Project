@@ -6,6 +6,7 @@ import {Add as AddIcon, CheckCircleOutline, PanoramaFishEye} from '@material-ui/
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
 import AddInsurance from './AddInsurance';
+import {ListItem, ListItemText} from '@material-ui/core';
 
 import Moment from 'react-moment';
 
@@ -54,14 +55,23 @@ class Step7Client extends Component {
     displaySingleInsurance = ()=>{
         //display the vendor's contact information
         const insuranceToDisplay = this.props.insuranceList.values.find((insurance)=> insurance.id === Number(this.state.insuranceId));
-        return <div>
-                    <p>Name: {insuranceToDisplay.firstName} {insuranceToDisplay.lastName}</p>
-                    <p>Company Name: {insuranceToDisplay.companyName}</p>
-                    <p>Phone: {insuranceToDisplay.phoneNumber}</p>
-                    <p>Email: {insuranceToDisplay.email}</p>
-                    <p>Website: {insuranceToDisplay.website}</p>
-                </div>
+        return <ListItemText
+                    primary={insuranceToDisplay.companyName}
+                    secondary={
+                        <>
+                        Name: {insuranceToDisplay.firstName} {insuranceToDisplay.lastName}
+                        <br></br>
+                        Phone: {insuranceToDisplay.phoneNumber}
+                        <br></br>
+                        Email: {insuranceToDisplay.email}
+                        <br></br>
+                        Website: {insuranceToDisplay.website}
+                        </>
+                    }
+                />
     }
+
+
 
     componentDidMount = ()=>{
         this.props.dispatch({type: 'GET_INSURANCE'}); //call to vendorSaga
@@ -83,9 +93,10 @@ class Step7Client extends Component {
         })
         return (
             
-            <div>
-                <h1>Use one of our Insurance Partners or use your own</h1>
-                <div className="insurancePartners">
+            <div className="pageDiv">
+                <h1 className="sectionHeadline">Use one of our Insurance Partners or contact your own.</h1>
+                <div className="content">
+                <div className="insurancePartners checkDisplay">
                     <FormControl className={classes.select}>
                         <InputLabel id="selectInsurance">Insurance Partners</InputLabel>
                         <Select
@@ -101,27 +112,35 @@ class Step7Client extends Component {
                     {/* if an inspector has been selected from the list, show the contact info otherwise show nothing */}
                     {this.state.insuranceId ? <div>{this.displaySingleInsurance()}</div> : <div></div>}
                 </div>
-                <div>Add Your Insurance Information 
-                    <Fab onClick={this.handleAdd} color="secondary" aria-label="Add" className={classes.fab} size="small">
-                         <AddIcon />
-                    </Fab> 
+                <div className="checkDisplay">Add Your Insurance Information 
+                    <div>
+                        <Fab onClick={this.handleAdd} color="secondary" aria-label="Add" className={classes.fab} size="small">
+                            <AddIcon />
+                        </Fab> 
+                    </div>
                 </div>
                 <div>
-                    {!this.props.selectedInsurance.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
-                            <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        
-                    Insurance Aquired
+                    <div className="checkDisplay">
+                        {!this.props.selectedInsurance.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                                <CheckCircleOutline className={classes.icon} color="secondary" /> }
+                            
+                        Insurance Aquired
+                    </div>
+                    <div className="buyerSelection">
                     { !this.props.selectedInsurance.values.length ? <div>Not Yet</div> :
-                        <>
-                        {/* selected vendors are returned from DB with most recent entry in first position of array */}
-                        <p>Agent: {this.props.selectedInsurance.values[0].name}</p>
-                        <p>Start Date: <Moment format="MM/DD/YYYY">
-                            {this.props.selectedInsurance.values[0].insuranceStartDate}
-                        </Moment></p> 
-                        </>}
+                        // selected vendors are returned from DB with most recent entry first in array
+                        <ListItemText
+                        primary={<>Agent: {this.props.selectedInsurance.values[0].name}</>}
+                        secondary={<>Start Date: <Moment format="MM/DD/YYYY">
+                        {this.props.selectedInsurance.values[0].insuranceStartDate}
+                        </Moment></>}/> 
+                        }
+
+                    </div>
                 </div>
 
                 {this.state.open ? <AddInsurance userStepId ={this.props.userStepId} handleClose={this.handleClose} /> : <div></div>}
+                </div>
             </div>
         );
     }

@@ -44,6 +44,8 @@ function* fetchVendor(){
   function* deleteVendor(action){
     try{
       yield axios.delete(`/api/vendor`, {data: {id: action.payload}});
+      // after deleting, get newest updates
+      yield fetchVendor();
     }catch (err){
       console.log('DELETE ERROR:', err);
     }

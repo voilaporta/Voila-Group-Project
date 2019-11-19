@@ -11,7 +11,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import BusinessIcon from '@material-ui/icons/Business';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
-const styles =theme => ({
+const styles = theme => ({
     fab: {
       margin: theme.spacing(1),
     },
@@ -25,7 +25,6 @@ class VendorItem extends Component {
         open:false,
 }
     updateVendor = (id) => {
-        // this.props.history.push(`/updatevendor/${id}`)
         this.setState({
             open: true
         })
@@ -39,38 +38,35 @@ class VendorItem extends Component {
     }
     render() {
         const {classes} = this.props;
+        const fullName = `${this.props.vendor.firstName} ${this.props.vendor.lastName}`;
         return (
-
-            // <tr>
-            //     <td>{this.props.vendor.firstName} {this.props.vendor.lastName}</td>
-            //     <td>{this.props.vendor.companyName}</td>
-            //     <td>{this.props.vendor.vendor_type_name}</td>
-            //     <td>{this.props.vendor.phoneNumber}</td>
-
-            //     <td><Fab color="secondary"  size="small" aria-label="edit" className={classes.fab}>
-            //         <EditIcon onClick={()=>{this.updateVendor(this.props.vendor.id)}}/>
-            //     </Fab></td>
             <>
-            <ListItemText>
-            <PersonIcon /> {this.props.vendor.firstName} {this.props.vendor.lastName}
-        </ListItemText>
-        <ListItemText>
-            <BusinessIcon /> {this.props.vendor.companyName}
-        </ListItemText>
-        <ListItemText>
-        < ContactPhoneIcon  /> {this.props.vendor.phoneNumber}
-        </ListItemText>
-        <ListItemText>
-        < BusinessCenterIcon  /> {this.props.vendor.vendor_type_name}
-        </ListItemText>
-   
-        <ListItemSecondaryAction>
-            <IconButton edge="end" color="secondary" aria-label="edit" onClick={this.updateVendor}>
-                <EditIcon onClick={() => { this.updateVendor(this.props.vendor.id) }} />
-            </IconButton>
-        </ListItemSecondaryAction>
-                {this.state.open ? <UpdateVendor state={this.state} updateVendor={this.updateVendor} handleClose={this.handleClose} vendorId={this.props.vendorId} vendor={this.props.vendor} />: <div></div>}
-
+                <ListItemIcon>
+                    <BusinessIcon />
+                </ListItemIcon>
+                <ListItemText 
+                    primary={this.props.vendor.companyName}
+                    secondary={
+                        <>
+                            {fullName}
+                            <br/>
+                            {this.props.vendor.phoneNumber}
+                            <br />
+                            {this.props.vendor.email}
+                            <br />
+                            {this.props.vendor.vendor_type_name}
+                        </>
+                    }
+                />
+                <ListItemSecondaryAction>
+                    <IconButton edge="end" color="secondary" aria-label="edit" onClick={this.updateVendor}>
+                        <EditIcon />
+                    </IconButton>
+                </ListItemSecondaryAction>
+                {this.state.open ? 
+                    <UpdateVendor open = {this.state.open} updateVendor={this.updateVendor} handleClose={this.handleClose} vendorId={this.props.vendorId} vendor={this.props.vendor} />
+                : 
+                    <div></div>}
             </>
 
         )

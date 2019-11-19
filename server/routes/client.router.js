@@ -6,9 +6,10 @@ const encryptLib = require('../modules/encryption');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
 //admin can get all clients from database
-    const queryText = `SELECT "id", "firstName", "lastName", "dropboxUrl", "agent_id"
-                        FROM "user"
-                        WHERE "role_id" = 3;`;
+    const queryText = `SELECT a."id", a."firstName", a."lastName", a."dropboxUrl", CONCAT(b."firstName", ' ', b."lastName") AS agent
+                        FROM "user" a
+                        INNER JOIN "user" b ON b.id = a.agent_id
+                        WHERE a."role_id" = 3;`;
     pool.query(queryText)
     .then((result)=>{
         res.send(result.rows);

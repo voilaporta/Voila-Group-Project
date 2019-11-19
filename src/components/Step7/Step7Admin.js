@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 import {CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
+import {ListItem, ListItemText} from '@material-ui/core';
 
 
 import Moment from 'react-moment';
@@ -40,13 +42,20 @@ class Step7Admin extends Component {
     displaySingleInsurance = ()=>{
         //display the vendor's contact information
         const insuranceToDisplay = this.props.insuranceList.values.find((insurance)=> insurance.id === Number(this.state.insuranceId));
-        return <div>
-                    <p>Name: {insuranceToDisplay.firstName} {insuranceToDisplay.lastName}</p>
-                    <p>Company Name: {insuranceToDisplay.companyName}</p>
-                    <p>Phone: {insuranceToDisplay.phoneNumber}</p>
-                    <p>Email: {insuranceToDisplay.email}</p>
-                    <p>Website: {insuranceToDisplay.website}</p>
-                </div>
+        return <ListItemText
+                primary={insuranceToDisplay.companyName}
+                secondary={
+                    <>
+                    Name: {insuranceToDisplay.firstName} {insuranceToDisplay.lastName}
+                    <br></br>
+                    Phone: {insuranceToDisplay.phoneNumber}
+                    <br></br>
+                    Email: {insuranceToDisplay.email}
+                    <br></br>
+                    Website: {insuranceToDisplay.website}
+                    </>
+        }
+    />
     }
 
     componentDidMount = ()=>{
@@ -69,8 +78,9 @@ class Step7Admin extends Component {
         })
 
         return (
-            <div>
-                <h1>Insurance Aquired will be completed by the buyer</h1>
+            <div className="pageDiv">
+                <h1 className="sectionHeadline">Insurance Aquired will be entered by the buyer</h1>
+                <div className="content">
                 <div className="insurancePartners">
                     <FormControl className={classes.select}>
                         <InputLabel id="selectInsurance">Insurance Partners</InputLabel>
@@ -89,18 +99,23 @@ class Step7Admin extends Component {
                 </div>
 
                 <div>
-                    {!this.props.selectedInsurance.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
-                            <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        
-                    Insurance Aquired
+                    <div className="checkDisplay">
+                        {!this.props.selectedInsurance.values.length ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
+                                <CheckCircleOutline className={classes.icon} color="secondary" /> }
+                            
+                        Insurance Aquired
+                    </div>
+                    <div className="buyerSelection">
                     { !this.props.selectedInsurance.values.length ? <div>Not Yet</div> :
-                        <>
-                        {/* selected vendors are returned from DB with most recent entry in first position of array */}
-                        <p>Agent: {this.props.selectedInsurance.values[0].name}</p>
-                        <p>Start Date: <Moment format="MM/DD/YYYY">
+                        //selscted vendors are returned from DB with most recently added in first position of array
+                        <ListItemText
+                            primary={<>Agent: {this.props.selectedInsurance.values[0].name}</>}
+                            secondary={<>Start Date: <Moment format="MM/DD/YYYY">
                             {this.props.selectedInsurance.values[0].insuranceStartDate}
-                        </Moment></p> 
-                        </>}
+                            </Moment></>}
+                        />}
+                    </div>
+                </div>
                 </div>
             </div>
         );

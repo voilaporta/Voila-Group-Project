@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import logo from './voilaLogin.png'
-
+import './LoginPage.css'
 //Material-ui imports
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles =theme => ({
 
     body: {
-      backgroundColor: theme.palette.common.white,
+      background: '#FFFFFF',
     },
 
   paper: {
@@ -20,6 +20,7 @@ const styles =theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    background: '#FFFFFF'
   },
 
   form: {
@@ -64,6 +65,7 @@ render(){
         const { classes } = this.props;
 
   return (
+    <div className="loginback">
     <Container component="main" maxWidth="xs">
     <CssBaseline />
     <div className={classes.paper}>
@@ -111,6 +113,7 @@ render(){
       </form>
     </div>
   </Container>
+  </div>
   )
 }
 }

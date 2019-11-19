@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {
     TextField, Dialog, DialogContent, DialogTitle, Button,
 } from '@material-ui/core';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import ProfileInfo from './ProfileInfo';
 
@@ -57,10 +56,7 @@ class ProfileAdmin extends Component {
     })
     }
 
-    handleClickAway = () => {
-        this.props.closeProfileAdmin();
-    }
-
+    // close the Profile and set everything to false
     closeProfile = () => {
         this.props.handleClose();
         this.props.closeProfileAdmin();
@@ -69,14 +65,14 @@ class ProfileAdmin extends Component {
 
     render() {
         return (
-            <ClickAwayListener onClickAway={this.handleClickAway}>
                 <div>
+                    <div></div>
                     <Dialog
                         open={this.props.state}
                         onClose={this.props.handleClose}
                         onKeyDown={stopPropagationForTab}
                         aria-labelledby="form-dialog-title"
-                        
+                        disableBackdropClick
                     >
                         <DialogContent dividers>
                             <DialogTitle id="form-dialog-title" >Profile</DialogTitle>
@@ -107,7 +103,6 @@ class ProfileAdmin extends Component {
                         </DialogContent>
                     </Dialog>
                 </div>
-            </ClickAwayListener>
         )
     }
 }

@@ -52,6 +52,14 @@ class AddInspector extends Component {
             type: 'ADD_INSPECTION',
             payload:  this.state 
         })
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Your inspection has been added.',
+            confirmButtonColor: '#af1419',
+        })
+
         this.props.handleClose();
     }
 

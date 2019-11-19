@@ -52,6 +52,14 @@ class AddInsurance extends Component {
             type: 'ADD_INSURANCE',
             payload:  this.state 
         })
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Your insurance has been added.',
+            confirmButtonColor: '#af1419',
+        })
+
         this.props.handleClose();
     }
 

@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// get all clients
 function* fetchClient() {
   try {
     const response = yield axios.get('/api/client');
@@ -21,6 +22,7 @@ function* updateClient(action) {
   }
 }
 
+// put request to update password
 function* updatePassword(action) {
   try {
     yield axios.put('/api/client/password', action.payload);
@@ -30,9 +32,12 @@ function* updatePassword(action) {
 
   }
 }
+
+// Send an axios request to delete client
 function* deleteClient(action){
   try{
     yield axios.delete(`/api/client`, {data: {id: action.payload}});
+    yield fetchClient();
   }catch (err){
     console.log('DELETE ERROR:', err);
   }

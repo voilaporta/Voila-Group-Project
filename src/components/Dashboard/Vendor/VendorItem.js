@@ -50,11 +50,11 @@ class VendorItem extends Component {
                         <>
                             {fullName}
                             <br/>
-                            {this.props.vendor.phoneNumber}
-                            <br />
-                            {this.props.vendor.email}
-                            <br />
                             {this.props.vendor.vendor_type_name}
+                            <br />
+                            {this.props.vendor.phoneNumber}
+                            <br/>
+                            {this.props.vendor.email}
                         </>
                     }
                 />

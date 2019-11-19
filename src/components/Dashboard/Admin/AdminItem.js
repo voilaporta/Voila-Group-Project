@@ -49,7 +49,7 @@ class AdminItem extends Component {
                     </IconButton>
                 </ListItemSecondaryAction>
                 {this.state.open ? 
-                    <UpdateAdmin state={this.state} updateAdmin={this.updateAdmin} handleClose={this.handleClose} admin={this.props.admin}  /> 
+                    <UpdateAdmin open={this.state.open} state={this.state} updateAdmin={this.updateAdmin} handleClose={this.handleClose} admin={this.props.admin}  /> 
                 : 
                     <div></div>
                 }

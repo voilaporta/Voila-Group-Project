@@ -58,15 +58,14 @@ class UpdateAdmin extends Component {
     }
 
     handleSubmit = () => {
-        this.props.history.push('/')
         this.props.dispatch({ type: 'UPDATE_ADMIN', payload: this.state })
         Swal.fire(
             'Success!',
             'Admin has been updated!',
             'success'
         )
+        this.props.handleClose();
     }
-
 
     handleDelete = () => {
         this.props.history.push('/')
@@ -78,10 +77,6 @@ class UpdateAdmin extends Component {
         )
     }
 
-    handleClose = () => {
-        this.props.history.push('/')
-   
-    }
     render() {
         const adminTypes = this.props.state.adminTypeReducer.map((type) => {
             return <MenuItem value={type.id}
@@ -91,12 +86,12 @@ class UpdateAdmin extends Component {
         return (
             <div >
                 <Dialog
-                    open={this.props.state}
+                    open={this.props.open}
                     onClose={this.props.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogContent dividers>
-                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                        <IconButton aria-label="close" className={classes.closeButton} onClick={this.props.handleClose}>
                             <CancelIcon  fontSize="large" color="secondary" />
                         </IconButton>
                         <DialogTitle id="form-dialog-title" >Update Admin</DialogTitle>

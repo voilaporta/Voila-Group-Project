@@ -33,7 +33,6 @@ class Step11Admin extends Component {
             type: 'FETCH_CLOSING_DATA',
             payload: this.props.userStepId
         })
-        console.log(this.props.closing)
     }
 
     // opens the dialog to add final walkthrough details

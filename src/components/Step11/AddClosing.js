@@ -51,19 +51,16 @@ class AddClosing extends Component {
             this.setState({
                 date: date
             });
-        console.log('in HANDLE DATE CHANGE', this.state)
         };
     
         handleChange= propertyName => (event) => {
             this.setState({
               [propertyName]: event.target.value,
             });
-            console.log('in handleChange', this.state)
          }
     
         // submits the data to post in the database
         handleComplete = () => {
-            console.log('--in HANDLE COMPLETE --', this.state)
             this.props.dispatch({
                 type: 'POST_CLOSING_DATA',
                 payload:{

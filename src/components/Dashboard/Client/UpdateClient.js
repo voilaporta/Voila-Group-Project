@@ -82,6 +82,7 @@ class UpdateClient extends Component {
         Swal.fire({
             title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
             text: "This action cannot be undone.",
+            confirmButtonColor: '#af1419',
             icon: "warning",
             showCancelButton: true,
             style: styles.swalDelete,
@@ -90,11 +91,12 @@ class UpdateClient extends Component {
                 if (result.value) {
                     this.props.dispatch({ type: 'DELETE_CLIENT', payload: this.state.id });
                     setTimeout(() => {
-                        Swal.fire(
-                            "Deleted",
-                            "This client has been deleted.",
-                            "success",
-                        );
+                        Swal.fire({
+                            title: "Deleted",
+                            text: "This client has been deleted.",
+                            confirmButtonColor: '#af1419',
+                            icon: "success",
+                        });
                     }, 100);
 
                 }

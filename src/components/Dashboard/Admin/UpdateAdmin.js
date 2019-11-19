@@ -72,6 +72,7 @@ class UpdateAdmin extends Component {
             title: `Do you want to remove ${this.state.firstName} ${this.state.lastName}?`,
             text: "This action cannot be undone.",
             icon: "warning",
+            confirmButtonColor: '#af1419',
             showCancelButton: true,
             style: styles.swalDelete,
         })
@@ -79,11 +80,12 @@ class UpdateAdmin extends Component {
                 if (result.value) {
                     this.props.dispatch({ type: 'DELETE_ADMIN', payload: this.state.id });
                     setTimeout(() => {
-                        Swal.fire(
-                            "Deleted",
-                            "This admibn has been deleted.",
-                            "success",
-                        );
+                        Swal.fire({
+                            title: "Deleted",
+                            text: "This admin has been deleted.",
+                            confirmButtonColor: '#af1419',
+                            icon: "success",
+                        });
                     }, 100);
 
                 }

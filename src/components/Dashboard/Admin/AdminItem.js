@@ -45,11 +45,11 @@ class AdminItem extends Component {
                 />
                 <ListItemSecondaryAction>
                     <IconButton edge="end" color="secondary" aria-label="edit" onClick={this.updateAdmin}>
-                        <EditIcon onClick={() => { this.updateAdmin(this.props.admin.id) }} />
+                        <EditIcon />
                     </IconButton>
                 </ListItemSecondaryAction>
                 {this.state.open ? 
-                    <UpdateAdmin state={this.state} updateAdmin={this.updateAdmin} handleClose={this.handleClose} admin={this.props.admin}  /> 
+                    <UpdateAdmin open={this.state.open} state={this.state} updateAdmin={this.updateAdmin} handleClose={this.handleClose} admin={this.props.admin}  /> 
                 : 
                     <div></div>
                 }

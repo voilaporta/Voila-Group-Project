@@ -130,8 +130,8 @@ class Step6Client extends Component {
                         <div className="buyerSelection">
                             { !this.props.selectedInspector.values.length ? <div>Not Yet</div> :
                                 <ListItemText
-                                primary={<>Agent: {this.props.selectedInspector.values[0].name}</>}
-                                secondary={<>Start Date: <Moment format="MM/DD/YYYY">
+                                primary={<>Inspector: {this.props.selectedInspector.values[0].name}</>}
+                                secondary={<>Date: <Moment format="MM/DD/YYYY">
                                 {this.props.selectedInspector.values[0].insuranceStartDate}
                                 </Moment></>}/>
                             }

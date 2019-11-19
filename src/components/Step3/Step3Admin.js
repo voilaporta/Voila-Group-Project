@@ -59,8 +59,12 @@ class Step3Admin extends Component {
                     <>
                     Last showing requested: {this.props.showing.map(showing => {
                         return <>
+                        Address: {''}
                         {showing.address}
+                        <br/>
+                        MLS #: {''}
                         {showing.MLS_number}
+                        <br/>
                         {showing.date_time_created}
                         </>
                     })}
@@ -73,11 +77,30 @@ class Step3Admin extends Component {
                     
                 </div>
 
-                {/* <div className="adminOfferMade">
+                <div className="adminOfferMade">
+                    {this.props.offerMade.length != 0 ?
+                    <>
                     Offer Made:
+                    {this.props.offerMade.map(offer => {
+                        return <>
+                        {offer.address}
+                        {offer.price}
+                        {offer.closingDate}
+                        {offer.earnestMoney}
+                        {offer.downPayment}
+                        {offer.sellerPaidClosingCosts}
+                        {offer.date_time_created}
+                        </>
+                    })}
+                    </>
+                    :
+                    <>
+                    Offers Made: {'User has not made an offer'}
+                    </>
+                }
                 </div>
-
-                <button>Mark Complete</button> */} 
+                
+                <button>Mark Complete</button>  
 
             </div>
         );

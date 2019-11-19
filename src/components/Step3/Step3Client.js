@@ -50,59 +50,50 @@ class Step3Client extends Component {
 
     render() { 
 
-        const recentShowing = this.props.showing.find((showing, index) => { return index === this.props.showing.length-1})
+        if(this.props.showing[0].loading){
+            return <div>loading</div>
+        }
         
         return (
             <div>
                 {this.state.showComponentToUpdate ? <ComponentToUpdate addCriteriaToggle={this.addCriteriaToggle} makeOfferToggle={this.makeOfferToggle} requestShowingToggle={this.requestShowingToggle} updateCriteriaToggle={this.updateCriteriaToggle} 
                 buyerFirstName={this.state.buyer_first_name} buyerLastName={this.state.buyer_last_name} 
                 showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
-                <>
-                 <div className="criteria">
-                    Current Criteria:
-                    <br/>
-                    {this.props.criteria.map(criteria => {
-                        return <p key={criteria.id}>
-                            Bedroom Count: {''}  
-                            {criteria.numRooms}
-                            <br/>
-                            Bathroom Count: {''}
-                            {criteria.numBath}
-                            <br/>
-                            Square Feet: {''}
-                            {criteria.numSF}
-                            <br/>
-                            Location: {''}
-                            {criteria.location}
-                            <br/>
-                            Additional Comments: {''}
-                            {criteria.notes}</p>
-                        })}
-                        {this.props.criteria != '' ? <button onClick={this.updateCriteriaToggle}>Update Criteria</button> :  
-                    <button onClick={this.addCriteriaToggle}>Add Criteria</button>
-                        }
-                </div>
+                <div className="componentToShow">
+                    <div className="criteria">
+                        Current Criteria:
+                        <br/>
+                        {this.props.criteria.map(criteria => {
+                            return <p key={criteria.id}>
+                                Bedroom Count: {''}  
+                                {criteria.numRooms}
+                                <br/>
+                                Bathroom Count: {''}
+                                {criteria.numBath}
+                                <br/>
+                                Square Feet: {''}
+                                {criteria.numSF}
+                                <br/>
+                                Location: {''}
+                                {criteria.location}
+                                <br/>
+                                Additional Comments: {''}
+                                {criteria.notes}</p>
+                            })}
+                            {this.props.criteria != '' ? <button onClick={this.updateCriteriaToggle}>Update Criteria</button> :  
+                        <button onClick={this.addCriteriaToggle}>Add Criteria</button>
+                            }
+                    </div>
             
                 <div className="showing">
                     Last showing requested:
                     <br/>
-                    {/* {this.props.showing[0].loading ? <div>loading</div> : 
-                    this.props.showing[0]
-                    } */}
-                    {/* {JSON.stringify(recentShowing)} */}
-                     {/* {JSON.stringify(this.props.showing.find((showing, index) => { return index === this.props.showing.length-1}))} */}
-                    {/* //      if(showing.date_time_created){
-                        return <p key={showing.id}>
-                            {showing.address}
-                            <br/>
-                            {showing.MLS_number}
-                        </p>
-                    }})} */}
+                    {this.props.showing[0].address} 
 
                     <button onClick={this.requestShowingToggle}>Request a showing</button>
                 </div>
                 <button onClick={this.makeOfferToggle}>Make Offer</button>
-                </>
+                </div>
 
                 }
             </div>

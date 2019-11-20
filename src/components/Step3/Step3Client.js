@@ -89,7 +89,7 @@ class Step3Client extends Component {
                     Last showing requested:
                     <br/>
                     {this.props.showing[0].address} 
-
+                    <br/>
                     <button onClick={this.requestShowingToggle}>Request a showing</button>
                 </div>
                 <button onClick={this.makeOfferToggle}>Make Offer</button>

@@ -50,7 +50,7 @@ class Step3Client extends Component {
 
     render() { 
 
-        if(this.props.showing[0].loading){
+        if(this.props.showing.loading){
             return <div>loading</div>
         }
         
@@ -88,7 +88,7 @@ class Step3Client extends Component {
                 <div className="showing">
                     Last showing requested:
                     <br/>
-                    {this.props.showing[0].address} 
+                    {this.props.showing.values.length ? this.props.showing.values[0].address: <div></div>} 
 
                     <button onClick={this.requestShowingToggle}>Request a showing</button>
                 </div>

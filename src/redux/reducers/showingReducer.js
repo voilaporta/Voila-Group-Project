@@ -1,7 +1,15 @@
-const showingReducer = (state = [{loading: true}], action) => {
+const initialState = {
+    loading: true,
+    values: []
+}
+
+const showingReducer = (state = initialState, action) => {
     switch(action.type){
         case 'SET_SHOWING':
-            return action.payload;
+            return {
+                loading: false,
+                values: action.payload
+            }
         default:
             return state;
     }

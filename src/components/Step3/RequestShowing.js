@@ -41,7 +41,7 @@ class RequestShowing extends Component {
                     <button onClick={this.cancel}>Cancel</button>
                     <br/>
                     House requested:
-                    {this.props.showing.map(showing => {
+                    {this.props.showing.values.map(showing => {
                         return <p key={showing.id}>
                             {showing.address}
                             <br/>

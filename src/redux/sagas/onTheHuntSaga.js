@@ -25,7 +25,7 @@ function* updateCriteria(action) {
     try{
         yield axios.put('/api/step3/criteria', action.payload);
         console.log('updating criteria', action.payload);
-        yield put ({type: 'SET_CRITERIA', payload: response.data});
+        yield put({type: 'GET_CRITERIA', payload: action.payload.user_step_id});
     }catch (error) {
         console.log('error with updating criteria', error);
     }

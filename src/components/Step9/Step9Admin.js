@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import './Step9.css';
 import AddFinal from './AddFinal';
 
 // MATERIAL UI
@@ -62,7 +62,7 @@ class Step9Admin extends Component {
                         Please list location, date, and time for the final walkthrough.
                     </Grid>
                 :
-                    <div>
+                    <div className="rootDiv">
                         <TextField label="Location" value={this.props.walkThrough[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Date" value={this.props.walkThrough[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Time" value={this.props.walkThrough[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>

@@ -65,13 +65,11 @@ class Step11Admin extends Component {
                     Please list location, date, time, and any items needed for Closing Day.
                 </Grid>
                 :
-                    <div className="rootDiv" align="center">
-                    <div className="contentDiv" align="center">
+                    <div className="rootDiv" >
                         <TextField label="Location" value={this.props.closing[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Date" value={this.props.closing[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Time" value={this.props.closing[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Things to Bring" value={this.props.closing[0].toBring} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
-                    </div>
                     </div>
                 }
                 <br />

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Step11.css';
+
 // Material UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -32,7 +34,7 @@ class Step11Client extends Component {
                 {this.props.closing.length === 0 ?
                     <h2>Your agent will list the closing details.</h2>
                 :
-                <div>
+                <div className="rootDiv">
                     <h2>Congratulations on your <br/> NEW HOME!</h2>
                     <TextField label="Location" value={this.props.closing[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
                     <TextField label="Date" value={this.props.closing[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>

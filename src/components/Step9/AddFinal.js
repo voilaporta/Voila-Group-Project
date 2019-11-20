@@ -4,13 +4,9 @@ import { connect } from 'react-redux';
 // MATERIAL UI
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {Grid, Button }from '@material-ui/core';
+import {Button }from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
-
-// material-ui-pickers
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 
 import Moment from 'moment';
 
@@ -18,7 +14,7 @@ const moment = Moment;
 
 const styles = theme => ({
     textField: {
-        width: 250
+        width: 250,
     },
     dialogTitle: {
         display: 'flex',
@@ -42,17 +38,9 @@ class AddFinal extends Component {
         // The first commit of Material-UI
         userStep_id: this.props.userStepId,
         location: '',
-        date: new Date(),
+        date: '',
         time: '',
       };
-    
-    // sets the state of date to selected date
-       handleDateChange = date => {
-        this.setState({
-            date: date
-        });
-    console.log('in HANDLE DATE CHANGE', this.state)
-    };
 
     handleChange= propertyName => (event) => {
         this.setState({
@@ -76,7 +64,7 @@ class AddFinal extends Component {
         this.setState({
             userStep_id: this.props.userStepId,
             location: '',
-            date: new Date(),
+            date: '',
             time: '',
         });
         this.props.handleClose();
@@ -113,28 +101,30 @@ class AddFinal extends Component {
                             variant="outlined"
                             fullWidth
                         />
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid>
-                                <DatePicker
-                                    label="Date picker"
-                                    value={this.state.date}
-                                    onChange={this.handleDateChange}
-                                    format="MMM d yyyy"
-                                    align="center"
-                                />
-                            </Grid>
-                        </MuiPickersUtilsProvider>
-                        <form>
-                            <TextField
-                                label="Time"
-                                value={this.state.time}
-                                onChange={this.handleChange('time')}
-                                margin="normal"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                        </form>
+                        <br />
+                        <TextField
+                            label="Date"
+                            value={this.state.date}
+                            onChange={this.handleChange('date')}
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            type="date"
+                            className={classes.textField}
+                        />
+                        <br />
+                        <TextField
+                            label="Time"
+                            value={this.state.time}
+                            onChange={this.handleChange('time')}
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            className={classes.textField}
+                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.props.handleClose} variant="outlined" color="secondary">

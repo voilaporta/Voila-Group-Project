@@ -94,6 +94,7 @@ class Step8Admin extends Component {
         return (
             <div className="pageDiv">
                 <h1 className="sectionHeadline">{`Mark off each step as the lender completes it so that ${this.props.buyerName} can see the progresss.`}</h1>
+                <div className="content">
                 <div><h2 className="sectionTitle">Appraisal:</h2>
                     <div role="button" onClick={()=>{this.toggleTrue('request')}} className="checkDisplay">
                         {!this.props.appraisal.values[0].requested ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
@@ -122,8 +123,8 @@ class Step8Admin extends Component {
                         {!this.props.appraisal.values[0].completed ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
                         Appraisal Completed</div>
-                </div>
-                <div><h2 className="sectionTitle">Title:</h2>
+                
+                <h2 className="sectionTitle">Title:</h2>
                     <div role="button" onClick={()=>{this.toggleTrue('titleOrdered')}} className="checkDisplay">
                         {!this.props.title.values[0].ordered ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
@@ -135,6 +136,7 @@ class Step8Admin extends Component {
                             <PanoramaFishEye className={classes.icon} color="secondary"/> }
                         Title Completed
                     </div>
+                </div>
                 </div>
 
                 <Button variant="outlined" onClick={this.handleClickOpen}>

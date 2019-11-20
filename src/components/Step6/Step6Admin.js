@@ -110,8 +110,8 @@ class Step6Admin extends Component {
                         { !this.props.selectedInspector.values.length ? <div>not yet</div> :
                         //selected vendors are returned from DB with most recent entry at first position of array
                         <ListItemText
-                            primary={<>Agent: {this.props.selectedInspector.values[0].name}</>}
-                            secondary={<>Start Date: <Moment format="MM/DD/YYYY">
+                            primary={<>Inspector: {this.props.selectedInspector.values[0].name}</>}
+                            secondary={<>Date: <Moment format="MM/DD/YYYY">
                             {this.props.selectedInspector.values[0].insuranceStartDate}
                             </Moment></>}
                         />}

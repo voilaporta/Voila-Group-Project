@@ -8,8 +8,9 @@
 
 .content{
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
+    
 }
 
 .checkDisplay{
@@ -17,7 +18,7 @@
     justify-content: flex-start;
     align-items: center;
     font-size: 20px;
-    margin: 5px 5px 5px 40px;
+    margin: 5px 5px 5px 20px;
 }
 
 .sectionHeadline{
@@ -50,7 +51,7 @@
 .buyerSelection{
     display: flex;
     flex-direction: column;
-    margin: 5px 5px 5px 100px;
+    margin: 5px 5px 5px 80px;
 }
 
 .buyerSelection p {

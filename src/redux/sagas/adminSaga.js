@@ -24,6 +24,7 @@ function* fetchAdmin(){
   function* deleteAdmin(action){
     try{
       yield axios.delete(`/api/administrators`, {data: {id: action.payload}});
+      yield fetchAdmin();
     }catch (err){
       console.log('DELETE ERROR:', err);
     }

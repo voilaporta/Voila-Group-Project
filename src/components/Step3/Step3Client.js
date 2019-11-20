@@ -50,7 +50,7 @@ class Step3Client extends Component {
 
     render() { 
 
-        if(this.props.showing[0].loading){
+        if(this.props.showing.loading){
             return <div>loading</div>
         }
         

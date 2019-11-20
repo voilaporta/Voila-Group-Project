@@ -55,9 +55,9 @@ class Step3Admin extends Component {
                         
 
                 <div className="adminRequestShowing">
-                    {this.props.showing.length != 0 ? 
+                    {this.props.showing.values.length != 0 ? 
                     <>
-                    Last showing requested: {this.props.showing.map(showing => {
+                    Last showing requested: {this.props.showing.values.map(showing => {
                         return <>
                         Address: {''}
                         {showing.address}
@@ -100,7 +100,7 @@ class Step3Admin extends Component {
                 }
                 </div>
                 
-                <button>Mark Complete</button>  
+ 
 
             </div>
         );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import AddClosing from './AddClosing';
+import './Step11.css';
 
 // MATERIAL UI
 import PropTypes from 'prop-types';
@@ -15,6 +16,9 @@ const styles = ({
     buttonpadding: {
         marginBottom: 15
     },
+    contentDiv: {
+        maxWidth: 200, 
+    }
   });
 
 class Step11Admin extends Component {
@@ -33,7 +37,6 @@ class Step11Admin extends Component {
             type: 'FETCH_CLOSING_DATA',
             payload: this.props.userStepId
         })
-        console.log(this.props.closing)
     }
 
     // opens the dialog to add final walkthrough details
@@ -62,7 +65,7 @@ class Step11Admin extends Component {
                     Please list location, date, time, and any items needed for Closing Day.
                 </Grid>
                 :
-                    <div>
+                    <div className="rootDiv" >
                         <TextField label="Location" value={this.props.closing[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Date" value={this.props.closing[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
                         <TextField label="Time" value={this.props.closing[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>

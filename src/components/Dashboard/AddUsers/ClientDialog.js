@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   
   const styles = theme => ({
     formControl: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         minWidth: 120,
       },
       dialogTitle: {
@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
         height: '1vh',
     },
     leftIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
     },
   });
 
@@ -106,7 +106,6 @@ class ClientDialog extends Component {
           [propertyName]: event.target.value,
             journey: event.target.checked
         });
-        console.log('in handleChange', this.state)
      }
       
     render() {
@@ -116,7 +115,7 @@ class ClientDialog extends Component {
         // map through the agents and list them into menu items to select
         const agentList = this.props.agent.map( (agent) => {
             return (
-                <MenuItem value={agent.id}>{agent.firstName} {agent.lastName}</MenuItem>
+                <MenuItem key={agent.id} value={agent.id}>{agent.firstName} {agent.lastName}</MenuItem>
             )
         })
         

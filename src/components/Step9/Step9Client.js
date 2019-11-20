@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Step9.css';
 
 // Material UI
 import PropTypes from 'prop-types';
@@ -24,7 +25,6 @@ class Step9Client extends Component {
             type: 'GET_FINAL_WALKTHROUGH',
             payload: this.props.userStepId
         })
-        console.log(this.props.walkThrough)
     }
 
     render() {
@@ -34,7 +34,7 @@ class Step9Client extends Component {
                 {this.props.walkThrough.length === 0 ?
                     <h2>Your agent will list the closing details.</h2>
                 :
-                <div>
+                <div className="rootDiv">
                     <TextField label="Location" value={this.props.walkThrough[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>
                     <TextField label="Date" value={this.props.walkThrough[0].date} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>
                     <TextField label="Time" value={this.props.walkThrough[0].time} multiline rows="1" variant="filled" InputProps={{readOnly: true,}}/>

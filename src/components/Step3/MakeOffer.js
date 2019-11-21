@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { TextField } from '@material-ui/core';
 
 class MakeOffer extends Component {
 
@@ -38,13 +39,73 @@ class MakeOffer extends Component {
     render() {
         return( 
             <div className="makeOffer">
-                    <input value={this.state.name} onChange={(event) => this.handleChange(event, 'name')} placeholder="name"/>
-                    <input value={this.state.address} onChange={(event) => this.handleChange(event, 'address')} placeholder="address"/>
-                    <input value={this.state.price} onChange={(event) => this.handleChange(event, 'price')} placeholder="price"/>
-                    <input value={this.state.closing_date} onChange={(event) => this.handleChange(event, 'closing_date')} type="date" placeholder="closing date"/>
-                    <input value={this.state.earnest_money} onChange={(event) => this.handleChange(event, 'earnest_money')} placeholder="earnest money"/>
-                    <input value={this.state.down_payment} onChange={(event) => this.handleChange(event, 'down_payment')} placeholder="down payment"/>
-                    <input value={this.state.seller_closing_costs} onChange={(event) => this.handleChange(event, 'seller_closing_costs')} placeholder="seller closing costs"/>
+                    <TextField 
+                    fullWidth
+                    margin="dense"
+                    label="Name"
+                    type="text"
+                    value={this.state.name} 
+                    onChange={(event) => this.handleChange(event, 'name')} 
+                    />
+
+                    <TextField 
+                    fullWidth
+                    margin="dense"
+                    label="Address"
+                    placeholder="1000 Voila St. Voila, MN 112219"
+                    type="text"
+                    value={this.state.address} 
+                    onChange={(event) => this.handleChange(event, 'address')} 
+                    />
+
+                    <TextField 
+                    fullWidth
+                    margin="dense"
+                    label="Price"
+                    type="Number"
+                    value={this.state.price} 
+                    onChange={(event) => this.handleChange(event, 'price')} 
+                    />
+
+                    <TextField 
+                    fullWidth
+                    autoFocus
+                    margin="dense"
+                    label="Closing Date"
+                    type="date"
+                    value={this.state.closing_date} 
+                    onChange={(event) => this.handleChange(event, 'closing_date')} 
+                    />
+
+                    <TextField 
+                    fullWidth
+                    margin="dense"
+                    label="Earnest Money"
+                    type="number"
+                    value={this.state.earnest_money} 
+                    onChange={(event) => this.handleChange(event, 'earnest_money')} 
+                    />
+
+                    <TextField 
+                    fullWidth
+                    margin="dense"
+                    label="Down Payment"
+                    type="number"
+                    value={this.state.down_payment} 
+                    onChange={(event) => this.handleChange(event, 'down_payment')} 
+                    placeholder="down payment"
+                    />
+
+                    <TextField 
+                    fullWidth
+                    margin="dense"
+                    label="Seller Closing Costs"
+                    type="number"
+                    value={this.state.seller_closing_costs} 
+                    onChange={(event) => this.handleChange(event, 'seller_closing_costs')} 
+                    placeholder="seller closing costs"
+                    />
+
                     <button onClick={this.makeOffer}>Submit Offer</button>
                     <button onClick={this.cancel}>Cancel</button>
             </div>

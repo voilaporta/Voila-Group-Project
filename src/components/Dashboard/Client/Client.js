@@ -32,7 +32,7 @@ class Client extends Component {
     }
 
     mapClients = () => {
-        let filteredContacts = this.props.clientList.filter(
+        let filteredContacts = this.props.clientList.values.filter(
             (client) => {
                 return client.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
                     client.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
@@ -48,7 +48,7 @@ class Client extends Component {
     }
 
     render() {
-        if (this.props.clientList[0].loading) {
+        if (this.props.clientList.loading) {
             return (
                 <div>loading....... </div>
             )

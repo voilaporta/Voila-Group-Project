@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { TextField } from '@material-ui/core';
 
 class RequestShowing extends Component {
 
@@ -35,8 +36,27 @@ class RequestShowing extends Component {
     render() {
         return( 
             <div className="requestShowing">
-                    <input value={this.state.address} onChange={(event) => this.handleChange(event, 'address')} placeholder="address"/>
-                    <input value={this.state.mls_number} onChange={(event) => this.handleChange(event, 'mls_number')} placeholder="MLS number"/>
+                    <TextField
+                    fullWidth
+                    multiline
+                    margin="dense"
+                    label="Address"
+                    placeholder="1000 Voila St. Voila, MN 112219"
+                    type="text"
+                    value={this.state.address} 
+                    onChange={(event) => this.handleChange(event, 'address')} 
+                    />
+
+                    <TextField
+                    fullWidth 
+                    margin="dense"
+                    label="MLS Number"
+                    placeholder='Not sure what it is? Check "themlsonline.com/minnesota-real-estate" for more information!'
+                    type="number"
+                    value={this.state.mls_number} 
+                    onChange={(event) => this.handleChange(event, 'mls_number')} 
+                    />
+
                     <button onClick={this.makeRequest}>Make Request</button>
                     <button onClick={this.cancel}>Cancel</button>
                     <br/>

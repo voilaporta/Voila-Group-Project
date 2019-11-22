@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
+import Swal from 'sweetalert2';
 
 class ChangeCriteria extends Component {
 
@@ -24,12 +25,22 @@ class ChangeCriteria extends Component {
     addCriteria = () => {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state});
         this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
+        Swal.fire(
+            'Success!',
+            'You have added new home criteria!',
+            'success'
+            )
         this.props.addCriteriaToggle();
     }
 
     updateCriteria = () => {
         this.props.dispatch({type: 'UPDATE_CRITERIA', payload: this.state});
         this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
+        Swal.fire(
+            'Success!',
+            'You have updated your home criteria!',
+            'success'
+            )
         this.props.updateCriteriaToggle();
     }
 
@@ -100,10 +111,13 @@ class ChangeCriteria extends Component {
                     />
 
                     <br/>
-                    {this.props.criteria != '' ? <button onClick={this.updateCriteria}>Update Criteria</button> :  
-                    <button onClick={this.addCriteria}>Add Criteria</button>
+                    <br/>
+                    <br/>
+                    <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
+                    {this.props.criteria != '' ? <Button onClick={this.updateCriteria} color="secondary" variant="contained">Update Criteria</Button> :  
+                    <Button onClick={this.addCriteria} color="secondary" variant="contained">Add Criteria</Button>
                         }
-                    <button onClick={this.cancel}>Cancel</button>
+                    
 
             </div>
                 

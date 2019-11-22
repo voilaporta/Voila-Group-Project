@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
+import Swal from 'sweetalert2';
+
 
 class RequestShowing extends Component {
 
@@ -26,6 +28,11 @@ class RequestShowing extends Component {
     makeRequest = () => {
         this.props.dispatch({type: 'POST_SHOWING', payload: this.state});
         this.props.dispatch({type: 'EMAIL_SHOWING', payload: this.state});
+        Swal.fire(
+            'Success!',
+            'You have requested a showing! Your realtor will be in contact with you soon.',
+            'success'
+            )
         this.props.requestShowingToggle();
     }
 
@@ -51,23 +58,15 @@ class RequestShowing extends Component {
                     fullWidth 
                     margin="dense"
                     label="MLS Number"
-                    placeholder='Not sure what it is? Check "themlsonline.com/minnesota-real-estate" for more information!'
                     type="number"
                     value={this.state.mls_number} 
                     onChange={(event) => this.handleChange(event, 'mls_number')} 
                     />
-
-                    <button onClick={this.makeRequest}>Make Request</button>
-                    <button onClick={this.cancel}>Cancel</button>
                     <br/>
-                    House requested:
-                    {this.props.showing.values.map(showing => {
-                        return <p key={showing.id}>
-                            {showing.address}
-                            <br/>
-                            {showing.MLS_number}
-                        </p>
-                    })}
+                    <br/>
+                    <br/>
+                    <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
+                    <Button onClick={this.makeRequest} color="secondary" variant="contained">Make Request</Button>
             </div>
         )
     }

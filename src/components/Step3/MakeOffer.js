@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
+import Swal from 'sweetalert2';
 
 class MakeOffer extends Component {
 
@@ -22,6 +23,11 @@ class MakeOffer extends Component {
     makeOffer = () => {
         this.props.dispatch({type: 'POST_OFFER_MADE', payload: this.state});
         this.props.dispatch({type: 'EMAIL_OFFER_MADE', payload: this.state});
+        Swal.fire(
+            'Success!',
+            'Your offer has been submitted to your realtor!',
+            'success'
+            )
         this.props.makeOfferToggle();
     }
 
@@ -69,7 +75,9 @@ class MakeOffer extends Component {
 
                     <TextField 
                     fullWidth
-                    autoFocus
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                     margin="dense"
                     label="Closing Date"
                     type="date"
@@ -106,8 +114,12 @@ class MakeOffer extends Component {
                     placeholder="seller closing costs"
                     />
 
-                    <button onClick={this.makeOffer}>Submit Offer</button>
-                    <button onClick={this.cancel}>Cancel</button>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
+                    <Button onClick={this.makeOffer} color="secondary" variant="contained">Submit Offer</Button>
+                    
             </div>
         )
     }

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ComponentToUpdate from './ComponentToUpdate';
+import { Button, Divider } from '@material-ui/core';
+import './Step3.css';
+
+const styles = {
+    button: {
+        marginBottom: '10px'
+    }
+}
 
 class Step3Client extends Component {
 
@@ -51,7 +59,7 @@ class Step3Client extends Component {
     render() { 
 
         if(this.props.showing.loading){
-            return <div>loading</div>
+            return <div>loading...</div>
         }
         
         return (
@@ -61,38 +69,50 @@ class Step3Client extends Component {
                 showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <div className="componentToShow">
                     <div className="criteria">
-                        Current Criteria:
-                        <br/>
+                        <h1>Your Dream Home</h1>
+                        
                         {this.props.criteria.map(criteria => {
                             return <p key={criteria.id}>
                                 Bedroom Count: {''}  
-                                {criteria.numRooms}
+                                <b>{criteria.numRooms}</b>
                                 <br/>
                                 Bathroom Count: {''}
-                                {criteria.numBath}
+                                <b>{criteria.numBath}</b>
                                 <br/>
                                 Square Feet: {''}
-                                {criteria.numSF}
+                                <b>{criteria.numSF}</b>
                                 <br/>
                                 Location: {''}
-                                {criteria.location}
+                                <b>{criteria.location}</b>
                                 <br/>
                                 Additional Comments: {''}
-                                {criteria.notes}</p>
+                                <b>{criteria.notes}</b>
+                                </p>
                             })}
-                            {this.props.criteria != '' ? <button onClick={this.updateCriteriaToggle}>Update Criteria</button> :  
-                        <button onClick={this.addCriteriaToggle}>Add Criteria</button>
-                            }
+                           
                     </div>
-            
-                <div className="showing">
-                    Last showing requested:
                     <br/>
-                    {this.props.showing.values.length ? this.props.showing.values[0].address: <div></div>} 
+                    <Divider variant="middle"/>
+                    <br/>
+                    <div className="showing">
+                        <h1>Last Showing Requested</h1>
+                        <br/>
+                        {this.props.showing.values.length ? <b>{this.props.showing.values[0].address}</b> : <div></div>} 
 
-                    <button onClick={this.requestShowingToggle}>Request a showing</button>
-                </div>
-                <button onClick={this.makeOfferToggle}>Make Offer</button>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                    <div className="step3Buttons">
+                        {this.props.criteria != '' ? 
+                            <Button style={styles.button} onClick={this.updateCriteriaToggle} color="secondary" variant="contained">Update Criteria</Button> :  
+                            <Button style={styles.button} onClick={this.addCriteriaToggle} color="secondary" variant="contained">Add Criteria</Button> 
+                            }
+                            <br/>
+                        <Button style={styles.button} onClick={this.requestShowingToggle} color="secondary" variant="contained">Request a showing</Button>
+                        <br/>
+                        <Button style={styles.button} onClick={this.makeOfferToggle} color="secondary" variant="contained">Make Offer</Button>
+                    </div>
                 </div>
 
                 }

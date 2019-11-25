@@ -27,7 +27,7 @@ class Vendor extends Component {
 
 
     mapVendors = () => {
-        let filteredVendors = this.props.vendorList.filter(
+        let filteredVendors = this.props.vendorList.values.filter(
             (vendor) => {
                 return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
                     vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
@@ -43,7 +43,7 @@ class Vendor extends Component {
         )
     }
     render() {
-        if (this.props.vendorList[0].loading) {
+        if (this.props.vendorList.loading) {
             return (
                 <div>loading....... </div>
             )

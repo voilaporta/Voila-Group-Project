@@ -35,7 +35,7 @@ class AddInspector extends Component {
     }
 
     handleSubmit = () => {
-        
+        //if info is not filled out, an allert will request user to add information
         if(this.state.name === '' || this.state.date === ''){
             return ( 
                 Swal.fire({
@@ -47,7 +47,7 @@ class AddInspector extends Component {
                 })
             )
         }
-    
+        //if all info is filled out, local state will be dispatched to step6and7Saga.js to be added to database
         this.props.dispatch({
             type: 'ADD_INSPECTION',
             payload:  this.state 
@@ -59,7 +59,7 @@ class AddInspector extends Component {
             text: 'Your inspection has been added.',
             confirmButtonColor: '#af1419',
         })
-
+        //after data is dispatched to saga and success message appears, the pop-up window will close
         this.props.handleClose();
     }
 

@@ -66,11 +66,11 @@ class Step6Admin extends Component {
     render() {
 
         const { classes } = this.props;
-
+        // if redux does not have data in it yet, display loading
         if(this.props.inspectorList.loading){
             return <div>...loading...</div>
         }
-
+        //when redux data has arrived, map through inspectors returned from database
         const inspectors = this.props.inspectorList.values.map((inspector)=>{
             return <MenuItem 
                         key={inspector.id}

@@ -29,7 +29,7 @@ class Vendor extends Component {
 //toLowerCase will make it not case sensitive
 // on filter of the admins it will display only the names of the admin related to the letter inputted or name inputted
     mapVendors = () => {
-        let filteredVendors = this.props.vendorList.filter(
+        let filteredVendors = this.props.vendorList.values.filter(
             (vendor) => {
                 return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
                     vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
@@ -45,7 +45,7 @@ class Vendor extends Component {
         )
     }
     render() {
-        if (this.props.vendorList[0].loading) {
+        if (this.props.vendorList.loading) {
             return (
                 <div>loading....... </div>
             )

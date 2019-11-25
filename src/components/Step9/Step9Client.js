@@ -6,6 +6,7 @@ import './Step9.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 const styles = ({
     textField: {
@@ -33,7 +34,9 @@ class Step9Client extends Component {
             <div>
                 {/* if there are no data for the user in the closing reducer, show "Your Agent will list the closing details" */}
                 {this.props.walkThrough.length === 0 ?
-                    <h2>Your agent will list the closing details.</h2>
+                    <Grid>
+                        Your agent will list the final walkthrough details.
+                    </Grid>
                 :
                 // else, show this
                 <div className="rootDiv">

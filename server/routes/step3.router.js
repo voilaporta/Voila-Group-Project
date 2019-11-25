@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
-
+// Route that gets search criteria for specific user
 router.get('/criteria/:id', rejectUnauthenticated, (req, res) => {
     //user/client's userStep_id must be passed through url when request is made
     const userStep = req.params.id;
@@ -19,6 +19,7 @@ router.get('/criteria/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// Route that gets requested showing for specific user
 router.get('/showing/:id', rejectUnauthenticated, (req, res) => {
     //user/client's userStep_id must be passed through url when request is made
     const userStep = req.params.id;
@@ -35,6 +36,7 @@ router.get('/showing/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// Route that gets offers made for specific user
 router.get('/offer/:id', rejectUnauthenticated, (req, res) => {
     //user/client's userStep_id must be passed through url when request is made
     const userStep = req.params.id;
@@ -51,7 +53,7 @@ router.get('/offer/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
-
+// Route that posts search criteria for specific user
 router.post('/criteria', rejectUnauthenticated, (req, res) => {
     const userStep = req.body.user_step_id;
     const rooms = req.body.bedroom_count;
@@ -72,6 +74,7 @@ router.post('/criteria', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// Route that posts showings requested by specific user
 router.post('/showing', rejectUnauthenticated, (req, res) => {
     const userStep = req.body.user_step_id;
     const address = req.body.address;
@@ -89,6 +92,7 @@ router.post('/showing', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// Route that posts offers made by specific user
 router.post('/offer', rejectUnauthenticated, (req, res) => {
     const userStep = req.body.user_step_id;
     const name = req.body.name;
@@ -111,6 +115,7 @@ router.post('/offer', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// Route that updates search criteria for specific user
 router.put('/criteria', rejectUnauthenticated, (req, res) => {
     const userStep = req.body.user_step_id;
     const rooms = req.body.bedroom_count;

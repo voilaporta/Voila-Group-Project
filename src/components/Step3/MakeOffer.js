@@ -18,8 +18,6 @@ class MakeOffer extends Component {
         seller_closing_costs: ''
     }
 
-
-
     makeOffer = () => {
         this.props.dispatch({type: 'POST_OFFER_MADE', payload: this.state});
         this.props.dispatch({type: 'EMAIL_OFFER_MADE', payload: this.state});
@@ -27,7 +25,7 @@ class MakeOffer extends Component {
             'Success!',
             'Your offer has been submitted to your realtor!',
             'success'
-            )
+            );
         this.props.makeOfferToggle();
     }
 
@@ -35,7 +33,7 @@ class MakeOffer extends Component {
         this.setState({
             ...this.state,
             [input]: event.target.value
-        })
+        });
     }
 
     cancel = () => {
@@ -45,16 +43,16 @@ class MakeOffer extends Component {
     render() {
         return( 
             <div className="makeOffer">
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Name"
                     type="text"
                     value={this.state.name} 
                     onChange={(event) => this.handleChange(event, 'name')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Address"
@@ -62,18 +60,18 @@ class MakeOffer extends Component {
                     type="text"
                     value={this.state.address} 
                     onChange={(event) => this.handleChange(event, 'address')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Price"
                     type="Number"
                     value={this.state.price} 
                     onChange={(event) => this.handleChange(event, 'price')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     InputLabelProps={{
                         shrink: true,
@@ -83,18 +81,18 @@ class MakeOffer extends Component {
                     type="date"
                     value={this.state.closing_date} 
                     onChange={(event) => this.handleChange(event, 'closing_date')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Earnest Money"
                     type="number"
                     value={this.state.earnest_money} 
                     onChange={(event) => this.handleChange(event, 'earnest_money')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Down Payment"
@@ -102,9 +100,9 @@ class MakeOffer extends Component {
                     value={this.state.down_payment} 
                     onChange={(event) => this.handleChange(event, 'down_payment')} 
                     placeholder="down payment"
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Seller Closing Costs"
@@ -112,14 +110,13 @@ class MakeOffer extends Component {
                     value={this.state.seller_closing_costs} 
                     onChange={(event) => this.handleChange(event, 'seller_closing_costs')} 
                     placeholder="seller closing costs"
-                    />
+                />
 
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
-                    <Button onClick={this.makeOffer} color="secondary" variant="contained">Submit Offer</Button>
-                    
+                <br/>
+                <br/>
+                <br/>
+                <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
+                <Button onClick={this.makeOffer} color="secondary" variant="contained">Submit Offer</Button>    
             </div>
         )
     }

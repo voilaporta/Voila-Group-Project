@@ -20,8 +20,6 @@ class ChangeCriteria extends Component {
         this.props.dispatch({type: 'GET_JOURNEY'});
     } 
 
-
-
     addCriteria = () => {
         this.props.dispatch({type: 'POST_CRITERIA', payload: this.state});
         this.props.dispatch({type: 'EMAIL_CRITERIA', payload: this.state});
@@ -29,7 +27,7 @@ class ChangeCriteria extends Component {
             'Success!',
             'You have added new home criteria!',
             'success'
-            )
+            );
         this.props.addCriteriaToggle();
     }
 
@@ -40,7 +38,7 @@ class ChangeCriteria extends Component {
             'Success!',
             'You have updated your home criteria!',
             'success'
-            )
+            );
         this.props.updateCriteriaToggle();
     }
 
@@ -48,7 +46,7 @@ class ChangeCriteria extends Component {
         this.setState({
             ...this.state,
             [input]: event.target.value
-        })
+        });
     }
 
     cancel = () => {
@@ -56,30 +54,28 @@ class ChangeCriteria extends Component {
         this.props.updateCriteriaToggle();
     }
 
-
-
     render() {
         return( 
             <div className="criteriaChange">
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Bedroom Count"
                     type="number"
                     value={this.state.bedroom_count} 
                     onChange={(event) => this.handleChange(event, 'bedroom_count')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Bathroom Count"
                     type="number"
                     value={this.state.bathroom_count} 
                     onChange={(event) => this.handleChange(event, 'bathroom_count')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Square Feet"
@@ -87,9 +83,9 @@ class ChangeCriteria extends Component {
                     type="number"
                     value={this.state.square_feet} 
                     onChange={(event) => this.handleChange(event, 'square_feet')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     fullWidth
                     margin="dense"
                     label="Location/Zip Code"
@@ -97,9 +93,9 @@ class ChangeCriteria extends Component {
                     type="text"
                     value={this.state.location} 
                     onChange={(event) => this.handleChange(event, 'location')} 
-                    />
+                />
 
-                    <TextField 
+                <TextField 
                     multiline
                     fullWidth
                     margin="dense"
@@ -108,19 +104,16 @@ class ChangeCriteria extends Component {
                     type="text"
                     value={this.state.notes} 
                     onChange={(event) => this.handleChange(event, 'notes')} 
-                    />
+                />
 
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
-                    {this.props.criteria != '' ? <Button onClick={this.updateCriteria} color="secondary" variant="contained">Update Criteria</Button> :  
+                <br/>
+                <br/>
+                <br/>
+                <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
+                {this.props.criteria != '' ? <Button onClick={this.updateCriteria} color="secondary" variant="contained">Update Criteria</Button> :  
                     <Button onClick={this.addCriteria} color="secondary" variant="contained">Add Criteria</Button>
-                        }
-                    
-
+                }
             </div>
-                
         )
     }
 }

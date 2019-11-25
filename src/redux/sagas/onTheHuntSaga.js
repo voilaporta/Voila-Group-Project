@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// Function that posts buyer's criteria to database
 function* postCriteria(action) {
     try{
         yield axios.post('/api/step3/criteria', action.payload);
@@ -11,6 +12,7 @@ function* postCriteria(action) {
     }
 }
 
+// Function that gets buyer's criteria from database
 function* getCriteria(action) {
     try{
         const response = yield axios.get('/api/step3/criteria/' + action.payload)
@@ -21,6 +23,7 @@ function* getCriteria(action) {
     }
 }
 
+// Function that updates buyer's criteria in database
 function* updateCriteria(action) {
     try{
         yield axios.put('/api/step3/criteria', action.payload);
@@ -31,6 +34,7 @@ function* updateCriteria(action) {
     }
 }
 
+// Function that posts buyer's showing request to database
 function* postShowing(action) {
     try{
         yield axios.post('/api/step3/showing/', action.payload);
@@ -41,6 +45,7 @@ function* postShowing(action) {
     }
 }
 
+// Function that gets buyer's showing request from database
 function* getShowing(action) {
     try{
         const response = yield axios.get('/api/step3/showing/' + action.payload)
@@ -51,6 +56,7 @@ function* getShowing(action) {
     }
 }
 
+// Function that posts buyer's offer made to database
 function* postOfferMade(action) {
     try{
         axios.post('/api/step3/offer', action.payload);
@@ -60,6 +66,7 @@ function* postOfferMade(action) {
     }
 }
 
+// Function that gets buyer's offers made from database
 function* getOfferMade(action) {
     try{
         const response = yield axios.get('/api/step3/offer/' + action.payload);
@@ -70,7 +77,7 @@ function* getOfferMade(action) {
     }
 }
 
-
+// When TYPE is hit, corresponding function will fire off
 function* onTheHuntSaga() {
     yield takeLatest('POST_CRITERIA', postCriteria)
     yield takeLatest('GET_CRITERIA', getCriteria)

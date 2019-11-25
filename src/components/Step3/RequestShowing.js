@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
 import Swal from 'sweetalert2';
 
-
 class RequestShowing extends Component {
 
     state = {
@@ -15,14 +14,14 @@ class RequestShowing extends Component {
     }
 
     componentDidMount = () => {
-        this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id})
+        this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id});
     }
 
     handleChange = (event, input) => {
         this.setState({
             ...this.state,
             [input]: event.target.value
-        })
+        });
     }
 
     makeRequest = () => {
@@ -32,7 +31,7 @@ class RequestShowing extends Component {
             'Success!',
             'You have requested a showing! Your realtor will be in contact with you soon.',
             'success'
-            )
+            );
         this.props.requestShowingToggle();
     }
 
@@ -43,7 +42,7 @@ class RequestShowing extends Component {
     render() {
         return( 
             <div className="requestShowing">
-                    <TextField
+                <TextField
                     fullWidth
                     multiline
                     margin="dense"
@@ -52,21 +51,21 @@ class RequestShowing extends Component {
                     type="text"
                     value={this.state.address} 
                     onChange={(event) => this.handleChange(event, 'address')} 
-                    />
+                />
 
-                    <TextField
+                <TextField
                     fullWidth 
                     margin="dense"
                     label="MLS Number"
                     type="number"
                     value={this.state.mls_number} 
                     onChange={(event) => this.handleChange(event, 'mls_number')} 
-                    />
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
-                    <Button onClick={this.makeRequest} color="secondary" variant="contained">Make Request</Button>
+                />
+                <br/>
+                <br/>
+                <br/>
+                <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
+                <Button onClick={this.makeRequest} color="secondary" variant="contained">Make Request</Button>
             </div>
         )
     }

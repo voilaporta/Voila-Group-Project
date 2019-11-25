@@ -1,7 +1,7 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-
+// Function that emails criteria from buyer to admin
 function* emailCriteria(action) {
     try{
         axios.post('/nodemailer/criteria', action.payload);
@@ -11,6 +11,7 @@ function* emailCriteria(action) {
     }
 };
 
+// Function that emails showings requested from buyer to admin
 function* emailShowing(action) {
     try{
         axios.post('/nodemailer/showing', action.payload);
@@ -20,6 +21,7 @@ function* emailShowing(action) {
     }
 };
 
+// Function that emails offers made from buyer to admin
 function* emailOffer(action) {
     try{
         axios.post('/nodemailer/offer', action.payload);
@@ -29,6 +31,7 @@ function* emailOffer(action) {
     }
 };
 
+// When TYPE is hit, corresponding function will fire off
 function* mailerSaga() {
     yield takeLatest('EMAIL_CRITERIA', emailCriteria)
     yield takeLatest('EMAIL_SHOWING', emailShowing)

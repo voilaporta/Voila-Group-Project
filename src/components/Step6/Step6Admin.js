@@ -7,7 +7,7 @@ import Moment from 'react-moment';
 import {CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
-import {ListItem, ListItemText} from '@material-ui/core';
+import {ListItemText} from '@material-ui/core';
 
 
 const styles = theme => ({

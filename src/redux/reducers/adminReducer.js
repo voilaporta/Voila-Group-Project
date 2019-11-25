@@ -1,7 +1,15 @@
-const adminList = (state = [{loading:true}], action) => {
+const initialState = {
+  loading: true,
+  values: []
+}
+
+const adminList = (state = initialState, action) => {
     switch (action.type) {
       case 'ADD_ADMIN':
-        return action.payload
+        return {
+          loading: false,
+          values: action.payload,
+        }
       default:
         return state;
     }

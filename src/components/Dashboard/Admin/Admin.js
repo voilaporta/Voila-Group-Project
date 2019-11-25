@@ -33,7 +33,7 @@ class Admin extends Component {
 
 
     mapAdmins = () => {
-        let filteredAdmins = this.props.adminList.filter(
+        let filteredAdmins = this.props.adminList.values.filter(
             (admin) => {
                 return admin.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
                     admin.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -47,7 +47,7 @@ class Admin extends Component {
         )
     }
     render() {
-        if (this.props.adminList[0].loading) {
+        if (this.props.adminList.loading) {
             return (
                 <div>loading....... </div>
             )

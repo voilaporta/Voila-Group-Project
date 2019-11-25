@@ -31,6 +31,9 @@ class Client extends Component {
         this.props.dispatch({ type: 'FETCH_CLIENT' })
     }
 
+//this function will filter through the list of client on typing of a letter or name matching first name, last name, and agent
+//toLowerCase will make it not case sensitive
+// on filter of the admins it will display only the names of the client related to the letter inputted or name inputted
     mapClients = () => {
         let filteredContacts = this.props.clientList.values.filter(
             (client) => {

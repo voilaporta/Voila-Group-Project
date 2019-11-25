@@ -50,7 +50,7 @@ class Step6Client extends Component {
     }
 
     displaySingleInspector = ()=>{
-        //display the vendor's contact information
+        //display the vendor's contact information when specific vendor has been clicked
         const inspectorToDisplay = this.props.inspectorList.values.find((inspector)=> inspector.id === Number(this.state.inspectionId));
         return <ListItemText
             primary={inspectorToDisplay.companyName}
@@ -128,16 +128,18 @@ class Step6Client extends Component {
                         </div>
 
                         <div className="buyerSelection">
+                            {/* if no inspection has been entered in by user, this bar will show un-checked. If user enters data, it will show checked */}
                             { !this.props.selectedInspector.values.length ? <div>Not Yet</div> :
                                 <ListItemText
                                 primary={<>Inspector: {this.props.selectedInspector.values[0].name}</>}
                                 secondary={<>Date: <Moment format="MM/DD/YYYY">
-                                {this.props.selectedInspector.values[0].insuranceStartDate}
+                                {this.props.selectedInspector.values[0].inspectionDate}
                                 </Moment></>}/>
                             }
                         </div>
                     </div>
                     <div className="checkDisplay">
+                        {/* this will show checked when the overall section has been completed */}
                     {this.props.userJourney[5].completed ? <CheckCircleOutline className={classes.icon} color="secondary" /> : 
                             <PanoramaFishEye className={classes.icon} color="secondary"/> }
                         Inspection Negotiated

@@ -31,9 +31,11 @@ class Admin extends Component {
         this.props.dispatch({ type: 'FETCH_ADMIN' })
     }
 
-
+//this function will filter through the list of admins on typing of a letter or name
+//toLowerCase will make it not case sensitive
+// on filter of the admins it will display only the names of the admin related to the letter inputted or name inputted
     mapAdmins = () => {
-        let filteredAdmins = this.props.adminList.filter(
+        let filteredAdmins = this.props.adminList.values.filter(
             (admin) => {
                 return admin.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
                     admin.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -47,7 +49,7 @@ class Admin extends Component {
         )
     }
     render() {
-        if (this.props.adminList[0].loading) {
+        if (this.props.adminList.loading) {
             return (
                 <div>loading....... </div>
             )

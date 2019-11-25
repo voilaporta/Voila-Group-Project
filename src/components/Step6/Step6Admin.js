@@ -7,7 +7,7 @@ import Moment from 'react-moment';
 import {CheckCircleOutline, PanoramaFishEye} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
-import {ListItem, ListItemText} from '@material-ui/core';
+import {ListItemText} from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -66,11 +66,11 @@ class Step6Admin extends Component {
     render() {
 
         const { classes } = this.props;
-
+        // if redux does not have data in it yet, display loading
         if(this.props.inspectorList.loading){
             return <div>...loading...</div>
         }
-
+        //when redux data has arrived, map through inspectors returned from database
         const inspectors = this.props.inspectorList.values.map((inspector)=>{
             return <MenuItem 
                         key={inspector.id}
@@ -112,7 +112,7 @@ class Step6Admin extends Component {
                         <ListItemText
                             primary={<>Inspector: {this.props.selectedInspector.values[0].name}</>}
                             secondary={<>Date: <Moment format="MM/DD/YYYY">
-                            {this.props.selectedInspector.values[0].insuranceStartDate}
+                            {this.props.selectedInspector.values[0].inspectionDate}
                             </Moment></>}
                         />}
                     </div>

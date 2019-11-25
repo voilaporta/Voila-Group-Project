@@ -1,9 +1,15 @@
+const initialState = {
+  loading: true,
+  values: []
+}
 
-const vendorList = (state = [{loading:true}], action) => {
+const vendorList = (state = initialState, action) => {
     switch (action.type) {
       case 'ADD_VENDOR':
-        return action.payload;
-      
+        return {
+          loading: false,
+          values: action.payload,
+        }
       default:
         return state;
     }

@@ -25,9 +25,11 @@ class Vendor extends Component {
         this.props.dispatch({ type: 'FETCH_VENDOR' })
     }
 
-
+//this function will filter through the list of admins on typing of a letter or name and will display by first name,last name,company name, and vendor type
+//toLowerCase will make it not case sensitive
+// on filter of the admins it will display only the names of the admin related to the letter inputted or name inputted
     mapVendors = () => {
-        let filteredVendors = this.props.vendorList.filter(
+        let filteredVendors = this.props.vendorList.values.filter(
             (vendor) => {
                 return vendor.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
                     vendor.lastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
@@ -43,7 +45,7 @@ class Vendor extends Component {
         )
     }
     render() {
-        if (this.props.vendorList[0].loading) {
+        if (this.props.vendorList.loading) {
             return (
                 <div>loading....... </div>
             )

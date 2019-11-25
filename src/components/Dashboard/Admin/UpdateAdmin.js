@@ -30,7 +30,7 @@ const styles = theme => ({
 
     },
 })
-
+//this component  updates admin information.
 class UpdateAdmin extends Component {
 
     state = {

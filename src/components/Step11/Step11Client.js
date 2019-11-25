@@ -31,9 +31,11 @@ class Step11Client extends Component {
 
         return (
             <div>
+                {/* if there are no data for the user in the closing reducer, show "Your Agent will list the closing details" */}
                 {this.props.closing.length === 0 ?
                     <h2>Your agent will list the closing details.</h2>
                 :
+                // else, show this
                 <div className="rootDiv">
                     <h2>Congratulations on your <br/> NEW HOME!</h2>
                     <TextField label="Location" value={this.props.closing[0].location} multiline rows="3" variant="filled" InputProps={{readOnly: true,}}/>

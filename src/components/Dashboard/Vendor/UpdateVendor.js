@@ -64,13 +64,9 @@ class UpdateVendor extends Component {
             ...this.state,
             [keyname]: event.target.value,
         })
-        console.log(this.state);
-
     }
 
     handleSubmit = () => {
-        console.log('hellooooo ', this.state);
-
         this.props.history.push('/')
         this.props.dispatch({
             type: 'UPDATE_VENDOR',

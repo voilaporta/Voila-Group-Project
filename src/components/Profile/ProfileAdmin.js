@@ -34,8 +34,6 @@ class ProfileAdmin extends Component {
             ...this.state,
             [keyname]: event.target.value,
         })
-        console.log(this.state);
-
     }
 
     savePassword = () => {
@@ -60,7 +58,6 @@ class ProfileAdmin extends Component {
     closeProfile = () => {
         this.props.handleClose();
         this.props.closeProfileAdmin();
-        console.log(this.state, 'in CLOSE PROFILE BUTTON')
     }
 
     render() {

@@ -110,8 +110,8 @@ class ChangeCriteria extends Component {
                 <br/>
                 <br/>
                 <Button onClick={this.cancel} color="secondary" variant="outlined">Cancel</Button>
-                {this.props.criteria != '' ? <Button onClick={this.updateCriteria} color="secondary" variant="contained">Update Criteria</Button> :  
-                    <Button onClick={this.addCriteria} color="secondary" variant="contained">Add Criteria</Button>
+                {this.props.criteria !== '' ? <Button onClick={this.updateCriteria} color="secondary" variant="contained">Update Criteria</Button> :  
+                <Button onClick={this.addCriteria} color="secondary" variant="contained">Add Criteria</Button>
                 }
             </div>
         )

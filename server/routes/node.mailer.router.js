@@ -25,7 +25,7 @@ router.post('/criteria', (req, res) => {
     });
     
     let mailOptions = {
-        // You will need to change email address
+        // You will need to change email address to one you want to use
         to: 'voilaporta@gmail.com',
         subject: `${firstName} ${lastName} has added new criteria`,
         text: `
@@ -65,7 +65,7 @@ router.post('/showing', (req, res) => {
     });
     
     let mailOptions = {
-        // You will need to change email address
+        // You will need to change email address to one you want to use
         to: 'voilaporta@gmail.com',
         subject: `${firstName} ${lastName} has requested a showing`,
         text: `
@@ -106,7 +106,7 @@ router.post('/offer', (req, res) => {
     });
     
     let mailOptions = {
-        // You will need to change email address
+        // You will need to change email address to one you want to use
         to: 'voilaporta@gmail.com',
         subject: `${firstName} ${lastName} has made an offer`,
         text: `

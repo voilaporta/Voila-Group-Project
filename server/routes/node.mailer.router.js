@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 
 require('dotenv').config();
 
+// Route that will email criteria
 router.post('/criteria', (req, res) => {
 
     const firstName = req.body.buyer_first_name;
@@ -45,6 +46,7 @@ router.post('/criteria', (req, res) => {
     });
 });
 
+// Route that will email requested showing
 router.post('/showing', (req, res) => {
 
     const firstName = req.body.buyer_first_name;
@@ -80,6 +82,7 @@ router.post('/showing', (req, res) => {
     });
 });
 
+// Route that will email offer made
 router.post('/offer', (req, res) => {
 
     const firstName = req.body.buyer_first_name;
@@ -90,7 +93,6 @@ router.post('/offer', (req, res) => {
     const earnestMoney = req.body.earnest_money;
     const downPayment = req.body.down_payment;
     const sellerClosingCosts = req.body.seller_closing_costs;
-
 
     let transporter = nodemailer.createTransport({
         service: 'gmail',

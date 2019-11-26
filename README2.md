@@ -42,11 +42,9 @@ These instructions will get you a copy of the project up and running on your loc
 ​
 ### Initial Setup - admin
 
+This application is designed so that the main administrator is the one who creates all other users through the admin dashboard. To initialize an administrator for first log-in navagate to http://localhost:3000/#/register to register. For production code, remove the code in app.js that navigates to this register page. 
 
-​
-## Screen Shot
-​
-Include one or two screen shots of your project here (optional). Remove if unused.
+
 ​
 ​
 ### Completed Features

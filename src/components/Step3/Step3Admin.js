@@ -3,14 +3,10 @@ import { connect } from 'react-redux';
 
 class Step3Admin extends Component {
 
-    state = {
-        user_step_id: this.props.userStepId
-    }
-
     componentDidMount = () => {
-        this.props.dispatch({type: 'GET_CRITERIA', payload: this.state.user_step_id});
-        this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id});
-        this.props.dispatch({type: 'GET_OFFER_MADE', payload: this.state.user_step_id});
+        this.props.dispatch({type: 'GET_CRITERIA', payload: this.props.userStepId});
+        this.props.dispatch({type: 'GET_SHOWING', payload: this.props.userStepId});
+        this.props.dispatch({type: 'GET_OFFER_MADE', payload: this.props.userStepId});
     }
 
     render() {
@@ -22,13 +18,13 @@ class Step3Admin extends Component {
         return (
             <div>
                 <div className="showUser">
-                    <h1>Current User:</h1> <b>{this.props.buyerFirstName} {this.props.buyerLastName}</b>
+                    <h1>Current User</h1> <b>{this.props.buyerFirstName} {this.props.buyerLastName}</b>
                 </div>
-
+                <br/>
                 <div className="adminCriteria">
+                    <h1>User's Criteria</h1> 
                     {this.props.criteria.length !== 0 ? 
                     <>
-                    <h1>User's criteria:</h1> 
                     {this.props.criteria.map(criteria => {    
                         return <div className="criteria">
                             <p key={criteria.id}>
@@ -52,13 +48,14 @@ class Step3Admin extends Component {
                         </>
                     :
                     <>
-                    <h1>User's criteria:</h1> {'User has not added any search criteria'}
+                        {`${this.props.buyerFirstName} has not added any search criteria.`}
                     </>
                 }
                 </div>
+                <br/>
                 <div className="adminRequestShowing"> 
                     <>
-                        <h1>Last showing requested:</h1> 
+                        <h1>Last Showing Requested</h1> 
                         {this.props.showing.values.length ? 
                         <>
                             {this.props.showing.values[0].address}
@@ -68,15 +65,16 @@ class Step3Admin extends Component {
                         </>
                         :    
                         <>
-                            {'User has not requested a showing yet'}
+                            {`${this.props.buyerFirstName} has not requested a showing.`}
                         </>
                     }
                     </>
                 </div>
+                <br/>
                 <div className="adminOfferMade">
+                    <h1>Offers Made</h1>
                     {this.props.offerMade.length !== 0 ?
                     <>
-                    <h1>Offer Made:</h1>
                     {this.props.offerMade.map(offer => {
                         return <div key={offer.id}>
                         {offer.address}
@@ -85,12 +83,12 @@ class Step3Admin extends Component {
                         {offer.earnestMoney}
                         {offer.downPayment}
                         {offer.sellerPaidClosingCosts}
-                        </div>
+                    </div>
                     })}
                     </>
                     :
                     <>
-                    <h1>Offers Made:</h1> {'User has not made an offer'}
+                        {`${this.props.buyerFirstName} has not made an offer yet.`}
                     </>
                 }
                 </div>

@@ -21,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Create database and table​s
 
-* Create a databse named 'voila'. If you would like to name your database something else, you will need to change `voila` to the name of your new database name in `server/modules/pool.js`
+* Create a datbase named 'voila'. If you would like to name your database something else, you will need to change `voila` to the name of your new database name in `server/modules/pool.js`
 * See the database.sql files for the tables and initial data to set up your database. 
 
 ​
@@ -44,7 +44,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 This application is designed so that the main administrator is the one who creates all other users through the admin dashboard. To initialize an administrator for first log-in navagate to http://localhost:3000/#/register to register. For production code, remove the code in app.js that navigates to this register page. 
 
-
+### Setting Up Nodemailer
+* Steps for using Nodemailer to send email:
+    - Make sure you have run `npm install`, "nodemailer" should be located in dependencies in package.json
+    - Add to your `.env` file:
+        - EMAIL = (your email here) 
+        - PASSWORD = (your email password here)
+    - Note: `.env` file does not get pushed up to Github
+    - This will authorize transporter object in `node.mailer.router.js` to send/receive email from your account
 ​
 ​
 ### Completed Features
@@ -90,7 +97,7 @@ Features that you would like to add at some point in the future.
 ​
 ## Acknowledgments
 ​
-* Thank you to Prime Digital Academy for teaching us all we knwo and letting us soar. 
+* Thank you to Prime Digital Academy for teaching us all we know and letting us soar. 
 
 
 

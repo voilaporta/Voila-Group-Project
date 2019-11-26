@@ -1,10 +1,12 @@
-# Name of Application
-​
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+# Voila Home Buying Tracker
+
+The Voila Home Buying App is a mobile-first web application that guides home-buyers step-by-step through the process of purchasing a home. The application allows users to track exactly what step they are on, what is coming next, and what documents are needed in order to progress. These documents are all stored in one location: the Voila Vault, a personalized dropbox for the user. From the app, buyers can request showings, make offers, and schedule appraisals and inspections. Agents can upload all the relevant documents and manage multiple clients’ journeys in one place. Agents can also add, update, and remove additional clients, other agents or team members, and vendors such as insurance agents, inspectors, and so on.
 ​
 ## Built With
 ​
-React, Redux, Express, Passport, PostgreSQL, Nodemailer, SweetAlerts2,
+React, Redux, Redux-sagas, Express, Passport, PostgreSQL, Nodemailer, SweetAlerts2, and Material UI
+
+for a full list of dependencies, please see the package.json file.
 ​
 ## Getting Started
 ​
@@ -22,8 +24,11 @@ These instructions will get you a copy of the project up and running on your loc
 * Create a databse named 'voila'. If you would like to name your database something else, you will need to change `voila` to the name of your new database name in `server/modules/pool.js`
 * See the database.sql files for the tables and initial data to set up your database. 
 
-### Installing
 ​
+### Installing
+
+* Open a new terminal window
+* Navigate to the project directory path
 * Run `npm install`
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
@@ -31,32 +36,40 @@ These instructions will get you a copy of the project up and running on your loc
     ```
     While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 * Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run server`
-* Run `npm run client`
+* In a terminal window, type `npm run server`
+* In another terminal window, type `npm run client`
 * Navigate to `localhost:3000`
 ​
+### Initial Setup - admin
+
 
 ​
 ## Screen Shot
 ​
 Include one or two screen shots of your project here (optional). Remove if unused.
 ​
-## Documentation
-​
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
 ​
 ### Completed Features
 ​
-High level list of items completed.
-​
-- [x] Feature a
-- [x] Feature b
+- [x] Admin can create new clients and administrators
+- [x] Admin can update and delete client and administrator information
+- [x] Admin can add, update and delete vendors 
+- [x] Admin can view each client's individual byuer journey and update step completion status
+- [x] Buyer can view individualized buyer journey steps and whether or not each step is complete
+- [x] Buyer can view vendor lists for inspection and insurance vendors
+- [x] Buyer can add their individual insurance and inspection information when booked
+- [x] Buyer can update home buying criteria, request showings and request to make an offer on a home
+- [x] Admin will receive email when buyer updates buying criteria, requests showing or requests to make an offer
+- [x] Admin can enter in details for final walk-through and closing day for buyer to view
+- [x] Each user can update/change their password 
+- [x] Buyer can view information about each step in the buying process
+
 ​
 ### Next Steps
 ​
 Features that you would like to add at some point in the future.
 ​
-- [ ] Feature c
+- [ ] Add the Seller's journey
 ​
 ## Deployment
 ​

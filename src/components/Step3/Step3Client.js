@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ComponentToUpdate from './ComponentToUpdate';
 import { Button, Divider } from '@material-ui/core';
-import './Step3.css';
 
 const styles = {
     button: {
@@ -28,32 +27,36 @@ class Step3Client extends Component {
     this.props.dispatch({type: 'GET_SHOWING', payload: this.state.user_step_id});
 }
 
+    // Function will toggle between showing component to change criteria and step page
     addCriteriaToggle = () => {
         this.setState({
             showCriteria: !this.state.showCriteria,
             showComponentToUpdate: !this.state.showComponentToUpdate
-        })
+        });
     }
 
+    // Function will toggle between showing component to change criteria and step page
     updateCriteriaToggle = () => {
         this.setState({
             showCriteria: !this.state.showCriteria,
             showComponentToUpdate: !this.state.showComponentToUpdate
-        })
+        });
     }
 
+    // Function will toggle between showing component to request showing and step page
     requestShowingToggle = () => {
         this.setState({
             showRequest: !this.state.showRequest,
             showComponentToUpdate: !this.state.showComponentToUpdate
-        })
+        });
     }
 
+    // Function will toggle between showing component to make offer and step page
     makeOfferToggle = () => {
         this.setState({
             showOffer: !this.state.showOffer,
             showComponentToUpdate: !this.state.showComponentToUpdate
-        })
+        });
     }
 
     render() { 
@@ -88,8 +91,7 @@ class Step3Client extends Component {
                                 Additional Comments: {''}
                                 <b>{criteria.notes}</b>
                                 </p>
-                            })}
-                           
+                            })}     
                     </div>
                     <br/>
                     <Divider variant="middle"/>
@@ -98,12 +100,12 @@ class Step3Client extends Component {
                         <h1>Last Showing Requested</h1>
                         <br/>
                         {this.props.showing.values.length ? <b>{this.props.showing.values[0].address}</b> : <div></div>} 
-
                         <br/>
                         <br/>
                         <br/>
                     </div>
                     <div className="step3Buttons">
+                        {/* If there is no criteria added yet, button will show "Add Criteria". Otherwise, it will say "Update". */}
                         {this.props.criteria != '' ? 
                             <Button style={styles.button} onClick={this.updateCriteriaToggle} color="secondary" variant="contained">Update Criteria</Button> :  
                             <Button style={styles.button} onClick={this.addCriteriaToggle} color="secondary" variant="contained">Add Criteria</Button> 
@@ -114,7 +116,6 @@ class Step3Client extends Component {
                         <Button style={styles.button} onClick={this.makeOfferToggle} color="secondary" variant="contained">Make Offer</Button>
                     </div>
                 </div>
-
                 }
             </div>
         );

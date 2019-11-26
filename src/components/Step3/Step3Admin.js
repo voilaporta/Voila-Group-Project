@@ -44,7 +44,6 @@ class Step3Admin extends Component {
                                 {criteria.notes}</p>
                                 </div>
                             })}
-                        
                         </>
                     :
                     <>
@@ -52,8 +51,6 @@ class Step3Admin extends Component {
                     </>
                 }
                 </div>
-                        
-
                 <div className="adminRequestShowing">
                     {this.props.showing.values.length != 0 ? 
                     <>
@@ -99,9 +96,6 @@ class Step3Admin extends Component {
                     </>
                 }
                 </div>
-                
- 
-
             </div>
         );
     }

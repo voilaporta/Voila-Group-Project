@@ -105,7 +105,7 @@ class Step3Client extends Component {
                     </div>
                     <div className="step3Buttons">
                         {/* If there is no criteria added yet, button will show "Add Criteria". Otherwise, it will say "Update". */}
-                        {this.props.criteria !== '' ? 
+                        {this.props.criteria != '' ? 
                             <Button style={styles.button} onClick={this.updateCriteriaToggle} color="secondary" variant="contained">Update Criteria</Button> :  
                             <Button style={styles.button} onClick={this.addCriteriaToggle} color="secondary" variant="contained">Add Criteria</Button> 
                             }

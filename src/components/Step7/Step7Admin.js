@@ -79,7 +79,7 @@ class Step7Admin extends Component {
 
         return (
             <div className="pageDiv">
-                <h1 className="sectionHeadline">Insurance Aquired will be entered by the buyer</h1>
+                <h1 className="sectionHeadline">Insurance Acquired will be entered by the buyer</h1>
                 <div className="content">
                 <div className="insurancePartners">
                     <FormControl className={classes.select}>

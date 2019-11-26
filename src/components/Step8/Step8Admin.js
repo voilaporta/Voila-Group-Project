@@ -105,7 +105,7 @@ class Step8Admin extends Component {
                     <div role="button" onClick={()=>{this.toggleTrue('schedule')}} className="checkDisplay">
                         {!this.props.appraisal.values[0].scheduled ? <PanoramaFishEye className={classes.icon} color="secondary"/> : 
                             <CheckCircleOutline className={classes.icon} color="secondary" /> }
-                        Appraisal Scheculed
+                        Appraisal Scheduled
                     </div>
 
                     <div className="buyerSelection">

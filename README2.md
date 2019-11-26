@@ -79,7 +79,7 @@ Features that you would like to add at some point in the future.
 ​
 ## Acknowledgments
 ​
-* Thank you to Prime Digital Academy for teaching us all we knwo and letting us soar. 
+* Thank you to Prime Digital Academy for teaching us all we know and letting us soar. 
 
 
 

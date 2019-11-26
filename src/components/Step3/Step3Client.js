@@ -72,8 +72,7 @@ class Step3Client extends Component {
                 showCriteria={this.state.showCriteria} showRequest={this.state.showRequest} showOffer={this.state.showOffer}/> : 
                 <div className="componentToShow">
                     <div className="criteria">
-                        <h1>Your Dream Home</h1>
-                        
+                        <h1>Your Dream Home</h1>    
                         {this.props.criteria.map(criteria => {
                             return <p key={criteria.id}>
                                 Bedroom Count: {''}  

@@ -201,5 +201,5 @@ VALUES
 
 INSERT INTO "vendorType"
 ("name")
-VALUES ('Insurance Partners'), ('Inspection Partners');
+VALUES ('Insurance Partners'), ('Inspection Partners'), ('Lender partners');
 
